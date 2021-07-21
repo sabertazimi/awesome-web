@@ -1,0 +1,35 @@
+{
+  "name": "awesome-web",
+  "version": "1.0.0",
+  "description": "A brand new repository for web development prototypes",
+  "scripts": {
+    "build": "mkdir -p ./public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sabertazimi/awesome-web.git"
+  },
+  "keywords": [
+    "html",
+    "css",
+    "js",
+    "javascript",
+    "ecmascript",
+    "react",
+    "reactjs",
+    "vue",
+    "vuejs",
+    "node",
+    "nodejs",
+    "front-end",
+    "front-end development",
+    "web",
+    "web development"
+  ],
+  "author": "sabertazimi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sabertazimi/awesome-web/issues"
+  },
+  "homepage": "https://github.com/sabertazimi/awesome-web"
+}
