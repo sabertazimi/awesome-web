@@ -46,15 +46,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: dist
-        path: public
-    # - name: NPM audit
-    #   uses: oke-py/npm-audit-action@v1
-    #   with:
-    #     audit_level: moderate
-    #     github_token: ${{ secrets.GITHUB_TOKEN }}
-    #     issue_assignees: sabertazimi
-    #     issue_labels: vulnerability,test
-    #     dedupe_issues: true
+        path: build
   
   deploy:
     runs-on: ubuntu-latest
@@ -65,7 +57,7 @@ jobs:
       uses: actions/download-artifact@v2
       with:
         name: dist
-        path: public
+        path: build
     - name: List production artifacts
       run: ls -alhR
       working-directory: .
@@ -74,7 +66,7 @@ jobs:
       if: ${{ github.ref == 'refs/heads/main' }}
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./public
+        publish_dir: ./build
         force_orphan: true
         user_name: 'github-actions[bot]'
         user_email: 'github-actions[bot]@users.noreply.github.com'
