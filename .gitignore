@@ -56,8 +56,8 @@ typings/
 
 # gatsby files
 .cache/
-public
-build
+build/
+dist/
 
 # Mac files
 .DS_Store

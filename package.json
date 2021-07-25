@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "A brand new repository for web development prototypes",
   "scripts": {
-    "build": "mkdir -p ./public && touch ./public/.gitkeep"
+    "build": "mkdir -p ./build && touch ./build/.gitkeep"
   },
   "repository": {
     "type": "git",
