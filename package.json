@@ -4,8 +4,8 @@
   "description": "A brand new repository for web development prototypes",
   "scripts": {
     "build": "mkdir -p ./build && touch ./build/.gitkeep",
-    "prelease": "standard-version --dry-run",
-    "release": "standard-version",
+    "prelease": "standard-version --dry-run -s",
+    "release": "standard-version -s",
     "start": "npm run build"
   },
   "repository": {
