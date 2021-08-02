@@ -1,6 +1,6 @@
 {
   "name": "awesome-web",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A brand new repository for web development prototypes",
   "scripts": {
     "build": "mkdir -p ./build && touch ./build/.gitkeep",
