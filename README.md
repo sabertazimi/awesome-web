@@ -8,12 +8,9 @@
 
 A brand new repository for web development prototypes.
 
-## Prototypes Collection
+## React Collection
 
-- [CSS Collection](https://sabertazimi.github.io/awesome-web/css)
-- [JavaScript Collection](https://sabertazimi.github.io/awesome-web/javascript)
-- [React Collection](https://sabertazimi.github.io/awesome-web/react)
-- [Vue Collection](https://sabertazimi.github.io/awesome-web/vue)
+- [React SandBox](https://sabertazimi.github.io/awesome-web/react-sandbox)
 
 ## License
 
