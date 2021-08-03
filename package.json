@@ -3,10 +3,11 @@
   "version": "1.1.0",
   "description": "A brand new repository for web development prototypes",
   "scripts": {
-    "build": "npm run build -ws",
+    "build": "npm run build -ws --if-present",
+    "lint": "npm run lint -ws --if-present",
     "prelease": "standard-version --dry-run -s",
     "release": "standard-version -s",
-    "start": "npm run build"
+    "test": "npm run test -ws --if-present"
   },
   "repository": {
     "type": "git",
