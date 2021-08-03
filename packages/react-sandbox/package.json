@@ -21,8 +21,6 @@
     "build": "react-scripts build",
     "postbuild": "mkdir -p ../../build/react-sandbox && cp -fr ./build/* ../../build/react-sandbox",
     "eject": "react-scripts eject",
-    "prelease": "standard-version --dry-run -s",
-    "release": "standard-version -s",
     "start": "react-scripts start",
     "test": "react-scripts test"
   },
@@ -43,14 +41,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "standard-version": {
-    "skip": {
-      "changelog": true,
-      "tag": true
-    }
-  },
-  "devDependencies": {
-    "standard-version": "^9.3.1"
   }
 }

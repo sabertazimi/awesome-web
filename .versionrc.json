@@ -10,5 +10,19 @@
     { "type": "refactor", "hidden": true },
     { "type": "style", "hidden": true },
     { "type": "test", "section": "Testing" }
+  ],
+  "bumpFiles": [
+    {
+      "filename": "package.json",
+      "type": "json"
+    },
+    {
+      "filename": "package-lock.json",
+      "type": "json"
+    },
+    {
+      "filename": "packages/react-sandbox/package.json",
+      "type": "json"
+    }
   ]
 }
