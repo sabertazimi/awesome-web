@@ -2,7 +2,7 @@
   "name": "react-sandbox",
   "version": "1.1.1",
   "private": true,
-  "homepage": "http://sabertazimi.github.io/awesome-web/react-sandbox",
+  "homepage": "https://sabertazimi.github.io/awesome-web/react-sandbox",
   "dependencies": {
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
