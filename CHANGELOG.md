@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.2](https://github.com/sabertazimi/awesome-web/compare/v1.1.1...v1.1.2) (2021-08-12)
+
+
+### :bug: Bug Fixes
+
+* **CI:** rectify build homepage url ([1a6787f](https://github.com/sabertazimi/awesome-web/commit/1a6787f6bd29e6bbf92722453ba51dcc57dc737e))
+
+
+### :rocket: Building Work
+
+* **deps-dev:** bump ts-node from 10.1.0 to 10.2.0 ([6f0fbc7](https://github.com/sabertazimi/awesome-web/commit/6f0fbc752b49d4b8976e817c7ea20111024e376d))
+* **deps:** bump @testing-library/react from 11.2.7 to 12.0.0 ([fa0861b](https://github.com/sabertazimi/awesome-web/commit/fa0861b83c654d9a4d5b4bb321db846034973eba))
+* **deps:** bump @testing-library/user-event from 12.8.3 to 13.2.1 ([2bbe144](https://github.com/sabertazimi/awesome-web/commit/2bbe1442b680a3bb69e46207721617a324d7d5a9))
+* **deps:** bump @types/node from 16.4.10 to 16.4.13 ([434e2b2](https://github.com/sabertazimi/awesome-web/commit/434e2b26f5a97a77f414e34e075e823ffc67abf0))
+* **deps:** bump @types/react from 17.0.15 to 17.0.16 ([d129146](https://github.com/sabertazimi/awesome-web/commit/d1291462fefffa79bbeba5c52e07d76d020ff770))
+* **deps:** bump web-vitals from 1.1.2 to 2.1.0 ([7010092](https://github.com/sabertazimi/awesome-web/commit/7010092f4ace1a69373f320c3ee36b50db3bf9c6))
+* **React-sandbox:** change sandbox to private package ([d096f6a](https://github.com/sabertazimi/awesome-web/commit/d096f6a34068a699442abe5e4f1198ed0e70a483))
+
 ### [1.1.1](https://github.com/sabertazimi/awesome-web/compare/v1.1.0...v1.1.1) (2021-08-03)
 
 
