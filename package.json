@@ -7,6 +7,8 @@
     "lint": "npm run lint -ws --if-present",
     "prelease": "standard-version --dry-run -s",
     "release": "standard-version -s",
+    "start": "npm run start:react-sandbox",
+    "start:react-sandbox": "npm start -w @sabertazimi/react-sandbox",
     "test": "npm run test -ws --if-present"
   },
   "repository": {
