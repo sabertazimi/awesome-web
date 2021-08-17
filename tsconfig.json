@@ -2,7 +2,7 @@
   "include": ["./src/**/*"],
   "exclude": ["node_modules", "build", "dist", "coverage"],
   "compilerOptions": {
-    "target": "es5",
+    "target": "es6",
     "module": "commonjs",
     "lib": ["DOM", "DOM.Iterable", "ESNext", "ES2021"],
     "allowJs": true,
