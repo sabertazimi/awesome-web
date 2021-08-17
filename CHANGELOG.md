@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/sabertazimi/awesome-web/compare/v1.1.3...v1.2.0) (2021-08-17)
+
+
+### :sparkles: Features
+
+* **bod CLI:** change to @sabertazimi/react-scripts ([9601587](https://github.com/sabertazimi/awesome-web/commit/9601587c800c7003f592f899cb102aaa401459f4))
+
 ### [1.1.3](https://github.com/sabertazimi/awesome-web/compare/v1.1.2...v1.1.3) (2021-08-17)
 
 
