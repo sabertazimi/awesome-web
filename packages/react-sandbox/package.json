@@ -19,6 +19,7 @@
   },
   "scripts": {
     "build": "react-scripts build",
+    "lint": "stylelint --fix ./src/**/*.css && eslint --fix --ext .ts,.tsx ./src",
     "postbuild": "mkdir -p ../../build/react-sandbox && cp -fr ./build/* ../../build/react-sandbox",
     "start": "react-scripts start",
     "test": "react-scripts test",
