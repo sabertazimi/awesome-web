@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.3](https://github.com/sabertazimi/awesome-web/compare/v1.1.2...v1.1.3) (2021-08-17)
+
+
+### :rocket: Building Work
+
+* **deps-dev:** bump @typescript-eslint/eslint-plugin ([892cfa4](https://github.com/sabertazimi/awesome-web/commit/892cfa45fe211d7a0ba9a34671cf95361e742916))
+* **deps-dev:** bump @typescript-eslint/parser from 4.29.0 to 4.29.1 ([f8f01d5](https://github.com/sabertazimi/awesome-web/commit/f8f01d5b94d636f0d7ad0fcd2d5fe4da7a0b04cd))
+* **deps-dev:** bump tslib from 2.3.0 to 2.3.1 ([278afea](https://github.com/sabertazimi/awesome-web/commit/278afeaf4cd7b5d02237be38e9486df80a1ded19))
+* **deps:** bump @types/jest from 26.0.24 to 27.0.1 ([3df1369](https://github.com/sabertazimi/awesome-web/commit/3df136947e764b8bbbc21f55ee05ae3568bb93b7))
+* **deps:** bump @types/node from 16.4.13 to 16.6.1 ([66e9f3a](https://github.com/sabertazimi/awesome-web/commit/66e9f3ad6643f78e9164a2ec3c3fad4b902ad1c0))
+* **deps:** bump @types/react from 17.0.16 to 17.0.18 ([3d0879c](https://github.com/sabertazimi/awesome-web/commit/3d0879cb4ec23ebc0e126e697a5a0f79a5cbc7fc))
+
 ### [1.1.2](https://github.com/sabertazimi/awesome-web/compare/v1.1.1...v1.1.2) (2021-08-12)
 
 
