@@ -27,14 +27,14 @@
   },
   "eslintConfig": {
     "extends": [
-      "react-app",
-      "react-app/jest",
+      "bod",
+      "bod/jest",
       "plugin:prettier/recommended"
     ]
   },
   "stylelint": {
     "extends": [
-      "stylelint-config-standard",
+      "stylelint-config-bod",
       "stylelint-prettier/recommended"
     ]
   },
