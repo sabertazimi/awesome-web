@@ -4,6 +4,7 @@
 [![LICENSE](https://img.shields.io/github/license/sabertazimi/awesome-web?style=for-the-badge)](https://raw.githubusercontent.com/sabertazimi/awesome-web/main/LICENSE)
 
 [![Code Lines](https://img.shields.io/tokei/lines/github/sabertazimi/awesome-web?style=for-the-badge&logo=visualstudiocode)](https://github.com/sabertazimi/awesome-web)
+[![Jest Coverage](https://img.shields.io/coveralls/github/sabertazimi/awesome-web?logo=coveralls&style=for-the-badge)](https://coveralls.io/github/sabertazimi/awesome-web)
 [![Continuous Integration](https://img.shields.io/github/workflow/status/sabertazimi/awesome-web/Continuous%20Integration/main?style=for-the-badge&logo=github)](https://github.com/sabertazimi/awesome-web/actions/workflows/ci.yml)
 
 A brand new repository for web development prototypes.
