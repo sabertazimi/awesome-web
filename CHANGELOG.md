@@ -2,6 +2,38 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.1](https://github.com/sabertazimi/awesome-web/compare/v1.2.0...v1.2.1) (2021-08-27)
+
+
+### :bug: Bug Fixes
+
+* **deps-ddp:** remove duplicated packages ([b664e51](https://github.com/sabertazimi/awesome-web/commit/b664e515d68353ea9f392228e7e1c7895944f570))
+* **Jest-coverage:** disable coverage from `index.tsx` ([5cf28e5](https://github.com/sabertazimi/awesome-web/commit/5cf28e5fd1e31e205237bf4f00b1b356d590aecb))
+* **lint:** add explicit stylelint and eslint script ([3ff73fc](https://github.com/sabertazimi/awesome-web/commit/3ff73fc8c43f6ea41c1035adf48cf8dfe65527ee))
+* **sandbox-css:** enable postcss normalize ([6b1d430](https://github.com/sabertazimi/awesome-web/commit/6b1d430a301f398b1537a007f4da4cfe0b62eafa))
+* **sandbox-css:** rectify css order error ([b484f11](https://github.com/sabertazimi/awesome-web/commit/b484f11bc743b01565fd126d09243eeea4a6a2e9))
+* **sandbox-lint:** change lint config to `bod` ([0058a94](https://github.com/sabertazimi/awesome-web/commit/0058a949ed9db730a4976ffc9d0fd1faf36a903b))
+* **test:** enable coverage collection ([a55c37f](https://github.com/sabertazimi/awesome-web/commit/a55c37fbca90a18519de1da928cb9ab47cc1e02d))
+* **tsconfig:** target to es6 on Node 14 and 16 ([b8609b7](https://github.com/sabertazimi/awesome-web/commit/b8609b7797acf934f7dff4d51ce2ca16d4ce8e75))
+
+
+### :rocket: Building Work
+
+* **CI-azure:** add more pipeline triggers ([fbcbeff](https://github.com/sabertazimi/awesome-web/commit/fbcbeffc43fa56f829385d9b82ed4f38ac02f88d))
+* **CI:** initialize git config ([4993134](https://github.com/sabertazimi/awesome-web/commit/4993134f46658a7a2d30577502f2e14ba935018d))
+* **CI:** set up CI with Azure Pipelines ([86e5812](https://github.com/sabertazimi/awesome-web/commit/86e5812965acea6c0df01cf8ccda0b442ba9c611))
+* **CI:** setup coveralls action ([ca5bc34](https://github.com/sabertazimi/awesome-web/commit/ca5bc34cf5394c82a86f8f1f12f47ca421a14879))
+* **deps-dev:** bump @sabertazimi/react-scripts from 5.0.0 to 5.0.2 ([bdee282](https://github.com/sabertazimi/awesome-web/commit/bdee282cb794bcd6d44408eb11145b20dc257daf))
+* **deps-dev:** bump @types/node from 16.6.2 to 16.7.1 ([324bb88](https://github.com/sabertazimi/awesome-web/commit/324bb88276d721ac965fe0938878a4c667979fbd))
+* **deps-dev:** bump eslint-plugin-prettier from 3.4.0 to 3.4.1 ([75d2e37](https://github.com/sabertazimi/awesome-web/commit/75d2e37c9d24b3718dfc1baf94361241419a3bbc))
+* **deps-dev:** bump pm2 from 5.1.0 to 5.1.1 ([a70d79b](https://github.com/sabertazimi/awesome-web/commit/a70d79bad864d258182d2a4333d770b67cdf79df))
+* **deps-dev:** bump ts-node from 10.2.0 to 10.2.1 ([294bd7b](https://github.com/sabertazimi/awesome-web/commit/294bd7b7acc7050fc2821bd18fb54dabbc6d903e))
+* **deps:** bump @sabertazimi/react-scripts from 4.0.1 to 5.0.0 ([3071c36](https://github.com/sabertazimi/awesome-web/commit/3071c369bd9915c10ec49c844bf5bf8e007416c4))
+* **deps:** bump @types/node from 16.6.1 to 16.6.2 ([6f32f6a](https://github.com/sabertazimi/awesome-web/commit/6f32f6ab75f0e79adb20d25196615cd0209ab5ef))
+* **deps:** bump @types/react from 17.0.18 to 17.0.19 ([c0ec093](https://github.com/sabertazimi/awesome-web/commit/c0ec093e644ff1de0b08faaf1c58d6d10e8b5c72))
+* **sandbox:** add more react-scripts commands ([dc7175f](https://github.com/sabertazimi/awesome-web/commit/dc7175f371be7a3517744aa7bd0af54152d2acc1))
+* **sandbox:** separate deps and devDeps ([37acb6c](https://github.com/sabertazimi/awesome-web/commit/37acb6c4ea7ebf786e861425084cdfa99700533a))
+
 ## [1.2.0](https://github.com/sabertazimi/awesome-web/compare/v1.1.3...v1.2.0) (2021-08-17)
 
 
