@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.2](https://github.com/sabertazimi/awesome-web/compare/v1.2.1...v1.2.2) (2021-09-06)
+
+
+### :rocket: Building Work
+
+* **CI-azure:** remove azure pipelines ([cdcfc00](https://github.com/sabertazimi/awesome-web/commit/cdcfc00e7d5a844900f5775a36fe538f956324cd))
+* **CI:** change fetch depth ([a3751d1](https://github.com/sabertazimi/awesome-web/commit/a3751d1c5ec73796fefb8a407a510194e4705536))
+* **CI:** separate CI stage ([513e0d1](https://github.com/sabertazimi/awesome-web/commit/513e0d1606a747cc98dc5c625ee0d695a40f6f51))
+* **CI:** skip deploy on PRs ([10a72f5](https://github.com/sabertazimi/awesome-web/commit/10a72f5050f00cf3ecca2a95e40b9de893e61fbf))
+* **deps-dev:** bump @sabertazimi/react-scripts from 5.0.2 to 5.1.0 ([#35](https://github.com/sabertazimi/awesome-web/issues/35)) ([13c94df](https://github.com/sabertazimi/awesome-web/commit/13c94dfbb909e73afd921ce40188b4efbd1fdbea))
+* **deps-dev:** bump @sabertazimi/react-scripts from 5.1.0 to 5.3.3 ([#39](https://github.com/sabertazimi/awesome-web/issues/39)) ([768f2bd](https://github.com/sabertazimi/awesome-web/commit/768f2bd1b485a6acb0bf2cbd5c31b99cc8a57fea))
+* **deps-dev:** bump @types/node from 16.7.1 to 16.7.4 ([707db6d](https://github.com/sabertazimi/awesome-web/commit/707db6d868d093b745183a1929bb14fbb852314d))
+* **deps-dev:** bump @types/node from 16.7.4 to 16.7.6 ([f828077](https://github.com/sabertazimi/awesome-web/commit/f8280773ff028db4be638139bede2c739795abed))
+* **deps-dev:** bump @types/node from 16.7.6 to 16.7.8 ([#34](https://github.com/sabertazimi/awesome-web/issues/34)) ([39ba719](https://github.com/sabertazimi/awesome-web/commit/39ba71916e7d75cc77ede6f2a81b4a6189ca04ca))
+* **deps-dev:** bump @types/node from 16.7.8 to 16.7.10 ([#38](https://github.com/sabertazimi/awesome-web/issues/38)) ([fc56d8b](https://github.com/sabertazimi/awesome-web/commit/fc56d8bba94c65e38fd1a4570420e6bf86babfbd))
+* **deps-dev:** bump @types/react from 17.0.19 to 17.0.20 ([#37](https://github.com/sabertazimi/awesome-web/issues/37)) ([0a14419](https://github.com/sabertazimi/awesome-web/commit/0a14419d25389a9995c32fd3b4130bd9aca9a362))
+* **deps-dev:** bump @typescript-eslint/eslint-plugin ([169df12](https://github.com/sabertazimi/awesome-web/commit/169df12df116832d7d81e781cb97447222359bd1))
+* **deps-dev:** bump @typescript-eslint/eslint-plugin ([#32](https://github.com/sabertazimi/awesome-web/issues/32)) ([17949b4](https://github.com/sabertazimi/awesome-web/commit/17949b45c26e68e5d138d48cf6c1f639a3d3198f))
+* **deps-dev:** bump @typescript-eslint/parser from 4.29.2 to 4.29.3 ([51302bc](https://github.com/sabertazimi/awesome-web/commit/51302bc2a88a8473ee54c63492bac1e4f3a6d576))
+* **deps-dev:** bump @typescript-eslint/parser from 4.29.3 to 4.30.0 ([#36](https://github.com/sabertazimi/awesome-web/issues/36)) ([4750bd5](https://github.com/sabertazimi/awesome-web/commit/4750bd55aca992105d325bd6c3f747ad9b235b25))
+* **deps-dev:** bump eslint-plugin-prettier from 3.4.1 to 4.0.0 ([#33](https://github.com/sabertazimi/awesome-web/issues/33)) ([1dba155](https://github.com/sabertazimi/awesome-web/commit/1dba155fd1c61fdb0e790c1271a493ba5677b882))
+* **deps-dev:** bump typescript from 4.3.5 to 4.4.2 ([dc2cab7](https://github.com/sabertazimi/awesome-web/commit/dc2cab79b3f2450d303048cf9c4a270c0be47592))
+
 ### [1.2.1](https://github.com/sabertazimi/awesome-web/compare/v1.2.0...v1.2.1) (2021-08-27)
 
 
