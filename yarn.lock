@@ -3709,7 +3709,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/eslint-plugin@npm:^4.31.0":
+"@typescript-eslint/eslint-plugin@npm:4.31.0, @typescript-eslint/eslint-plugin@npm:^4.31.0":
   version: 4.31.0
   resolution: "@typescript-eslint/eslint-plugin@npm:4.31.0"
   dependencies:
@@ -3746,7 +3746,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/parser@npm:^4.31.0":
+"@typescript-eslint/parser@npm:4.31.0, @typescript-eslint/parser@npm:^4.31.0":
   version: 4.31.0
   resolution: "@typescript-eslint/parser@npm:4.31.0"
   dependencies:
@@ -4528,8 +4528,8 @@ __metadata:
   resolution: "awesome-web@workspace:."
   dependencies:
     "@types/node": 16.9.1
-    "@typescript-eslint/eslint-plugin": ^4.31.0
-    "@typescript-eslint/parser": ^4.31.0
+    "@typescript-eslint/eslint-plugin": 4.31.0
+    "@typescript-eslint/parser": 4.31.0
     eslint: 7.32.0
     eslint-config-prettier: 8.3.0
     eslint-plugin-prettier: 4.0.0
