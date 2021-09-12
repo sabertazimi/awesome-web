@@ -1,0 +1,32 @@
+{
+  "version": "5.3.6",
+  "npmClient": "npm",
+  "command": {
+    "bootstrap": {
+      "npmClientArgs": [
+        "--no-package-lock"
+      ]
+    },
+    "create": {
+      "homepage": "https://sabertazimi.github.io/bod",
+      "license": "MIT"
+    },
+    "run": {
+      "stream": true
+    },
+    "version": {
+      "changelogPreset": "angular",
+      "conventionalCommits": true,
+      "message": "chore(release): %s"
+    }
+  },
+  "ignoreChanges": [
+    "**/__fixtures__/**",
+    "**/__tests__/**",
+    "**/*.md"
+  ],
+  "useWorkspaces": true,
+  "packages": [
+    "packages/*"
+  ]
+}
