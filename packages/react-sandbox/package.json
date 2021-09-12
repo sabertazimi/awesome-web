@@ -21,10 +21,9 @@
     "typescript": "^4.4.2"
   },
   "scripts": {
-    "build": "react-scripts build",
+    "build": "react-scripts build && yarn build:post",
     "build:profile": "react-scripts build --profile",
-    "lint": "stylelint --fix ./src/**/*.css && eslint --fix --ext .js,.jsx,.ts,.tsx ./src",
-    "postbuild": "mkdir -p ../../build/react-sandbox && cp -fr ./build/* ../../build/react-sandbox",
+    "build:post": "mkdir -p ../../build/react-sandbox && cp -fr ./build/* ../../build/react-sandbox",
     "start": "react-scripts start",
     "start:https": "HTTPS=true react-scripts start",
     "test": "react-scripts test --coverage",
