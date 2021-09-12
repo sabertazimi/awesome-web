@@ -1,8 +1,9 @@
-# Changelog
+# Change Log
 
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-### [1.2.2](https://github.com/sabertazimi/awesome-web/compare/v1.2.1...v1.2.2) (2021-09-06)
+## [1.2.2](https://github.com/sabertazimi/awesome-web/compare/v1.2.1...v1.2.2) (2021-09-06)
 
 
 ### :rocket: Building Work
