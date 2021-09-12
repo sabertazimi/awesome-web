@@ -4533,7 +4533,7 @@ __metadata:
     eslint: 7.32.0
     eslint-config-prettier: 8.3.0
     eslint-plugin-prettier: 4.0.0
-    lerna: ^4.0.0
+    lerna: 4.0.0
     pm2: 5.1.1
     prettier: 2.4.0
     ts-node: 10.2.1
@@ -10193,7 +10193,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lerna@npm:^4.0.0":
+"lerna@npm:4.0.0":
   version: 4.0.0
   resolution: "lerna@npm:4.0.0"
   dependencies:
