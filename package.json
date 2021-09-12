@@ -3,13 +3,12 @@
   "version": "1.2.2",
   "description": "A brand new repository for web development prototypes",
   "scripts": {
-    "build": "npm run build -ws --if-present",
-    "lint": "npm run lint -ws --if-present",
-    "prelease": "standard-version --dry-run -s",
-    "release": "standard-version -s",
-    "start": "npm run start:react-sandbox",
-    "start:react-sandbox": "npm start -w @sabertazimi/react-sandbox",
-    "test": "npm run test -ws --if-present"
+    "build": "lerna run build",
+    "lint": "lerna run lint",
+    "release": "lerna version --force-publish",
+    "start": "yarn start:react-sandbox",
+    "start:react-sandbox": "yarn workspace @sabertazimi/react-sandbox start",
+    "test": "lerna run test"
   },
   "repository": {
     "type": "git",
@@ -47,6 +46,7 @@
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
+    "lerna": "^4.0.0",
     "pm2": "^5.1.1",
     "prettier": "^2.4.0",
     "standard-version": "^9.3.1",
