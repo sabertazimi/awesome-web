@@ -5,7 +5,7 @@
   "scripts": {
     "build": "lerna run build",
     "lint": "lerna run lint",
-    "release": "lerna version --force-publish",
+    "release": "lerna version --force-publish --sign-git-commit --sign-git-tag",
     "start": "yarn start:react-sandbox",
     "start:react-sandbox": "yarn workspace @sabertazimi/react-sandbox start",
     "test": "lerna run test"
