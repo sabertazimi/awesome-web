@@ -3023,8 +3023,8 @@ __metadata:
     "@types/node": 16.9.1
     "@types/react": 17.0.20
     "@types/react-dom": 17.0.9
-    react: ^17.0.2
-    react-dom: ^17.0.2
+    react: 17.0.2
+    react-dom: 17.0.2
     typescript: 4.4.3
     web-vitals: 2.1.0
   languageName: unknown
@@ -13588,7 +13588,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-dom@npm:^17.0.2":
+"react-dom@npm:17.0.2":
   version: 17.0.2
   resolution: "react-dom@npm:17.0.2"
   dependencies:
@@ -13629,7 +13629,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react@npm:^17.0.2":
+"react@npm:17.0.2":
   version: 17.0.2
   resolution: "react@npm:17.0.2"
   dependencies:
