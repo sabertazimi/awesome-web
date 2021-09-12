@@ -1580,7 +1580,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jest/core@npm:^27.1.0, @jest/core@npm:^27.1.1":
+"@jest/core@npm:^27.1.1":
   version: 27.1.1
   resolution: "@jest/core@npm:27.1.1"
   dependencies:
@@ -1622,7 +1622,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jest/environment@npm:^27.1.0, @jest/environment@npm:^27.1.1":
+"@jest/environment@npm:^27.1.1":
   version: 27.1.1
   resolution: "@jest/environment@npm:27.1.1"
   dependencies:
@@ -1707,7 +1707,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jest/test-result@npm:^27.1.0, @jest/test-result@npm:^27.1.1":
+"@jest/test-result@npm:^27.1.1":
   version: 27.1.1
   resolution: "@jest/test-result@npm:27.1.1"
   dependencies:
@@ -1754,7 +1754,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jest/types@npm:^27.1.0, @jest/types@npm:^27.1.1":
+"@jest/types@npm:^27.1.1":
   version: 27.1.1
   resolution: "@jest/types@npm:27.1.1"
   dependencies:
@@ -3014,7 +3014,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@sabertazimi/react-sandbox@workspace:packages/react-sandbox"
   dependencies:
-    "@sabertazimi/react-scripts": 5.3.4
+    "@sabertazimi/react-scripts": 5.3.6
     "@testing-library/dom": 8.5.0
     "@testing-library/jest-dom": 5.14.1
     "@testing-library/react": 12.1.0
@@ -3030,9 +3030,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@sabertazimi/react-scripts@npm:5.3.4":
-  version: 5.3.4
-  resolution: "@sabertazimi/react-scripts@npm:5.3.4"
+"@sabertazimi/react-scripts@npm:5.3.6":
+  version: 5.3.6
+  resolution: "@sabertazimi/react-scripts@npm:5.3.6"
   dependencies:
     "@babel/core": 7.15.5
     "@pmmmwh/react-refresh-webpack-plugin": 0.5.0-rc.3
@@ -3050,7 +3050,7 @@ __metadata:
     dotenv: 9.0.2
     dotenv-expand: 5.1.0
     eslint: ^7.30.0
-    eslint-config-bod: ^5.3.4
+    eslint-config-bod: ^5.3.6
     eslint-config-prettier: ^8.3.0
     eslint-plugin-prettier: ^4.0.0
     eslint-webpack-plugin: ^3.0.1
@@ -3059,9 +3059,9 @@ __metadata:
     fsevents: ^2.1.3
     html-webpack-plugin: 5.3.2
     identity-obj-proxy: 3.0.0
-    jest: 27.1.0
-    jest-circus: 27.1.0
-    jest-resolve: 27.1.0
+    jest: 27.1.1
+    jest-circus: 27.1.1
+    jest-resolve: 27.1.1
     jest-watch-typeahead: 0.6.4
     mini-css-extract-plugin: 2.2.2
     postcss: 8.3.6
@@ -3069,7 +3069,7 @@ __metadata:
     postcss-loader: 6.1.1
     postcss-normalize: 10.0.0
     postcss-preset-env: 6.7.0
-    prettier: ^2.3.2
+    prettier: ^2.4.0
     prompts: 2.4.1
     react-app-polyfill: ^2.0.0
     react-dev-utils: ^12.0.0-next.37
@@ -3081,16 +3081,16 @@ __metadata:
     source-map-loader: ^3.0.0
     style-loader: 3.2.1
     stylelint: ^13.13.1
-    stylelint-config-bod: ^5.3.4
+    stylelint-config-bod: ^5.3.6
     stylelint-config-prettier: ^8.0.2
     stylelint-prettier: ^1.2.0
     stylelint-webpack-plugin: ^3.0.1
-    webpack: ^5.52.0
+    webpack: ^5.52.1
     webpack-bundle-analyzer: ^4.4.2
-    webpack-dev-server: ^4.1.0
+    webpack-dev-server: ^4.2.0
     webpack-manifest-plugin: ^4.0.2
     webpackbar: ^5.0.0-3
-    workbox-webpack-plugin: ^6.2.4
+    workbox-webpack-plugin: ^6.3.0
   peerDependencies:
     react: ">= 16"
     typescript: ^3.2.1 || ^4
@@ -3102,7 +3102,7 @@ __metadata:
       optional: true
   bin:
     react-scripts: bin/react-scripts.js
-  checksum: 3dfa52aa6f86fc72dfa6c1dab87e2ec875e7853b5c7c53dc025c665577af297cee2f8fb97a6c5159cc7242ee6692124ed5613b9c389f3aa31a1a12ef4c170f81
+  checksum: 45059d8b71a6b40381a4fcbded368485373115e1c6040ea2addd7b99483c587a6dde42357a2b261c403a4d335c250863c37d004f4d09eb6e956bffd3378cf78e
   languageName: node
   linkType: hard
 
@@ -6949,7 +6949,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-config-bod@npm:^5.3.4":
+"eslint-config-bod@npm:^5.3.6":
   version: 5.3.6
   resolution: "eslint-config-bod@npm:5.3.6"
   dependencies:
@@ -7387,7 +7387,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"expect@npm:^27.1.0, expect@npm:^27.1.1":
+"expect@npm:^27.1.1":
   version: 27.1.1
   resolution: "expect@npm:27.1.1"
   dependencies:
@@ -9350,34 +9350,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jest-circus@npm:27.1.0":
-  version: 27.1.0
-  resolution: "jest-circus@npm:27.1.0"
-  dependencies:
-    "@jest/environment": ^27.1.0
-    "@jest/test-result": ^27.1.0
-    "@jest/types": ^27.1.0
-    "@types/node": "*"
-    chalk: ^4.0.0
-    co: ^4.6.0
-    dedent: ^0.7.0
-    expect: ^27.1.0
-    is-generator-fn: ^2.0.0
-    jest-each: ^27.1.0
-    jest-matcher-utils: ^27.1.0
-    jest-message-util: ^27.1.0
-    jest-runtime: ^27.1.0
-    jest-snapshot: ^27.1.0
-    jest-util: ^27.1.0
-    pretty-format: ^27.1.0
-    slash: ^3.0.0
-    stack-utils: ^2.0.3
-    throat: ^6.0.1
-  checksum: 74c542bf50e0099d4c16dc3186947d79fcd1d19fa9d076ef8994f8fb5eeba05d0ed179308b970403bff6e4958e0f462110ec803d4ca9105913acde60588f52a3
-  languageName: node
-  linkType: hard
-
-"jest-circus@npm:^27.1.1":
+"jest-circus@npm:27.1.1, jest-circus@npm:^27.1.1":
   version: 27.1.1
   resolution: "jest-circus@npm:27.1.1"
   dependencies:
@@ -9404,7 +9377,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jest-cli@npm:^27.1.0":
+"jest-cli@npm:^27.1.1":
   version: 27.1.1
   resolution: "jest-cli@npm:27.1.1"
   dependencies:
@@ -9486,7 +9459,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jest-each@npm:^27.1.0, jest-each@npm:^27.1.1":
+"jest-each@npm:^27.1.1":
   version: 27.1.1
   resolution: "jest-each@npm:27.1.1"
   dependencies:
@@ -9535,7 +9508,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jest-haste-map@npm:^27.1.0, jest-haste-map@npm:^27.1.1":
+"jest-haste-map@npm:^27.1.1":
   version: 27.1.1
   resolution: "jest-haste-map@npm:27.1.1"
   dependencies:
@@ -9595,7 +9568,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jest-matcher-utils@npm:^27.1.0, jest-matcher-utils@npm:^27.1.1":
+"jest-matcher-utils@npm:^27.1.1":
   version: 27.1.1
   resolution: "jest-matcher-utils@npm:27.1.1"
   dependencies:
@@ -9607,7 +9580,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jest-message-util@npm:^27.1.0, jest-message-util@npm:^27.1.1":
+"jest-message-util@npm:^27.1.1":
   version: 27.1.1
   resolution: "jest-message-util@npm:27.1.1"
   dependencies:
@@ -9664,24 +9637,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jest-resolve@npm:27.1.0":
-  version: 27.1.0
-  resolution: "jest-resolve@npm:27.1.0"
-  dependencies:
-    "@jest/types": ^27.1.0
-    chalk: ^4.0.0
-    escalade: ^3.1.1
-    graceful-fs: ^4.2.4
-    jest-haste-map: ^27.1.0
-    jest-pnp-resolver: ^1.2.2
-    jest-util: ^27.1.0
-    jest-validate: ^27.1.0
-    resolve: ^1.20.0
-    slash: ^3.0.0
-  checksum: c2f6f1386a1bce0d9c7fe118a32d319c67643338eb3c060e9756719e8e536313aec11ee3d1f245f32357ac4a44f5c476fb80768a3abd87183207173b2d8f977f
-  languageName: node
-  linkType: hard
-
 "jest-resolve@npm:27.1.1, jest-resolve@npm:^27.1.1":
   version: 27.1.1
   resolution: "jest-resolve@npm:27.1.1"
@@ -9730,7 +9685,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jest-runtime@npm:^27.1.0, jest-runtime@npm:^27.1.1":
+"jest-runtime@npm:^27.1.1":
   version: 27.1.1
   resolution: "jest-runtime@npm:27.1.1"
   dependencies:
@@ -9775,7 +9730,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jest-snapshot@npm:^27.1.0, jest-snapshot@npm:^27.1.1":
+"jest-snapshot@npm:^27.1.1":
   version: 27.1.1
   resolution: "jest-snapshot@npm:27.1.1"
   dependencies:
@@ -9807,7 +9762,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jest-util@npm:^27.1.0, jest-util@npm:^27.1.1":
+"jest-util@npm:^27.1.1":
   version: 27.1.1
   resolution: "jest-util@npm:27.1.1"
   dependencies:
@@ -9821,7 +9776,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jest-validate@npm:^27.1.0, jest-validate@npm:^27.1.1":
+"jest-validate@npm:^27.1.1":
   version: 27.1.1
   resolution: "jest-validate@npm:27.1.1"
   dependencies:
@@ -9889,13 +9844,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jest@npm:27.1.0":
-  version: 27.1.0
-  resolution: "jest@npm:27.1.0"
+"jest@npm:27.1.1":
+  version: 27.1.1
+  resolution: "jest@npm:27.1.1"
   dependencies:
-    "@jest/core": ^27.1.0
+    "@jest/core": ^27.1.1
     import-local: ^3.0.2
-    jest-cli: ^27.1.0
+    jest-cli: ^27.1.1
   peerDependencies:
     node-notifier: ^8.0.1 || ^9.0.0 || ^10.0.0
   peerDependenciesMeta:
@@ -9903,7 +9858,7 @@ __metadata:
       optional: true
   bin:
     jest: bin/jest.js
-  checksum: e9cc602bb860b805461d3ed8a7029b3353bfdf8fc4c8dc8da79490e49d00b3a98fec1efa1aa0099873636406d813e1f0dd28fa616b045fb8288cd06f2c4e2bf5
+  checksum: abc3b7c37d016ed3c59dc7798810f1ded61a0993419fec0e14d478f4a2da0e50401b7d0c7c79d9b86aec8be8762865279d339108dbda3cc9077270f5d43a58c2
   languageName: node
   linkType: hard
 
@@ -13228,7 +13183,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prettier@npm:2.4.0, prettier@npm:^2.3.2":
+"prettier@npm:2.4.0, prettier@npm:^2.4.0":
   version: 2.4.0
   resolution: "prettier@npm:2.4.0"
   bin:
@@ -13254,7 +13209,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pretty-format@npm:^27.0.0, pretty-format@npm:^27.0.2, pretty-format@npm:^27.1.0, pretty-format@npm:^27.1.1":
+"pretty-format@npm:^27.0.0, pretty-format@npm:^27.0.2, pretty-format@npm:^27.1.1":
   version: 27.1.1
   resolution: "pretty-format@npm:27.1.1"
   dependencies:
@@ -15199,7 +15154,7 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
-"stylelint-config-bod@npm:^5.3.4":
+"stylelint-config-bod@npm:^5.3.6":
   version: 5.3.6
   resolution: "stylelint-config-bod@npm:5.3.6"
   dependencies:
@@ -16523,7 +16478,7 @@ typescript@4.4.3:
   languageName: node
   linkType: hard
 
-"webpack-dev-server@npm:^4.1.0":
+"webpack-dev-server@npm:^4.2.0":
   version: 4.2.0
   resolution: "webpack-dev-server@npm:4.2.0"
   dependencies:
@@ -16602,7 +16557,7 @@ typescript@4.4.3:
   languageName: node
   linkType: hard
 
-"webpack@npm:^5.52.0":
+"webpack@npm:^5.52.1":
   version: 5.52.1
   resolution: "webpack@npm:5.52.1"
   dependencies:
@@ -16959,7 +16914,7 @@ typescript@4.4.3:
   languageName: node
   linkType: hard
 
-"workbox-webpack-plugin@npm:^6.2.4":
+"workbox-webpack-plugin@npm:^6.3.0":
   version: 6.3.0
   resolution: "workbox-webpack-plugin@npm:6.3.0"
   dependencies:
