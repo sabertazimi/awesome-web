@@ -3014,7 +3014,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@sabertazimi/react-sandbox@workspace:packages/react-sandbox"
   dependencies:
-    "@sabertazimi/react-scripts": ^5.3.7
+    "@sabertazimi/react-scripts": ^5.3.8
     "@testing-library/dom": ^8.5.0
     "@testing-library/jest-dom": ^5.14.1
     "@testing-library/react": ^12.1.0
@@ -3030,7 +3030,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@sabertazimi/react-scripts@npm:^5.3.7":
+"@sabertazimi/react-scripts@npm:^5.3.8":
   version: 5.3.8
   resolution: "@sabertazimi/react-scripts@npm:5.3.8"
   dependencies:
