@@ -64,6 +64,7 @@ jobs:
           yarn test
       - name: Coveralls action
         uses: coverallsapp/github-action@1.1.3
+        if: ${{ matrix.node-version == 16 && matrix.os == 'ubuntu-latest' && matrix.architecture == 'x64' }}
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           flag-name: Node ${{ matrix.node-version }} ${{ matrix.os }} ${{ matrix.architecture }}
@@ -88,7 +89,7 @@ jobs:
           cache: 'yarn'
       - name: Installation
         run: |
-          yarn 
+          yarn
       - name: Building work
         run: |
           yarn build
