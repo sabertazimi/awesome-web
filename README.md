@@ -5,7 +5,7 @@
 [![Lerna](https://img.shields.io/github/lerna-json/v/sabertazimi/awesome-web?logo=npm&style=for-the-badge)](https://github.com/lerna/lerna)
 
 [![Code Lines](https://img.shields.io/tokei/lines/github/sabertazimi/awesome-web?style=for-the-badge&logo=visualstudiocode)](https://github.com/sabertazimi/awesome-web)
-[![Jest Coverage](https://img.shields.io/coveralls/github/sabertazimi/awesome-web?logo=coveralls&style=for-the-badge)](https://coveralls.io/github/sabertazimi/awesome-web)
+[![Jest Coverage](https://img.shields.io/codecov/c/github/sabertazimi/awesome-web?logo=codecov&style=for-the-badge)](https://codecov.io/gh/sabertazimi/awesome-web)
 [![CI](https://img.shields.io/github/workflow/status/sabertazimi/awesome-web/CI/main?style=for-the-badge&logo=github)](https://github.com/sabertazimi/awesome-web/actions/workflows/ci.yml)
 
 A brand new repository for web development prototypes.
