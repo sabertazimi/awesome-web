@@ -1,6 +1,6 @@
 {
   "name": "awesome-web",
-  "version": "1.2.2",
+  "private": true,
   "description": "A brand new repository for web development prototypes",
   "scripts": {
     "build": "lerna run build",
