@@ -4599,7 +4599,7 @@ __metadata:
     "@types/node": ^16.9.1
     eslint: ^7.32.0
     lerna: ^4.0.0
-    pm2: ^5.1.1
+    pm2: ^5.1.2
     prettier: ^2.4.1
     ts-node: ^10.2.1
     tslib: ^2.3.1
@@ -12580,9 +12580,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pm2@npm:^5.1.1":
-  version: 5.1.1
-  resolution: "pm2@npm:5.1.1"
+"pm2@npm:^5.1.2":
+  version: 5.1.2
+  resolution: "pm2@npm:5.1.2"
   dependencies:
     "@pm2/agent": ~2.0.0
     "@pm2/io": ~5.0.0
@@ -12622,7 +12622,7 @@ __metadata:
     pm2-dev: bin/pm2-dev
     pm2-docker: bin/pm2-docker
     pm2-runtime: bin/pm2-runtime
-  checksum: 7dc83255053a2e279ac1fddca958e95cc4125c2c8ea4ca0c8c2e87b03eb5f5289ed523e51f860232d67752e924f4ad4a11018ed6ccc63d05b5630ea9c88c614b
+  checksum: 1b44d654d765561510adc1161b8b3fc43f0ca1d10a043d58a9dac35f917743ab66a8861a02512e036146f16b1f221299b6c6a3b6c128cbf1c6bd272f997656cb
   languageName: node
   linkType: hard
 
