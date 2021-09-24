@@ -3098,7 +3098,7 @@ __metadata:
     "@testing-library/user-event": ^13.2.1
     "@types/jest": ^27.0.2
     "@types/node": ^16.9.1
-    "@types/react": ^17.0.21
+    "@types/react": ^17.0.24
     "@types/react-dom": ^17.0.9
     react: ^17.0.2
     react-dom: ^17.0.2
@@ -3696,7 +3696,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:*, @types/react@npm:^17.0.21":
+"@types/react@npm:*, @types/react@npm:^17.0.24":
   version: 17.0.24
   resolution: "@types/react@npm:17.0.24"
   dependencies:
