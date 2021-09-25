@@ -7,7 +7,8 @@
     "build:prepare": "rm -fr ./build/",
     "lint": "lerna run lint",
     "release": "lerna version --force-publish --sign-git-commit --sign-git-tag",
-    "start": "yarn start:react-sandbox",
+    "start": "yarn start:learn-vue",
+    "start:learn-vue": "yarn workspace @sabertazimi/learn-vue serve",
     "start:react-sandbox": "yarn workspace @sabertazimi/react-sandbox start",
     "test": "lerna run test"
   },
