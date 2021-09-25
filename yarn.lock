@@ -3108,7 +3108,7 @@ __metadata:
   resolution: "@sabertazimi/learn-vue@workspace:packages/learn-vue"
   dependencies:
     "@dg-scripts/eslint-config": ^1.1.1
-    "@types/jest": ^27.0.1
+    "@types/jest": ^27.0.2
     "@vue/cli-plugin-babel": ~5.0.0-beta.4
     "@vue/cli-plugin-eslint": ~5.0.0-beta.4
     "@vue/cli-plugin-router": ~5.0.0-beta.4
@@ -3116,19 +3116,19 @@ __metadata:
     "@vue/cli-plugin-unit-jest": ~5.0.0-beta.4
     "@vue/cli-plugin-vuex": ~5.0.0-beta.4
     "@vue/cli-service": ~5.0.0-beta.4
-    "@vue/compiler-sfc": ^3.2.6
-    "@vue/test-utils": ^2.0.0-0
+    "@vue/compiler-sfc": ^3.2.18
+    "@vue/test-utils": ^2.0.0-rc.15
     "@vue/vue3-jest": ^27.0.0-alpha.1
-    babel-jest: ^27.0.6
-    core-js: ^3.8.3
+    babel-jest: ^27.2.2
+    core-js: ^3.18.0
     eslint: ^7.32.0
-    jest: ^27.0.5
-    prettier: ^2.2.1
+    jest: ^27.2.2
+    prettier: ^2.4.1
     ts-jest: ^27.0.5
-    typescript: ^4.1.5
-    vue: ^3.2.6
-    vue-router: ^4.0.3
-    vuex: ^4.0.0
+    typescript: ^4.4.3
+    vue: ^3.2.18
+    vue-router: ^4.0.11
+    vuex: ^4.0.2
   languageName: unknown
   linkType: soft
 
@@ -4595,7 +4595,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vue/compiler-sfc@npm:3.2.18, @vue/compiler-sfc@npm:^3.2.6":
+"@vue/compiler-sfc@npm:3.2.18, @vue/compiler-sfc@npm:^3.2.18":
   version: 3.2.18
   resolution: "@vue/compiler-sfc@npm:3.2.18"
   dependencies:
@@ -4712,7 +4712,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vue/test-utils@npm:^2.0.0-0":
+"@vue/test-utils@npm:^2.0.0-rc.15":
   version: 2.0.0-rc.15
   resolution: "@vue/test-utils@npm:2.0.0-rc.15"
   peerDependencies:
@@ -5580,7 +5580,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"babel-jest@npm:^27.0.6, babel-jest@npm:^27.1.0, babel-jest@npm:^27.2.2":
+"babel-jest@npm:^27.1.0, babel-jest@npm:^27.2.2":
   version: 27.2.2
   resolution: "babel-jest@npm:27.2.2"
   dependencies:
@@ -6937,7 +6937,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"core-js@npm:^3.6.5, core-js@npm:^3.8.3":
+"core-js@npm:^3.18.0, core-js@npm:^3.6.5, core-js@npm:^3.8.3":
   version: 3.18.0
   resolution: "core-js@npm:3.18.0"
   checksum: 192c345eb0c8b9d582ebed798cf124e00cd8241303c3c801987563f8ebb8cb991e2ff91494c258752014c29d5515070d2c0a862687401c7d7e1e2f96f8980d42
@@ -11613,7 +11613,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jest@npm:^27.0.5, jest@npm:^27.1.0, jest@npm:^27.2.2":
+"jest@npm:^27.1.0, jest@npm:^27.2.2":
   version: 27.2.2
   resolution: "jest@npm:27.2.2"
   dependencies:
@@ -15293,7 +15293,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prettier@npm:^2.2.1, prettier@npm:^2.4.1":
+"prettier@npm:^2.4.1":
   version: 2.4.1
   resolution: "prettier@npm:2.4.1"
   bin:
@@ -18361,7 +18361,7 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
-"typescript@^4.1.5, typescript@^4.4.3":
+typescript@^4.4.3:
   version: 4.4.3
   resolution: "typescript@npm:4.4.3"
   bin:
@@ -18371,7 +18371,7 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@^4.1.5#~builtin<compat/typescript>, typescript@patch:typescript@^4.4.3#~builtin<compat/typescript>":
+"typescript@patch:typescript@^4.4.3#~builtin<compat/typescript>":
   version: 4.4.3
   resolution: "typescript@patch:typescript@npm%3A4.4.3#~builtin<compat/typescript>::version=4.4.3&hash=32657b"
   bin:
@@ -18812,7 +18812,7 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
-"vue-router@npm:^4.0.3":
+"vue-router@npm:^4.0.11":
   version: 4.0.11
   resolution: "vue-router@npm:4.0.11"
   dependencies:
@@ -18840,7 +18840,7 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
-"vue@npm:3.2.18, vue@npm:^3.2.6":
+"vue@npm:3.2.18, vue@npm:^3.2.18":
   version: 3.2.18
   resolution: "vue@npm:3.2.18"
   dependencies:
@@ -18853,7 +18853,7 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
-"vuex@npm:^4.0.0":
+"vuex@npm:^4.0.2":
   version: 4.0.2
   resolution: "vuex@npm:4.0.2"
   dependencies:
