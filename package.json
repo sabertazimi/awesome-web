@@ -3,7 +3,8 @@
   "private": true,
   "description": "A brand new repository for web development prototypes",
   "scripts": {
-    "build": "lerna run build",
+    "build": "yarn build:prepare && lerna run build",
+    "build:prepare": "rm -fr ./build/",
     "lint": "lerna run lint",
     "release": "lerna version --force-publish --sign-git-commit --sign-git-tag",
     "start": "yarn start:react-sandbox",
