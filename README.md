@@ -13,6 +13,9 @@ A brand new repository for web development prototypes.
 ## React Collection
 
 - [React SandBox](https://sabertazimi.github.io/awesome-web/react-sandbox)
+
+## Vue Collection
+
 - [Learn Vue](https://sabertazimi.github.io/awesome-web/learn-vue)
 
 ## License
