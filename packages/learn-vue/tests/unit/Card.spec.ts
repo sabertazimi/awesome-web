@@ -1,5 +1,5 @@
 import { shallowMount } from '@vue/test-utils';
-import EventCard from '@/components/EventCard.vue';
+import Card from '@/components/Card.vue';
 
 describe('EventCard.vue', () => {
   it('renders event information when passed', () => {
@@ -15,7 +15,7 @@ describe('EventCard.vue', () => {
       organizer: 'Kat Laydee',
       petsAllowed: true,
     };
-    const wrapper = shallowMount(EventCard, {
+    const wrapper = shallowMount(Card, {
       props: { event },
     });
     expect(wrapper.text()).toMatch(event.title);
