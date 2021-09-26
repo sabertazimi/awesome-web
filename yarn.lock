@@ -3142,7 +3142,7 @@ __metadata:
     "@testing-library/react": ^12.1.0
     "@testing-library/user-event": ^13.2.1
     "@types/jest": ^27.0.2
-    "@types/node": ^16.9.1
+    "@types/node": ^16.10.1
     "@types/react": ^17.0.24
     "@types/react-dom": ^17.0.9
     react: ^17.0.2
@@ -3802,7 +3802,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:^16.9.1":
+"@types/node@npm:*, @types/node@npm:^16.10.1":
   version: 16.10.1
   resolution: "@types/node@npm:16.10.1"
   checksum: 84d7f082e9421fdf1f08dbe00b66848897b2675eacc94a4fa445c4d34cef57c901ecd3276d03ebe110607a848d3df0ab33816aeff51a234e036111dd8ef1422f
@@ -5532,7 +5532,7 @@ __metadata:
   resolution: "awesome-web@workspace:."
   dependencies:
     "@dg-scripts/eslint-config": ^1.1.1
-    "@types/node": ^16.9.1
+    "@types/node": ^16.10.1
     eslint: ^7.32.0
     lerna: ^4.0.0
     pm2: ^5.1.2
