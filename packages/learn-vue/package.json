@@ -1,6 +1,7 @@
 {
   "name": "@sabertazimi/learn-vue",
   "version": "1.4.0",
+  "private": true,
   "browserslist": [
     "> 1%",
     "last 2 versions",
