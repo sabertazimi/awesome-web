@@ -6,8 +6,14 @@ const count = ref(0);
 </script>
 
 <template>
-  <h1>{{ msg }}</h1>
-  <button type="button" @click="count++">count is: {{ count }}</button>
+  <h1 class="text-5xl font-bold">{{ msg }}</h1>
+  <button
+    class="m-3 px-5 py-3 bg-green-500 text-white rounded-3xl hover:bg-green-400"
+    type="button"
+    @click="count++"
+  >
+    count is: {{ count }}
+  </button>
   <p>
     Edit<code>components/HelloWorld.vue</code> to test hot module replacement.
   </p>
