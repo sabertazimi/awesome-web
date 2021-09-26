@@ -1,1 +1,1 @@
-# learn-vue
+# @sabertazimi/learn-vue
