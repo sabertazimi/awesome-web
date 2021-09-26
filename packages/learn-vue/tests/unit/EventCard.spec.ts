@@ -4,7 +4,8 @@ import EventCard from '@/components/EventCard.vue';
 describe('EventCard.vue', () => {
   it('renders event information when passed', () => {
     const event = {
-      id: 5928101,
+      id: 123,
+      uid: 5928101,
       title: 'Cat Adoption Day',
       date: 'January 28, 2022',
       time: '12:00',
@@ -21,6 +22,7 @@ describe('EventCard.vue', () => {
     expect(wrapper.text()).toMatch(event.date);
     expect(wrapper.text()).toMatch(event.time);
     expect(wrapper.text()).not.toMatch(event.id.toString());
+    expect(wrapper.text()).not.toMatch(event.uid.toString());
     expect(wrapper.text()).not.toMatch(event.location);
     expect(wrapper.text()).not.toMatch(event.category);
     expect(wrapper.text()).not.toMatch(event.description);
