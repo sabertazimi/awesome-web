@@ -12,6 +12,7 @@ const routes: Array<RouteRecordRaw> = [
     path: '/event/:id',
     name: 'EventDetails',
     component: EventDetails,
+    props: true,
   },
   {
     path: '/about',

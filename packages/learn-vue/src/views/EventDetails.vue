@@ -7,10 +7,9 @@
 </template>
 
 <script setup lang="ts">
-import { useRoute } from 'vue-router';
 import { getEvent } from '@/services';
 import type { Event } from '@/services';
 
-const route = useRoute();
-const event: Event = await getEvent(Number.parseInt(route.params.id as string));
+const props = defineProps<{ id: string }>();
+const event: Event = await getEvent(Number.parseInt(props.id));
 </script>
