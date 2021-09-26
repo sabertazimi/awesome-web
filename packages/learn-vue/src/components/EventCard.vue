@@ -6,21 +6,8 @@
 </template>
 
 <script setup lang="ts">
-interface Event {
-  id: number;
-  title: string;
-  date: string;
-  time: string;
-  location?: string;
-  category?: string;
-  description?: string;
-  organizer?: string;
-  petsAllowed?: boolean;
-}
-
+import type { Event } from '@/services';
 defineProps<{ event: Event }>();
-
-export type { Event };
 </script>
 
 <style scoped>
