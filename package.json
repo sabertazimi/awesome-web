@@ -7,9 +7,10 @@
     "build:prepare": "rm -fr ./build && mkdir -p ./build",
     "lint": "lerna run lint",
     "release": "lerna version --force-publish --sign-git-commit --sign-git-tag",
-    "start": "yarn start:learn-vue",
-    "start:learn-vue": "yarn workspace @sabertazimi/learn-vue serve",
+    "start": "yarn start:vue-trello",
     "start:react-sandbox": "yarn workspace @sabertazimi/react-sandbox start",
+    "start:learn-vue": "yarn workspace @sabertazimi/learn-vue serve",
+    "start:vue-trello": "yarn workspace @sabertazimi/vue-trello dev",
     "test": "lerna run test"
   },
   "repository": {
