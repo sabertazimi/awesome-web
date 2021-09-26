@@ -3,7 +3,14 @@
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link>
   </div>
-  <router-view />
+  <suspense>
+    <template #default>
+      <router-view />
+    </template>
+    <template #fallback>
+      <div>Loading events list ...</div>
+    </template>
+  </suspense>
 </template>
 
 <style>
