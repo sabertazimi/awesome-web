@@ -7,11 +7,7 @@ const count = ref(0);
 
 <template>
   <h1 class="text-5xl font-bold">{{ msg }}</h1>
-  <button
-    class="m-3 px-5 py-3 bg-green-500 text-white rounded-3xl hover:bg-green-400"
-    type="button"
-    @click="count++"
-  >
+  <button class="btn" type="button" @click="count++">
     count is: {{ count }}
   </button>
   <p>
