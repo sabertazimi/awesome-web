@@ -7,10 +7,10 @@ interface State {
   board: BoardType;
 }
 
+const key: InjectionKey<Store<State>> = Symbol('state');
+
 const board: BoardType =
   JSON.parse(localStorage.getItem('board') as string) || getDefaultBoard();
-
-const key: InjectionKey<Store<State>> = Symbol('state');
 
 const store = createStore<State>({
   state: { board },
