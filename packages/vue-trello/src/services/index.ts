@@ -1,12 +1,13 @@
 import { nanoid } from 'nanoid';
 
 interface TaskType {
-  description: string;
-  name: string;
   id: string;
+  name: string;
+  description: string;
 }
 
 interface BoardColumnType {
+  id: string;
   name: string;
   tasks: TaskType[];
 }
@@ -20,42 +21,45 @@ const defaultBoard: BoardType = {
   name: 'workshop',
   columns: [
     {
+      id: nanoid(),
       name: 'todo',
       tasks: [
         {
-          description: '',
+          id: nanoid(),
           name: 'first task',
-          id: nanoid(),
+          description: '',
         },
         {
-          description: '',
+          id: nanoid(),
           name: 'second task',
-          id: nanoid(),
+          description: '',
         },
         {
-          description: '',
-          name: 'and third',
           id: nanoid(),
+          name: 'and third',
+          description: '',
         },
       ],
     },
     {
+      id: nanoid(),
       name: 'in-progress',
       tasks: [
         {
-          description: '',
-          name: 'first task',
           id: nanoid(),
+          name: 'first task',
+          description: '',
         },
       ],
     },
     {
+      id: nanoid(),
       name: 'done',
       tasks: [
         {
-          description: '',
-          name: 'first task',
           id: nanoid(),
+          name: 'first task',
+          description: '',
         },
       ],
     },
