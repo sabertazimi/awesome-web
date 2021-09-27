@@ -1,4 +1,6 @@
-<template><router-view /></template>
+<template>
+  <router-view />
+</template>
 
 <style lang="postcss">
 @tailwind base;
@@ -25,8 +27,13 @@
   }
 }
 
+html,
+body {
+  height: 100%;
+}
+
 #app {
-  margin-top: 60px;
+  height: 100%;
   font-family: Avenir, Helvetica, Arial, sans-serif;
   color: #2c3e50;
   -webkit-font-smoothing: antialiased;

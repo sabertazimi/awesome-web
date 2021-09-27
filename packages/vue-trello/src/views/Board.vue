@@ -1,5 +1,9 @@
 <script setup lang="ts">
-import HelloWorld from 'src/components/HelloWorld.vue';
+import { computed } from 'vue';
+import { useAppStore } from 'src/store';
+
+const store = useAppStore();
+const columns = computed(() => store.state.board.columns);
 </script>
 
 <template>
@@ -10,12 +14,39 @@ import HelloWorld from 'src/components/HelloWorld.vue';
     <router-link :to="{ name: 'board' }">
       <button class="btn">Back home</button>
     </router-link>
+    <div v-if="columns" class="flex flex-row flex-start">
+      <div v-for="column in columns" :key="column.id" class="column">
+        <div class="flex items-center mb-2 font-bold">
+          {{ column.name }}
+        </div>
+        <div v-if="column.tasks">
+          <div v-for="task in column.tasks" :key="task.id" class="task">
+            <span class="flex-shrink-0 w-full font-bold">
+              {{ task.name }}
+            </span>
+            <p v-if="task.description" class="flex-shrink-0 w-full mt-1">
+              {{ task.description }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
     <router-view />
   </div>
 </template>
 
 <style lang="postcss" scoped>
 .board-view {
-  @apply p-4 h-full overflow-auto;
+  @apply p-4 h-full overflow-auto bg-green-500;
+}
+
+.column {
+  @apply mr-4 p-2 text-left bg-gray-300 shadow-lg rounded;
+
+  min-width: 350px;
+}
+
+.task {
+  @apply flex items-center flex-wrap shadow mb-2 py-2 px-2 rounded bg-white text-gray-900 no-underline;
 }
 </style>
