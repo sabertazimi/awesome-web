@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
-import Board from '@/views/Board.vue';
-import Task from '@/views/Task.vue';
+import Board from 'src/views/Board.vue';
+import Task from 'src/views/Task.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -19,7 +19,7 @@ const routes: Array<RouteRecordRaw> = [
 ];
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+  history: createWebHistory('/awesome-web/vue-trello/'),
   routes,
 });
 
