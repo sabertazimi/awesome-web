@@ -1572,6 +1572,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@dg-scripts/stylelint-config@npm:^1.1.2":
+  version: 1.1.2
+  resolution: "@dg-scripts/stylelint-config@npm:1.1.2"
+  dependencies:
+    stylelint-config-bod: ^5.3.11
+    stylelint-config-prettier: ^8.0.2
+    stylelint-prettier: ^1.2.0
+  peerDependencies:
+    prettier: ^2.4.0
+    stylelint: ^13.13.0
+  checksum: fdfc538d77037ddbb7a7eb9efa689c08f2221dc197e03b2adc32ec749d0f661a1e4b7becec06500e8cc8e150b13ad0ccaf7f6ae2f35dbe5e8182676e693c463c
+  languageName: node
+  linkType: hard
+
 "@emmetio/abbreviation@npm:^2.2.2":
   version: 2.2.2
   resolution: "@emmetio/abbreviation@npm:2.2.2"
@@ -3161,7 +3175,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@sabertazimi/react-sandbox@workspace:packages/react-sandbox"
   dependencies:
-    "@sabertazimi/react-scripts": ^5.3.11
+    "@sabertazimi/react-scripts": ^5.3.12
     "@testing-library/dom": ^8.6.0
     "@testing-library/jest-dom": ^5.14.1
     "@testing-library/react": ^12.1.0
@@ -3177,16 +3191,16 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@sabertazimi/react-scripts@npm:^5.3.11":
-  version: 5.3.11
-  resolution: "@sabertazimi/react-scripts@npm:5.3.11"
+"@sabertazimi/react-scripts@npm:^5.3.12":
+  version: 5.3.12
+  resolution: "@sabertazimi/react-scripts@npm:5.3.12"
   dependencies:
     "@babel/core": ^7.15.5
     "@pmmmwh/react-refresh-webpack-plugin": ^0.5.1
     "@svgr/webpack": ^5.5.0
     babel-jest: ^27.2.2
     babel-loader: ^8.2.2
-    babel-plugin-named-asset-import: ^0.3.7
+    babel-plugin-named-asset-import: ^1.0.0-next.81
     babel-preset-react-app: ^11.0.0-next.81
     bfj: ^7.0.2
     browserslist: ^4.17.1
@@ -3197,7 +3211,7 @@ __metadata:
     dotenv: ^10.0.0
     dotenv-expand: ^5.1.0
     eslint: ^7.32.0
-    eslint-config-bod: ^5.3.11
+    eslint-config-bod: ^5.3.12
     eslint-config-prettier: ^8.3.0
     eslint-plugin-prettier: ^4.0.0
     eslint-webpack-plugin: ^3.0.1
@@ -3217,7 +3231,7 @@ __metadata:
     postcss-preset-env: ^6.7.0
     prettier: ^2.4.1
     prompts: ^2.4.1
-    react-app-polyfill: ^2.0.0
+    react-app-polyfill: ^3.0.0-next.81
     react-dev-utils: ^12.0.0-next.37
     react-refresh: ^0.10.0
     resolve: ^1.20.0
@@ -3227,7 +3241,7 @@ __metadata:
     source-map-loader: ^3.0.0
     style-loader: ^3.3.0
     stylelint: ^13.13.1
-    stylelint-config-bod: ^5.3.11
+    stylelint-config-bod: ^5.3.12
     stylelint-config-prettier: ^8.0.2
     stylelint-prettier: ^1.2.0
     stylelint-webpack-plugin: ^3.0.1
@@ -3249,7 +3263,7 @@ __metadata:
       optional: true
   bin:
     react-scripts: bin/react-scripts.js
-  checksum: 1a42ecbbf15eaa123401c613e1d9c480569c4c53a2e834e9bac47a01811e72cf66383a638336d4c12412de67396026ebc69f5320b249256880b2fedbdce0a097
+  checksum: 98bb486bafcd264443ada5bc9f79b391de8cb598b5a20e63d3487b2f39678aa9cd1ffa57ad711a9706f5708a17b8604faa95a3636467f1fa9b34c6a8f08591f7
   languageName: node
   linkType: hard
 
@@ -3258,11 +3272,13 @@ __metadata:
   resolution: "@sabertazimi/vue-trello@workspace:packages/vue-trello"
   dependencies:
     "@dg-scripts/eslint-config": ^1.1.2
+    "@dg-scripts/stylelint-config": ^1.1.2
     "@vitejs/plugin-vue": ^1.9.2
     autoprefixer: ^10.3.6
     eslint: ^7.32.0
     postcss: ^8.3.8
     prettier: ^2.4.1
+    stylelint: ^13.13.1
     tailwindcss: ^2.2.16
     typescript: ^4.4.3
     vite: ^2.5.10
@@ -5676,11 +5692,13 @@ __metadata:
   resolution: "awesome-web@workspace:."
   dependencies:
     "@dg-scripts/eslint-config": ^1.1.2
+    "@dg-scripts/stylelint-config": ^1.1.2
     "@types/node": ^16.10.1
     eslint: ^7.32.0
     lerna: ^4.0.0
     pm2: ^5.1.2
     prettier: ^2.4.1
+    stylelint: ^13.13.1
     ts-node: ^10.2.1
     tslib: ^2.3.1
     typescript: ^4.4.3
@@ -5802,12 +5820,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"babel-plugin-named-asset-import@npm:^0.3.7":
-  version: 0.3.7
-  resolution: "babel-plugin-named-asset-import@npm:0.3.7"
+"babel-plugin-named-asset-import@npm:^1.0.0-next.81":
+  version: 1.0.0-next.fb6e6f70
+  resolution: "babel-plugin-named-asset-import@npm:1.0.0-next.fb6e6f70"
   peerDependencies:
     "@babel/core": ^7.1.0
-  checksum: 4c9a42a2762f3d596a09105d05991525a0553d095030459d0f71449b023801ccc43e90fa20b618c52283dc61ca528a4a59df244e5b1dd583867786088eb473b7
+  checksum: feb4bc5618aea27b14ce2820aef91e2ea7752cd7d64072878f74f71152a427e50edff949202acdb91f372f31a96ab063161e5585725f5a3d42568ea490798a62
   languageName: node
   linkType: hard
 
@@ -6901,6 +6919,13 @@ __metadata:
   version: 2.0.0-next.75
   resolution: "confusing-browser-globals@npm:2.0.0-next.75"
   checksum: beca00f70bbba32457774331b99307a4477dda5619c7a9a6ca4ad1d724605ae04e134e32945052081626358e3c213dcc5d4da807e56974b236b67e784b92fe21
+  languageName: node
+  linkType: hard
+
+"confusing-browser-globals@npm:^2.0.0-next.81":
+  version: 2.0.0-next.fb6e6f70
+  resolution: "confusing-browser-globals@npm:2.0.0-next.fb6e6f70"
+  checksum: 8be5a9745daec343bdd70ad586e21f486dd58e440449cda460637de726c7cfe4acd9932807d1a689a255e8bc6fb805155b489a0e1e2644effeabbe8db68e9e1b
   languageName: node
   linkType: hard
 
@@ -8539,6 +8564,30 @@ __metadata:
   peerDependencies:
     eslint: ^7.30.0
   checksum: 6476e38d1dd13f254ab876299ab99523ba0e06d03b065c8ccdf10031a584b978b93afb738c8599c17b6a8775f6ecdf43f829424b92c67d9b67a02e009de43b7d
+  languageName: node
+  linkType: hard
+
+"eslint-config-bod@npm:^5.3.12":
+  version: 5.3.12
+  resolution: "eslint-config-bod@npm:5.3.12"
+  dependencies:
+    "@babel/core": 7.15.5
+    "@babel/eslint-parser": ^7.15.7
+    "@rushstack/eslint-patch": ^1.0.7
+    "@typescript-eslint/eslint-plugin": ^4.31.2
+    "@typescript-eslint/parser": ^4.31.2
+    babel-preset-react-app: ^11.0.0-next.81
+    confusing-browser-globals: ^2.0.0-next.81
+    eslint-plugin-flowtype: ^6.1.0
+    eslint-plugin-import: ^2.24.2
+    eslint-plugin-jest: ^24.4.2
+    eslint-plugin-jsx-a11y: ^6.4.1
+    eslint-plugin-react: ^7.26.0
+    eslint-plugin-react-hooks: ^4.2.0
+    eslint-plugin-testing-library: ^4.12.4
+  peerDependencies:
+    eslint: ^7.30.0
+  checksum: 0eda56fa9cd56f59155772006cfd079b0013f89c78cfccb5f685d657dd396495077ea5f428b071c2d14768a93672644f4a2f4912785b343801ae2e802e359576
   languageName: node
   linkType: hard
 
@@ -16267,9 +16316,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-app-polyfill@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "react-app-polyfill@npm:2.0.0"
+"react-app-polyfill@npm:^3.0.0-next.81":
+  version: 3.0.0-next.81
+  resolution: "react-app-polyfill@npm:3.0.0-next.81"
   dependencies:
     core-js: ^3.6.5
     object-assign: ^4.1.1
@@ -16277,7 +16326,7 @@ __metadata:
     raf: ^3.4.1
     regenerator-runtime: ^0.13.7
     whatwg-fetch: ^3.4.1
-  checksum: 99e52a6b2229c7ca730cfd44ac95640f955be71d144225bd6c24fa47922a742658a371d0a2f0876d732533f1055b7cd7e9d534c89c29f8ca889ecd1b8d15f065
+  checksum: a53ee746c68f57cdc65fa739776f03006de6748df5a0b2f7586b7aabf4fbda0dda3524ca323d3d2fb10dbb0bd63df722b10781ce67cf9c4a2d1ef460b1f43091
   languageName: node
   linkType: hard
 
@@ -18090,16 +18139,16 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
-"stylelint-config-bod@npm:^5.3.11":
-  version: 5.3.11
-  resolution: "stylelint-config-bod@npm:5.3.11"
+"stylelint-config-bod@npm:^5.3.11, stylelint-config-bod@npm:^5.3.12":
+  version: 5.3.12
+  resolution: "stylelint-config-bod@npm:5.3.12"
   dependencies:
     stylelint-a11y: ^1.2.3
     stylelint-config-recess-order: ^2.5.0
     stylelint-config-standard: ^22.0.0
   peerDependencies:
     stylelint: ^13.13.0
-  checksum: 212379f6a0fe5dc4fdf0e68e225d0db433370c6ac81ab8a14bcf10d3d4f4d1ef05c16be7bc7f908868e2bba967083f156945b9da0f4f27c7c3ec2c5a501e5ce7
+  checksum: a287295de258506f8eaf56800345fb605f48150336d718ccdd5d59ad5f9870fe1901a71786ea125773f0dedc597bad2b127a20f6f0aaf5e74edf4a0edfdc6002
   languageName: node
   linkType: hard
 
