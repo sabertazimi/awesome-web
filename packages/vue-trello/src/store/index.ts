@@ -7,20 +7,29 @@ interface State {
   board: BoardType;
 }
 
-const key: InjectionKey<Store<State>> = Symbol('state');
+type AppStore = Store<State>;
+
+const key: InjectionKey<AppStore> = Symbol('state');
 
 const board: BoardType =
   JSON.parse(localStorage.getItem('board') as string) || getDefaultBoard();
+
+const saveStatePlugin = (store: AppStore) => {
+  store.subscribe((_, state) => {
+    localStorage.setItem('board', JSON.stringify(state.board));
+  });
+};
 
 const store = createStore<State>({
   state: { board },
   mutations: {},
   actions: {},
+  plugins: [saveStatePlugin],
   modules: {},
 });
 
 const useAppStore = () => useStore<State>(key);
 
 export { key, useAppStore };
-export type { State };
+export type { State, AppStore };
 export default store;
