@@ -4,15 +4,11 @@ import HelloWorld from 'src/components/HelloWorld.vue';
 
 <template>
   <div class="board-view">
-    <router-link
-      class="router-link"
-      :to="{ name: 'task', params: { id: 123 } }"
-    >
-      To task
+    <router-link :to="{ name: 'task', params: { id: 123 } }">
+      <button class="btn">To task</button>
     </router-link>
-    |
-    <router-link class="router-link" :to="{ name: 'board' }">
-      Back home
+    <router-link :to="{ name: 'board' }">
+      <button class="btn">Back home</button>
     </router-link>
     <router-view />
   </div>
