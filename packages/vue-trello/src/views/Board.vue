@@ -4,4 +4,5 @@ import HelloWorld from 'src/components/HelloWorld.vue';
 
 <template>
   <HelloWorld msg="Vue Trello App" />
+  <router-view />
 </template>
