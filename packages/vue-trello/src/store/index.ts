@@ -1,5 +1,5 @@
 import { InjectionKey } from 'vue';
-import { createStore, Store } from 'vuex';
+import { createStore, useStore, Store } from 'vuex';
 import { getDefaultBoard } from 'src/services';
 import type { BoardType } from 'src/services';
 
@@ -19,6 +19,8 @@ const store = createStore<State>({
   modules: {},
 });
 
-export { key };
+const useAppStore = () => useStore<State>(key);
+
+export { key, useAppStore };
 export type { State };
 export default store;
