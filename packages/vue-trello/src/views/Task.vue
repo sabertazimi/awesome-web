@@ -9,7 +9,7 @@ const columns = computed(() => store.state.board.columns);
 </script>
 
 <template>
-  <div v-if="columns">
+  <div v-if="columns" class="task-view">
     <div v-for="column in columns" :key="column.name">
       <ul v-if="column.tasks">
         <li v-for="task in column.tasks" :key="task.id">
@@ -19,3 +19,9 @@ const columns = computed(() => store.state.board.columns);
     </div>
   </div>
 </template>
+
+<style lang="postcss" scoped>
+.task-view {
+  @apply relative flex flex-row max-w-3xl m-32 mx-auto py-4 text-left rounded shadow-xl;
+}
+</style>
