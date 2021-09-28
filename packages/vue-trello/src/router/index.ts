@@ -2,6 +2,7 @@ import {
   createRouter,
   createWebHistory,
   useRoute,
+  useRouter,
   RouteRecordRaw,
 } from 'vue-router';
 import Board from 'src/views/Board.vue';
@@ -24,11 +25,12 @@ const routes: Array<RouteRecordRaw> = [
 ];
 
 const useAppRoute = () => useRoute();
+const useAppRouter = () => useRouter();
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes,
 });
 
-export { useAppRoute };
+export { useAppRoute, useAppRouter };
 export default router;

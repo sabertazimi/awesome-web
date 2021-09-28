@@ -1,26 +1,32 @@
 <script setup lang="ts">
 import { computed } from 'vue';
-import { useAppRoute } from 'src/router';
+import { useAppRoute, useAppRouter } from 'src/router';
 import { useAppStore } from 'src/store';
+import type { TaskType } from 'src/services';
 
 const route = useAppRoute();
+const router = useAppRouter();
 const store = useAppStore();
 const columns = computed(() => store.state.board.columns);
 const isTaskOpen = computed(() => route.name === 'task');
+const goToTask = (task: TaskType) =>
+  router.push({ name: 'task', params: { id: task.id } });
 </script>
 
 <template>
   <div class="board-view">
-    <router-link :to="{ name: 'task', params: { id: 123 } }">
-      <button class="btn">To task</button>
-    </router-link>
     <div v-if="columns" class="flex flex-row flex-start">
       <div v-for="column in columns" :key="column.id" class="column">
         <div class="flex items-center mb-2 font-bold">
           {{ column.name }}
         </div>
         <div v-if="column.tasks">
-          <div v-for="task in column.tasks" :key="task.id" class="task">
+          <div
+            v-for="task in column.tasks"
+            :key="task.id"
+            class="task"
+            @click="goToTask(task)"
+          >
             <span class="flex-shrink-0 w-full font-bold">
               {{ task.name }}
             </span>
@@ -49,6 +55,8 @@ const isTaskOpen = computed(() => route.name === 'task');
 }
 
 .task {
-  @apply flex items-center flex-wrap shadow mb-2 py-2 px-2 rounded bg-white text-gray-900 no-underline;
+  @apply flex items-center flex-wrap;
+  @apply mb-2 py-2 px-2 rounded;
+  @apply bg-white text-gray-900 shadow no-underline cursor-pointer;
 }
 </style>
