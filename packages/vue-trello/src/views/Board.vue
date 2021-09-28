@@ -11,6 +11,7 @@ const columns = computed(() => store.state.board.columns);
 const isTaskOpen = computed(() => route.name === 'task');
 const goToTask = (task: TaskType) =>
   router.push({ name: 'task', params: { id: task.id } });
+const closeTask = () => router.push({ name: 'board' });
 </script>
 
 <template>
@@ -37,7 +38,7 @@ const goToTask = (task: TaskType) =>
         </div>
       </div>
     </div>
-    <div v-if="isTaskOpen" class="absolute inset-0 bg-black bg-opacity-50">
+    <div v-if="isTaskOpen" class="task-modal" @click.self="closeTask">
       <router-view />
     </div>
   </div>
@@ -58,5 +59,9 @@ const goToTask = (task: TaskType) =>
   @apply flex items-center flex-wrap;
   @apply mb-2 py-2 px-2 rounded;
   @apply bg-white text-gray-900 shadow no-underline cursor-pointer;
+}
+
+.task-modal {
+  @apply absolute inset-0 bg-black bg-opacity-50;
 }
 </style>

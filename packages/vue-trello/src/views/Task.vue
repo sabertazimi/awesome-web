@@ -7,12 +7,11 @@ const props = defineProps<{ id: string }>();
 const router = useAppRouter();
 const store = useAppStore();
 const task = computed(() => store.getters.getTask(props.id));
-const closeTask = () => router.push({ name: 'board' });
 </script>
 
 <template>
   <div class="task-view">
-    <div class="task-item" @click="closeTask">
+    <div class="task-item">
       {{ task.name }}
     </div>
   </div>
@@ -24,6 +23,6 @@ const closeTask = () => router.push({ name: 'board' });
 }
 
 .task-item {
-  @apply flex flex-col flex-grow items-start justify-between px-4 cursor-pointer;
+  @apply flex flex-col flex-grow items-start justify-between px-4;
 }
 </style>
