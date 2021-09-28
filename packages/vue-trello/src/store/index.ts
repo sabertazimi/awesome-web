@@ -1,7 +1,8 @@
 import { InjectionKey } from 'vue';
 import { createStore, useStore, Store } from 'vuex';
-import { getDefaultBoard } from 'src/services';
+import { getDefaultBoard, TaskType } from 'src/services';
 import type { BoardType } from 'src/services';
+import { nanoid } from 'nanoid';
 
 interface State {
   board: BoardType;
@@ -37,7 +38,11 @@ const store = createStore<State>({
       }
     },
   },
-  mutations: {},
+  mutations: {
+    createTask(state, { name, tasks }: { name: string; tasks: TaskType[] }) {
+      tasks.push({ id: nanoid(), name, description: '' });
+    },
+  },
   actions: {},
   plugins: [saveStatePlugin],
   modules: {},

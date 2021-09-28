@@ -11,7 +11,15 @@ const columns = computed(() => store.state.board.columns);
 const isTaskOpen = computed(() => route.name === 'task');
 const goToTask = (task: TaskType) =>
   router.push({ name: 'task', params: { id: task.id } });
-const closeTask = () => router.push({ name: 'board' });
+const close = () => router.push({ name: 'board' });
+const createTask = (event: Event, tasks: TaskType[]) => {
+  const inputElement = event.target as HTMLInputElement;
+  store.commit('createTask', {
+    name: inputElement.value,
+    tasks,
+  });
+  inputElement.value = '';
+};
 </script>
 
 <template>
@@ -35,10 +43,16 @@ const closeTask = () => router.push({ name: 'board' });
               {{ task.description }}
             </p>
           </div>
+          <input
+            type="text"
+            class="task-input"
+            placeholder="+ Enter new task ..."
+            @keyup.enter="createTask($event, column.tasks)"
+          />
         </div>
       </div>
     </div>
-    <div v-if="isTaskOpen" class="task-modal" @click.self="closeTask">
+    <div v-if="isTaskOpen" class="task-modal" @click.self="close">
       <router-view />
     </div>
   </div>
@@ -63,5 +77,10 @@ const closeTask = () => router.push({ name: 'board' });
 
 .task-modal {
   @apply absolute inset-0 bg-black bg-opacity-50;
+}
+
+.task-input {
+  @apply block w-full p-2 bg-transparent border border-transparent outline-none;
+  @apply focus:border-green-500;
 }
 </style>
