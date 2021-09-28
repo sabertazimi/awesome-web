@@ -12,11 +12,15 @@ type AppStore = Store<State>;
 const key: InjectionKey<AppStore> = Symbol('state');
 
 const board: BoardType =
-  JSON.parse(localStorage.getItem('board') as string) || getDefaultBoard();
+  JSON.parse(localStorage.getItem('@sabertazimi/vue-trello-board') as string) ||
+  getDefaultBoard();
 
 const saveStatePlugin = (store: AppStore) => {
   store.subscribe((_, state) => {
-    localStorage.setItem('board', JSON.stringify(state.board));
+    localStorage.setItem(
+      '@sabertazimi/vue-trello-board',
+      JSON.stringify(state.board)
+    );
   });
 };
 
