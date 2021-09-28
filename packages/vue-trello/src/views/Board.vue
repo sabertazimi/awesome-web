@@ -12,11 +12,13 @@ const goToTask = (task: TaskType) =>
 const createTask = (event: Event, tasks: TaskType[]) => {
   const inputElement = event.target as HTMLInputElement;
   store.commit('createTask', {
-    name: inputElement.value,
     tasks,
+    name: inputElement.value,
   });
   inputElement.value = '';
 };
+const deleteTask = (tasks: TaskType[], id: string) =>
+  store.commit('deleteTask', { tasks, id });
 </script>
 
 <template>
@@ -38,7 +40,12 @@ const createTask = (event: Event, tasks: TaskType[]) => {
                 <span @click="goToTask(task)">
                   {{ task.name }}
                 </span>
-                <button class="btn-round ml-auto">X</button>
+                <button
+                  class="btn-round ml-auto"
+                  @click="deleteTask(column.tasks, task.id)"
+                >
+                  X
+                </button>
               </div>
               <p
                 v-if="task.description"
