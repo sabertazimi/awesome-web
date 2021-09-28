@@ -21,6 +21,11 @@
     @apply bg-green-500 text-white font-bold hover:bg-green-400 transition duration-500;
   }
 
+  .btn-sm {
+    @apply btn;
+    @apply px-2 py-1 text-sm;
+  }
+
   .btn-danger {
     @apply btn;
     @apply bg-red-500 text-white hover:bg-red-400;
