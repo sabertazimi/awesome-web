@@ -27,19 +27,28 @@ const createTask = (event: Event, tasks: TaskType[]) => {
           {{ column.name }}
         </div>
         <div v-if="column.tasks">
-          <div
-            v-for="task in column.tasks"
-            :key="task.id"
-            class="task"
-            @click="goToTask(task)"
-          >
-            <span class="flex-shrink-0 w-full font-bold">
-              {{ task.name }}
-            </span>
-            <p v-if="task.description" class="flex-shrink-0 w-full mt-1">
-              {{ task.description }}
-            </p>
-          </div>
+          <transition-group v-if="column.tasks">
+            <div
+              v-for="task in column.tasks"
+              :key="task.id"
+              class="task"
+              @click.self="goToTask(task)"
+            >
+              <div class="task-name">
+                <span @click="goToTask(task)">
+                  {{ task.name }}
+                </span>
+                <button class="btn-round ml-auto">X</button>
+              </div>
+              <p
+                v-if="task.description"
+                class="flex-shrink-0 w-full mt-1"
+                @click="goToTask(task)"
+              >
+                {{ task.description }}
+              </p>
+            </div>
+          </transition-group>
           <input
             type="text"
             class="task-input"
@@ -72,6 +81,10 @@ const createTask = (event: Event, tasks: TaskType[]) => {
   @apply flex items-center flex-wrap;
   @apply mb-2 py-2 px-2 rounded;
   @apply bg-white text-gray-900 shadow no-underline cursor-pointer;
+}
+
+.task-name {
+  @apply flex flex-row items-center flex-shrink-0 w-full font-bold;
 }
 
 .task-input {
