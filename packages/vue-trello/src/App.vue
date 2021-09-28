@@ -46,7 +46,7 @@
 @media (prefers-reduced-motion: no-preference) {
   .v-enter-active,
   .v-leave-active {
-    transition: opacity 0.3s ease-out;
+    transition: opacity 0.2s ease-out;
   }
 }
 
