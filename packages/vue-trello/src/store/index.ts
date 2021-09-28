@@ -22,6 +22,17 @@ const saveStatePlugin = (store: AppStore) => {
 
 const store = createStore<State>({
   state: { board },
+  getters: {
+    getTask: state => (id: string) => {
+      for (const column of state.board.columns) {
+        for (const task of column.tasks) {
+          if (task.id === id) {
+            return task;
+          }
+        }
+      }
+    },
+  },
   mutations: {},
   actions: {},
   plugins: [saveStatePlugin],
