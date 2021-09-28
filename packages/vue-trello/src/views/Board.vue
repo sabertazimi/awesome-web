@@ -23,7 +23,7 @@ const deleteTask = (tasks: TaskType[], id: string) =>
 
 <template>
   <div class="board-view">
-    <div v-if="columns" class="flex flex-row flex-start">
+    <div v-if="columns" class="columns">
       <div v-for="column in columns" :key="column.id" class="column">
         <div class="flex items-center mb-2 font-bold">
           {{ column.name }}
@@ -71,11 +71,16 @@ const deleteTask = (tasks: TaskType[], id: string) =>
 
 <style lang="postcss" scoped>
 .board-view {
+  @apply flex flex-row justify-center items-start;
   @apply p-4 h-full overflow-auto bg-green-500;
 }
 
+.columns {
+  @apply flex flex-row justify-center items-start flex-wrap md:justify-start;
+}
+
 .column {
-  @apply mr-4 p-2 text-left bg-gray-300 shadow-lg rounded;
+  @apply mr-4 mb-4 p-2 text-left bg-gray-300 shadow-lg rounded;
 
   min-width: 350px;
 }
