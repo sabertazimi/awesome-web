@@ -19,7 +19,7 @@ const routes: Array<RouteRecordRaw> = [
 ];
 
 const router = createRouter({
-  history: createWebHistory('/awesome-web/vue-trello/'),
+  history: createWebHistory(import.meta.env.BASE_URL),
   routes,
 });
 
