@@ -1,4 +1,9 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
+import {
+  createRouter,
+  createWebHistory,
+  useRoute,
+  RouteRecordRaw,
+} from 'vue-router';
 import Board from 'src/views/Board.vue';
 import Task from 'src/views/Task.vue';
 
@@ -18,9 +23,12 @@ const routes: Array<RouteRecordRaw> = [
   },
 ];
 
+const useAppRoute = () => useRoute();
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes,
 });
 
+export { useAppRoute };
 export default router;
