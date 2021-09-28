@@ -3,6 +3,9 @@ defineProps<{ id: string }>();
 </script>
 
 <template>
+  <router-link :to="{ name: 'board' }">
+    <button class="btn">Back home</button>
+  </router-link>
   <div class="text-white">Task View {{ id }}</div>
 </template>
 

@@ -1,18 +1,18 @@
 <script setup lang="ts">
 import { computed } from 'vue';
+import { useAppRoute } from 'src/router';
 import { useAppStore } from 'src/store';
 
+const route = useAppRoute();
 const store = useAppStore();
 const columns = computed(() => store.state.board.columns);
+const isTaskOpen = computed(() => route.name === 'task');
 </script>
 
 <template>
   <div class="board-view">
     <router-link :to="{ name: 'task', params: { id: 123 } }">
       <button class="btn">To task</button>
-    </router-link>
-    <router-link :to="{ name: 'board' }">
-      <button class="btn">Back home</button>
     </router-link>
     <div v-if="columns" class="flex flex-row flex-start">
       <div v-for="column in columns" :key="column.id" class="column">
@@ -31,7 +31,9 @@ const columns = computed(() => store.state.board.columns);
         </div>
       </div>
     </div>
-    <router-view />
+    <div v-if="isTaskOpen" class="absolute inset-0 bg-black bg-opacity-50">
+      <router-view />
+    </div>
   </div>
 </template>
 
