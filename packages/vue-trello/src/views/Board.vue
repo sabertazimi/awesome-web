@@ -36,24 +36,20 @@ const deleteTask = (tasks: TaskType[], id: string) =>
               v-for="task in column.tasks"
               :key="task.id"
               class="task"
-              @click.self="goToTask(task)"
+              @click="goToTask(task)"
             >
               <div class="task-name">
-                <span @click="goToTask(task)">
+                <span>
                   {{ task.name }}
                 </span>
                 <button
                   class="btn-round ml-auto"
-                  @click="deleteTask(column.tasks, task.id)"
+                  @click.stop="deleteTask(column.tasks, task.id)"
                 >
                   X
                 </button>
               </div>
-              <p
-                v-if="task.description"
-                class="flex-shrink-0 w-full mt-1"
-                @click="goToTask(task)"
-              >
+              <p v-if="task.description" class="flex-shrink-0 w-full mt-1">
                 {{ task.description }}
               </p>
             </div>
