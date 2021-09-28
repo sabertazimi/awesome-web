@@ -1,14 +1,12 @@
 <script setup lang="ts">
 import { computed } from 'vue';
-import { useAppRoute, useAppRouter } from 'src/router';
+import { useAppRouter } from 'src/router';
 import { useAppStore } from 'src/store';
 import type { TaskType } from 'src/services';
 
-const route = useAppRoute();
 const router = useAppRouter();
 const store = useAppStore();
 const columns = computed(() => store.state.board.columns);
-const isTaskOpen = computed(() => route.name === 'task');
 const goToTask = (task: TaskType) =>
   router.push({ name: 'task', params: { id: task.id } });
 const createTask = (event: Event, tasks: TaskType[]) => {
@@ -51,9 +49,11 @@ const createTask = (event: Event, tasks: TaskType[]) => {
         </div>
       </div>
     </div>
-    <div v-if="isTaskOpen" class="task-modal">
-      <router-view />
-    </div>
+    <router-view v-slot="{ Component }">
+      <transition>
+        <component :is="Component" />
+      </transition>
+    </router-view>
   </div>
 </template>
 
@@ -74,12 +74,9 @@ const createTask = (event: Event, tasks: TaskType[]) => {
   @apply bg-white text-gray-900 shadow no-underline cursor-pointer;
 }
 
-.task-modal {
-  @apply absolute inset-0 bg-black bg-opacity-50;
-}
-
 .task-input {
   @apply block w-full p-2 bg-transparent border border-transparent outline-none;
   @apply focus:border-green-500;
+  @apply transition duration-500;
 }
 </style>

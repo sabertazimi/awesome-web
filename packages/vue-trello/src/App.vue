@@ -34,6 +34,21 @@
   }
 }
 
+.v-enter-from {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .v-enter-active,
+  .v-leave-active {
+    transition: opacity 0.3s ease-out;
+  }
+}
+
+.v-leave-to {
+  opacity: 0;
+}
+
 html,
 body {
   height: 100%;

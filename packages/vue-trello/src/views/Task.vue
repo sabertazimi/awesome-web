@@ -19,28 +19,33 @@ const updateTask = (event: React.FormEvent, task: TaskType, key: string) => {
 </script>
 
 <template>
-  <div class="task-view">
-    <input
-      type="text"
-      class="task-input"
-      :value="task.name"
-      @change="updateTask($event, task, 'name')"
-    />
-    <textarea
-      id="task-description"
-      name="task-description"
-      class="task-description"
-      placeholder="Task description here ..."
-      :rows="10"
-      :cols="30"
-      :value="task.description"
-      @change="updateTask($event, task, 'description')"
-    />
-    <button class="btn btn-sm h-8 ml-auto" @click="close">Close</button>
+  <div class="task-modal">
+    <div class="task-view">
+      <input
+        type="text"
+        class="task-input"
+        :value="task.name"
+        @change="updateTask($event, task, 'name')"
+      />
+      <textarea
+        id="task-description"
+        name="task-description"
+        class="task-description"
+        placeholder="Task description here ..."
+        :rows="10"
+        :cols="30"
+        :value="task.description"
+        @change="updateTask($event, task, 'description')"
+      />
+      <button class="btn btn-sm h-8 ml-auto" @click="close">Close</button>
+    </div>
   </div>
 </template>
 
 <style lang="postcss" scoped>
+.task-modal {
+  @apply absolute inset-0 bg-black bg-opacity-50;
+}
 .task-view {
   @apply relative inset-0 flex flex-col max-w-3xl m-32 mx-auto p-8 text-left bg-white rounded shadow-2xl;
 }
