@@ -18,7 +18,9 @@
 
   .btn {
     @apply inline-flex items-center min-w-min max-w-max px-4 py-2 rounded-3xl cursor-pointer;
-    @apply bg-green-500 text-white font-bold hover:bg-green-400 transition duration-500;
+    @apply bg-green-500 text-white font-bold;
+    @apply hover:bg-green-400;
+    @apply transition duration-500;
   }
 
   .btn-sm {

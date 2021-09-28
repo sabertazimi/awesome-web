@@ -48,10 +48,12 @@ const updateTask = (event: React.FormEvent, task: TaskType, key: string) => {
 .task-input {
   @apply block w-full text-xl font-bold outline-none border border-transparent;
   @apply focus:border-green-500 focus:outline-none;
+  @apply transition duration-500;
 }
 
 .task-description {
   @apply relative w-full my-4 p-2 h-64 border bg-transparent;
   @apply focus:border-green-500 focus:outline-none;
+  @apply transition duration-500;
 }
 </style>
