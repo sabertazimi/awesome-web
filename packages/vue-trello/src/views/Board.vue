@@ -11,7 +11,6 @@ const columns = computed(() => store.state.board.columns);
 const isTaskOpen = computed(() => route.name === 'task');
 const goToTask = (task: TaskType) =>
   router.push({ name: 'task', params: { id: task.id } });
-const close = () => router.push({ name: 'board' });
 const createTask = (event: Event, tasks: TaskType[]) => {
   const inputElement = event.target as HTMLInputElement;
   store.commit('createTask', {
@@ -52,7 +51,7 @@ const createTask = (event: Event, tasks: TaskType[]) => {
         </div>
       </div>
     </div>
-    <div v-if="isTaskOpen" class="task-modal" @click.self="close">
+    <div v-if="isTaskOpen" class="task-modal">
       <router-view />
     </div>
   </div>
