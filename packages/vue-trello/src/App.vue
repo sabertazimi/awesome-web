@@ -28,6 +28,11 @@
     @apply px-2 py-1 text-sm;
   }
 
+  .btn-round {
+    @apply btn;
+    @apply px-2 py-1 text-xs rounded-full;
+  }
+
   .btn-danger {
     @apply btn;
     @apply bg-red-500 text-white hover:bg-red-400;

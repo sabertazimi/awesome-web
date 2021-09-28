@@ -37,7 +37,7 @@ const updateTask = (event: React.FormEvent, task: TaskType, key: string) => {
         :value="task.description"
         @change="updateTask($event, task, 'description')"
       />
-      <button class="btn btn-sm h-8 ml-auto" @click="close">Close</button>
+      <button class="btn-sm h-8 ml-auto" @click="close">Close</button>
     </div>
   </div>
 </template>
