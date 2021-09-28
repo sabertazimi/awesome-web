@@ -42,6 +42,16 @@ const store = createStore<State>({
     createTask(state, { name, tasks }: { name: string; tasks: TaskType[] }) {
       tasks.push({ id: nanoid(), name, description: '' });
     },
+    updateTask(
+      state,
+      {
+        task,
+        key,
+        value,
+      }: { task: TaskType; key: keyof TaskType; value: string }
+    ) {
+      task[key] = value;
+    },
   },
   actions: {},
   plugins: [saveStatePlugin],
