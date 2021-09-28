@@ -11,13 +11,11 @@ const goToTask = (task: TaskType) =>
   router.push({ name: 'task', params: { id: task.id } });
 const createTask = (event: Event, tasks: TaskType[]) => {
   const inputElement = event.target as HTMLInputElement;
-  if (inputElement.value) {
-    store.commit('createTask', {
-      tasks,
-      name: inputElement.value,
-    });
-    inputElement.value = '';
-  }
+  store.commit('createTask', {
+    tasks,
+    name: inputElement.value,
+  });
+  inputElement.value = '';
 };
 const deleteTask = (tasks: TaskType[], id: string) =>
   store.commit('deleteTask', { tasks, id });
