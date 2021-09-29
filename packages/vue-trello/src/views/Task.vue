@@ -21,7 +21,7 @@ const updateTask = (event: React.FormEvent, task: TaskType, key: string) => {
 </script>
 
 <template>
-  <div class="task-modal" @click.stop="close">
+  <div class="task-modal" @click.stop.self="close">
     <div class="task-view">
       <input
         type="text"
