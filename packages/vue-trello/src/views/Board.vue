@@ -2,7 +2,7 @@
 import { computed } from 'vue';
 import { useAppRouter } from 'src/router';
 import { useAppStore } from 'src/store';
-import type { TaskType } from 'src/services';
+import type { BoardColumnType, TaskType } from 'src/services';
 
 const router = useAppRouter();
 const store = useAppStore();
@@ -19,21 +19,53 @@ const createTask = (event: Event, tasks: TaskType[]) => {
 };
 const deleteTask = (tasks: TaskType[], id: string) =>
   store.commit('deleteTask', { tasks, id });
+const pickupTask = (
+  event: DragEvent,
+  fromColumnIndex: number,
+  taskIndex: number
+) => {
+  const dataTransfer = event.dataTransfer;
+
+  if (dataTransfer) {
+    dataTransfer.dropEffect = 'move';
+    dataTransfer.effectAllowed = 'move';
+    dataTransfer.setData('fromColumnIndex', fromColumnIndex.toString());
+    dataTransfer.setData('taskIndex', taskIndex.toString());
+  }
+};
+const moveTask = (event: React.DragEvent, toColumnIndex: number) => {
+  const dataTransfer = event.dataTransfer;
+
+  if (dataTransfer) {
+    const fromColumnIndex = parseInt(dataTransfer.getData('fromColumnIndex'));
+    const taskIndex = parseInt(dataTransfer.getData('taskIndex'));
+    store.commit('moveTask', { fromColumnIndex, toColumnIndex, taskIndex });
+  }
+};
 </script>
 
 <template>
   <div class="board-view">
     <div v-if="columns" class="columns">
-      <div v-for="column in columns" :key="column.id" class="column">
+      <div
+        v-for="(column, columnIndex) in columns"
+        :key="column.id"
+        class="column"
+        @dragenter.prevent
+        @dragover.prevent
+        @drop="moveTask($event, columnIndex)"
+      >
         <div class="flex items-center mb-2 font-bold">
           {{ column.name }}
         </div>
         <div v-if="column.tasks">
           <transition-group v-if="column.tasks">
             <div
-              v-for="task in column.tasks"
+              v-for="(task, taskIndex) in column.tasks"
               :key="task.id"
               class="task"
+              draggable="true"
+              @dragstart="pickupTask($event, columnIndex, taskIndex)"
               @click="goToTask(task)"
             >
               <div class="task-name">

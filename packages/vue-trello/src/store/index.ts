@@ -58,6 +58,19 @@ const store = createStore<State>({
         1
       );
     },
+    moveTask(
+      state,
+      {
+        fromColumnIndex,
+        toColumnIndex,
+        taskIndex,
+      }: { fromColumnIndex: number; toColumnIndex: number; taskIndex: number }
+    ) {
+      const fromTasks = state.board.columns[fromColumnIndex].tasks;
+      const toTasks = state.board.columns[toColumnIndex].tasks;
+      const taskToMove = fromTasks.splice(taskIndex, 1)[0];
+      toTasks.push(taskToMove);
+    },
   },
   actions: {},
   plugins: [saveStatePlugin],
