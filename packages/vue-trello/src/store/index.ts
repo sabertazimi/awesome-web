@@ -64,16 +64,24 @@ const store = createStore<State>({
         fromColumnIndex,
         toColumnIndex,
         fromTaskIndex,
+        toTaskIndex,
       }: {
         fromColumnIndex: number;
         toColumnIndex: number;
         fromTaskIndex: number;
+        toTaskIndex: number;
       }
     ) {
-      const fromTasks = state.board.columns[fromColumnIndex].tasks;
-      const toTasks = state.board.columns[toColumnIndex].tasks;
-      const taskToMove = fromTasks.splice(fromTaskIndex, 1)[0];
-      toTasks.push(taskToMove);
+      if (fromColumnIndex !== toColumnIndex) {
+        const fromTasks = state.board.columns[fromColumnIndex].tasks;
+        const toTasks = state.board.columns[toColumnIndex].tasks;
+        const taskToMove = fromTasks.splice(fromTaskIndex, 1)[0];
+        toTasks.push(taskToMove);
+      } else {
+        const tasks = state.board.columns[fromColumnIndex].tasks;
+        const taskToMove = tasks.splice(fromTaskIndex, 1)[0];
+        tasks.splice(toTaskIndex, 0, taskToMove);
+      }
     },
     moveColumn(
       state,
