@@ -26,7 +26,7 @@ const deleteTask = (columnIndex: number, id: string) =>
 const pickupTask = (
   event: DragEvent,
   fromColumnIndex: number,
-  taskIndex: number
+  fromTaskIndex: number
 ) => {
   const dataTransfer = event.dataTransfer;
 
@@ -34,7 +34,7 @@ const pickupTask = (
     dataTransfer.dropEffect = 'move';
     dataTransfer.effectAllowed = 'move';
     dataTransfer.setData('fromColumnIndex', fromColumnIndex.toString());
-    dataTransfer.setData('fromTaskIndex', taskIndex.toString());
+    dataTransfer.setData('fromTaskIndex', fromTaskIndex.toString());
   }
 };
 
@@ -56,6 +56,17 @@ const moveTask = (
     });
   }
 };
+
+const createColumn = (event: Event) => {
+  const inputElement = event.target as HTMLInputElement;
+
+  if (inputElement.value) {
+    store.commit('createColumn', { name: inputElement.value });
+    inputElement.value = '';
+  }
+};
+
+const deleteColumn = (id: string) => store.commit('deleteColumn', { id });
 
 const pickupColumn = (event: DragEvent, fromColumnIndex: number) => {
   const dataTransfer = event.dataTransfer;
@@ -107,7 +118,13 @@ const moveTaskOrColumn = (
         @dragstart.self="pickupColumn($event, columnIndex)"
       >
         <div class="flex items-center mb-2 font-bold">
-          {{ column.name }}
+          <span>{{ column.name }}</span>
+          <button
+            class="btn-block danger ml-auto"
+            @click.stop="deleteColumn(column.id)"
+          >
+            X
+          </button>
         </div>
         <div v-if="column.tasks">
           <transition-group v-if="column.tasks">
@@ -123,9 +140,7 @@ const moveTaskOrColumn = (
               @click="goToTask(task)"
             >
               <div class="task-name">
-                <span class="px-4 py-2">
-                  {{ task.name }}
-                </span>
+                <span class="px-4 py-2">{{ task.name }}</span>
                 <button
                   class="btn-block ml-auto"
                   @click.stop="deleteTask(columnIndex, task.id)"
@@ -150,6 +165,12 @@ const moveTaskOrColumn = (
         </div>
       </div>
     </div>
+    <input
+      type="text"
+      class="column-input"
+      placeholder="+ Enter new column ..."
+      @keyup.enter="createColumn($event)"
+    />
     <router-view v-slot="{ Component }">
       <transition>
         <component :is="Component" />
@@ -160,7 +181,7 @@ const moveTaskOrColumn = (
 
 <style lang="postcss" scoped>
 .board-view {
-  @apply flex flex-row justify-center items-start;
+  @apply flex flex-col justify-start items-center;
   @apply p-4 h-full overflow-auto bg-green-500;
 }
 
@@ -186,6 +207,13 @@ const moveTaskOrColumn = (
 .task-input {
   @apply block w-full p-2 bg-transparent border border-transparent outline-none;
   @apply focus:border-green-500;
+  @apply transition duration-500;
+}
+
+.column-input {
+  @apply block w-1/2 mt-4 p-2;
+  @apply bg-green-100 border border-transparent outline-none;
+  @apply focus:bg-white;
   @apply transition duration-500;
 }
 </style>

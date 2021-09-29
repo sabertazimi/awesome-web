@@ -1,6 +1,6 @@
 import { InjectionKey } from 'vue';
 import { createStore, useStore, Store } from 'vuex';
-import { getDefaultBoard, TaskType } from 'src/services';
+import { BoardColumnType, getDefaultBoard, TaskType } from 'src/services';
 import type { BoardType } from 'src/services';
 import { nanoid } from 'nanoid';
 
@@ -77,14 +77,27 @@ const store = createStore<State>({
         fromColumnIndex: number;
         toColumnIndex: number;
         fromTaskIndex: number;
-        toTaskIndex: number;
+        toTaskIndex?: number;
       }
     ) {
       const fromTasks = state.board.columns[fromColumnIndex].tasks;
       const toTasks = state.board.columns[toColumnIndex].tasks;
       const taskToMove = fromTasks.splice(fromTaskIndex, 1)[0];
-      if (typeof toTaskIndex === 'undefined') toTasks.push(taskToMove);
-      else toTasks.splice(toTaskIndex, 0, taskToMove);
+      toTasks.splice(toTaskIndex ?? toTasks.length, 0, taskToMove);
+    },
+    createColumn(state, { name }: { name: string }) {
+      const newColumn: BoardColumnType = {
+        id: nanoid(),
+        name,
+        tasks: [],
+      };
+      state.board.columns.push(newColumn);
+    },
+    deleteColumn(state, { id }: { id: string }) {
+      state.board.columns.splice(
+        state.board.columns.findIndex(column => column.id === id),
+        1
+      );
     },
     moveColumn(
       state,

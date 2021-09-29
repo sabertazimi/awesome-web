@@ -29,14 +29,13 @@
     @apply rounded-none;
   }
 
-  .btn-danger {
-    @apply btn;
-    @apply bg-red-500 text-white hover:bg-red-400;
-  }
-
   .btn-round {
     @apply btn;
     @apply px-2 py-1 text-xs rounded-full;
+  }
+
+  .danger {
+    @apply bg-red-500 text-white hover:bg-red-400;
   }
 }
 
