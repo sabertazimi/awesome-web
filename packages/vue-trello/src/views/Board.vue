@@ -11,17 +11,17 @@ const columns = computed(() => store.state.board.columns);
 const goToTask = (task: TaskType) =>
   router.push({ name: 'task', params: { id: task.id } });
 
-const createTask = (event: Event, tasks: TaskType[]) => {
+const createTask = (event: Event, columnIndex: number) => {
   const inputElement = event.target as HTMLInputElement;
   store.commit('createTask', {
-    tasks,
+    columnIndex,
     name: inputElement.value,
   });
   inputElement.value = '';
 };
 
-const deleteTask = (tasks: TaskType[], id: string) =>
-  store.commit('deleteTask', { tasks, id });
+const deleteTask = (columnIndex: number, id: string) =>
+  store.commit('deleteTask', { columnIndex, id });
 
 const pickupTask = (
   event: DragEvent,
@@ -128,7 +128,7 @@ const moveTaskOrColumn = (
                 </span>
                 <button
                   class="btn-block ml-auto"
-                  @click.stop="deleteTask(column.tasks, task.id)"
+                  @click.stop="deleteTask(columnIndex, task.id)"
                 >
                   X
                 </button>
@@ -145,7 +145,7 @@ const moveTaskOrColumn = (
             type="text"
             class="task-input"
             placeholder="+ Enter new task ..."
-            @keyup.enter="createTask($event, column.tasks)"
+            @keyup.enter="createTask($event, columnIndex)"
           />
         </div>
       </div>

@@ -39,7 +39,11 @@ const store = createStore<State>({
     },
   },
   mutations: {
-    createTask(state, { tasks, name }: { tasks: TaskType[]; name: string }) {
+    createTask(
+      state,
+      { columnIndex, name }: { columnIndex: number; name: string }
+    ) {
+      const tasks = state.board.columns[columnIndex].tasks;
       tasks.push({ id: nanoid(), name, description: '' });
     },
     updateTask(
@@ -52,9 +56,13 @@ const store = createStore<State>({
     ) {
       task[key] = value;
     },
-    deleteTask(state, { tasks, id }: { tasks: TaskType[]; id: string }) {
+    deleteTask(
+      state,
+      { columnIndex, taskId }: { columnIndex: number; taskId: string }
+    ) {
+      const tasks = state.board.columns[columnIndex].tasks;
       tasks.splice(
-        tasks.findIndex(task => task.id === id),
+        tasks.findIndex(task => task.id === taskId),
         1
       );
     },
