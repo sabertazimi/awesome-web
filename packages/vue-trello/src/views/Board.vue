@@ -133,7 +133,10 @@ const moveTaskOrColumn = (
                   X
                 </button>
               </div>
-              <p v-if="task.description" class="flex-shrink-0 w-full mt-1">
+              <p
+                v-if="task.description"
+                class="flex-shrink-0 w-full mt-1 px-4 py-2"
+              >
                 {{ task.description }}
               </p>
             </div>
@@ -166,14 +169,13 @@ const moveTaskOrColumn = (
 }
 
 .column {
-  @apply mr-4 mb-4 p-2 text-left bg-gray-300 shadow-lg rounded;
+  @apply mr-4 mb-4 p-2 text-left bg-gray-300 shadow-lg;
 
   min-width: 350px;
 }
 
 .task {
-  @apply flex items-center flex-wrap;
-  @apply mb-2 rounded;
+  @apply flex items-center flex-wrap mb-2;
   @apply bg-white text-gray-900 shadow no-underline cursor-pointer;
 }
 

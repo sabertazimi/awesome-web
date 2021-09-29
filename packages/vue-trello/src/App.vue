@@ -25,7 +25,8 @@
 
   .btn-block {
     @apply btn;
-    @apply rounded-l-none rounded-r;
+    @apply w-full h-full;
+    @apply rounded-none;
   }
 
   .btn-danger {
