@@ -123,11 +123,11 @@ const moveTaskOrColumn = (
               @click="goToTask(task)"
             >
               <div class="task-name">
-                <span>
+                <span class="px-4 py-2">
                   {{ task.name }}
                 </span>
                 <button
-                  class="btn-round ml-auto"
+                  class="btn-block ml-auto"
                   @click.stop="deleteTask(column.tasks, task.id)"
                 >
                   X
@@ -173,7 +173,7 @@ const moveTaskOrColumn = (
 
 .task {
   @apply flex items-center flex-wrap;
-  @apply mb-2 py-2 px-2 rounded;
+  @apply mb-2 rounded;
   @apply bg-white text-gray-900 shadow no-underline cursor-pointer;
 }
 

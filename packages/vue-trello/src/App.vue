@@ -23,19 +23,19 @@
     @apply transition duration-500;
   }
 
-  .btn-sm {
+  .btn-block {
     @apply btn;
-    @apply px-2 py-1 text-sm;
-  }
-
-  .btn-round {
-    @apply btn;
-    @apply px-2 py-1 text-xs rounded-full;
+    @apply rounded-l-none rounded-r;
   }
 
   .btn-danger {
     @apply btn;
     @apply bg-red-500 text-white hover:bg-red-400;
+  }
+
+  .btn-round {
+    @apply btn;
+    @apply px-2 py-1 text-xs rounded-full;
   }
 }
 
