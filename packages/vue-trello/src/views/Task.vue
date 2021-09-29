@@ -8,7 +8,9 @@ const props = defineProps<{ id: string }>();
 const router = useAppRouter();
 const store = useAppStore();
 const task = computed(() => store.getters.getTask(props.id));
+
 const close = () => router.push({ name: 'board' });
+
 const updateTask = (event: React.FormEvent, task: TaskType, key: string) => {
   store.commit('updateTask', {
     task,

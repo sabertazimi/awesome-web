@@ -7,8 +7,10 @@ import type { BoardColumnType, TaskType } from 'src/services';
 const router = useAppRouter();
 const store = useAppStore();
 const columns = computed(() => store.state.board.columns);
+
 const goToTask = (task: TaskType) =>
   router.push({ name: 'task', params: { id: task.id } });
+
 const createTask = (event: Event, tasks: TaskType[]) => {
   const inputElement = event.target as HTMLInputElement;
   store.commit('createTask', {
@@ -17,8 +19,10 @@ const createTask = (event: Event, tasks: TaskType[]) => {
   });
   inputElement.value = '';
 };
+
 const deleteTask = (tasks: TaskType[], id: string) =>
   store.commit('deleteTask', { tasks, id });
+
 const pickupTask = (
   event: DragEvent,
   fromColumnIndex: number,
@@ -33,6 +37,7 @@ const pickupTask = (
     dataTransfer.setData('taskIndex', taskIndex.toString());
   }
 };
+
 const moveTask = (event: React.DragEvent, toColumnIndex: number) => {
   const dataTransfer = event.dataTransfer;
 
@@ -40,6 +45,37 @@ const moveTask = (event: React.DragEvent, toColumnIndex: number) => {
     const fromColumnIndex = parseInt(dataTransfer.getData('fromColumnIndex'));
     const taskIndex = parseInt(dataTransfer.getData('taskIndex'));
     store.commit('moveTask', { fromColumnIndex, toColumnIndex, taskIndex });
+  }
+};
+
+const pickupColumn = (event: DragEvent, fromColumnIndex: number) => {
+  const dataTransfer = event.dataTransfer;
+
+  if (dataTransfer) {
+    dataTransfer.dropEffect = 'move';
+    dataTransfer.effectAllowed = 'move';
+    dataTransfer.setData('fromColumnIndex', fromColumnIndex.toString());
+    dataTransfer.setData('type', 'column');
+  }
+};
+
+const moveColumn = (event: React.DragEvent, toColumnIndex: number) => {
+  const dataTransfer = event.dataTransfer;
+
+  if (dataTransfer) {
+    const fromColumnIndex = parseInt(dataTransfer.getData('fromColumnIndex'));
+    store.commit('moveColumn', { fromColumnIndex, toColumnIndex });
+  }
+};
+
+const moveTaskOrColumn = (event: React.DragEvent, toColumnIndex: number) => {
+  const dataTransfer = event.dataTransfer;
+  const type = dataTransfer.getData('type');
+
+  if (type === 'column') {
+    moveColumn(event, toColumnIndex);
+  } else {
+    moveTask(event, toColumnIndex);
   }
 };
 </script>
@@ -51,9 +87,11 @@ const moveTask = (event: React.DragEvent, toColumnIndex: number) => {
         v-for="(column, columnIndex) in columns"
         :key="column.id"
         class="column"
+        draggable="true"
         @dragenter.prevent
         @dragover.prevent
-        @drop="moveTask($event, columnIndex)"
+        @drop="moveTaskOrColumn($event, columnIndex)"
+        @dragstart.self="pickupColumn($event, columnIndex)"
       >
         <div class="flex items-center mb-2 font-bold">
           {{ column.name }}
