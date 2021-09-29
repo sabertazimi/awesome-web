@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useAppRouter } from 'src/router';
 import { useAppStore } from 'src/store';
+import { move as moveTask } from 'src/composables';
 import type { TaskType } from 'src/services';
 
 defineProps<{ columnIndex: number; taskIndex: number; task: TaskType }>();
@@ -28,49 +29,6 @@ const pickupTask = (
     dataTransfer.setData('fromTaskIndex', fromTaskIndex.toString());
   }
 };
-
-const moveTask = (
-  event: React.DragEvent,
-  toColumnIndex: number,
-  toTaskIndex?: number
-) => {
-  const dataTransfer = event.dataTransfer;
-
-  if (dataTransfer) {
-    const fromColumnIndex = parseInt(dataTransfer.getData('fromColumnIndex'));
-    const fromTaskIndex = parseInt(dataTransfer.getData('fromTaskIndex'));
-    store.commit('moveTask', {
-      fromColumnIndex,
-      toColumnIndex,
-      fromTaskIndex,
-      toTaskIndex,
-    });
-  }
-};
-
-const moveColumn = (event: React.DragEvent, toColumnIndex: number) => {
-  const dataTransfer = event.dataTransfer;
-
-  if (dataTransfer) {
-    const fromColumnIndex = parseInt(dataTransfer.getData('fromColumnIndex'));
-    store.commit('moveColumn', { fromColumnIndex, toColumnIndex });
-  }
-};
-
-const moveTaskOrColumn = (
-  event: React.DragEvent,
-  toColumnIndex: number,
-  toTaskIndex?: number
-) => {
-  const dataTransfer = event.dataTransfer;
-  const type = dataTransfer.getData('type');
-
-  if (type === 'column') {
-    moveColumn(event, toColumnIndex);
-  } else {
-    moveTask(event, toColumnIndex, toTaskIndex);
-  }
-};
 </script>
 
 <template>
@@ -80,7 +38,7 @@ const moveTaskOrColumn = (
     @dragenter.prevent
     @dragover.prevent
     @dragstart.stop="pickupTask($event, columnIndex, taskIndex)"
-    @drop.stop="moveTaskOrColumn($event, columnIndex, taskIndex)"
+    @drop.stop="moveTask(store, $event, columnIndex, taskIndex)"
     @click.stop="goToTask(task)"
   >
     <div class="task-name">

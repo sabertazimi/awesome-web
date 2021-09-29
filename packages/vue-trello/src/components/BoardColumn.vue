@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useAppStore } from 'src/store';
+import { move as moveColumn } from 'src/composables';
 import type { BoardColumnType } from 'src/services';
 import ColumnTask from 'src/components/ColumnTask.vue';
 
@@ -28,49 +29,6 @@ const pickupColumn = (event: DragEvent, fromColumnIndex: number) => {
     dataTransfer.setData('type', 'column');
   }
 };
-
-const moveTask = (
-  event: React.DragEvent,
-  toColumnIndex: number,
-  toTaskIndex?: number
-) => {
-  const dataTransfer = event.dataTransfer;
-
-  if (dataTransfer) {
-    const fromColumnIndex = parseInt(dataTransfer.getData('fromColumnIndex'));
-    const fromTaskIndex = parseInt(dataTransfer.getData('fromTaskIndex'));
-    store.commit('moveTask', {
-      fromColumnIndex,
-      toColumnIndex,
-      fromTaskIndex,
-      toTaskIndex,
-    });
-  }
-};
-
-const moveColumn = (event: React.DragEvent, toColumnIndex: number) => {
-  const dataTransfer = event.dataTransfer;
-
-  if (dataTransfer) {
-    const fromColumnIndex = parseInt(dataTransfer.getData('fromColumnIndex'));
-    store.commit('moveColumn', { fromColumnIndex, toColumnIndex });
-  }
-};
-
-const moveTaskOrColumn = (
-  event: React.DragEvent,
-  toColumnIndex: number,
-  toTaskIndex?: number
-) => {
-  const dataTransfer = event.dataTransfer;
-  const type = dataTransfer.getData('type');
-
-  if (type === 'column') {
-    moveColumn(event, toColumnIndex);
-  } else {
-    moveTask(event, toColumnIndex, toTaskIndex);
-  }
-};
 </script>
 
 <template>
@@ -79,7 +37,7 @@ const moveTaskOrColumn = (
     @dragenter.prevent
     @dragover.prevent
     @dragstart.stop="pickupColumn($event, columnIndex)"
-    @drop.stop="moveTaskOrColumn($event, columnIndex)"
+    @drop.stop="moveColumn(store, $event, columnIndex)"
   >
     <div class="flex items-center mb-2 font-bold">
       <span>{{ column.name }}</span>
