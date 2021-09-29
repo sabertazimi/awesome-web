@@ -20,8 +20,8 @@ const createTask = (event: Event, columnIndex: number) => {
   inputElement.value = '';
 };
 
-const deleteTask = (columnIndex: number, id: string) =>
-  store.commit('deleteTask', { columnIndex, id });
+const deleteTask = (columnIndex: number, taskId: string) =>
+  store.commit('deleteTask', { columnIndex, taskId });
 
 const pickupTask = (
   event: DragEvent,
