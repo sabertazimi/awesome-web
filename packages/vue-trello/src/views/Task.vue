@@ -21,7 +21,7 @@ const updateTask = (event: React.FormEvent, task: TaskType, key: string) => {
 </script>
 
 <template>
-  <div class="task-modal" @click.self="close">
+  <div class="task-modal" @click.stop="close">
     <div class="task-view">
       <input
         type="text"
@@ -39,7 +39,7 @@ const updateTask = (event: React.FormEvent, task: TaskType, key: string) => {
         :value="task.description"
         @change="updateTask($event, task, 'description')"
       />
-      <button class="btn ml-auto" @click="close">Close</button>
+      <button class="btn ml-auto" @click.stop="close">Close</button>
     </div>
   </div>
 </template>
