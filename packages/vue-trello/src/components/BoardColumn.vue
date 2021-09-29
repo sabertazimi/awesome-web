@@ -100,8 +100,8 @@ const moveTaskOrColumn = (
     draggable="true"
     @dragenter.prevent
     @dragover.prevent
-    @drop="moveTaskOrColumn($event, columnIndex)"
-    @dragstart.self="pickupColumn($event, columnIndex)"
+    @dragstart.stop="pickupColumn($event, columnIndex)"
+    @drop.stop="moveTaskOrColumn($event, columnIndex)"
   >
     <div class="flex items-center mb-2 font-bold">
       <span>{{ column.name }}</span>
@@ -121,7 +121,7 @@ const moveTaskOrColumn = (
           draggable="true"
           @dragenter.prevent
           @dragover.prevent
-          @dragstart="pickupTask($event, columnIndex, taskIndex)"
+          @dragstart.stop="pickupTask($event, columnIndex, taskIndex)"
           @drop.stop="moveTaskOrColumn($event, columnIndex, taskIndex)"
           @click="goToTask(task)"
         >
