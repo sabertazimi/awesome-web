@@ -34,17 +34,26 @@ const pickupTask = (
     dataTransfer.dropEffect = 'move';
     dataTransfer.effectAllowed = 'move';
     dataTransfer.setData('fromColumnIndex', fromColumnIndex.toString());
-    dataTransfer.setData('taskIndex', taskIndex.toString());
+    dataTransfer.setData('fromTaskIndex', taskIndex.toString());
   }
 };
 
-const moveTask = (event: React.DragEvent, toColumnIndex: number) => {
+const moveTask = (
+  event: React.DragEvent,
+  toColumnIndex: number,
+  toTaskIndex?: number
+) => {
   const dataTransfer = event.dataTransfer;
 
   if (dataTransfer) {
     const fromColumnIndex = parseInt(dataTransfer.getData('fromColumnIndex'));
-    const taskIndex = parseInt(dataTransfer.getData('taskIndex'));
-    store.commit('moveTask', { fromColumnIndex, toColumnIndex, taskIndex });
+    const fromTaskIndex = parseInt(dataTransfer.getData('fromTaskIndex'));
+    store.commit('moveTask', {
+      fromColumnIndex,
+      toColumnIndex,
+      fromTaskIndex,
+      toTaskIndex,
+    });
   }
 };
 
@@ -68,14 +77,18 @@ const moveColumn = (event: React.DragEvent, toColumnIndex: number) => {
   }
 };
 
-const moveTaskOrColumn = (event: React.DragEvent, toColumnIndex: number) => {
+const moveTaskOrColumn = (
+  event: React.DragEvent,
+  toColumnIndex: number,
+  toTaskIndex?: number
+) => {
   const dataTransfer = event.dataTransfer;
   const type = dataTransfer.getData('type');
 
   if (type === 'column') {
     moveColumn(event, toColumnIndex);
   } else {
-    moveTask(event, toColumnIndex);
+    moveTask(event, toColumnIndex, toTaskIndex);
   }
 };
 </script>
@@ -103,7 +116,10 @@ const moveTaskOrColumn = (event: React.DragEvent, toColumnIndex: number) => {
               :key="task.id"
               class="task"
               draggable="true"
+              @dragenter.prevent
+              @dragover.prevent
               @dragstart="pickupTask($event, columnIndex, taskIndex)"
+              @drop.stop="moveTaskOrColumn($event, columnIndex, taskIndex)"
               @click="goToTask(task)"
             >
               <div class="task-name">
