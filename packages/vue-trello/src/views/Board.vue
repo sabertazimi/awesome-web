@@ -164,13 +164,15 @@ const moveTaskOrColumn = (
           />
         </div>
       </div>
+      <div class="column">
+        <input
+          type="text"
+          class="column-input"
+          placeholder="+ Enter new column ..."
+          @keyup.enter="createColumn($event)"
+        />
+      </div>
     </div>
-    <input
-      type="text"
-      class="column-input"
-      placeholder="+ Enter new column ..."
-      @keyup.enter="createColumn($event)"
-    />
     <router-view v-slot="{ Component }">
       <transition>
         <component :is="Component" />
@@ -211,9 +213,8 @@ const moveTaskOrColumn = (
 }
 
 .column-input {
-  @apply block w-1/2 mt-4 p-2;
-  @apply bg-green-100 border border-transparent outline-none;
-  @apply focus:bg-white;
+  @apply block w-full p-2 bg-white border border-transparent outline-none;
+  @apply focus:border-green-500;
   @apply transition duration-500;
 }
 </style>
