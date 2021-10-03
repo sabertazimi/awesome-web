@@ -6350,9 +6350,9 @@ __metadata:
   linkType: hard
 
 "caniuse-lite@npm:^1.0.0, caniuse-lite@npm:^1.0.30000981, caniuse-lite@npm:^1.0.30001109, caniuse-lite@npm:^1.0.30001125, caniuse-lite@npm:^1.0.30001260, caniuse-lite@npm:^1.0.30001261":
-  version: 1.0.30001263
-  resolution: "caniuse-lite@npm:1.0.30001263"
-  checksum: 0657b995276a35aaa9ff6900b6e9d3876ef049c8d6065fe9f162cc0b9ac00d8b9c6e6740e87def73876a522dce8e9124170334c157cfbf5c383b7c6db79e520e
+  version: 1.0.30001264
+  resolution: "caniuse-lite@npm:1.0.30001264"
+  checksum: 6ef70711a52d1ce973b4577b172f2ce182a0f1b3f8dac84c09ac7972c7a1bb0a39f611e93bf5c59c95db913b9ece9596eb211c9bda5177d77b19ae49441ddb4f
   languageName: node
   linkType: hard
 
@@ -9267,9 +9267,9 @@ __metadata:
   linkType: hard
 
 "eventemitter2@npm:^6.3.1":
-  version: 6.4.4
-  resolution: "eventemitter2@npm:6.4.4"
-  checksum: b5e707039973d5a770bc4c64255604df66df3a1f63389dccb7118af163b9f790ca7596463d7868426339301ad9de5ef1c3f4a9c7ac3b93874c5ca792916dede1
+  version: 6.4.5
+  resolution: "eventemitter2@npm:6.4.5"
+  checksum: 84504f9cf0cc30205cdd46783fe9df3733435e5097f13070b678023110b5ef07847651808ae280cd94c42cd5976880211c7a40321a8ff8fa56f7c5f9c5c11960
   languageName: node
   linkType: hard
 
@@ -19843,8 +19843,8 @@ typescript@^4.4.3:
   linkType: hard
 
 "vscode-vue-languageservice@npm:^0.27.0":
-  version: 0.27.25
-  resolution: "vscode-vue-languageservice@npm:0.27.25"
+  version: 0.27.28
+  resolution: "vscode-vue-languageservice@npm:0.27.28"
   dependencies:
     "@volar/code-gen": ^0.27.24
     "@volar/html2pug": ^0.27.13
@@ -19864,7 +19864,7 @@ typescript@^4.4.3:
     vscode-languageserver-textdocument: ^1.0.1
     vscode-pug-languageservice: ^0.27.24
     vscode-typescript-languageservice: ^0.27.25
-  checksum: 1ed96f8bf46ae6f11aa8df2049400dbaa57d79928153b0b454700d9a9a5ff430965c7a2826569d7025310e2b44f0defc0d0cf64a2307936ec435ad71c7e6b6c3
+  checksum: d7cf6026b7b6c5c111cd861373c5417bad54bcae44b08b792c9f987a38b095993229a2faa9a08df61673b44717d0a43f56c67e7e3826351c75c45ad3f25ced19
   languageName: node
   linkType: hard
 
