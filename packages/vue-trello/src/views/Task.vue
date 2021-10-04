@@ -11,7 +11,7 @@ const task = computed(() => store.getters.getTask(props.id));
 
 const close = () => router.push({ name: 'board' });
 
-const updateTask = (event: React.FormEvent, task: TaskType, key: string) => {
+const updateTask = (event: Event, task: TaskType, key: string) => {
   store.commit('updateTask', {
     task,
     key,
