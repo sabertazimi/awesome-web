@@ -2,7 +2,7 @@ import { AppStore } from 'src/store';
 
 const moveTask = (
   store: AppStore,
-  event: React.DragEvent,
+  event: DragEvent,
   toColumnIndex: number,
   toTaskIndex?: number
 ) => {
@@ -22,7 +22,7 @@ const moveTask = (
 
 const moveColumn = (
   store: AppStore,
-  event: React.DragEvent,
+  event: DragEvent,
   toColumnIndex: number
 ) => {
   const dataTransfer = event.dataTransfer;
@@ -35,17 +35,20 @@ const moveColumn = (
 
 const move = (
   store: AppStore,
-  event: React.DragEvent,
+  event: DragEvent,
   toColumnIndex: number,
   toTaskIndex?: number
 ) => {
   const dataTransfer = event.dataTransfer;
-  const type = dataTransfer.getData('type');
 
-  if (type === 'column') {
-    moveColumn(store, event, toColumnIndex);
-  } else {
-    moveTask(store, event, toColumnIndex, toTaskIndex);
+  if (dataTransfer) {
+    const type = dataTransfer.getData('type');
+
+    if (type === 'column') {
+      moveColumn(store, event, toColumnIndex);
+    } else {
+      moveTask(store, event, toColumnIndex, toTaskIndex);
+    }
   }
 };
 
