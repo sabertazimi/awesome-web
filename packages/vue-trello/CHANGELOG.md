@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.1](https://github.com/sabertazimi/awesome-web/compare/v1.6.0...v1.6.1) (2021-10-04)
+
+
+### Bug Fixes
+
+* **Vue-composition:** create reuseable composition function ([6a93a73](https://github.com/sabertazimi/awesome-web/commit/6a93a73e5ebb6f94f3fc7cb65c6c442e51ecb3c4))
+* **Vue-tailwind:** polish up button tailwind component ([4029014](https://github.com/sabertazimi/awesome-web/commit/40290144d65028f639fb93d69b42d1ad867d185b))
+* **Vue-trello:** add drop zone on task item ([8c24556](https://github.com/sabertazimi/awesome-web/commit/8c24556a4d330f8a2381d14bdca1dc2664ffe5c6))
+* **Vue-trello:** change rounded style to block edge style ([6f632d0](https://github.com/sabertazimi/awesome-web/commit/6f632d0b345ef03d092550ddf2bc915e71e1b2d2))
+* **Vue-trello:** implement add and delete column feature ([31c5751](https://github.com/sabertazimi/awesome-web/commit/31c5751c1b80b36a6240a44f3565ec4bdeed7d76))
+* **Vue-trello:** implement column drag feature ([153ed90](https://github.com/sabertazimi/awesome-web/commit/153ed904183ac1b216c490f4c2b906a556f8726f))
+* **Vue-trello:** implement task drag feature ([aec1bec](https://github.com/sabertazimi/awesome-web/commit/aec1bec865633b481a89b6c727ae6cd8204d7485))
+* **Vue-trello:** implement task drag on same column ([a49cf74](https://github.com/sabertazimi/awesome-web/commit/a49cf74adbfe3390fd0ba5ec4704fe5b2578b934))
+* **Vue-trello:** normalize event modifier for nesting draggable elements ([762a40a](https://github.com/sabertazimi/awesome-web/commit/762a40a39f453758ab163257d456852ae9ca26e4))
+* **Vue-trello:** re-style column creatation input widget ([fbe0a1c](https://github.com/sabertazimi/awesome-web/commit/fbe0a1c20a1863e05ff565bf4ddc09f3b9979d76))
+* **Vue-trello:** rectify clickable zone ([db49088](https://github.com/sabertazimi/awesome-web/commit/db490884fb11b87901824ebd29504991bb6b5bc5))
+* **Vue-trello:** rectify mistakce mutation payload for task deletion ([59b1f72](https://github.com/sabertazimi/awesome-web/commit/59b1f72a0ff8ee18caeccba9a88061e94392240c))
+* **Vue-trello:** rectify re-navigation route ([a23b89a](https://github.com/sabertazimi/awesome-web/commit/a23b89a3851e085355a836dceecced11e49f1944))
+* **Vue-trello:** rectify task drag between columns ([b240f4f](https://github.com/sabertazimi/awesome-web/commit/b240f4fc253c0308871dfe60343d89f4b61fb031))
+* **Vue-trello:** refactor to `ColumnTask` component ([9815632](https://github.com/sabertazimi/awesome-web/commit/981563273f588a4b41abc94f701b2802bea709af))
+* **Vue-trello:** refactor to more components ([ff7567b](https://github.com/sabertazimi/awesome-web/commit/ff7567b70470ae8af8092b5b17fca265cb8cceca))
+* **Vue-vite:** remove @types/react from vite ([#76](https://github.com/sabertazimi/awesome-web/issues/76)) ([c868192](https://github.com/sabertazimi/awesome-web/commit/c868192bc3eea6ad515fbf5b20f70aa8d628f92f)), closes [johnsoncodehk/volar#552](https://github.com/johnsoncodehk/volar/issues/552)
+* **Vue-vuex:** change action payload to primitive values ([982c9b5](https://github.com/sabertazimi/awesome-web/commit/982c9b57b6d77419363c93898226e425a03281a1))
+
+
+
+
+
 # [1.6.0](https://github.com/sabertazimi/awesome-web/compare/v1.5.0...v1.6.0) (2021-09-28)
 
 

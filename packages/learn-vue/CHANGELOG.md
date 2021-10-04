@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.1](https://github.com/sabertazimi/awesome-web/compare/v1.6.0...v1.6.1) (2021-10-04)
+
+
+### Bug Fixes
+
+* **deps:** update dependency core-js to ^3.18.1 ([#71](https://github.com/sabertazimi/awesome-web/issues/71)) ([1f7d2ea](https://github.com/sabertazimi/awesome-web/commit/1f7d2ea7999d9cbc808e4c44da03a3a591cf1011))
+
+
+
+
+
 # [1.6.0](https://github.com/sabertazimi/awesome-web/compare/v1.5.0...v1.6.0) (2021-09-28)
 
 **Note:** Version bump only for package @sabertazimi/learn-vue
