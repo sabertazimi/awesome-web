@@ -3276,7 +3276,7 @@ __metadata:
     "@vitejs/plugin-vue": ^1.9.3
     autoprefixer: ^10.3.7
     eslint: ^7.32.0
-    nanoid: ^3.1.28
+    nanoid: ^3.1.29
     postcss: ^8.3.9
     prettier: ^2.4.1
     stylelint: ^13.13.1
@@ -13637,12 +13637,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nanoid@npm:^3.1.28":
-  version: 3.1.28
-  resolution: "nanoid@npm:3.1.28"
+"nanoid@npm:^3.1.28, nanoid@npm:^3.1.29":
+  version: 3.1.29
+  resolution: "nanoid@npm:3.1.29"
   bin:
     nanoid: bin/nanoid.cjs
-  checksum: ae2fa9f3ce7a690ec62fc2fdf92345f023b20db760024f767c25ad392bde6414dc0b44a8e66dc1209426f36e4771e63b09ad2b49d8f1b04063b37e21b46af8d0
+  checksum: 8837bc351ac6d26882d568ce3e1d5e2d5095b0c6ca99aa8f5710eff5153e0aea4c5273681c7642d9d7a6f6e20fb1d32e5eb1125c70b25bdead417f007d30f96f
   languageName: node
   linkType: hard
 
