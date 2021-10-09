@@ -3285,7 +3285,7 @@ __metadata:
     vite: ^2.6.5
     vue: ^3.2.20
     vue-router: ^4.0.11
-    vue-tsc: ^0.3.0
+    vue-tsc: ^0.28.1
     vuex: ^4.0.2
   languageName: unknown
   linkType: soft
@@ -4244,61 +4244,61 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@volar/code-gen@npm:^0.27.24":
-  version: 0.27.24
-  resolution: "@volar/code-gen@npm:0.27.24"
+"@volar/code-gen@npm:0.28.1":
+  version: 0.28.1
+  resolution: "@volar/code-gen@npm:0.28.1"
   dependencies:
-    "@volar/shared": ^0.27.24
-    "@volar/source-map": ^0.27.24
-  checksum: 837d527fec4a1ab758dc9da4a07d779119561d996c4660f501b2c3311ef07ea0c4f8349ca1f354ae3bbae7a4d0c9285c9e96c56b77b92720c94531b69d088467
+    "@volar/shared": 0.28.1
+    "@volar/source-map": 0.28.1
+  checksum: 2ab3dd7f15412ea04bcb5a66a986ad0a6ae034830082d8afed1b3c9312c52dbc0ea7c6ccb94f26d988678323c311cd81793377f9a7dc4d2f3f5c74738776be07
   languageName: node
   linkType: hard
 
-"@volar/html2pug@npm:^0.27.13":
-  version: 0.27.13
-  resolution: "@volar/html2pug@npm:0.27.13"
+"@volar/html2pug@npm:0.28.1":
+  version: 0.28.1
+  resolution: "@volar/html2pug@npm:0.28.1"
   dependencies:
     domelementtype: ^2.2.0
-    domhandler: ^4.2.0
-    htmlparser2: ^6.1.0
+    domhandler: ^4.2.2
+    htmlparser2: ^7.1.2
     pug: ^3.0.2
-  checksum: 71556d184370e06bdaaa3ebc34f34974d253c198ab153cea36afc87a9be026d3ee9181e08b12c5def94a31e4022963587f4302f43dce313f17af60427a3bc79c
+  checksum: b92b11c201c08c671c2b4d885411cb2e246953656f3dc9d1f6310c1c930b1ab338ef3e7d2eb8520fe6e1525d95b189a4fda75b811bc11b270394739f1e0d93a8
   languageName: node
   linkType: hard
 
-"@volar/shared@npm:^0.27.24":
-  version: 0.27.24
-  resolution: "@volar/shared@npm:0.27.24"
+"@volar/shared@npm:0.28.1":
+  version: 0.28.1
+  resolution: "@volar/shared@npm:0.28.1"
   dependencies:
     upath: ^2.0.1
     vscode-jsonrpc: ^8.0.0-next.2
     vscode-uri: ^3.0.2
-  checksum: 5680571553980ca30af01debcfc50c8def6dc7c0704f6eab121069877801039c455f27f3fc88f1852a359a947beace3a27074272fb535c428fa1c73a76dc6e76
+  checksum: 6cd6c61bb7181983681dd078301677d3b392a32ef5a1cb95aafee591a4230322b2fc5430e370e284592e777e2692369a6e001d7c4f52d7b75549f9886d91a5ba
   languageName: node
   linkType: hard
 
-"@volar/source-map@npm:^0.27.24":
-  version: 0.27.24
-  resolution: "@volar/source-map@npm:0.27.24"
+"@volar/source-map@npm:0.28.1":
+  version: 0.28.1
+  resolution: "@volar/source-map@npm:0.28.1"
   dependencies:
-    "@volar/shared": ^0.27.24
-  checksum: 91b326e30458a3b4bfb666f6e7fee63ac38d985c4d49523e7854264a87143fa7816aa2f4e385b35e01e77c028ba6d96f92f53dbe23e98cf21454373c1ff322b1
+    "@volar/shared": 0.28.1
+  checksum: 312e642b4d5bb5ffbb5214663c5c64b8c333dea970a4d269a198d82f9a391346930c0b0bfe78f42168b700ef332aa557a6d6c47e2c41ed3f517baa4fbfb190d8
   languageName: node
   linkType: hard
 
-"@volar/transforms@npm:^0.27.24":
-  version: 0.27.24
-  resolution: "@volar/transforms@npm:0.27.24"
+"@volar/transforms@npm:0.28.1":
+  version: 0.28.1
+  resolution: "@volar/transforms@npm:0.28.1"
   dependencies:
-    "@volar/shared": ^0.27.24
+    "@volar/shared": 0.28.1
     vscode-languageserver: ^8.0.0-next.2
-  checksum: c1d3a4ca20d6b2432e6da2e9b68a4ef2e5715a8bc1d8fa40323efbcfa191e9bed7f8bf75d834791677bc90ace8b3f1e5e5be500414df7da37f6aae40961c60fd
+  checksum: bc220ae2a6a250a143f3a741a5b44063d5b80a81d7f2e0af97d780bb39ce63a58e7c195926c7a6d0e85cd76a741680f8d592afb0833bf25f87279670c5934d4c
   languageName: node
   linkType: hard
 
-"@vscode/emmet-helper@npm:^2.7.0":
-  version: 2.7.0
-  resolution: "@vscode/emmet-helper@npm:2.7.0"
+"@vscode/emmet-helper@npm:^2.8.0":
+  version: 2.8.1
+  resolution: "@vscode/emmet-helper@npm:2.8.1"
   dependencies:
     emmet: ^2.3.0
     jsonc-parser: ^2.3.0
@@ -4306,7 +4306,7 @@ __metadata:
     vscode-languageserver-types: ^3.15.1
     vscode-nls: ^5.0.0
     vscode-uri: ^2.1.2
-  checksum: c680d3f72fcef62357aa405a334845f5879b5a228820d21d534981008cc243704c817cd6f6acfaea93b7bc2de0d139af3d0b1806d760ffe1f980eb49c6bc874f
+  checksum: 71aa014d1392a10521126bfff21cfb90c2f4872594f3ccb8b65b532aebccadc2001e9e24f071cd657e0bf7edf00aff418255c6596179ce6a3af8fecaa17b8a73
   languageName: node
   linkType: hard
 
@@ -4723,7 +4723,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vue/compiler-dom@npm:3.2.20, @vue/compiler-dom@npm:^3.2.19":
+"@vue/compiler-dom@npm:3.2.20, @vue/compiler-dom@npm:^3.2.20":
   version: 3.2.20
   resolution: "@vue/compiler-dom@npm:3.2.20"
   dependencies:
@@ -4788,7 +4788,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vue/reactivity@npm:3.2.20, @vue/reactivity@npm:^3.2.19":
+"@vue/reactivity@npm:3.2.20, @vue/reactivity@npm:^3.2.20":
   version: 3.2.20
   resolution: "@vue/reactivity@npm:3.2.20"
   dependencies:
@@ -4843,7 +4843,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vue/shared@npm:3.2.20, @vue/shared@npm:^3.2.19":
+"@vue/shared@npm:3.2.20, @vue/shared@npm:^3.2.20":
   version: 3.2.20
   resolution: "@vue/shared@npm:3.2.20"
   checksum: da6e59a40622b5be5300c51d83e0a9d8ae1f67315dbec86cfc809b89f8620c09a3c6222cae5d80df0fb986f92afc1b6345db4e7a9b1a079f5783d27a839fea7d
@@ -19715,7 +19715,7 @@ typescript@^4.4.3:
   languageName: node
   linkType: hard
 
-"vscode-css-languageservice@npm:^5.1.4":
+"vscode-css-languageservice@npm:^5.1.7":
   version: 5.1.7
   resolution: "vscode-css-languageservice@npm:5.1.7"
   dependencies:
@@ -19727,7 +19727,7 @@ typescript@^4.4.3:
   languageName: node
   linkType: hard
 
-"vscode-html-languageservice@npm:^4.0.7":
+"vscode-html-languageservice@npm:^4.1.0":
   version: 4.1.0
   resolution: "vscode-html-languageservice@npm:4.1.0"
   dependencies:
@@ -19739,7 +19739,7 @@ typescript@^4.4.3:
   languageName: node
   linkType: hard
 
-"vscode-json-languageservice@npm:^4.1.7":
+"vscode-json-languageservice@npm:^4.1.8":
   version: 4.1.8
   resolution: "vscode-json-languageservice@npm:4.1.8"
   dependencies:
@@ -19808,31 +19808,31 @@ typescript@^4.4.3:
   languageName: node
   linkType: hard
 
-"vscode-pug-languageservice@npm:^0.27.24":
-  version: 0.27.24
-  resolution: "vscode-pug-languageservice@npm:0.27.24"
+"vscode-pug-languageservice@npm:0.28.1":
+  version: 0.28.1
+  resolution: "vscode-pug-languageservice@npm:0.28.1"
   dependencies:
-    "@volar/code-gen": ^0.27.24
-    "@volar/shared": ^0.27.24
-    "@volar/source-map": ^0.27.24
-    "@volar/transforms": ^0.27.24
+    "@volar/code-gen": 0.28.1
+    "@volar/shared": 0.28.1
+    "@volar/source-map": 0.28.1
+    "@volar/transforms": 0.28.1
     pug-lexer: ^5.0.1
     pug-parser: ^6.0.0
     vscode-languageserver: ^8.0.0-next.2
-  checksum: 2038a5331649d9e279b8f885dfee915b4c12e2c1991a825e5eac95c22cda306ddb6e99a60f1e77fd46a4301af0f15acd617eef44700e403610e7969effb19f89
+  checksum: 8ca9828e1cdc7dd30be0ba41ea2c4cfe318a833f727ec6d805a0190378486de6043be0c93821b8d4c22c5acb2ea180afc55dd13b7e63330849c74e0fba65a3ff
   languageName: node
   linkType: hard
 
-"vscode-typescript-languageservice@npm:^0.27.25":
-  version: 0.27.25
-  resolution: "vscode-typescript-languageservice@npm:0.27.25"
+"vscode-typescript-languageservice@npm:0.28.1":
+  version: 0.28.1
+  resolution: "vscode-typescript-languageservice@npm:0.28.1"
   dependencies:
-    "@volar/shared": ^0.27.24
+    "@volar/shared": 0.28.1
     semver: ^7.3.5
     upath: ^2.0.1
     vscode-languageserver: ^8.0.0-next.2
     vscode-languageserver-textdocument: ^1.0.1
-  checksum: 7a69ec08df9fbcef790a10fbeb3c0e1674d3df9626ae6f15752a8b1c5184531351dfdafd49812028483e08b6730ec87b4493706e87d1b105c05ee35c37840053
+  checksum: a3efa0913ffca04114bf203b68466fe8898afd9d5ba0297076240e329772b35f134aae3a4fb3167bc6fe4d1a966c3b2ef926348b74b5750027564981d2df89bb
   languageName: node
   linkType: hard
 
@@ -19850,29 +19850,29 @@ typescript@^4.4.3:
   languageName: node
   linkType: hard
 
-"vscode-vue-languageservice@npm:^0.27.0":
-  version: 0.27.28
-  resolution: "vscode-vue-languageservice@npm:0.27.28"
+"vscode-vue-languageservice@npm:0.28.1":
+  version: 0.28.1
+  resolution: "vscode-vue-languageservice@npm:0.28.1"
   dependencies:
-    "@volar/code-gen": ^0.27.24
-    "@volar/html2pug": ^0.27.13
-    "@volar/shared": ^0.27.24
-    "@volar/source-map": ^0.27.24
-    "@volar/transforms": ^0.27.24
-    "@vscode/emmet-helper": ^2.7.0
-    "@vue/compiler-dom": ^3.2.19
-    "@vue/reactivity": ^3.2.19
-    "@vue/shared": ^3.2.19
+    "@volar/code-gen": 0.28.1
+    "@volar/html2pug": 0.28.1
+    "@volar/shared": 0.28.1
+    "@volar/source-map": 0.28.1
+    "@volar/transforms": 0.28.1
+    "@vscode/emmet-helper": ^2.8.0
+    "@vue/compiler-dom": ^3.2.20
+    "@vue/reactivity": ^3.2.20
+    "@vue/shared": ^3.2.20
     request-light: ^0.5.4
     upath: ^2.0.1
-    vscode-css-languageservice: ^5.1.4
-    vscode-html-languageservice: ^4.0.7
-    vscode-json-languageservice: ^4.1.7
+    vscode-css-languageservice: ^5.1.7
+    vscode-html-languageservice: ^4.1.0
+    vscode-json-languageservice: ^4.1.8
     vscode-languageserver: ^8.0.0-next.2
     vscode-languageserver-textdocument: ^1.0.1
-    vscode-pug-languageservice: ^0.27.24
-    vscode-typescript-languageservice: ^0.27.25
-  checksum: d7cf6026b7b6c5c111cd861373c5417bad54bcae44b08b792c9f987a38b095993229a2faa9a08df61673b44717d0a43f56c67e7e3826351c75c45ad3f25ced19
+    vscode-pug-languageservice: 0.28.1
+    vscode-typescript-languageservice: 0.28.1
+  checksum: d99c45c9f8f34e5751498ec2fe38ed526cdba9dbaabc245e301cdf9afadd4da88397cff251f96e2d4bfdf5157840c12da484eaaf7e10ef2642093d8b992fe209
   languageName: node
   linkType: hard
 
@@ -19941,16 +19941,16 @@ typescript@^4.4.3:
   languageName: node
   linkType: hard
 
-"vue-tsc@npm:^0.3.0":
-  version: 0.3.0
-  resolution: "vue-tsc@npm:0.3.0"
+"vue-tsc@npm:^0.28.1":
+  version: 0.28.1
+  resolution: "vue-tsc@npm:0.28.1"
   dependencies:
-    vscode-vue-languageservice: ^0.27.0
+    vscode-vue-languageservice: 0.28.1
   peerDependencies:
     typescript: "*"
   bin:
     vue-tsc: bin/vue-tsc.js
-  checksum: f8cf410ab455eb2fd66b2266dfc0ca2ad160b444dc3e3cffde4664b9b65136da636fb9a4aa7d09866e05c3eb874b816bcce2a7938867fadbaa6ad082b9684311
+  checksum: 272089f2e9cf5eae92c8368ae95445c296e325a76c3c4804f7f4a37df64c4db3ca730259e258979a835eb659eb9f6e61aeaf6a33b43683774ec9c4048accb2e0
   languageName: node
   linkType: hard
 
