@@ -43,29 +43,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/core@npm:7.15.5":
-  version: 7.15.5
-  resolution: "@babel/core@npm:7.15.5"
-  dependencies:
-    "@babel/code-frame": ^7.14.5
-    "@babel/generator": ^7.15.4
-    "@babel/helper-compilation-targets": ^7.15.4
-    "@babel/helper-module-transforms": ^7.15.4
-    "@babel/helpers": ^7.15.4
-    "@babel/parser": ^7.15.5
-    "@babel/template": ^7.15.4
-    "@babel/traverse": ^7.15.4
-    "@babel/types": ^7.15.4
-    convert-source-map: ^1.7.0
-    debug: ^4.1.0
-    gensync: ^1.0.0-beta.2
-    json5: ^2.1.2
-    semver: ^6.3.0
-    source-map: ^0.5.0
-  checksum: 8121bf74040d98562b773c1e92a174cd53c99a5158ae5a9ef25645ed35d6f821c64155e394cdb04e7dc77a0871ba42a638f6703b2c44a75bc04564b21cad9e1b
-  languageName: node
-  linkType: hard
-
 "@babel/core@npm:7.15.8, @babel/core@npm:>=7.9.0, @babel/core@npm:^7.1.0, @babel/core@npm:^7.11.1, @babel/core@npm:^7.12.16, @babel/core@npm:^7.12.3, @babel/core@npm:^7.14.6, @babel/core@npm:^7.15.8, @babel/core@npm:^7.7.2, @babel/core@npm:^7.7.5":
   version: 7.15.8
   resolution: "@babel/core@npm:7.15.8"
@@ -89,7 +66,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/eslint-parser@npm:^7.12.16, @babel/eslint-parser@npm:^7.15.7, @babel/eslint-parser@npm:^7.15.8":
+"@babel/eslint-parser@npm:^7.12.16, @babel/eslint-parser@npm:^7.15.8":
   version: 7.15.8
   resolution: "@babel/eslint-parser@npm:7.15.8"
   dependencies:
@@ -379,7 +356,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/parser@npm:^7.1.0, @babel/parser@npm:^7.15.0, @babel/parser@npm:^7.15.4, @babel/parser@npm:^7.15.5, @babel/parser@npm:^7.15.8, @babel/parser@npm:^7.6.0, @babel/parser@npm:^7.7.2, @babel/parser@npm:^7.9.6":
+"@babel/parser@npm:^7.1.0, @babel/parser@npm:^7.15.0, @babel/parser@npm:^7.15.4, @babel/parser@npm:^7.15.8, @babel/parser@npm:^7.6.0, @babel/parser@npm:^7.7.2, @babel/parser@npm:^7.9.6":
   version: 7.15.8
   resolution: "@babel/parser@npm:7.15.8"
   bin:
@@ -5885,7 +5862,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"babel-preset-react-app@npm:^11.0.0-next.81, babel-preset-react-app@npm:^11.0.0-next.91":
+"babel-preset-react-app@npm:^11.0.0-next.91":
   version: 11.0.0-next.91
   resolution: "babel-preset-react-app@npm:11.0.0-next.91"
   dependencies:
@@ -6885,7 +6862,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"confusing-browser-globals@npm:^2.0.0-next.81, confusing-browser-globals@npm:^2.0.0-next.fb6e6f70":
+"confusing-browser-globals@npm:^2.0.0-next.fb6e6f70":
   version: 2.0.0-next.fb6e6f70
   resolution: "confusing-browser-globals@npm:2.0.0-next.fb6e6f70"
   checksum: 8be5a9745daec343bdd70ad586e21f486dd58e440449cda460637de726c7cfe4acd9932807d1a689a255e8bc6fb805155b489a0e1e2644effeabbe8db68e9e1b
@@ -8672,31 +8649,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-config-bod@npm:^5.3.12":
-  version: 5.3.12
-  resolution: "eslint-config-bod@npm:5.3.12"
-  dependencies:
-    "@babel/core": 7.15.5
-    "@babel/eslint-parser": ^7.15.7
-    "@rushstack/eslint-patch": ^1.0.7
-    "@typescript-eslint/eslint-plugin": ^4.31.2
-    "@typescript-eslint/parser": ^4.31.2
-    babel-preset-react-app: ^11.0.0-next.81
-    confusing-browser-globals: ^2.0.0-next.81
-    eslint-plugin-flowtype: ^6.1.0
-    eslint-plugin-import: ^2.24.2
-    eslint-plugin-jest: ^24.4.2
-    eslint-plugin-jsx-a11y: ^6.4.1
-    eslint-plugin-react: ^7.26.0
-    eslint-plugin-react-hooks: ^4.2.0
-    eslint-plugin-testing-library: ^4.12.4
-  peerDependencies:
-    eslint: ^7.30.0
-  checksum: 0eda56fa9cd56f59155772006cfd079b0013f89c78cfccb5f685d657dd396495077ea5f428b071c2d14768a93672644f4a2f4912785b343801ae2e802e359576
-  languageName: node
-  linkType: hard
-
-"eslint-config-bod@npm:^5.4.0":
+"eslint-config-bod@npm:^5.3.12, eslint-config-bod@npm:^5.4.0":
   version: 5.4.0
   resolution: "eslint-config-bod@npm:5.4.0"
   dependencies:
@@ -8833,21 +8786,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-jest@npm:^24.4.2":
-  version: 24.7.0
-  resolution: "eslint-plugin-jest@npm:24.7.0"
-  dependencies:
-    "@typescript-eslint/experimental-utils": ^4.0.1
-  peerDependencies:
-    "@typescript-eslint/eslint-plugin": ">= 4"
-    eslint: ">=5"
-  peerDependenciesMeta:
-    "@typescript-eslint/eslint-plugin":
-      optional: true
-  checksum: a4056582825ab3359d2e0e3aae50518f6f867d1cfb3240496605247d3ff9c84b4164f1a7e1f7087d5a2eae1343d738ada1ba74c422b13ad20b737601dc47ae08
-  languageName: node
-  linkType: hard
-
 "eslint-plugin-jest@npm:^25.0.1":
   version: 25.0.1
   resolution: "eslint-plugin-jest@npm:25.0.1"
@@ -8946,7 +8884,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-react@npm:^7.26.0, eslint-plugin-react@npm:^7.26.1":
+"eslint-plugin-react@npm:^7.26.1":
   version: 7.26.1
   resolution: "eslint-plugin-react@npm:7.26.1"
   dependencies:
@@ -18275,20 +18213,7 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
-"stylelint-config-bod@npm:^5.3.12":
-  version: 5.3.12
-  resolution: "stylelint-config-bod@npm:5.3.12"
-  dependencies:
-    stylelint-a11y: ^1.2.3
-    stylelint-config-recess-order: ^2.5.0
-    stylelint-config-standard: ^22.0.0
-  peerDependencies:
-    stylelint: ^13.13.0
-  checksum: a287295de258506f8eaf56800345fb605f48150336d718ccdd5d59ad5f9870fe1901a71786ea125773f0dedc597bad2b127a20f6f0aaf5e74edf4a0edfdc6002
-  languageName: node
-  linkType: hard
-
-"stylelint-config-bod@npm:^5.4.0":
+"stylelint-config-bod@npm:^5.3.12, stylelint-config-bod@npm:^5.4.0":
   version: 5.4.0
   resolution: "stylelint-config-bod@npm:5.4.0"
   dependencies:
