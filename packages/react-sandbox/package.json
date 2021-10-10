@@ -3,6 +3,16 @@
   "version": "1.6.1",
   "private": true,
   "homepage": "https://sabertazimi.github.io/awesome-web/react-sandbox",
+  "scripts": {
+    "build": "react-scripts build && yarn build:post",
+    "build:post": "mkdir -p ../../build/react-sandbox && cp -fr ./build/* ../../build/react-sandbox",
+    "build:profile": "react-scripts build --profile",
+    "start": "react-scripts start",
+    "start:https": "HTTPS=true react-scripts start",
+    "test": "react-scripts test --coverage",
+    "test:debug": "react-scripts --inspect-brk test --runInBand --no-cache",
+    "test:node": "react-scripts test --env=node"
+  },
   "dependencies": {
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -19,16 +29,6 @@
     "@types/react": "^17.0.27",
     "@types/react-dom": "^17.0.9",
     "typescript": "^4.4.3"
-  },
-  "scripts": {
-    "build": "react-scripts build && yarn build:post",
-    "build:profile": "react-scripts build --profile",
-    "build:post": "mkdir -p ../../build/react-sandbox && cp -fr ./build/* ../../build/react-sandbox",
-    "start": "react-scripts start",
-    "start:https": "HTTPS=true react-scripts start",
-    "test": "react-scripts test --coverage",
-    "test:debug": "react-scripts --inspect-brk test --runInBand --no-cache",
-    "test:node": "react-scripts test --env=node"
   },
   "eslintConfig": {
     "extends": [
