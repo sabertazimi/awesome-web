@@ -3175,7 +3175,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@sabertazimi/react-sandbox@workspace:packages/react-sandbox"
   dependencies:
-    "@sabertazimi/react-scripts": ^5.4.0
+    "@sabertazimi/react-scripts": ^5.5.2
     "@testing-library/dom": ^8.7.2
     "@testing-library/jest-dom": ^5.14.1
     "@testing-library/react": ^12.1.2
@@ -3191,9 +3191,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@sabertazimi/react-scripts@npm:^5.4.0":
-  version: 5.5.0
-  resolution: "@sabertazimi/react-scripts@npm:5.5.0"
+"@sabertazimi/react-scripts@npm:^5.5.2":
+  version: 5.5.2
+  resolution: "@sabertazimi/react-scripts@npm:5.5.2"
   dependencies:
     "@babel/core": ^7.15.8
     "@pmmmwh/react-refresh-webpack-plugin": ^0.5.1
@@ -3212,7 +3212,7 @@ __metadata:
     dotenv: ^10.0.0
     dotenv-expand: ^5.1.0
     eslint: ^7.32.0
-    eslint-config-bod: ^5.5.0
+    eslint-config-bod: ^5.5.2
     eslint-config-prettier: ^8.3.0
     eslint-plugin-prettier: ^4.0.0
     eslint-webpack-plugin: ^3.0.1
@@ -3242,7 +3242,7 @@ __metadata:
     source-map-loader: ^3.0.0
     style-loader: ^3.3.0
     stylelint: ^13.13.1
-    stylelint-config-bod: ^5.5.0
+    stylelint-config-bod: ^5.5.2
     stylelint-config-prettier: ^8.0.2
     stylelint-prettier: ^1.2.0
     stylelint-webpack-plugin: ^3.0.1
@@ -3265,7 +3265,7 @@ __metadata:
       optional: true
   bin:
     react-scripts: bin/react-scripts.js
-  checksum: 4e05e0df56f7167f9d2453094561b29740bf41269fcdb6fc0f13cf2ba90ff2b2893de904bab87df036434687b4de172623ecd8cb21b038509899e6a94cfe6d5a
+  checksum: 5a6fc99ab41916cf6befcc23d511b0208890e20138d43db7a7c53bc3eb66ff5be2bf21d1b9108b5021b48500aad45b6516f0ffc2df4ca419ded08d7776c9cc5f
   languageName: node
   linkType: hard
 
@@ -8710,7 +8710,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-config-bod@npm:^5.5.0, eslint-config-bod@npm:^5.5.2":
+"eslint-config-bod@npm:^5.5.2":
   version: 5.5.2
   resolution: "eslint-config-bod@npm:5.5.2"
   dependencies:
@@ -18254,16 +18254,16 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
-"stylelint-config-bod@npm:^5.5.0":
-  version: 5.5.0
-  resolution: "stylelint-config-bod@npm:5.5.0"
+"stylelint-config-bod@npm:^5.5.0, stylelint-config-bod@npm:^5.5.2":
+  version: 5.5.2
+  resolution: "stylelint-config-bod@npm:5.5.2"
   dependencies:
     stylelint-a11y: ^1.2.3
     stylelint-config-recess-order: ^2.5.0
     stylelint-config-standard: ^22.0.0
   peerDependencies:
     stylelint: ^13.13.0
-  checksum: 3fbf3afe84c934e5b9a58177f0ef3a3d7e8e298e252dcd4a5eb5c76d2645b9d7dcee8e65c2492a8e50dec9503c56915ef6efd2602705b1b82e5dc59ece0fbd86
+  checksum: eb4288da3742cc97ef01d517a75b4f030b1321183ee0f867dd53f223a8a6e1fe78b43c01de5728d9eb51f2258995f7d29a46440d51efbdeecd155fbf16c96d37
   languageName: node
   linkType: hard
 
