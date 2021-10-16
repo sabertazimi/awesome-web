@@ -48,6 +48,7 @@ const updateTask = (event: Event, task: TaskType, key: string) => {
 .task-modal {
   @apply absolute inset-0 bg-black bg-opacity-50;
 }
+
 .task-view {
   @apply relative inset-0 flex flex-col max-w-3xl m-32 mx-auto p-8 text-left bg-white shadow-2xl;
 }
