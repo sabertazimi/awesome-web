@@ -3148,15 +3148,15 @@ __metadata:
   dependencies:
     "@dg-scripts/eslint-config": ^5.5.2
     "@types/jest": ^27.0.2
-    "@vue/cli-plugin-babel": ~5.0.0-beta.5
-    "@vue/cli-plugin-eslint": ~5.0.0-beta.5
-    "@vue/cli-plugin-router": ~5.0.0-beta.5
-    "@vue/cli-plugin-typescript": ~5.0.0-beta.5
-    "@vue/cli-plugin-unit-jest": ~5.0.0-beta.5
-    "@vue/cli-plugin-vuex": ~5.0.0-beta.5
-    "@vue/cli-service": ~5.0.0-beta.5
+    "@vue/cli-plugin-babel": ~5.0.0-beta.6
+    "@vue/cli-plugin-eslint": ~5.0.0-beta.6
+    "@vue/cli-plugin-router": ~5.0.0-beta.6
+    "@vue/cli-plugin-typescript": ~5.0.0-beta.6
+    "@vue/cli-plugin-unit-jest": ~5.0.0-beta.6
+    "@vue/cli-plugin-vuex": ~5.0.0-beta.6
+    "@vue/cli-service": ~5.0.0-beta.6
     "@vue/compiler-sfc": ^3.2.20
-    "@vue/test-utils": ^2.0.0-rc.15
+    "@vue/test-utils": ^2.0.0-rc.16
     "@vue/vue3-jest": ^27.0.0-alpha.1
     babel-jest: ^27.2.5
     core-js: ^3.18.2
@@ -3166,7 +3166,7 @@ __metadata:
     ts-jest: ^27.0.6
     typescript: ^4.4.4
     vue: ^3.2.20
-    vue-router: ^4.0.11
+    vue-router: ^4.0.12
     vuex: ^4.0.2
   languageName: unknown
   linkType: soft
@@ -3286,7 +3286,7 @@ __metadata:
     typescript: ^4.4.4
     vite: ^2.6.7
     vue: ^3.2.20
-    vue-router: ^4.0.11
+    vue-router: ^4.0.12
     vue-tsc: ^0.28.6
     vuex: ^4.0.2
   languageName: unknown
@@ -4372,9 +4372,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vue/babel-preset-app@npm:^5.0.0-beta.5":
-  version: 5.0.0-beta.5
-  resolution: "@vue/babel-preset-app@npm:5.0.0-beta.5"
+"@vue/babel-preset-app@npm:^5.0.0-beta.6":
+  version: 5.0.0-beta.6
+  resolution: "@vue/babel-preset-app@npm:5.0.0-beta.6"
   dependencies:
     "@babel/core": ^7.12.16
     "@babel/helper-compilation-targets": ^7.12.16
@@ -4401,7 +4401,7 @@ __metadata:
       optional: true
     vue:
       optional: true
-  checksum: d149b145c59c39cf3372b4b718c96313dca48468e6802a833802012e40fa2789199772bb313988077d3ec43e8bcdd70d880d8b84e75fdbf39a7ebd4f58b2d521
+  checksum: 2233546d36aa755df12aa4e6bab3cf25855926fca8acad605ca71980d57809b1b43b91f00509e6bbe346ebf432d1779235baf23dc493200535cd4ca6942bc688
   languageName: node
   linkType: hard
 
@@ -4496,34 +4496,34 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vue/cli-overlay@npm:^5.0.0-beta.5":
-  version: 5.0.0-beta.5
-  resolution: "@vue/cli-overlay@npm:5.0.0-beta.5"
-  checksum: 8dc3c0b8999336f6efc72134de4f134678469d0750debe5498afdce32cafc4962e4e466933d388306a2ee20d16da06c5197def6ce54d056af314675ea227451c
+"@vue/cli-overlay@npm:^5.0.0-beta.6":
+  version: 5.0.0-beta.6
+  resolution: "@vue/cli-overlay@npm:5.0.0-beta.6"
+  checksum: b088662bd26a81e9104f62459113bd5eb60b0c6ad19b27e146ed2c32c3e735bce64b9a251178269c38332f9540ac4e345c13b543b8cf221177ce055abfb6531e
   languageName: node
   linkType: hard
 
-"@vue/cli-plugin-babel@npm:~5.0.0-beta.5":
-  version: 5.0.0-beta.5
-  resolution: "@vue/cli-plugin-babel@npm:5.0.0-beta.5"
+"@vue/cli-plugin-babel@npm:~5.0.0-beta.6":
+  version: 5.0.0-beta.6
+  resolution: "@vue/cli-plugin-babel@npm:5.0.0-beta.6"
   dependencies:
     "@babel/core": ^7.12.16
-    "@vue/babel-preset-app": ^5.0.0-beta.5
-    "@vue/cli-shared-utils": ^5.0.0-beta.5
+    "@vue/babel-preset-app": ^5.0.0-beta.6
+    "@vue/cli-shared-utils": ^5.0.0-beta.6
     babel-loader: ^8.2.2
     thread-loader: ^3.0.0
     webpack: ^5.22.0
   peerDependencies:
     "@vue/cli-service": ^3.0.0 || ^4.0.0 || ^5.0.0-0
-  checksum: 92a8227872bc8013d825a93ed63653dadbb64003d777535fb182ae83b03c5dee62181fe833f95d12e9f2f7e1cce2f9dc584ac171313b698b865800701d9d6ce1
+  checksum: aec391e0691ed68fc91dcf39ef5e4ded96cc382ad7bc0f97946dba03e492f8f8c70356b2af4209f3cf6028adefa003d582b167e7a192885d66842389b14ca401
   languageName: node
   linkType: hard
 
-"@vue/cli-plugin-eslint@npm:~5.0.0-beta.5":
-  version: 5.0.0-beta.5
-  resolution: "@vue/cli-plugin-eslint@npm:5.0.0-beta.5"
+"@vue/cli-plugin-eslint@npm:~5.0.0-beta.6":
+  version: 5.0.0-beta.6
+  resolution: "@vue/cli-plugin-eslint@npm:5.0.0-beta.6"
   dependencies:
-    "@vue/cli-shared-utils": ^5.0.0-beta.5
+    "@vue/cli-shared-utils": ^5.0.0-beta.6
     eslint-webpack-plugin: 2.4.3
     globby: ^11.0.2
     inquirer: ^8.0.0
@@ -4532,28 +4532,28 @@ __metadata:
   peerDependencies:
     "@vue/cli-service": ^3.0.0 || ^4.0.0 || ^5.0.0-0
     eslint: ">=7.5.0"
-  checksum: 57a2a42ef355d6dc00fefeec5f7ee66530089fd9e3c015f1d83518f2c762c94316af144a3a05b79a9c2b552e0b7e783f5a0cc6daa8e12cec152340ad3ce6bdc0
+  checksum: a5f0c9b671bbf050657828094cd3ea00c7cef64c49b1a58d7aa575939e4bb11a9373b29c39d8c2c3544c46a158433026aa90ec68ac8506175112f08f347d5dcb
   languageName: node
   linkType: hard
 
-"@vue/cli-plugin-router@npm:^5.0.0-beta.5, @vue/cli-plugin-router@npm:~5.0.0-beta.5":
-  version: 5.0.0-beta.5
-  resolution: "@vue/cli-plugin-router@npm:5.0.0-beta.5"
+"@vue/cli-plugin-router@npm:^5.0.0-beta.6, @vue/cli-plugin-router@npm:~5.0.0-beta.6":
+  version: 5.0.0-beta.6
+  resolution: "@vue/cli-plugin-router@npm:5.0.0-beta.6"
   dependencies:
-    "@vue/cli-shared-utils": ^5.0.0-beta.5
+    "@vue/cli-shared-utils": ^5.0.0-beta.6
   peerDependencies:
     "@vue/cli-service": ^3.0.0 || ^4.0.0 || ^5.0.0-0
-  checksum: 9241fb28ccded68b3cd8d14705bfb3557becffad63eba7affebc8fdd249bc768d4163b8793b3d4e1282e497941428419ed3c8c03cc8775a154d1164bc11f5163
+  checksum: 1ca3ba7fd391eaa4d3c72197b8cc5c4c9cd6575cad72039251a5e59bf3820f96e90a9d1ae2bebae779a7f7dd43c00f91b91999f2be38c049b701a25da6b7bf11
   languageName: node
   linkType: hard
 
-"@vue/cli-plugin-typescript@npm:~5.0.0-beta.5":
-  version: 5.0.0-beta.5
-  resolution: "@vue/cli-plugin-typescript@npm:5.0.0-beta.5"
+"@vue/cli-plugin-typescript@npm:~5.0.0-beta.6":
+  version: 5.0.0-beta.6
+  resolution: "@vue/cli-plugin-typescript@npm:5.0.0-beta.6"
   dependencies:
     "@babel/core": ^7.12.16
     "@types/webpack-env": ^1.15.2
-    "@vue/cli-shared-utils": ^5.0.0-beta.5
+    "@vue/cli-shared-utils": ^5.0.0-beta.6
     babel-loader: ^8.2.2
     cache-loader: ^4.1.0
     fork-ts-checker-webpack-plugin: ^6.1.0
@@ -4572,18 +4572,18 @@ __metadata:
       optional: true
     vue-template-compiler:
       optional: true
-  checksum: 7c4ebaf1b1dbee2abeb2f9f9ec55d0c98d0f098d99753819e2656fc7baad25811b8fd9c804097aa092d6276bf05a261bf659a43ae65dcdb14701812cb9c06666
+  checksum: 7a94899382801d5443a02d06d4353fdab02a49414be246a0d08ed3fe0018acfac895c1ef94c7393c3944cf4ae2a47f3baaf648b7b56be3ac02337594b14bfa37
   languageName: node
   linkType: hard
 
-"@vue/cli-plugin-unit-jest@npm:~5.0.0-beta.5":
-  version: 5.0.0-beta.5
-  resolution: "@vue/cli-plugin-unit-jest@npm:5.0.0-beta.5"
+"@vue/cli-plugin-unit-jest@npm:~5.0.0-beta.6":
+  version: 5.0.0-beta.6
+  resolution: "@vue/cli-plugin-unit-jest@npm:5.0.0-beta.6"
   dependencies:
     "@babel/core": ^7.12.16
     "@babel/plugin-transform-modules-commonjs": ^7.15.0
     "@types/jest": ^27.0.1
-    "@vue/cli-shared-utils": ^5.0.0-beta.5
+    "@vue/cli-shared-utils": ^5.0.0-beta.6
     babel-jest: ^27.1.0
     deepmerge: ^4.2.2
     jest: ^27.1.0
@@ -4603,32 +4603,32 @@ __metadata:
       optional: true
     ts-jest:
       optional: true
-  checksum: a21d226eeeda81a8e381e1725c5be0261a49affc4cd8361bcce35f206ee85fa945b3b2d8edc3dd5b585c25977d376671267af0d96b375aa3ecdf9ee2f49a052e
+  checksum: be7068816281dee4f214391c128c4b620a82cce277f056e9c63ee54e1e95958ce3f89c7e187e480eb440ba40f6f768e256a0c7fd31b070c79f882226bc5a9a64
   languageName: node
   linkType: hard
 
-"@vue/cli-plugin-vuex@npm:^5.0.0-beta.5, @vue/cli-plugin-vuex@npm:~5.0.0-beta.5":
-  version: 5.0.0-beta.5
-  resolution: "@vue/cli-plugin-vuex@npm:5.0.0-beta.5"
+"@vue/cli-plugin-vuex@npm:^5.0.0-beta.6, @vue/cli-plugin-vuex@npm:~5.0.0-beta.6":
+  version: 5.0.0-beta.6
+  resolution: "@vue/cli-plugin-vuex@npm:5.0.0-beta.6"
   peerDependencies:
     "@vue/cli-service": ^3.0.0 || ^4.0.0 || ^5.0.0-0
-  checksum: 6cdd7cef61c847d1ebb72e51f95acbb263cd1ed7ef9375c9a9ac4d55cb7e3ede13135dc25ff7c9501bd1bb725fdf19310ef684e5b67ac19ee4de49d401735f84
+  checksum: 5c26af8a9b9bd5fffd19dae05205645541cd3b9fc432445a887c8a75b212c17abac3adecb40e46af4243e8040257556dcf018a950dcc0343e16a6606e6d4ace1
   languageName: node
   linkType: hard
 
-"@vue/cli-service@npm:~5.0.0-beta.5":
-  version: 5.0.0-beta.5
-  resolution: "@vue/cli-service@npm:5.0.0-beta.5"
+"@vue/cli-service@npm:~5.0.0-beta.6":
+  version: 5.0.0-beta.6
+  resolution: "@vue/cli-service@npm:5.0.0-beta.6"
   dependencies:
     "@babel/helper-compilation-targets": ^7.12.16
     "@soda/friendly-errors-webpack-plugin": ^1.8.0
     "@soda/get-current-script": ^1.0.2
     "@types/minimist": ^1.2.0
     "@types/webpack-dev-server": ^4.1.0
-    "@vue/cli-overlay": ^5.0.0-beta.5
-    "@vue/cli-plugin-router": ^5.0.0-beta.5
-    "@vue/cli-plugin-vuex": ^5.0.0-beta.5
-    "@vue/cli-shared-utils": ^5.0.0-beta.5
+    "@vue/cli-overlay": ^5.0.0-beta.6
+    "@vue/cli-plugin-router": ^5.0.0-beta.6
+    "@vue/cli-plugin-vuex": ^5.0.0-beta.6
+    "@vue/cli-shared-utils": ^5.0.0-beta.6
     "@vue/component-compiler-utils": ^3.1.2
     "@vue/vue-loader-v15": "npm:vue-loader@^15.9.7"
     "@vue/web-component-wrapper": ^1.3.0
@@ -4702,13 +4702,13 @@ __metadata:
       optional: true
   bin:
     vue-cli-service: bin/vue-cli-service.js
-  checksum: f3509ce0a23a1d447bcfca191cb9812fa84c3751e2888300ce19d6c73e9cc914c412bea43988dc0af4d85dfad98198b7273ad928f04d5b01aa6ac654672b37f9
+  checksum: 0a4168861f77aa1768e49cc40b4d8268a2e9e103f98235a46d5df958096ea6293ef45b3829da776576d917485af808c215db92366c3c62e07fca02a1eb6b8f06
   languageName: node
   linkType: hard
 
-"@vue/cli-shared-utils@npm:^5.0.0-beta.5":
-  version: 5.0.0-beta.5
-  resolution: "@vue/cli-shared-utils@npm:5.0.0-beta.5"
+"@vue/cli-shared-utils@npm:^5.0.0-beta.6":
+  version: 5.0.0-beta.6
+  resolution: "@vue/cli-shared-utils@npm:5.0.0-beta.6"
   dependencies:
     chalk: ^4.1.2
     execa: ^1.0.0
@@ -4722,7 +4722,7 @@ __metadata:
     read-pkg: ^5.1.1
     semver: ^7.3.4
     strip-ansi: ^6.0.0
-  checksum: 649d7c9892e65049f28afda3757c68a7b8d4283849ec9c80c7578c94b2c08e43d58abb72f5cac5791f5790066b53aafe6ef67982347e30736b45a8342220f819
+  checksum: f5fa8099bb1aed43772a61528800cbba31dbee0fe54804b6d8ac68c13d659ce6362ff90e7a55067ef064427d332b99bd0df92b1f759999e293d8be3583fe262b
   languageName: node
   linkType: hard
 
@@ -4796,7 +4796,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vue/devtools-api@npm:^6.0.0-beta.11, @vue/devtools-api@npm:^6.0.0-beta.14":
+"@vue/devtools-api@npm:^6.0.0-beta.11, @vue/devtools-api@npm:^6.0.0-beta.18":
   version: 6.0.0-beta.19
   resolution: "@vue/devtools-api@npm:6.0.0-beta.19"
   checksum: 2eecb7096540ed2777d16e9be21f81429cc8eeed8fcef14dc0481db3f213dad8e3534e099cf268bc91ffbc5a721b3e5252a3ae38a5cc9f67ab59ee24204e974c
@@ -4865,12 +4865,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vue/test-utils@npm:^2.0.0-rc.15":
-  version: 2.0.0-rc.15
-  resolution: "@vue/test-utils@npm:2.0.0-rc.15"
+"@vue/test-utils@npm:^2.0.0-rc.16":
+  version: 2.0.0-rc.16
+  resolution: "@vue/test-utils@npm:2.0.0-rc.16"
   peerDependencies:
     vue: ^3.0.1
-  checksum: a8fba85a8c8e0ea54ece88c8edf4245bfde8c505a5df167fbab707eab0fc77d68c4067bc24392b5108f06281dc9ed6cd05f7984c6e0771d2c32a74938be2486a
+  checksum: a13639f452da5a5c4d99c9ccd148d2976f9440cc5f1612bd40624eeaf02270bc8ced0e1c107c21038d7a1143f7151229ba7e81aab408470a18b68417c6bba129
   languageName: node
   linkType: hard
 
@@ -19887,14 +19887,14 @@ typescript@^4.4.4:
   languageName: node
   linkType: hard
 
-"vue-router@npm:^4.0.11":
-  version: 4.0.11
-  resolution: "vue-router@npm:4.0.11"
+"vue-router@npm:^4.0.12":
+  version: 4.0.12
+  resolution: "vue-router@npm:4.0.12"
   dependencies:
-    "@vue/devtools-api": ^6.0.0-beta.14
+    "@vue/devtools-api": ^6.0.0-beta.18
   peerDependencies:
     vue: ^3.0.0
-  checksum: 0b78314daf240252744b7d9a66c2167ff0e7824be5c0f622439d5102b62e0f568e697d353f779c025c653e2fae393313357d30b7c703268640a00f8efe83f61e
+  checksum: 5ac66dffd956d088267ba45ec17e390de0aebb1ad08fc9431deb1397e265a003ae99b705fe7ca4ee610782de70aef129b4adf0a494171620d8153d794b2e5498
   languageName: node
   linkType: hard
 
