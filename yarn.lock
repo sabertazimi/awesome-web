@@ -19647,11 +19647,11 @@ typescript@^4.4.4:
   linkType: hard
 
 "vm2@npm:^3.9.3":
-  version: 3.9.4
-  resolution: "vm2@npm:3.9.4"
+  version: 3.9.5
+  resolution: "vm2@npm:3.9.5"
   bin:
     vm2: bin/vm2
-  checksum: e4553d0b46b929f5e043975a217c8e10bb4fb210a2932fe9fec190c0ef34e300950a11a1bc62a97350f69a50c66312121236412636cc045f3045a1bde7792b9d
+  checksum: d83dbe929ca4d1c9fca71cda34a5aee9a6b4bdc1de1ddb11777c4f6e1e48a471764195258dbf608f962df1a1c3d6ae917c9755f11a8f37b9e0bbf691313a725c
   languageName: node
   linkType: hard
 
