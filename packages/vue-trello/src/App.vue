@@ -40,7 +40,7 @@
 }
 
 .v-enter-from {
-  opacity: 0;
+  opacity: 0%;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -51,7 +51,7 @@
 }
 
 .v-leave-to {
-  opacity: 0;
+  opacity: 0%;
 }
 
 html,
