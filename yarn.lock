@@ -3275,7 +3275,7 @@ __metadata:
     stylelint: ^14.0.1
     tailwindcss: ^2.2.19
     typescript: ^4.4.4
-    vite: ^2.6.10
+    vite: ^2.6.13
     vue: ^3.2.20
     vue-router: ^4.0.12
     vue-tsc: ^0.28.8
@@ -19296,9 +19296,9 @@ typescript@^4.4.4:
   languageName: node
   linkType: hard
 
-"vite@npm:^2.6.10":
-  version: 2.6.10
-  resolution: "vite@npm:2.6.10"
+"vite@npm:^2.6.13":
+  version: 2.6.13
+  resolution: "vite@npm:2.6.13"
   dependencies:
     esbuild: ^0.13.2
     fsevents: ~2.3.2
@@ -19321,7 +19321,7 @@ typescript@^4.4.4:
       optional: true
   bin:
     vite: bin/vite.js
-  checksum: 802b59c275ac099d6cfcf17636d1034cb6d3e7a363a33a4bf990cbe859059cec35249e958a26a59d5cfde3dbbbf207b8ac8817eb127063c96957d2e573389370
+  checksum: 59e09d8650328eac44990de9aaa9f49011113e3c1d8c3b54d9b8550496c8d290ec14149048bbbd49b39f78a80f23c4019130bd55924bfd139f63423be8d4754a
   languageName: node
   linkType: hard
 
