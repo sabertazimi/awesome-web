@@ -16,7 +16,7 @@
     "test": "vue-cli-service test:unit"
   },
   "dependencies": {
-    "core-js": "^3.19.0",
+    "core-js": "^3.19.1",
     "vue": "^3.2.21",
     "vue-router": "^4.0.12",
     "vuex": "^4.0.2"
