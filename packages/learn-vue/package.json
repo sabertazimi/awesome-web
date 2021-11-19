@@ -23,7 +23,7 @@
   },
   "devDependencies": {
     "@dg-scripts/eslint-config": "^5.5.10",
-    "@types/jest": "^27.0.2",
+    "@types/jest": "^27.0.3",
     "@vue/cli-plugin-babel": "~5.0.0-rc.0",
     "@vue/cli-plugin-eslint": "~5.0.0-rc.0",
     "@vue/cli-plugin-router": "~5.0.0-rc.0",
