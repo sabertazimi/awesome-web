@@ -24,7 +24,7 @@
     "@vitejs/plugin-vue": "^1.10.1",
     "autoprefixer": "^10.4.0",
     "eslint": "^8.3.0",
-    "postcss": "^8.4.3",
+    "postcss": "^8.4.4",
     "prettier": "^2.5.0",
     "stylelint": "^14.1.0",
     "tailwindcss": "^2.2.19",
