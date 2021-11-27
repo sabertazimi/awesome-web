@@ -3266,7 +3266,7 @@ __metadata:
   dependencies:
     "@dg-scripts/eslint-config": ^5.5.10
     "@dg-scripts/stylelint-config": ^5.5.10
-    "@vitejs/plugin-vue": ^1.9.4
+    "@vitejs/plugin-vue": ^1.10.1
     autoprefixer: ^10.4.0
     eslint: ^8.3.0
     nanoid: ^3.1.30
@@ -4139,12 +4139,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vitejs/plugin-vue@npm:^1.9.4":
-  version: 1.9.4
-  resolution: "@vitejs/plugin-vue@npm:1.9.4"
+"@vitejs/plugin-vue@npm:^1.10.1":
+  version: 1.10.1
+  resolution: "@vitejs/plugin-vue@npm:1.10.1"
   peerDependencies:
     vite: ^2.5.10
-  checksum: 43cb38a0520c6e60aa807ec6135fd4370965631c98275148fd938804505ef3e2a9c4a84e5bd0bc36285f2971afa12ed82d804ebd4b8d55f3bae9a6d58a744e26
+  checksum: 227a552d828e5eba39953a132bb37556419dfeefe1452e89879ccb9b0c7710d460e6851e5f8534ca057dafeac09bcd6828b4dee3a86fc50bb9c927f65789c9ac
   languageName: node
   linkType: hard
 
