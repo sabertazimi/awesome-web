@@ -3148,7 +3148,7 @@ __metadata:
     "@vue/cli-service": ~5.0.0-rc.1
     "@vue/compiler-sfc": ^3.2.23
     "@vue/test-utils": ^2.0.0-rc.17
-    "@vue/vue3-jest": ^27.0.0-alpha.3
+    "@vue/vue3-jest": ^27.0.0-alpha.4
     babel-jest: ^27.3.1
     core-js: ^3.19.1
     eslint: ^8.3.0
@@ -4791,9 +4791,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vue/vue3-jest@npm:^27.0.0-alpha.3":
-  version: 27.0.0-alpha.3
-  resolution: "@vue/vue3-jest@npm:27.0.0-alpha.3"
+"@vue/vue3-jest@npm:^27.0.0-alpha.4":
+  version: 27.0.0-alpha.4
+  resolution: "@vue/vue3-jest@npm:27.0.0-alpha.4"
   dependencies:
     "@babel/plugin-transform-modules-commonjs": ^7.2.0
     chalk: ^2.1.0
@@ -4813,7 +4813,7 @@ __metadata:
       optional: true
     typescript:
       optional: true
-  checksum: bcfeeab4a5c184e2cba067235a4c638a808776e2e0aa4915ca9b9e9a5d30727aaab7bdd13275082168368d495665772bc7dd9732fa7ccded736f761bdff2187f
+  checksum: c7cec3834f40fe8176c4c915641c42a9516de62a470372b50b39d60f2f36c74b448c94a0bcdfaf0c288b7a7ebc3e32dd4b5784fc0c031084df064873ed052aa0
   languageName: node
   linkType: hard
 

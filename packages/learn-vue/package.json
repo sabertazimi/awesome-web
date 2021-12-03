@@ -33,7 +33,7 @@
     "@vue/cli-service": "~5.0.0-rc.1",
     "@vue/compiler-sfc": "^3.2.23",
     "@vue/test-utils": "^2.0.0-rc.17",
-    "@vue/vue3-jest": "^27.0.0-alpha.3",
+    "@vue/vue3-jest": "^27.0.0-alpha.4",
     "babel-jest": "^27.3.1",
     "eslint": "^8.3.0",
     "jest": "^27.3.1",
