@@ -46,7 +46,7 @@
   "devDependencies": {
     "@dg-scripts/eslint-config": "^5.5.10",
     "@dg-scripts/stylelint-config": "^5.5.10",
-    "@types/node": "^16.11.11",
+    "@types/node": "^16.11.12",
     "eslint": "^8.4.0",
     "lerna": "^4.0.0",
     "pm2": "^5.1.2",
