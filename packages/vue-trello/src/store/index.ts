@@ -1,7 +1,8 @@
-import { InjectionKey } from 'vue';
-import { createStore, useStore, Store } from 'vuex';
-import { BoardColumnType, getDefaultBoard, TaskType } from 'src/services';
-import type { BoardType } from 'src/services';
+import type { InjectionKey } from 'vue';
+import type { Store } from 'vuex';
+import { createStore, useStore } from 'vuex';
+import { getDefaultBoard } from 'src/services';
+import type { BoardColumnType, BoardType, TaskType } from 'src/services';
 import { nanoid } from 'nanoid';
 
 interface State {
