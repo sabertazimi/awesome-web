@@ -1,9 +1,9 @@
+import type { RouteRecordRaw } from 'vue-router';
 import {
   createRouter,
   createWebHistory,
   useRoute,
   useRouter,
-  RouteRecordRaw,
 } from 'vue-router';
 import Board from 'src/views/Board.vue';
 import Task from 'src/views/Task.vue';

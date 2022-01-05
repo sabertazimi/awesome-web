@@ -1,4 +1,4 @@
-import { AppStore } from 'src/store';
+import type { AppStore } from 'src/store';
 
 const moveTask = (
   store: AppStore,
