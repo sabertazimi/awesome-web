@@ -3190,7 +3190,7 @@ __metadata:
     "@testing-library/react": ^12.1.2
     "@testing-library/user-event": ^13.5.0
     "@types/jest": ^27.4.0
-    "@types/node": ^16.11.17
+    "@types/node": ^16.11.19
     "@types/react": ^17.0.38
     "@types/react-dom": ^17.0.11
     react: ^17.0.2
@@ -3866,10 +3866,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:^16.11.17":
-  version: 16.11.17
-  resolution: "@types/node@npm:16.11.17"
-  checksum: 86ed84f79450f6aba1a6ef09f8407c10076966c3cc7cc4eb3d35b8ae4f47817e525641396ef0a667fa0a88fcdf484f6182812c074601403083bdf3b5e1ac0313
+"@types/node@npm:*, @types/node@npm:^16.11.19":
+  version: 16.11.19
+  resolution: "@types/node@npm:16.11.19"
+  checksum: a9ba0cd1e61c8ad50f3fc9c2b37b795bf0286dacb39dcc985da90328abf0c5151dffe9932d20bc9a6a52c3ce7bfc1e5a7c2dc1416480fb84f1c2d70e25caeba0
   languageName: node
   linkType: hard
 
@@ -5690,7 +5690,7 @@ __metadata:
   dependencies:
     "@dg-scripts/eslint-config": ^5.6.1
     "@dg-scripts/stylelint-config": ^5.6.1
-    "@types/node": ^16.11.17
+    "@types/node": ^16.11.19
     eslint: ^8.6.0
     lerna: ^4.0.0
     pm2: ^5.1.2
