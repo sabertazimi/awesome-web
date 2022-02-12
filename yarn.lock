@@ -3365,7 +3365,7 @@ __metadata:
     autoprefixer: ^10.4.2
     eslint: ^8.9.0
     nanoid: ^3.1.30
-    postcss: ^8.4.5
+    postcss: ^8.4.6
     prettier: ^2.5.1
     stylelint: ^14.2.0
     tailwindcss: ^3.0.22
