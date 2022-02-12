@@ -3364,7 +3364,7 @@ __metadata:
     "@vitejs/plugin-vue": ^2.0.1
     autoprefixer: ^10.4.2
     eslint: ^8.9.0
-    nanoid: ^3.1.30
+    nanoid: ^3.2.0
     postcss: ^8.4.6
     prettier: ^2.5.1
     stylelint: ^14.2.0
@@ -13215,7 +13215,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nanoid@npm:^3.1.30, nanoid@npm:^3.2.0":
+"nanoid@npm:^3.2.0":
   version: 3.2.0
   resolution: "nanoid@npm:3.2.0"
   bin:
