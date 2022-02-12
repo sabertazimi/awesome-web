@@ -3246,7 +3246,7 @@ __metadata:
     "@vue/vue3-jest": ^27.0.0-alpha.4
     babel-jest: ^27.4.6
     core-js: ^3.20.2
-    eslint: ^8.6.0
+    eslint: ^8.9.0
     jest: ^27.4.7
     prettier: ^2.5.1
     ts-jest: ^27.1.2
@@ -3363,7 +3363,7 @@ __metadata:
     "@dg-scripts/stylelint-config": ^5.6.2
     "@vitejs/plugin-vue": ^2.0.1
     autoprefixer: ^10.4.2
-    eslint: ^8.6.0
+    eslint: ^8.9.0
     nanoid: ^3.1.30
     postcss: ^8.4.5
     prettier: ^2.5.1
@@ -5837,7 +5837,7 @@ __metadata:
     "@dg-scripts/eslint-config": ^5.6.2
     "@dg-scripts/stylelint-config": ^5.6.2
     "@types/node": ^16.11.24
-    eslint: ^8.6.0
+    eslint: ^8.9.0
     lerna: ^4.0.0
     pm2: ^5.1.2
     prettier: ^2.5.1
@@ -9047,7 +9047,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint@npm:^8.6.0, eslint@npm:^8.7.0":
+"eslint@npm:^8.7.0, eslint@npm:^8.9.0":
   version: 8.9.0
   resolution: "eslint@npm:8.9.0"
   dependencies:
