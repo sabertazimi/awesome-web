@@ -3245,7 +3245,7 @@ __metadata:
     "@vue/test-utils": ^2.0.0-rc.18
     "@vue/vue3-jest": ^27.0.0-alpha.4
     babel-jest: ^27.5.1
-    core-js: ^3.20.2
+    core-js: ^3.21.0
     eslint: ^8.9.0
     jest: ^27.5.1
     prettier: ^2.5.1
@@ -7167,10 +7167,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"core-js@npm:^3.19.2, core-js@npm:^3.20.2, core-js@npm:^3.8.3":
-  version: 3.20.2
-  resolution: "core-js@npm:3.20.2"
-  checksum: dc055a5a79f2e3c2e060b4fb8a3e228fa0de16464bff3c6605646183139eebaa68c390ec6d9c3acc5677f333df510b977ee3f1d5992e6c36b1f200e35f5ed8ca
+"core-js@npm:^3.19.2, core-js@npm:^3.21.0, core-js@npm:^3.8.3":
+  version: 3.21.0
+  resolution: "core-js@npm:3.21.0"
+  checksum: 87df49aa2c5d0a521c52102b6669842dd30b334742e86dd4e0173c51230bc48d610060ab6de0f149766d188325b8c1b84598f901cf455674fe6c03ccc5c8026f
   languageName: node
   linkType: hard
 
