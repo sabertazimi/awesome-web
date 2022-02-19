@@ -5815,7 +5815,7 @@ __metadata:
     "@types/node": ^16.11.25
     eslint: ^8.9.0
     lerna: ^4.0.0
-    pm2: ^5.1.2
+    pm2: ^5.2.0
     prettier: ^2.5.1
     stylelint: ^14.5.1
     ts-node: ^10.5.0
@@ -7222,12 +7222,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cron@npm:1.8.2":
-  version: 1.8.2
-  resolution: "cron@npm:1.8.2"
-  dependencies:
-    moment-timezone: ^0.5.x
-  checksum: 9df2d2e24684e1ebce37e3e29c183b1dfecf7adb5fb16f84435014e7205926fc9868e9bfacfa5f7b93c556c9f4a6fbcce5fde9bee1306d20bc848568bb587791
+"croner@npm:~4.1.92":
+  version: 4.1.97
+  resolution: "croner@npm:4.1.97"
+  checksum: f4af304ee263685ee727a96ecceff9bff02b840582ab937b1254f9eacfc2248e014e51438165448d3ba5d03952ab6f8cd2e24080d1cb5d73d051536df8f184d3
   languageName: node
   linkType: hard
 
@@ -13140,22 +13138,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"moment-timezone@npm:^0.5.x":
-  version: 0.5.33
-  resolution: "moment-timezone@npm:0.5.33"
-  dependencies:
-    moment: ">= 2.9.0"
-  checksum: dea6043b4a21aedf2e64d545cdfc795a11e0739edb06f4eb10570503118cb1fe4ab57e012a5f3594bd1cdd2a3c617f42836fb6e4faff33eb25a1fe3cc239c9bf
-  languageName: node
-  linkType: hard
-
-"moment@npm:>= 2.9.0":
-  version: 2.29.1
-  resolution: "moment@npm:2.29.1"
-  checksum: 1e14d5f422a2687996be11dd2d50c8de3bd577c4a4ca79ba5d02c397242a933e5b941655de6c8cb90ac18f01cc4127e55b4a12ae3c527a6c0a274e455979345e
-  languageName: node
-  linkType: hard
-
 "ms@npm:2.0.0":
   version: 2.0.0
   resolution: "ms@npm:2.0.0"
@@ -14325,12 +14307,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pidusage@npm:2.0.21, pidusage@npm:^2.0.21":
+"pidusage@npm:^2.0.21":
   version: 2.0.21
   resolution: "pidusage@npm:2.0.21"
   dependencies:
     safe-buffer: ^5.2.1
   checksum: af26115e48de2368138fceb7a99b418ab6c4dd9d6e1ed6991aef2d09e49d076987f395cddd8340ecdf1ccaf126574c2bc5b5c9c392ffacff8ee8a642271f9b12
+  languageName: node
+  linkType: hard
+
+"pidusage@npm:~3.0":
+  version: 3.0.0
+  resolution: "pidusage@npm:3.0.0"
+  dependencies:
+    safe-buffer: ^5.2.1
+  checksum: 1bf9303f8e335b22c297ded9bc9d4569c78c59e9470ac15f00df27bac83b872e9bbaee2256fa5f86704977b924c268941e867ece038d66ee92ec7cccca77a1cf
   languageName: node
   linkType: hard
 
@@ -14447,9 +14438,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pm2@npm:^5.1.2":
-  version: 5.1.2
-  resolution: "pm2@npm:5.1.2"
+"pm2@npm:^5.2.0":
+  version: 5.2.0
+  resolution: "pm2@npm:5.2.0"
   dependencies:
     "@pm2/agent": ~2.0.0
     "@pm2/io": ~5.0.0
@@ -14461,7 +14452,7 @@ __metadata:
     chokidar: ^3.5.1
     cli-tableau: ^2.0.0
     commander: 2.15.1
-    cron: 1.8.2
+    croner: ~4.1.92
     dayjs: ~1.8.25
     debug: ^4.3.1
     enquirer: 2.3.6
@@ -14469,7 +14460,7 @@ __metadata:
     fclone: 1.0.11
     mkdirp: 1.0.4
     needle: 2.4.0
-    pidusage: 2.0.21
+    pidusage: ~3.0
     pm2-axon: ~4.0.1
     pm2-axon-rpc: ~0.7.1
     pm2-deploy: ~1.0.2
@@ -14489,7 +14480,7 @@ __metadata:
     pm2-dev: bin/pm2-dev
     pm2-docker: bin/pm2-docker
     pm2-runtime: bin/pm2-runtime
-  checksum: 1b44d654d765561510adc1161b8b3fc43f0ca1d10a043d58a9dac35f917743ab66a8861a02512e036146f16b1f221299b6c6a3b6c128cbf1c6bd272f997656cb
+  checksum: 24b0805ddd2148a5ada4fdfa4338657d102a81f6c8f498389d0d1cff79a5456ac11cec5d9b99b5eb878426eb6d591e7cb7e71744dead1ff92510ba729147488e
   languageName: node
   linkType: hard
 
