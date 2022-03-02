@@ -1,5 +1,5 @@
 {
-  "name": "@sabertazimi/learn-vue",
+  "name": "@sabertazimi/vue-basis",
   "version": "1.6.1",
   "private": true,
   "browserslist": [
@@ -10,7 +10,7 @@
   ],
   "scripts": {
     "build": "vue-cli-service build && yarn build:post",
-    "build:post": "mkdir -p ../../build/learn-vue && cp -fr ./dist/* ../../build/learn-vue",
+    "build:post": "mkdir -p ../../build/vue-basis && cp -fr ./dist/* ../../build/vue-basis",
     "lint": "vue-cli-service lint",
     "serve": "vue-cli-service serve",
     "test": "vue-cli-service test:unit"
