@@ -4,5 +4,5 @@ module.exports = {
   lintOnSave: false,
   productionSourceMap: false,
   publicPath:
-    process.env.NODE_ENV === 'production' ? '/awesome-web/learn-vue/' : '/',
+    process.env.NODE_ENV === 'production' ? '/awesome-web/vue-basis/' : '/',
 };
