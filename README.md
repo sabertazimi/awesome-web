@@ -17,6 +17,7 @@ A brand new repository for web development prototypes.
 ## Vue Collection
 
 - [Vue Basis](https://sabertazimi.github.io/awesome-web/vue-basis)
+- [Vue Design](https://sabertazimi.github.io/awesome-web/vue-design)
 - [Vue Trello](https://sabertazimi.github.io/awesome-web/vue-trello)
 
 ## License

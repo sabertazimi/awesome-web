@@ -3355,6 +3355,19 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@sabertazimi/vue-design@workspace:packages/vue-design":
+  version: 0.0.0-use.local
+  resolution: "@sabertazimi/vue-design@workspace:packages/vue-design"
+  dependencies:
+    "@dg-scripts/eslint-config": ^5.6.2
+    eslint: ^8.10.0
+    prettier: ^2.5.1
+    snabbdom: ^3.3.1
+    typescript: ^4.5.5
+    vite: ^2.8.4
+  languageName: unknown
+  linkType: soft
+
 "@sabertazimi/vue-trello@workspace:packages/vue-trello":
   version: 0.0.0-use.local
   resolution: "@sabertazimi/vue-trello@workspace:packages/vue-trello"
@@ -16963,6 +16976,13 @@ resolve@^2.0.0-next.3:
   version: 4.2.0
   resolution: "smart-buffer@npm:4.2.0"
   checksum: b5167a7142c1da704c0e3af85c402002b597081dd9575031a90b4f229ca5678e9a36e8a374f1814c8156a725d17008ae3bde63b92f9cfd132526379e580bec8b
+  languageName: node
+  linkType: hard
+
+"snabbdom@npm:^3.3.1":
+  version: 3.3.1
+  resolution: "snabbdom@npm:3.3.1"
+  checksum: cd5c8fab0907e1313e2f80fce69b0b1a448b599abf9c222de43a155e002b49d183f3cfc72131f620b7963c1b76c7b4cbb419f5fb6dd42a798efe29c9c1f0d7fc
   languageName: node
   linkType: hard
 
