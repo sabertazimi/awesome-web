@@ -1,1 +1,1 @@
-# @sabertazimi/learn-vue
+# @sabertazimi/vue-basis
