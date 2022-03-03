@@ -1,8 +1,30 @@
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
 #app {
+  margin-top: 60px;
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  text-align: center;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  min-width: min-content;
+  max-width: max-content;
+  padding: 0.5rem 1rem;
+  font-weight: 700;
+  color: rgb(255 255 255 / 100%);
+  cursor: pointer;
+  background-color: rgb(34 197 94 / 100%);
+  border-color: transparent;
+  border-radius: 1.5rem;
 }
