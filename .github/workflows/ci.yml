@@ -33,7 +33,7 @@ jobs:
           yarn lint
 
   test:
-    name: Testing on Node ${{ matrix.node-version }} ${{ matrix.os }} ${{ matrix.architecture }}
+    name: Testing
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -64,7 +64,7 @@ jobs:
         if: ${{ matrix.node-version == 16 && matrix.os == 'ubuntu-latest' && matrix.architecture == 'x64' }}
 
   build:
-    name: Building on Node ${{ matrix.node-version }} ${{ matrix.os }} ${{ matrix.architecture }}
+    name: Building
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
