@@ -1,5 +1,5 @@
 import type { HTMLProps } from 'react';
-import type { HostConfig } from 'react-reconciler';
+import type { HostConfig, OpaqueHandle } from 'react-reconciler';
 import ReactReconciler from 'react-reconciler';
 
 type Type = string;
@@ -38,12 +38,12 @@ const hostConfig: HostConfig<
   NoTimeout
 > = {
   createInstance(
-    type: string,
+    type: Type,
     props: Props,
     rootContainer: Container,
-    hostContext: any,
-    internalHandle: any
-  ): Element {
+    hostContext: HostContext,
+    internalHandle: OpaqueHandle
+  ): Instance {
     const element = document.createElement(type);
 
     const isListener = (propName: string) => propName.startsWith('on');
@@ -68,20 +68,35 @@ const hostConfig: HostConfig<
   createTextInstance(
     text: string,
     rootContainer: Container,
-    hostContext: any,
-    internalHandle: any
-  ): Text {
+    hostContext: HostContext,
+    internalHandle: OpaqueHandle
+  ): TextInstance {
     const textElement = document.createTextNode(text);
     return textElement;
   },
-  appendInitialChild(parentInstance: Element, child: Element | Text): void {
+  appendInitialChild(
+    parentInstance: Instance,
+    child: Instance | TextInstance
+  ): void {
     parentInstance.appendChild(child);
   },
-  appendChildToContainer(container: Container, child: Element | Text): void {
+  appendChild(parentInstance: Instance, child: Instance | TextInstance): void {
+    parentInstance.appendChild(child);
+  },
+  appendChildToContainer(
+    container: Container,
+    child: Instance | TextInstance
+  ): void {
     container.appendChild(child);
   },
-  removeChildFromContainer(container: Container, child: Element | Text): void {
+  removeChildFromContainer(
+    container: Container,
+    child: Instance | TextInstance
+  ): void {
     container.removeChild(child);
+  },
+  removeChild(parentInstance: Instance, child: Instance | TextInstance): void {
+    parentInstance.removeChild(child);
   },
   clearContainer(container: Container): void {
     while (container.firstChild) {
@@ -89,25 +104,33 @@ const hostConfig: HostConfig<
     }
   },
   finalizeInitialChildren(
-    instance: Element,
-    type: string,
+    instance: Instance,
+    type: Type,
     props: Props,
     rootContainer: Container,
-    hostContext: any
+    hostContext: HostContext
   ): boolean {
     return false;
   },
   prepareUpdate(
-    instance: Element,
-    type: string,
+    instance: Instance,
+    type: Type,
     oldProps: Props,
     newProps: Props,
     rootContainer: Container,
-    hostContext: any
+    hostContext: HostContext
   ): UpdatePayload | null {
     return null;
   },
-  shouldSetTextContent(type: string, props: Props): boolean {
+  commitTextUpdate(
+    textInstance: TextInstance,
+    oldText: string,
+    newText: string
+  ): void {
+    const newTextInstance = document.createTextNode(newText);
+    textInstance.replaceWith(newTextInstance);
+  },
+  shouldSetTextContent(type: Type, props: Props): boolean {
     return false;
   },
   getRootHostContext(rootContainer: Container): HostContext | null {
@@ -115,12 +138,12 @@ const hostConfig: HostConfig<
   },
   getChildHostContext(
     parentHostContext: HostContext,
-    type: string,
+    type: Type,
     rootContainer: Container
   ): HostContext {
     return parentHostContext;
   },
-  getPublicInstance(instance: Element | Text): PublicInstance {
+  getPublicInstance(instance: Instance | TextInstance): PublicInstance {
     return instance;
   },
   prepareForCommit(containerInfo: Container): Record<string, any> | null {
@@ -137,7 +160,7 @@ const hostConfig: HostConfig<
   ): TimeoutHandle {
     return setTimeout(fn, delay);
   },
-  cancelTimeout(id: any): void {
+  cancelTimeout(id: TimeoutHandle): void {
     clearTimeout(id);
   },
   noTimeout: -1,
