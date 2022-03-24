@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
+test('renders counter', () => {
   render(<App />);
   const incElement = screen.getByText(/\+/i);
   const decElement = screen.getByText(/-/i);
