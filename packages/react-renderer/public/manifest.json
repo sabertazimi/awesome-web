@@ -1,6 +1,6 @@
 {
-  "short_name": "Sandbox App",
-  "name": "Sandbox App",
+  "short_name": "React Renderer",
+  "name": "React Renderer",
   "icons": [
     {
       "src": "favicon.ico",
