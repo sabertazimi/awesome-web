@@ -54,38 +54,24 @@ const hostConfig: HostConfig<
       element = document.createElement(type);
     }
 
-    Object.keys(props)
-      .filter(isClass)
-      .forEach((propName: string) => {
-        const classList = props[propName as PropKey];
-        element.setAttribute('class', classList);
-      });
+    Object.keys(props).forEach((propName: string) => {
+      const propValue = props[propName as PropKey];
 
-    Object.keys(props)
-      .filter(isChildren)
-      .forEach((propName: string) => {
-        const children = props[propName as PropKey];
-        if (typeof children === 'string' || typeof children === 'number') {
-          element.textContent = children.toString();
+      if (isClass(propName)) {
+        element.setAttribute('class', propValue);
+      } else if (isChildren(propName)) {
+        if (typeof propValue === 'string' || typeof propValue === 'number') {
+          element.textContent = propValue.toString();
         }
-      });
-
-    Object.keys(props)
-      .filter(isListener)
-      .forEach((propName: string) => {
+      } else if (isListener(propName)) {
         const eventType = propName.toLowerCase().substring(2);
-        const eventListener = props[propName as PropKey];
-        element.addEventListener(eventType, eventListener);
-      });
-
-    Object.keys(props)
-      .filter(isAttribute)
-      .forEach((propName: string) => {
-        const attributeValue = props[propName as PropKey];
-        if (attributeValue !== null && attributeValue !== undefined) {
-          element.setAttribute(propName, attributeValue);
+        element.addEventListener(eventType, propValue);
+      } else if (isAttribute(propName)) {
+        if (propValue !== null && propValue !== undefined) {
+          element.setAttribute(propName, propValue);
         }
-      });
+      }
+    });
 
     return element;
   },
@@ -154,23 +140,18 @@ const hostConfig: HostConfig<
     nextProps: Props,
     internalHandle: OpaqueHandle
   ): void {
-    Object.keys(nextProps)
-      .filter(isChildren)
-      .forEach((propName: string) => {
-        const children = nextProps[propName as PropKey];
-        if (typeof children === 'string' || typeof children === 'number') {
-          instance.textContent = children.toString();
+    Object.keys(nextProps).forEach((propName: string) => {
+      const propValue = nextProps[propName as PropKey];
+      if (isChildren(propName)) {
+        if (typeof propValue === 'string' || typeof propValue === 'number') {
+          instance.textContent = propValue.toString();
         }
-      });
-
-    Object.keys(nextProps)
-      .filter(isAttribute)
-      .forEach((propName: string) => {
-        const attributeValue = nextProps[propName as PropKey];
-        if (attributeValue !== null && attributeValue !== undefined) {
-          instance.setAttribute(propName, attributeValue);
+      } else if (isAttribute(propName)) {
+        if (propValue !== null && propValue !== undefined) {
+          instance.setAttribute(propName, propValue);
         }
-      });
+      }
+    });
   },
   commitTextUpdate(
     textInstance: TextInstance,
