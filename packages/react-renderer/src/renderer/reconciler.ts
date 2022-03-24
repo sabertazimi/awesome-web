@@ -5,10 +5,6 @@ import ReactReconciler from 'react-reconciler';
 type Type = string;
 type Props = HTMLProps<HTMLElement>;
 type PropKey = keyof Props;
-type ElementKey = Exclude<
-  Extract<keyof Element, PropKey>,
-  'children' | 'prefix'
->;
 export type Container = Document | DocumentFragment | Element;
 type Instance = Element;
 type TextInstance = Text;
@@ -17,10 +13,16 @@ type SuspenseInstance = any;
 type HydratableInstance = any;
 type PublicInstance = any;
 type HostContext = any;
-type UpdatePayload = any;
+type UpdatePayload = boolean;
 type _ChildSet = any;
 type TimeoutHandle = any;
 type NoTimeout = number;
+
+const isClass = (propName: string) => propName === 'className';
+const isChildren = (propName: string) => propName === 'children';
+const isListener = (propName: string) => propName.startsWith('on');
+const isAttribute = (propName: string) =>
+  !isClass(propName) && !isChildren(propName) && !isListener(propName);
 
 const hostConfig: HostConfig<
   Type,
@@ -46,21 +48,35 @@ const hostConfig: HostConfig<
   ): Instance {
     const element = document.createElement(type);
 
-    const isListener = (propName: string) => propName.startsWith('on');
-    const isAttribute = (propName: string) =>
-      !isListener(propName) && propName !== 'children';
+    Object.keys(props)
+      .filter(isClass)
+      .forEach((propName: string) => {
+        const classList = props[propName as PropKey];
+        element.setAttribute('class', classList);
+      });
+
+    Object.keys(props)
+      .filter(isChildren)
+      .forEach((propName: string) => {
+        const children = props[propName as PropKey];
+        if (typeof children === 'string' || typeof children === 'number') {
+          element.textContent = children.toString();
+        }
+      });
 
     Object.keys(props)
       .filter(isListener)
       .forEach((propName: string) => {
         const eventType = propName.toLowerCase().substring(2);
-        element.addEventListener(eventType, props[propName as PropKey]);
+        const eventListener = props[propName as PropKey];
+        element.addEventListener(eventType, eventListener);
       });
 
     Object.keys(props)
       .filter(isAttribute)
       .forEach((propName: string) => {
-        element[propName as ElementKey] = props[propName as PropKey];
+        const attributeValue = props[propName as PropKey];
+        element.setAttribute(propName, attributeValue);
       });
 
     return element;
@@ -120,18 +136,46 @@ const hostConfig: HostConfig<
     rootContainer: Container,
     hostContext: HostContext
   ): UpdatePayload | null {
-    return null;
+    return true;
+  },
+  commitUpdate(
+    instance: Instance,
+    updatePayload: UpdatePayload,
+    type: Type,
+    prevProps: Props,
+    nextProps: Props,
+    internalHandle: OpaqueHandle
+  ): void {
+    Object.keys(nextProps)
+      .filter(isChildren)
+      .forEach((propName: string) => {
+        const children = nextProps[propName as PropKey];
+        if (typeof children === 'string' || typeof children === 'number') {
+          instance.textContent = children.toString();
+        }
+      });
+
+    Object.keys(nextProps)
+      .filter(isAttribute)
+      .forEach((propName: string) => {
+        const attributeValue = nextProps[propName as PropKey];
+        instance.setAttribute(propName, attributeValue);
+      });
   },
   commitTextUpdate(
     textInstance: TextInstance,
     oldText: string,
     newText: string
   ): void {
-    const newTextInstance = document.createTextNode(newText);
-    textInstance.replaceWith(newTextInstance);
+    textInstance.textContent = newText;
   },
   shouldSetTextContent(type: Type, props: Props): boolean {
-    return false;
+    return (
+      typeof props.children === 'string' || typeof props.children === 'number'
+    );
+  },
+  resetTextContent(instance: Instance): void {
+    instance.textContent = '';
   },
   getRootHostContext(rootContainer: Container): HostContext | null {
     return null;
