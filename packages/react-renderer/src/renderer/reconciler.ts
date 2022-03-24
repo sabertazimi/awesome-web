@@ -46,7 +46,13 @@ const hostConfig: HostConfig<
     hostContext: HostContext,
     internalHandle: OpaqueHandle
   ): Instance {
-    const element = document.createElement(type);
+    let element: Instance;
+
+    if (type === 'svg') {
+      element = document.createElementNS('http://www.w3.org/2000/svg', type);
+    } else {
+      element = document.createElement(type);
+    }
 
     Object.keys(props)
       .filter(isClass)
