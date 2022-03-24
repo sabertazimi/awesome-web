@@ -3,6 +3,55 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.7.0](https://github.com/sabertazimi/awesome-web/compare/v1.6.1...v1.7.0) (2022-03-24)
+
+
+### Bug Fixes
+
+* **deps:** update dependency core-js to ^3.18.2 ([#84](https://github.com/sabertazimi/awesome-web/issues/84)) ([07013f9](https://github.com/sabertazimi/awesome-web/commit/07013f9c1c7e67b618f89e106ae4ae18c066faa4))
+* **deps:** update dependency core-js to ^3.18.3 ([#105](https://github.com/sabertazimi/awesome-web/issues/105)) ([5aed5e4](https://github.com/sabertazimi/awesome-web/commit/5aed5e4f541fa0f94db7f8a98563e6c33e50c52c))
+* **deps:** update dependency core-js to ^3.19.0 ([#138](https://github.com/sabertazimi/awesome-web/issues/138)) ([5ccfd48](https://github.com/sabertazimi/awesome-web/commit/5ccfd4875194e4ff18eb302284344884f38c3089))
+* **deps:** update dependency core-js to ^3.19.1 ([#143](https://github.com/sabertazimi/awesome-web/issues/143)) ([df7fb0f](https://github.com/sabertazimi/awesome-web/commit/df7fb0f4ab09aeecf12ca978d02a31223f3b561a))
+* **deps:** update dependency core-js to ^3.19.2 ([#175](https://github.com/sabertazimi/awesome-web/issues/175)) ([603cd7a](https://github.com/sabertazimi/awesome-web/commit/603cd7a085b6a1a17893550e9aeb8fce0372815a))
+* **deps:** update dependency core-js to ^3.19.3 ([#189](https://github.com/sabertazimi/awesome-web/issues/189)) ([1583028](https://github.com/sabertazimi/awesome-web/commit/15830283ddbe042e8bc90af1d324bcf874c4b294))
+* **deps:** update dependency core-js to ^3.20.0 ([#203](https://github.com/sabertazimi/awesome-web/issues/203)) ([06403da](https://github.com/sabertazimi/awesome-web/commit/06403dab058d2e11d72188264d22df1faf1910e1))
+* **deps:** update dependency core-js to ^3.20.1 ([#208](https://github.com/sabertazimi/awesome-web/issues/208)) ([ce00fa6](https://github.com/sabertazimi/awesome-web/commit/ce00fa6053f894b8b3fc7beeafe270ec8352b8ee))
+* **deps:** update dependency core-js to ^3.20.2 ([#219](https://github.com/sabertazimi/awesome-web/issues/219)) ([f152240](https://github.com/sabertazimi/awesome-web/commit/f1522403e4a1a4ae8696a4930fe55b4757871d63))
+* **deps:** update dependency core-js to ^3.21.0 ([#246](https://github.com/sabertazimi/awesome-web/issues/246)) ([e855db1](https://github.com/sabertazimi/awesome-web/commit/e855db1d9d4f80290eed4ffff013fd7ccd303ccc))
+* **deps:** update dependency core-js to ^3.21.1 ([#256](https://github.com/sabertazimi/awesome-web/issues/256)) ([a6c8ec0](https://github.com/sabertazimi/awesome-web/commit/a6c8ec0e439d2a72f0664f7ecc5c23ff06ae5313))
+* **deps:** update dependency nanoid to ^3.1.29 ([#85](https://github.com/sabertazimi/awesome-web/issues/85)) ([7bb1a51](https://github.com/sabertazimi/awesome-web/commit/7bb1a513bfd8de7ad93f64bc1f0695a36b6c58ad))
+* **deps:** update dependency nanoid to ^3.1.30 ([#106](https://github.com/sabertazimi/awesome-web/issues/106)) ([6223621](https://github.com/sabertazimi/awesome-web/commit/6223621d796e20d623073422a09944914761973f))
+* **deps:** update dependency nanoid to ^3.2.0 ([#238](https://github.com/sabertazimi/awesome-web/issues/238)) ([82e46c5](https://github.com/sabertazimi/awesome-web/commit/82e46c52cd61f8fef09cc00702ecf8efb2717726))
+* **deps:** update dependency nanoid to ^3.3.1 ([#259](https://github.com/sabertazimi/awesome-web/issues/259)) ([378f02d](https://github.com/sabertazimi/awesome-web/commit/378f02db78f04bc74f82add875304742495c728e))
+* **deps:** update dependency vue-router to ^4.0.13 ([#276](https://github.com/sabertazimi/awesome-web/issues/276)) ([b1c285d](https://github.com/sabertazimi/awesome-web/commit/b1c285d93ee0155f1e77421dd783e5981c564e00))
+* **deps:** update dependency vue-router to ^4.0.14 ([#286](https://github.com/sabertazimi/awesome-web/issues/286)) ([87b62d4](https://github.com/sabertazimi/awesome-web/commit/87b62d499018c7d6e4901271866039739ecd16f7))
+* **deps:** update dependency web-vitals to ^2.1.1 ([#86](https://github.com/sabertazimi/awesome-web/issues/86)) ([90659cd](https://github.com/sabertazimi/awesome-web/commit/90659cdfe70da8f66608950f750ec456966176fa))
+* **deps:** update dependency web-vitals to ^2.1.2 ([#107](https://github.com/sabertazimi/awesome-web/issues/107)) ([a0ef5fa](https://github.com/sabertazimi/awesome-web/commit/a0ef5fa53dbb32ed48b57c56445aa4fe50e83554))
+* **deps:** update dependency web-vitals to ^2.1.3 ([#226](https://github.com/sabertazimi/awesome-web/issues/226)) ([8aec682](https://github.com/sabertazimi/awesome-web/commit/8aec68268bd349264c5e0f47a2f3fa6c54272d2d))
+* **deps:** update dependency web-vitals to ^2.1.4 ([#239](https://github.com/sabertazimi/awesome-web/issues/239)) ([6cddf0f](https://github.com/sabertazimi/awesome-web/commit/6cddf0f98ba4745468877de39d7c0f3f7f966e34))
+* **react-renderer:** attach event listeners to DOM nodes ([fead3e6](https://github.com/sabertazimi/awesome-web/commit/fead3e6939ca97c2dac3fca8aaf297f1e8a9fb5b))
+* **react-renderer:** filter undefined props ([614d8aa](https://github.com/sabertazimi/awesome-web/commit/614d8aaf881e4d655514add4cbd057bde9820335))
+* **react-renderer:** generate root host context ([5b90222](https://github.com/sabertazimi/awesome-web/commit/5b9022213c859dfcd5a75d2af54396e9d573f90d))
+* **react-renderer:** implement basic HostConfig API ([3f7c3cc](https://github.com/sabertazimi/awesome-web/commit/3f7c3cc7e89005e2aa53cca38b07dace609bd868))
+* **react-renderer:** implement commit phase functions ([8071bd0](https://github.com/sabertazimi/awesome-web/commit/8071bd0e5926ad06f30db36084a69747d3241402))
+* **react-renderer:** implemented default renderer behavior ([09b0ff8](https://github.com/sabertazimi/awesome-web/commit/09b0ff804ee6389a5be26c9b0948ffff5dd32e30))
+* **react-renderer:** process `svg` element ([de32e84](https://github.com/sabertazimi/awesome-web/commit/de32e846709b53224f6e3acc3ab4b1a35d0b3182))
+* **react-renderer:** render svg tags with `createElementNS` function ([111d856](https://github.com/sabertazimi/awesome-web/commit/111d856e432ba1d6390affeaf842be6c47c9ad2e))
+* **react-renderer:** update function signatures ([40f91dc](https://github.com/sabertazimi/awesome-web/commit/40f91dce8773496aa897b21a676e7471d8d52f53))
+* **react-renderer:** update function signatures ([7524f73](https://github.com/sabertazimi/awesome-web/commit/7524f735756b8bdb1a5e0ec9a866d00c2d20e494))
+* **vue-basis:** rectify building prefix path ([#270](https://github.com/sabertazimi/awesome-web/issues/270)) ([de38664](https://github.com/sabertazimi/awesome-web/commit/de38664e59db3537063cba8a45271e1db336b896))
+* **vue-design:** update vitrual DOM and apply to DOM ([#271](https://github.com/sabertazimi/awesome-web/issues/271)) ([8c81318](https://github.com/sabertazimi/awesome-web/commit/8c813187236e6b3594bb8663d6f38498d95c3964))
+
+
+### Features
+
+* **react-renderer:** setup custom React renderer ([#295](https://github.com/sabertazimi/awesome-web/issues/295)) ([953c221](https://github.com/sabertazimi/awesome-web/commit/953c221b5171a65605d073e28be59924705260a5))
+* **vue-design:** setup demo for vue design learning ([#269](https://github.com/sabertazimi/awesome-web/issues/269)) ([4bbb62e](https://github.com/sabertazimi/awesome-web/commit/4bbb62efa32436f4d59a8fb06b9dbd6809843c48))
+
+
+
+
+
 ## [1.6.1](https://github.com/sabertazimi/awesome-web/compare/v1.6.0...v1.6.1) (2021-10-04)
 
 

@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.7.0](https://github.com/sabertazimi/awesome-web/compare/v1.6.1...v1.7.0) (2022-03-24)
+
+
+### Bug Fixes
+
+* **deps:** update dependency nanoid to ^3.1.29 ([#85](https://github.com/sabertazimi/awesome-web/issues/85)) ([7bb1a51](https://github.com/sabertazimi/awesome-web/commit/7bb1a513bfd8de7ad93f64bc1f0695a36b6c58ad))
+* **deps:** update dependency nanoid to ^3.1.30 ([#106](https://github.com/sabertazimi/awesome-web/issues/106)) ([6223621](https://github.com/sabertazimi/awesome-web/commit/6223621d796e20d623073422a09944914761973f))
+* **deps:** update dependency nanoid to ^3.2.0 ([#238](https://github.com/sabertazimi/awesome-web/issues/238)) ([82e46c5](https://github.com/sabertazimi/awesome-web/commit/82e46c52cd61f8fef09cc00702ecf8efb2717726))
+* **deps:** update dependency nanoid to ^3.3.1 ([#259](https://github.com/sabertazimi/awesome-web/issues/259)) ([378f02d](https://github.com/sabertazimi/awesome-web/commit/378f02db78f04bc74f82add875304742495c728e))
+* **deps:** update dependency vue-router to ^4.0.13 ([#276](https://github.com/sabertazimi/awesome-web/issues/276)) ([b1c285d](https://github.com/sabertazimi/awesome-web/commit/b1c285d93ee0155f1e77421dd783e5981c564e00))
+* **deps:** update dependency vue-router to ^4.0.14 ([#286](https://github.com/sabertazimi/awesome-web/issues/286)) ([87b62d4](https://github.com/sabertazimi/awesome-web/commit/87b62d499018c7d6e4901271866039739ecd16f7))
+
+
+
+
+
 ## [1.6.1](https://github.com/sabertazimi/awesome-web/compare/v1.6.0...v1.6.1) (2021-10-04)
 
 
