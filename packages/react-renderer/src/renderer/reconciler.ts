@@ -109,14 +109,14 @@ const hostConfig: HostConfig<
   ): void {
     container.appendChild(child);
   },
+  removeChild(parentInstance: Instance, child: Instance | TextInstance): void {
+    parentInstance.removeChild(child);
+  },
   removeChildFromContainer(
     container: Container,
     child: Instance | TextInstance
   ): void {
     container.removeChild(child);
-  },
-  removeChild(parentInstance: Instance, child: Instance | TextInstance): void {
-    parentInstance.removeChild(child);
   },
   clearContainer(container: Container): void {
     while (container.firstChild) {
