@@ -4,6 +4,11 @@ import ReactReconciler from 'react-reconciler';
 
 type Type = string;
 type Props = HTMLProps<HTMLElement>;
+type PropKey = keyof Props;
+type ElementKey = Exclude<
+  Extract<keyof Element, PropKey>,
+  'children' | 'prefix'
+>;
 export type Container = Document | DocumentFragment | Element;
 type Instance = Element;
 type TextInstance = Text;
@@ -40,8 +45,24 @@ const hostConfig: HostConfig<
     internalHandle: any
   ): Element {
     const element = document.createElement(type);
-    if (props.className) element.className = props.className;
-    if (props.id) element.id = props.id;
+
+    const isListener = (propName: string) => propName.startsWith('on');
+    const isAttribute = (propName: string) =>
+      !isListener(propName) && propName !== 'children';
+
+    Object.keys(props)
+      .filter(isListener)
+      .forEach((propName: string) => {
+        const eventType = propName.toLowerCase().substring(2);
+        element.addEventListener(eventType, props[propName as PropKey]);
+      });
+
+    Object.keys(props)
+      .filter(isAttribute)
+      .forEach((propName: string) => {
+        element[propName as ElementKey] = props[propName as PropKey];
+      });
+
     return element;
   },
   createTextInstance(
