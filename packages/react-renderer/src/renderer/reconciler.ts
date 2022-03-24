@@ -26,7 +26,7 @@ const isListener = (propName: string) => propName.startsWith('on');
 const isAttribute = (propName: string) =>
   !isClass(propName) && !isChildren(propName) && !isListener(propName);
 
-const isSVGType = (type: Type) => type === 'svg';
+const isSVGType = (type: Type) => type.toLowerCase() === 'svg';
 const isSVGContext = (context: HostContext) => context.svg;
 const createHostContext = (svg: boolean) => {
   return {
@@ -179,7 +179,9 @@ const hostConfig: HostConfig<
     instance.textContent = '';
   },
   getRootHostContext(rootContainer: Container): HostContext | null {
-    return createHostContext(false);
+    return isSVGType(rootContainer.nodeName)
+      ? createHostContext(true)
+      : createHostContext(false);
   },
   getChildHostContext(
     parentHostContext: HostContext,
