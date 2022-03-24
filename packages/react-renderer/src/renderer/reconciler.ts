@@ -1,8 +1,9 @@
+import type { HTMLProps } from 'react';
 import type { HostConfig } from 'react-reconciler';
 import ReactReconciler from 'react-reconciler';
 
 type Type = string;
-type Props = { [key: string]: any };
+type Props = HTMLProps<HTMLElement>;
 export type Container = Document | DocumentFragment | Element;
 type Instance = Element;
 type TextInstance = Text;
@@ -31,8 +32,6 @@ const hostConfig: HostConfig<
   TimeoutHandle,
   NoTimeout
 > = {
-  supportsMutation: false,
-  supportsPersistence: false,
   createInstance: function (
     type: string,
     props: Props,
@@ -40,7 +39,10 @@ const hostConfig: HostConfig<
     hostContext: any,
     internalHandle: any
   ): Element {
-    throw new Error('Function not implemented.');
+    const element = document.createElement(type);
+    if (props.className) element.className = props.className;
+    if (props.id) element.id = props.id;
+    return element;
   },
   createTextInstance: function (
     text: string,
@@ -48,13 +50,14 @@ const hostConfig: HostConfig<
     hostContext: any,
     internalHandle: any
   ): Text {
-    throw new Error('Function not implemented.');
+    const textElement = document.createTextNode(text);
+    return textElement;
   },
   appendInitialChild: function (
     parentInstance: Element,
     child: Element | Text
   ): void {
-    throw new Error('Function not implemented.');
+    parentInstance.appendChild(child);
   },
   finalizeInitialChildren: function (
     instance: Element,
@@ -114,9 +117,11 @@ const hostConfig: HostConfig<
   cancelTimeout: function (id: any): void {
     throw new Error('Function not implemented.');
   },
-  noTimeout: 0,
-  isPrimaryRenderer: false,
+  noTimeout: -1,
+  isPrimaryRenderer: true,
   supportsHydration: false,
+  supportsMutation: true,
+  supportsPersistence: false,
 };
 
 const reconciler = ReactReconciler(hostConfig);
