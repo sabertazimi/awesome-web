@@ -32,7 +32,7 @@ const hostConfig: HostConfig<
   TimeoutHandle,
   NoTimeout
 > = {
-  createInstance: function (
+  createInstance(
     type: string,
     props: Props,
     rootContainer: Container,
@@ -44,7 +44,7 @@ const hostConfig: HostConfig<
     if (props.id) element.id = props.id;
     return element;
   },
-  createTextInstance: function (
+  createTextInstance(
     text: string,
     rootContainer: Container,
     hostContext: any,
@@ -53,22 +53,30 @@ const hostConfig: HostConfig<
     const textElement = document.createTextNode(text);
     return textElement;
   },
-  appendInitialChild: function (
-    parentInstance: Element,
-    child: Element | Text
-  ): void {
+  appendInitialChild(parentInstance: Element, child: Element | Text): void {
     parentInstance.appendChild(child);
   },
-  finalizeInitialChildren: function (
+  appendChildToContainer(container: Container, child: Element | Text): void {
+    container.appendChild(child);
+  },
+  removeChildFromContainer(container: Container, child: Element | Text): void {
+    container.removeChild(child);
+  },
+  clearContainer(container: Container): void {
+    while (container.firstChild) {
+      container.firstChild.remove();
+    }
+  },
+  finalizeInitialChildren(
     instance: Element,
     type: string,
     props: Props,
     rootContainer: Container,
     hostContext: any
   ): boolean {
-    throw new Error('Function not implemented.');
+    return false;
   },
-  prepareUpdate: function (
+  prepareUpdate(
     instance: Element,
     type: string,
     oldProps: Props,
@@ -78,44 +86,38 @@ const hostConfig: HostConfig<
   ) {
     throw new Error('Function not implemented.');
   },
-  shouldSetTextContent: function (type: string, props: Props): boolean {
-    throw new Error('Function not implemented.');
+  shouldSetTextContent(type: string, props: Props): boolean {
+    return false;
   },
-  getRootHostContext: function (rootContainer: Container) {
-    throw new Error('Function not implemented.');
+  getRootHostContext(rootContainer: Container) {
+    return null;
   },
-  getChildHostContext: function (
+  getChildHostContext(
     parentHostContext: any,
     type: string,
     rootContainer: Container
   ) {
-    throw new Error('Function not implemented.');
+    return parentHostContext;
   },
-  getPublicInstance: function (instance: Element | Text) {
-    throw new Error('Function not implemented.');
+  getPublicInstance(instance: Element | Text) {
+    return instance;
   },
-  prepareForCommit: function (
-    containerInfo: Container
-  ): Record<string, any> | null {
-    throw new Error('Function not implemented.');
+  prepareForCommit(containerInfo: Container): Record<string, any> | null {
+    return null;
   },
-  resetAfterCommit: function (containerInfo: Container): void {
-    throw new Error('Function not implemented.');
+  resetAfterCommit(containerInfo: Container): void {},
+  preparePortalMount(containerInfo: Container): void {},
+  now(): number {
+    return performance.now();
   },
-  preparePortalMount: function (containerInfo: Container): void {
-    throw new Error('Function not implemented.');
-  },
-  now: function (): number {
-    throw new Error('Function not implemented.');
-  },
-  scheduleTimeout: function (
+  scheduleTimeout(
     fn: (...args: unknown[]) => unknown,
     delay?: number
-  ) {
-    throw new Error('Function not implemented.');
+  ): TimeoutHandle {
+    return setTimeout(fn, delay);
   },
-  cancelTimeout: function (id: any): void {
-    throw new Error('Function not implemented.');
+  cancelTimeout(id: any): void {
+    clearTimeout(id);
   },
   noTimeout: -1,
   isPrimaryRenderer: true,
