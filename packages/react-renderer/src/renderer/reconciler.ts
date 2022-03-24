@@ -82,7 +82,9 @@ const hostConfig: HostConfig<
       .filter(isAttribute)
       .forEach((propName: string) => {
         const attributeValue = props[propName as PropKey];
-        element.setAttribute(propName, attributeValue);
+        if (attributeValue !== null && attributeValue !== undefined) {
+          element.setAttribute(propName, attributeValue);
+        }
       });
 
     return element;
@@ -165,7 +167,9 @@ const hostConfig: HostConfig<
       .filter(isAttribute)
       .forEach((propName: string) => {
         const attributeValue = nextProps[propName as PropKey];
-        instance.setAttribute(propName, attributeValue);
+        if (attributeValue !== null && attributeValue !== undefined) {
+          instance.setAttribute(propName, attributeValue);
+        }
       });
   },
   commitTextUpdate(
