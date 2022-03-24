@@ -83,23 +83,23 @@ const hostConfig: HostConfig<
     newProps: Props,
     rootContainer: Container,
     hostContext: any
-  ) {
-    throw new Error('Function not implemented.');
+  ): UpdatePayload | null {
+    return null;
   },
   shouldSetTextContent(type: string, props: Props): boolean {
     return false;
   },
-  getRootHostContext(rootContainer: Container) {
+  getRootHostContext(rootContainer: Container): HostContext | null {
     return null;
   },
   getChildHostContext(
-    parentHostContext: any,
+    parentHostContext: HostContext,
     type: string,
     rootContainer: Container
-  ) {
+  ): HostContext {
     return parentHostContext;
   },
-  getPublicInstance(instance: Element | Text) {
+  getPublicInstance(instance: Element | Text): PublicInstance {
     return instance;
   },
   prepareForCommit(containerInfo: Container): Record<string, any> | null {
