@@ -5,22 +5,28 @@ test('renders learn react link', () => {
   render(<App />);
   const incElement = screen.getByText(/\+/i);
   const decElement = screen.getByText(/-/i);
+  const countElement = screen.getByText(0);
 
   expect(incElement).toBeInTheDocument();
   expect(decElement).toBeInTheDocument();
-  expect(screen.getByText(0)).toBeInTheDocument();
+  expect(countElement).toBeInTheDocument();
+  expect(countElement.textContent).toBe('0');
 
   fireEvent.click(incElement);
-  expect(screen.getByText(1)).toBeInTheDocument();
+  expect(countElement.textContent).toBe('1');
   fireEvent.click(incElement);
-  expect(screen.getByText(2)).toBeInTheDocument();
+  expect(countElement.textContent).toBe('2');
   fireEvent.click(incElement);
-  expect(screen.getByText(3)).toBeInTheDocument();
+  expect(countElement.textContent).toBe('3');
 
   fireEvent.click(decElement);
-  expect(screen.getByText(2)).toBeInTheDocument();
+  expect(countElement.textContent).toBe('2');
   fireEvent.click(decElement);
-  expect(screen.getByText(1)).toBeInTheDocument();
+  expect(countElement.textContent).toBe('1');
   fireEvent.click(decElement);
-  expect(screen.getByText(0)).toBeInTheDocument();
+  expect(countElement.textContent).toBe('0');
+  fireEvent.click(decElement);
+  expect(countElement.textContent).toBe('-1');
+  fireEvent.click(decElement);
+  expect(countElement.textContent).toBe('-2');
 });
