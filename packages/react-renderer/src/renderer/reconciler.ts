@@ -12,7 +12,9 @@ type TextInstance = Text;
 type SuspenseInstance = any;
 type HydratableInstance = any;
 type PublicInstance = any;
-type HostContext = any;
+type HostContext = {
+  svg: boolean;
+};
 type UpdatePayload = boolean;
 type _ChildSet = any;
 type TimeoutHandle = any;
@@ -23,6 +25,14 @@ const isChildren = (propName: string) => propName === 'children';
 const isListener = (propName: string) => propName.startsWith('on');
 const isAttribute = (propName: string) =>
   !isClass(propName) && !isChildren(propName) && !isListener(propName);
+
+const isSVGType = (type: Type) => type === 'svg';
+const isSVGContext = (context: HostContext) => context.svg;
+const createHostContext = (svg: boolean) => {
+  return {
+    svg,
+  };
+};
 
 const hostConfig: HostConfig<
   Type,
@@ -48,7 +58,7 @@ const hostConfig: HostConfig<
   ): Instance {
     let element: Instance;
 
-    if (type === 'svg') {
+    if (isSVGType(type) || isSVGContext(hostContext)) {
       element = document.createElementNS('http://www.w3.org/2000/svg', type);
     } else {
       element = document.createElement(type);
@@ -169,14 +179,14 @@ const hostConfig: HostConfig<
     instance.textContent = '';
   },
   getRootHostContext(rootContainer: Container): HostContext | null {
-    return null;
+    return createHostContext(false);
   },
   getChildHostContext(
     parentHostContext: HostContext,
     type: Type,
     rootContainer: Container
   ): HostContext {
-    return parentHostContext;
+    return isSVGType(type) ? createHostContext(true) : parentHostContext;
   },
   getPublicInstance(instance: Instance | TextInstance): PublicInstance {
     return instance;
