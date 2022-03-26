@@ -1,6 +1,6 @@
 import type { ReactElement } from 'react';
-import type { Container } from './reconciler';
 import Reconciler from './reconciler';
+import type { Container } from './types';
 
 const Renderer = {
   render: (
