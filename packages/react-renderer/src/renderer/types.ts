@@ -1,5 +1,9 @@
 import type { HTMLProps } from 'react';
-import type { HostConfig as _HostConfig, OpaqueHandle } from 'react-reconciler';
+import type {
+  HostConfig as _HostConfig,
+  OpaqueHandle,
+  OpaqueRoot,
+} from 'react-reconciler';
 
 type Type = string;
 type Props = HTMLProps<HTMLElement>;
@@ -50,6 +54,7 @@ export type {
   _ChildSet,
   TimeoutHandle,
   NoTimeout,
-  OpaqueHandle,
   HostConfig,
+  OpaqueHandle,
+  OpaqueRoot,
 };
