@@ -3391,7 +3391,7 @@ __metadata:
     core-js: ^3.21.1
     eslint: ^8.12.0
     jest: ^27.5.1
-    prettier: ^2.6.1
+    prettier: ^2.6.2
     ts-jest: ^27.1.4
     typescript: ^4.6.3
     vue: ^3.2.31
@@ -3406,7 +3406,7 @@ __metadata:
   dependencies:
     "@dg-scripts/eslint-config": ^5.8.0
     eslint: ^8.12.0
-    prettier: ^2.6.1
+    prettier: ^2.6.2
     snabbdom: ^3.4.0
     typescript: ^4.6.3
     vite: ^2.9.1
@@ -3424,7 +3424,7 @@ __metadata:
     eslint: ^8.12.0
     nanoid: ^3.3.2
     postcss: ^8.4.12
-    prettier: ^2.6.1
+    prettier: ^2.6.2
     stylelint: ^14.6.1
     tailwindcss: ^3.0.23
     typescript: ^4.6.3
@@ -5826,7 +5826,7 @@ __metadata:
     eslint: ^8.12.0
     lerna: ^4.0.0
     pm2: ^5.2.0
-    prettier: ^2.6.1
+    prettier: ^2.6.2
     stylelint: ^14.6.1
     ts-node: ^10.7.0
     tslib: ^2.3.1
@@ -15495,12 +15495,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prettier@npm:^1.18.2 || ^2.0.0, prettier@npm:^2.6.0, prettier@npm:^2.6.1":
-  version: 2.6.1
-  resolution: "prettier@npm:2.6.1"
+"prettier@npm:^1.18.2 || ^2.0.0, prettier@npm:^2.6.0, prettier@npm:^2.6.2":
+  version: 2.6.2
+  resolution: "prettier@npm:2.6.2"
   bin:
     prettier: bin-prettier.js
-  checksum: 78be1f8a3ddfad7c3d8a854b6c8941a3bb1ddfca4225c38d778e0fe1029a55368f71b3bbefff82c689015fbb4d391ec44add957f01308ad2725e01a7c1f37cb6
+  checksum: 48d08dde8e9fb1f5bccdd205baa7f192e9fc8bc98f86e1b97d919de804e28c806b0e6cc685e4a88211aa7987fa9668f30baae19580d87ced3ed0f2ec6572106f
   languageName: node
   linkType: hard
 
