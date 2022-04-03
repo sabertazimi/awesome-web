@@ -1,3 +1,9 @@
+<script setup lang="ts">
+import Card from './Card.vue';
+import type { Event } from '@/services';
+defineProps<{ event: Event }>();
+</script>
+
 <template>
   <router-link
     class="event-link"
@@ -6,12 +12,6 @@
     <Card :event="event" />
   </router-link>
 </template>
-
-<script setup lang="ts">
-import Card from './Card.vue';
-import type { Event } from '@/services';
-defineProps<{ event: Event }>();
-</script>
 
 <style scoped>
 .event-link {

@@ -1,14 +1,14 @@
+<script setup lang="ts">
+import type { Event } from '@/services';
+defineProps<{ event: Event }>();
+</script>
+
 <template>
   <div class="event-card">
     <span>@ {{ event.time }} on {{ event.date }}</span>
     <h4>{{ event.title }}</h4>
   </div>
 </template>
-
-<script setup lang="ts">
-import type { Event } from '@/services';
-defineProps<{ event: Event }>();
-</script>
 
 <style scoped>
 .event-card {
