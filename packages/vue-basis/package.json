@@ -16,7 +16,7 @@
     "test": "vue-cli-service test:unit"
   },
   "dependencies": {
-    "core-js": "^3.22.0",
+    "core-js": "^3.22.2",
     "vue": "^3.2.33",
     "vue-router": "^4.0.14",
     "vuex": "^4.0.2"
@@ -32,7 +32,7 @@
     "@vue/cli-plugin-vuex": "^5.0.4",
     "@vue/cli-service": "^5.0.4",
     "@vue/compiler-sfc": "^3.2.33",
-    "@vue/test-utils": "^2.0.0-rc.20",
+    "@vue/test-utils": "^2.0.0-rc.21",
     "@vue/vue3-jest": "^27.0.0-alpha.4",
     "babel-jest": "^27.5.1",
     "eslint": "^8.13.0",
