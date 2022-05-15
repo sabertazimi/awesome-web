@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renderer should pass snapshot testing 1`] = `
+<div>
+  <div
+    class="app"
+  >
+    <header
+      class="app-header"
+    >
+      <svg
+        class="app-logo"
+        title="logo"
+      />
+      <div
+        class="flex flex-row justify-center items-center"
+      >
+        <button
+          class="p-4 text-white text-6xl"
+        >
+          -
+        </button>
+        <div
+          class="p-4 text-white text-6xl"
+        >
+          0
+        </div>
+        <button
+          class="p-4 text-white text-6xl"
+        >
+          +
+        </button>
+      </div>
+    </header>
+  </div>
+</div>
+`;

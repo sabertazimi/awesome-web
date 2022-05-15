@@ -1,32 +1,48 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders counter', () => {
-  render(<App />);
-  const incElement = screen.getByText(/\+/i);
-  const decElement = screen.getByText(/-/i);
-  const countElement = screen.getByText(0);
+describe('Renderer', () => {
+  it('should render counter', () => {
+    render(<App />);
+    const incElement = screen.getByText(/\+/i);
+    const decElement = screen.getByText(/-/i);
+    const countElement = screen.getByText(0);
 
-  expect(incElement).toBeInTheDocument();
-  expect(decElement).toBeInTheDocument();
-  expect(countElement).toBeInTheDocument();
-  expect(countElement.textContent).toBe('0');
+    expect(incElement).toBeInTheDocument();
+    expect(decElement).toBeInTheDocument();
+    expect(countElement).toBeInTheDocument();
+    expect(countElement.textContent).toBe('0');
+  });
 
-  fireEvent.click(incElement);
-  expect(countElement.textContent).toBe('1');
-  fireEvent.click(incElement);
-  expect(countElement.textContent).toBe('2');
-  fireEvent.click(incElement);
-  expect(countElement.textContent).toBe('3');
+  it('should increment counter', () => {
+    render(<App />);
+    const incElement = screen.getByText(/\+/i);
+    const countElement = screen.getByText(0);
 
-  fireEvent.click(decElement);
-  expect(countElement.textContent).toBe('2');
-  fireEvent.click(decElement);
-  expect(countElement.textContent).toBe('1');
-  fireEvent.click(decElement);
-  expect(countElement.textContent).toBe('0');
-  fireEvent.click(decElement);
-  expect(countElement.textContent).toBe('-1');
-  fireEvent.click(decElement);
-  expect(countElement.textContent).toBe('-2');
+    fireEvent.click(incElement);
+    expect(countElement.textContent).toBe('1');
+    fireEvent.click(incElement);
+    expect(countElement.textContent).toBe('2');
+    fireEvent.click(incElement);
+    expect(countElement.textContent).toBe('3');
+  });
+
+  it('should decrement counter', () => {
+    render(<App />);
+    const decElement = screen.getByText(/-/i);
+    const countElement = screen.getByText(0);
+
+    fireEvent.click(decElement);
+    expect(countElement.textContent).toBe('-1');
+    fireEvent.click(decElement);
+    expect(countElement.textContent).toBe('-2');
+    fireEvent.click(decElement);
+    expect(countElement.textContent).toBe('-3');
+  });
+
+  it('should pass snapshot testing', () => {
+    const { container } = render(<App />);
+
+    expect(container).toMatchSnapshot();
+  });
 });

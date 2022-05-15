@@ -8,11 +8,26 @@ const Renderer = {
     callback?: Function
   ): OpaqueRoot => {
     if (container) {
-      const root = Reconciler.createContainer(container, 0, false, null);
+      const root = Reconciler.createContainer(
+        container,
+        0,
+        null,
+        true,
+        null,
+        '',
+        (error: Error) => {
+          console.error(error);
+        },
+        null
+      );
 
       root.render = function (element: ReactElement) {
         Reconciler.updateContainer(element, this, null);
       };
+
+      if (callback) {
+        callback(root);
+      }
 
       return root;
     }
