@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.7.1](https://github.com/sabertazimi/awesome-web/compare/v1.7.0...v1.7.1) (2022-05-27)
+
+
+### Bug Fixes
+
+* **deps:** update react monorepo to v18 ([#306](https://github.com/sabertazimi/awesome-web/issues/306)) ([035a11d](https://github.com/sabertazimi/awesome-web/commit/035a11d4730874e23463a8b01a79f94128ed3ae0))
+* **react-renderer:** implement React 18 style renderer ([#302](https://github.com/sabertazimi/awesome-web/issues/302)) ([4b3f8a6](https://github.com/sabertazimi/awesome-web/commit/4b3f8a6af95096df782b08569c898a741cf3da98))
+
+
+
+
+
 # [1.7.0](https://github.com/sabertazimi/awesome-web/compare/v1.6.1...v1.7.0) (2022-03-24)
 
 

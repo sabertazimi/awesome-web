@@ -1,7 +1,7 @@
 {
   "name": "@sabertazimi/vue-design",
   "private": true,
-  "version": "1.7.0",
+  "version": "1.7.1",
   "engines": {
     "node": ">=14"
   },

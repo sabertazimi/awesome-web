@@ -1,6 +1,6 @@
 {
   "name": "@sabertazimi/vue-basis",
-  "version": "1.7.0",
+  "version": "1.7.1",
   "private": true,
   "browserslist": [
     "> 1%",
