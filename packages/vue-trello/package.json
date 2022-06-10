@@ -14,8 +14,8 @@
   },
   "dependencies": {
     "nanoid": "^3.3.4",
-    "vue": "^3.2.36",
-    "vue-router": "^4.0.15",
+    "vue": "^3.2.37",
+    "vue-router": "^4.0.16",
     "vuex": "^4.0.2"
   },
   "devDependencies": {
@@ -26,10 +26,10 @@
     "eslint": "^8.17.0",
     "postcss": "^8.4.14",
     "prettier": "^2.6.2",
-    "stylelint": "^14.8.5",
-    "tailwindcss": "^3.0.24",
+    "stylelint": "^14.9.0",
+    "tailwindcss": "^3.1.2",
     "typescript": "^4.7.3",
-    "vite": "^2.9.9",
-    "vue-tsc": "^0.36.1"
+    "vite": "^2.9.12",
+    "vue-tsc": "^0.37.3"
   }
 }
