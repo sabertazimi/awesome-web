@@ -45,22 +45,22 @@ const createColumn = (event: Event) => {
 
 <style lang="postcss" scoped>
 .board-view {
-  @apply flex flex-col justify-start items-center;
-  @apply p-4 h-full overflow-auto bg-green-500;
+  @apply flex flex-col items-center justify-start;
+  @apply h-full overflow-auto bg-green-500 p-4;
 }
 
 .columns {
-  @apply flex flex-row justify-center items-start flex-wrap md:justify-start;
+  @apply flex flex-row flex-wrap items-start justify-center md:justify-start;
 }
 
 .column {
-  @apply mr-4 mb-4 p-2 text-left bg-gray-300 shadow-lg;
+  @apply mr-4 mb-4 bg-gray-300 p-2 text-left shadow-lg;
 
   min-width: 350px;
 }
 
 .column-input {
-  @apply block w-full p-2 bg-white border border-transparent outline-none;
+  @apply block w-full border border-transparent bg-white p-2 outline-none;
   @apply focus:border-green-500;
   @apply transition duration-500;
 }

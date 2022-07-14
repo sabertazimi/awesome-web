@@ -39,7 +39,7 @@ const pickupColumn = (event: DragEvent, fromColumnIndex: number) => {
     @dragstart.stop="pickupColumn($event, columnIndex)"
     @drop.stop="moveColumn(store, $event, columnIndex)"
   >
-    <div class="flex items-center mb-2 font-bold">
+    <div class="mb-2 flex items-center font-bold">
       <span>{{ column.name }}</span>
       <button
         class="btn-block danger ml-auto"
@@ -70,7 +70,7 @@ const pickupColumn = (event: DragEvent, fromColumnIndex: number) => {
 
 <style scoped>
 .task-input {
-  @apply block w-full p-2 bg-transparent border border-transparent outline-none;
+  @apply block w-full border border-transparent bg-transparent p-2 outline-none;
   @apply focus:border-green-500;
   @apply transition duration-500;
 }

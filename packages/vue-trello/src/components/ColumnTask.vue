@@ -50,7 +50,7 @@ const pickupTask = (
         X
       </button>
     </div>
-    <p v-if="task.description" class="flex-shrink-0 w-full mt-1 px-4 py-2">
+    <p v-if="task.description" class="mt-1 w-full flex-shrink-0 px-4 py-2">
       {{ task.description }}
     </p>
   </div>
@@ -58,11 +58,11 @@ const pickupTask = (
 
 <style scoped>
 .task {
-  @apply flex items-center flex-wrap mb-2;
-  @apply bg-white text-gray-900 shadow no-underline cursor-pointer;
+  @apply mb-2 flex flex-wrap items-center;
+  @apply cursor-pointer bg-white text-gray-900 no-underline shadow;
 }
 
 .task-name {
-  @apply flex flex-row items-center flex-shrink-0 w-full font-bold;
+  @apply flex w-full flex-shrink-0 flex-row items-center font-bold;
 }
 </style>

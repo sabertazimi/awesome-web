@@ -50,17 +50,17 @@ const updateTask = (event: Event, task: TaskType, key: string) => {
 }
 
 .task-view {
-  @apply relative inset-0 flex flex-col max-w-3xl m-32 mx-auto p-8 text-left bg-white shadow-2xl;
+  @apply relative inset-0 m-32 mx-auto flex max-w-3xl flex-col bg-white p-8 text-left shadow-2xl;
 }
 
 .task-input {
-  @apply block w-full text-xl font-bold outline-none border border-transparent;
+  @apply block w-full border border-transparent text-xl font-bold outline-none;
   @apply focus:border-green-500 focus:outline-none;
   @apply transition duration-500;
 }
 
 .task-description {
-  @apply relative w-full my-4 p-2 h-64 border bg-transparent;
+  @apply relative my-4 h-64 w-full border bg-transparent p-2;
   @apply focus:border-green-500 focus:outline-none;
   @apply transition duration-500;
 }
