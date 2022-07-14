@@ -1,5 +1,7 @@
+import { DefaultEventPriority } from 'react-reconciler/constants';
 import type {
   Container,
+  Fiber,
   HostConfig,
   HostContext,
   Instance,
@@ -177,9 +179,6 @@ const hostConfig: HostConfig = {
   },
   resetAfterCommit(containerInfo: Container): void {},
   preparePortalMount(containerInfo: Container): void {},
-  now(): number {
-    return performance.now();
-  },
   scheduleTimeout(
     fn: (...args: unknown[]) => unknown,
     delay?: number
@@ -194,6 +193,19 @@ const hostConfig: HostConfig = {
   supportsHydration: false,
   supportsMutation: true,
   supportsPersistence: false,
+  getCurrentEventPriority(): number {
+    return DefaultEventPriority;
+  },
+  getInstanceFromNode(node: any): Fiber | null | undefined {
+    return null;
+  },
+  beforeActiveInstanceBlur(): void {},
+  afterActiveInstanceBlur(): void {},
+  prepareScopeUpdate(scopeInstance: any, instance: any): void {},
+  getInstanceFromScope(scopeInstance: any): Element | null {
+    return null;
+  },
+  detachDeletedInstance(node: Element): void {},
 };
 
 export default hostConfig;

@@ -1,5 +1,6 @@
 import type { HTMLProps } from 'react';
 import type {
+  Fiber,
   HostConfig as _HostConfig,
   OpaqueHandle,
   OpaqueRoot,
@@ -44,6 +45,7 @@ export type {
   Props,
   PropKey,
   Container,
+  Fiber,
   Instance,
   TextInstance,
   SuspenseInstance,
