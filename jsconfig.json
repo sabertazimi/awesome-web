@@ -1,8 +1,0 @@
-{
-  "exclude": ["node_modules", "build", "dist", "coverage"],
-  "compilerOptions": {
-    "target": "es2017",
-    "allowSyntheticDefaultImports": true,
-    "baseUrl": "./"
-  }
-}
