@@ -43,13 +43,13 @@
     "url": "https://github.com/sabertazimi/awesome-web/issues"
   },
   "homepage": "https://github.com/sabertazimi/awesome-web",
-  "packageManager": "yarn@3.2.1",
+  "packageManager": "yarn@3.2.2",
   "devDependencies": {
     "@dg-scripts/eslint-config": "^5.11.0",
     "@dg-scripts/stylelint-config": "^5.11.0",
     "@types/node": "^16.11.45",
     "eslint": "^8.20.0",
-    "lerna": "^5.1.8",
+    "lerna": "^5.2.0",
     "pm2": "^5.2.0",
     "prettier": "^2.7.1",
     "stylelint": "^14.9.1",
