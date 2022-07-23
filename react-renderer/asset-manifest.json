@@ -1,0 +1,12 @@
+{
+  "files": {
+    "main.css": "/awesome-web/react-renderer/static/css/main.012869ab.css",
+    "main.js": "/awesome-web/react-renderer/static/js/main.ddcd9d78.js",
+    "static/js/798.589fbbd3.chunk.js": "/awesome-web/react-renderer/static/js/798.589fbbd3.chunk.js",
+    "index.html": "/awesome-web/react-renderer/index.html"
+  },
+  "entrypoints": [
+    "static/css/main.012869ab.css",
+    "static/js/main.ddcd9d78.js"
+  ]
+}
