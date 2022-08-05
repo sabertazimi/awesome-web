@@ -48,7 +48,7 @@
     "@dg-scripts/eslint-config": "^5.11.0",
     "@dg-scripts/stylelint-config": "^5.11.0",
     "@types/node": "^16.11.47",
-    "eslint": "^8.20.0",
+    "eslint": "^8.21.0",
     "lerna": "^5.3.0",
     "pm2": "^5.2.0",
     "prettier": "^2.7.1",
