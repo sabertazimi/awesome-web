@@ -15,6 +15,7 @@ interface RefFamilyType {
 
 describe('RefFamily', () => {
   it('update ref function', () => {
+    console.log = vi.fn();
     const wrapper = mount(RefFamily);
     (wrapper.vm as unknown as RefFamilyType).update(996);
     expect((wrapper.vm as unknown as RefFamilyType).count).toBe(996);
