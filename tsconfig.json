@@ -2,9 +2,9 @@
   "include": ["./src/**/*"],
   "exclude": ["node_modules", "build", "dist", "coverage"],
   "compilerOptions": {
-    "target": "es6",
-    "module": "commonjs",
-    "lib": ["DOM", "DOM.Iterable", "ESNext", "ES2021"],
+    "target": "ESNext",
+    "module": "ESNext",
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
     "allowJs": true,
     "jsx": "react",
     "declaration": true,
