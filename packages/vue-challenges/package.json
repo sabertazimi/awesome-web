@@ -1,0 +1,36 @@
+{
+  "name": "vue-challenges",
+  "description": "Collection of Vue.js challenges",
+  "license": "MIT",
+  "homepage": "https://github.com/webfansplz/vuejs-challenges#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/webfansplz/vuejs-challenges.git"
+  },
+  "bugs": {
+    "url": "https://github.com/webfansplz/vuejs-challenges/issues"
+  },
+  "keywords": [
+    "Vue.js challenges",
+    "Vue.js",
+    "challenges",
+    "Learn Vue.js"
+  ],
+  "main": "index.js",
+  "scripts": {
+    "dev": "vitest --environment jsdom --dir",
+    "lint": "eslint . --ext .vue,.js,.ts,.jsx,.tsx,.json --max-warnings 0",
+    "lint:fix": "eslint --fix . --ext .vue,.js,.ts,.jsx,.tsx,.json",
+    "test": "vitest --environment jsdom --dir solutions"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^3.0.3",
+    "@vue/test-utils": "^2.0.2",
+    "eslint": "^8.18.0",
+    "jsdom": "^20.0.0",
+    "typescript": "^4.7.4",
+    "vite": "^3.0.9",
+    "vitest": "^0.17.0",
+    "vue": "^3.2.37"
+  }
+}
