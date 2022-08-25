@@ -20,6 +20,12 @@
 
 <!--challenges-end-->
 
+## 解题
+
+```bash
+yarn dev questions/XXX-XXXXX
+```
+
 ## 🤝 参与贡献
 
 你可以通过如下几种方式参与贡献这个项目
