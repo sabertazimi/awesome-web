@@ -1,23 +1,24 @@
 <script setup lang="ts">
 import type { Ref } from 'vue';
-import { reactive, ref } from 'vue';
+import { isRef, reactive, ref, toRef, unref } from 'vue';
 
 const initial = ref(10);
 const count = ref(0);
 
 // Challenge 1: Update ref
-function update(value) {
+function update(value: number) {
   // impl...
+  count.value = value;
 }
 
 /**
  * Challenge 2: Check if the `count` is a ref object.
  * Make the output be 1
  */
-console
-  .log
+console.log(
   // impl ? 1 : 0
-  ();
+  isRef(count) ? 1 : 0
+);
 
 /**
  * Challenge 3: Unwrap ref
@@ -25,7 +26,7 @@ console
  */
 function initialCount(value: number | Ref<number>) {
   // Make the output be true
-  console.log(value === 10);
+  console.log(unref(value) === 10);
 }
 
 initialCount(initial);
@@ -41,7 +42,7 @@ const state = reactive({
   foo: 1,
   bar: 2,
 });
-const fooRef = ref(); // change the impl...
+const fooRef = ref(toRef(state, 'foo')); // change the impl...
 
 // mutating the ref updates the original
 fooRef.value++;
