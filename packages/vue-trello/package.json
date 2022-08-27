@@ -23,7 +23,7 @@
     "@dg-scripts/stylelint-config": "^5.11.0",
     "@vitejs/plugin-vue": "^3.0.3",
     "autoprefixer": "^10.4.8",
-    "eslint": "^8.22.0",
+    "eslint": "^8.23.0",
     "postcss": "^8.4.16",
     "prettier": "^2.7.1",
     "stylelint": "^14.11.0",
