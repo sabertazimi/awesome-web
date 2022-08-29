@@ -1,13 +1,17 @@
 <script setup lang="ts">
-import { inject, onMounted } from 'vue';
+import { inject, onMounted, onUnmounted, ref } from 'vue';
 
-const timer = inject('timer');
-const count = inject('count');
+const timer = inject('timer', ref(0));
+const count = inject('count', ref(0));
 
 onMounted(() => {
   timer.value = window.setInterval(() => {
     count.value++;
   }, 1000);
+});
+
+onUnmounted(() => {
+  clearInterval(timer.value);
 });
 </script>
 
