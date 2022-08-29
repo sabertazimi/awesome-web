@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, h } from 'vue';
+import { h, ref } from 'vue';
 
 interface ListProps {
   list: {
