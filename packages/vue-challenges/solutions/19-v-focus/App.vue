@@ -9,7 +9,15 @@ const state = ref(false);
  *
  */
 
-const VFocus = {};
+const vFocus = {
+  updated(el, { value }) {
+    if (value) {
+      el.focus();
+    } else {
+      el.blur();
+    }
+  },
+};
 
 setInterval(() => {
   state.value = !state.value;
