@@ -4,5 +4,7 @@ const msg = 'Hello World';
 
 <template>
   <!-- Renders it to a child element of the `body` -->
-  <span>{{ msg }}</span>
+  <Teleport to="body">
+    <span>{{ msg }}</span>
+  </Teleport>
 </template>
