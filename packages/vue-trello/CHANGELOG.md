@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.8.0](https://github.com/sabertazimi/awesome-web/compare/v1.7.1...v1.8.0) (2022-08-29)
+
+
+### Bug Fixes
+
+* **deps:** update dependency nanoid to v4 ([#347](https://github.com/sabertazimi/awesome-web/issues/347)) ([9260f1f](https://github.com/sabertazimi/awesome-web/commit/9260f1fd76825fb577e25593a632ef93c85fe6cc))
+
+
+
+
+
 ## [1.7.1](https://github.com/sabertazimi/awesome-web/compare/v1.7.0...v1.7.1) (2022-05-27)
 
 **Note:** Version bump only for package @sabertazimi/vue-trello
