@@ -11,7 +11,7 @@ p {
 }
 
 /* Make it work */
-body {
+:global(body) {
   width: 100vw;
   height: 100vh;
   background-color: burlywood;
