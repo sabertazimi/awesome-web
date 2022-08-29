@@ -1,5 +1,7 @@
 {
   "name": "vue-challenges",
+  "version": "1.7.1",
+  "private": true,
   "description": "Collection of Vue.js challenges",
   "license": "MIT",
   "homepage": "https://github.com/webfansplz/vuejs-challenges#readme",
