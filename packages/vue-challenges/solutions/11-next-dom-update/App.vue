@@ -1,16 +1,17 @@
 <script setup>
-import { ref } from 'vue';
+import { nextTick, ref } from 'vue';
 
 const count = ref(0);
 const counter = ref(null);
 
-function increment() {
+async function increment() {
   count.value++;
 
   /**
    * DOM is not yet updated, how can we make sure that the DOM gets updated
    * Make the output be true
    */
+  await nextTick();
   console.log(+counter.value.textContent === 1);
 }
 </script>
