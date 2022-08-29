@@ -1,10 +1,11 @@
 import { mount } from '@vue/test-utils';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 
 import App from './App.vue';
 
 describe('useLocalStorage', () => {
   it('should work', async () => {
+    console.log = vi.fn();
     let wrapper = mount(App);
     expect(wrapper.find('p').text()).toBe('Counter: 0');
     await wrapper.find('button').trigger('click');
