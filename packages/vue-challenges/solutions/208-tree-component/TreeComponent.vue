@@ -8,5 +8,8 @@ defineProps<{ data: TreeData[] }>();
 </script>
 
 <template>
-  <div></div>
+  <ul v-for="{ key, title, children } of data" :key="key">
+    <li>{{ title }}</li>
+    <TreeComponent v-if="Array.isArray(children)" :data="children" />
+  </ul>
 </template>
