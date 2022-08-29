@@ -10,6 +10,6 @@ const click2 = () => {
 
 <template>
   <div @click="click1()">
-    <div @click="click2()">click me</div>
+    <div @click.stop="click2()">click me</div>
   </div>
 </template>
