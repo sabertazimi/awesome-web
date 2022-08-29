@@ -6,7 +6,21 @@
  *
  */
 
-const VDebounceClick = {};
+const debounce = (fn: Function, delay: number) => {
+  let timer = null;
+
+  return function () {
+    if (timer) return;
+    fn();
+    timer = setTimeout(() => (timer = clearTimeout(timer)), delay);
+  };
+};
+
+const vDebounceClick = {
+  mounted(el: HTMLElement, { value, arg }: { value: Function; arg: number }) {
+    el.addEventListener('click', debounce(value, arg));
+  },
+};
 
 function onClick() {
   console.log('Only triggered once when clicked many times quickly');
