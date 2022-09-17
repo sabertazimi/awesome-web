@@ -3587,7 +3587,7 @@ __metadata:
   resolution: "@sabertazimi/react-renderer@workspace:packages/react-renderer"
   dependencies:
     "@sabertazimi/react-scripts": ^5.11.0
-    "@testing-library/dom": ^8.17.1
+    "@testing-library/dom": ^8.18.0
     "@testing-library/jest-dom": ^5.16.5
     "@testing-library/react": ^13.4.0
     "@testing-library/user-event": ^14.4.3
@@ -3715,7 +3715,7 @@ __metadata:
     prettier: ^2.7.1
     snabbdom: ^3.5.1
     typescript: ^4.8.3
-    vite: ^3.1.1
+    vite: ^3.1.2
   languageName: unknown
   linkType: soft
 
@@ -3734,7 +3734,7 @@ __metadata:
     stylelint: ^14.11.0
     tailwindcss: ^3.1.8
     typescript: ^4.8.3
-    vite: ^3.1.1
+    vite: ^3.1.2
     vue: ^3.2.39
     vue-router: ^4.1.5
     vue-tsc: ^0.40.13
@@ -3977,9 +3977,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@testing-library/dom@npm:^8.17.1, @testing-library/dom@npm:^8.5.0":
-  version: 8.17.1
-  resolution: "@testing-library/dom@npm:8.17.1"
+"@testing-library/dom@npm:^8.18.0, @testing-library/dom@npm:^8.5.0":
+  version: 8.18.0
+  resolution: "@testing-library/dom@npm:8.18.0"
   dependencies:
     "@babel/code-frame": ^7.10.4
     "@babel/runtime": ^7.12.5
@@ -3989,7 +3989,7 @@ __metadata:
     dom-accessibility-api: ^0.5.9
     lz-string: ^1.4.4
     pretty-format: ^27.0.2
-  checksum: e4df091fcf84c9eac4a6ee4c76674c1d562bf98732f0ac8820972d7718ab10397b672b9f082aace3cacd1f610fc77de6e1b6094e67afe1df0443bf22eb9deab2
+  checksum: 24fd4fad91a5939a300f8a6c0c79d49dc7576823a2c0713d8ee67fea4f41e47e6a3122c04d45cc2844a25ed12bbe59a299d1e2055d53c707c8cad4d672767d13
   languageName: node
   linkType: hard
 
@@ -18883,9 +18883,9 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
-"vite@npm:^2.9.12 || ^3.0.0-0, vite@npm:^3.1.1":
-  version: 3.1.1
-  resolution: "vite@npm:3.1.1"
+"vite@npm:^2.9.12 || ^3.0.0-0, vite@npm:^3.1.2":
+  version: 3.1.2
+  resolution: "vite@npm:3.1.2"
   dependencies:
     esbuild: ^0.15.6
     fsevents: ~2.3.2
@@ -18911,7 +18911,7 @@ resolve@^2.0.0-next.3:
       optional: true
   bin:
     vite: bin/vite.js
-  checksum: a7f402e1b07d62dc46254d3b38b24b0174e77318900fb72a9623d38b58217ab93f79a3b10594368d64f08d1e080e50e0f07b171202c6141de8b1be1144ada011
+  checksum: 90f645853f53efaddfa216eaf42ed93afe6b43f849889a7716ef9c04623b9ae244f391ed17ed0c41189422060cad5e78eb17583ac5a3759988f54b7412e18cb7
   languageName: node
   linkType: hard
 
@@ -18983,7 +18983,7 @@ resolve@^2.0.0-next.3:
     eslint: ^8.23.1
     jsdom: ^20.0.0
     typescript: ^4.8.3
-    vite: ^3.1.1
+    vite: ^3.1.2
     vitest: ^0.23.2
     vue: ^3.2.39
   languageName: unknown
