@@ -5272,12 +5272,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vue/test-utils@npm:^2.2.0":
-  version: 2.2.0
-  resolution: "@vue/test-utils@npm:2.2.0"
+"@vue/test-utils@npm:^2.2.1":
+  version: 2.2.1
+  resolution: "@vue/test-utils@npm:2.2.1"
   peerDependencies:
     vue: ^3.0.1
-  checksum: e7a873a7020e6f13f2c301a695ca8e3e21df58ad09d324350e578f0607663e5356ead8a6e37a296f22e0dbbb9ed0a121a63ed923de191037d8ab4b046581ff9d
+  checksum: 6eccfbcd1839b43a6cdf7838c537a5b2446553d78a6743cc73c29765c21a66a7894089179139b7187b0b06a1bef1bee1758c738b18fd1dd8c91dec752a37da92
   languageName: node
   linkType: hard
 
@@ -19088,7 +19088,7 @@ resolve@^2.0.0-next.3:
   resolution: "vue-challenges@workspace:packages/vue-challenges"
   dependencies:
     "@vitejs/plugin-vue": ^3.2.0
-    "@vue/test-utils": ^2.2.0
+    "@vue/test-utils": ^2.2.1
     eslint: ^8.26.0
     jsdom: ^20.0.1
     typescript: ^4.8.4
