@@ -17,10 +17,10 @@
   },
   "devDependencies": {
     "@dg-scripts/eslint-config": "^5.11.0",
-    "eslint": "^8.26.0",
+    "eslint": "^8.27.0",
     "prettier": "^2.7.1",
     "typescript": "^4.8.4",
-    "vite": "^3.2.2"
+    "vite": "^3.2.3"
   },
   "dependencies": {
     "snabbdom": "^3.5.1"
