@@ -15,7 +15,7 @@
     "serve": "vue-cli-service serve"
   },
   "dependencies": {
-    "core-js": "^3.26.1",
+    "core-js": "^3.27.1",
     "vue": "^3.2.45",
     "vue-router": "^4.1.6",
     "vuex": "^4.1.0"
