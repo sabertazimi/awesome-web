@@ -57,5 +57,5 @@ function toggle(index: number) {
 </script>
 
 <template>
-  <list-component :list="list" :active-index="activeIndex" @toggle="toggle" />
+  <ListComponent :list="list" :active-index="activeIndex" @toggle="toggle" />
 </template>
