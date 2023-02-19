@@ -45,8 +45,8 @@
   "homepage": "https://github.com/sabertazimi/awesome-web",
   "packageManager": "yarn@3.4.1",
   "devDependencies": {
-    "@dg-scripts/eslint-config": "^5.13.2",
-    "@dg-scripts/stylelint-config": "^5.13.2",
+    "@dg-scripts/eslint-config": "^5.13.3",
+    "@dg-scripts/stylelint-config": "^5.13.3",
     "@types/node": "^18.14.0",
     "eslint": "^8.34.0",
     "lerna": "^6.5.1",
