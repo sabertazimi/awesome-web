@@ -3215,12 +3215,12 @@ __metadata:
   resolution: "@sabertazimi/react-renderer@workspace:packages/react-renderer"
   dependencies:
     "@sabertazimi/react-scripts": ^5.13.4
-    "@testing-library/dom": ^9.0.0
+    "@testing-library/dom": ^9.0.1
     "@testing-library/jest-dom": ^5.16.5
     "@testing-library/react": ^14.0.0
     "@testing-library/user-event": ^14.4.3
     "@types/jest": ^29.4.0
-    "@types/node": ^18.14.6
+    "@types/node": ^18.15.0
     "@types/react": ^18.0.28
     "@types/react-dom": ^18.0.11
     "@types/react-reconciler": ^0.28.2
@@ -3228,7 +3228,7 @@ __metadata:
     react-dom: ^18.2.0
     react-reconciler: ^0.29.0
     typescript: ^4.9.5
-    web-vitals: ^3.1.1
+    web-vitals: ^3.3.0
   languageName: unknown
   linkType: soft
 
@@ -3353,7 +3353,7 @@ __metadata:
     "@dg-scripts/eslint-config": ^5.13.4
     "@dg-scripts/stylelint-config": ^5.13.4
     "@vitejs/plugin-vue": ^4.0.0
-    autoprefixer: ^10.4.13
+    autoprefixer: ^10.4.14
     eslint: ^8.35.0
     nanoid: ^4.0.1
     postcss: ^8.4.21
@@ -3606,9 +3606,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@testing-library/dom@npm:^9.0.0":
-  version: 9.0.0
-  resolution: "@testing-library/dom@npm:9.0.0"
+"@testing-library/dom@npm:^9.0.0, @testing-library/dom@npm:^9.0.1":
+  version: 9.0.1
+  resolution: "@testing-library/dom@npm:9.0.1"
   dependencies:
     "@babel/code-frame": ^7.10.4
     "@babel/runtime": ^7.12.5
@@ -3616,9 +3616,9 @@ __metadata:
     aria-query: ^5.0.0
     chalk: ^4.1.0
     dom-accessibility-api: ^0.5.9
-    lz-string: ^1.4.4
+    lz-string: ^1.5.0
     pretty-format: ^27.0.2
-  checksum: 5381bf9438f0ee35f795e7f9b203564aa455e7cd838b6677084c82dd56396779c38cc49ddffed4e57a8bcc3c62b4bc96ea684bb4b24d13655152db745327b2cd
+  checksum: fa3d4097d0efd3b186d90e32ffa71c3f9c4ea7a5a793b186b565044b2950eea469594e1f75803e5edb52a75731feecd19cf7034b009b0bd3bfba173eb9c9cd0c
   languageName: node
   linkType: hard
 
@@ -3995,10 +3995,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:^18.14.6":
-  version: 18.14.6
-  resolution: "@types/node@npm:18.14.6"
-  checksum: 2f88f482cabadc6dbddd627a1674239e68c3c9beab56eb4ae2309fb96fd17fc3a509d99b0309bafe13b58529574f49ecf3a583f2ebe2896dd32fe4be436dc96e
+"@types/node@npm:*, @types/node@npm:^18.15.0":
+  version: 18.15.0
+  resolution: "@types/node@npm:18.15.0"
+  checksum: d81372276dd5053b1743338b61a2178ff9722dc609189d01fc7d1c2acd539414039e0e4780678730514390dad3f29c366a28c29e8dbd5b0025651181f6dd6669
   languageName: node
   linkType: hard
 
@@ -4931,9 +4931,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vue/test-utils@npm:^2.3.0":
-  version: 2.3.0
-  resolution: "@vue/test-utils@npm:2.3.0"
+"@vue/test-utils@npm:^2.3.1":
+  version: 2.3.1
+  resolution: "@vue/test-utils@npm:2.3.1"
   dependencies:
     "@vue/compiler-dom": ^3.0.1
     "@vue/server-renderer": ^3.0.1
@@ -4947,7 +4947,7 @@ __metadata:
       optional: true
     "@vue/server-renderer":
       optional: true
-  checksum: a7a2a4cae63b4bc0ba4c927266b6dd8eb347715465140ddfda8196911dfa9efba37e56fa4f3b8a2789ed997cd8ccf1aa5f331c21671ae156bcfad59920ff6f34
+  checksum: 3eb02dd1b49db8e7424c721a492486bfe6fed4bf1bd7a61e6a099bc87c3995155439f8fcc06fdc6390c6e60a2beb4108a2e9e717dd68536f78a2649f256a89c1
   languageName: node
   linkType: hard
 
@@ -5788,12 +5788,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"autoprefixer@npm:^10.2.4, autoprefixer@npm:^10.4.13":
-  version: 10.4.13
-  resolution: "autoprefixer@npm:10.4.13"
+"autoprefixer@npm:^10.2.4, autoprefixer@npm:^10.4.13, autoprefixer@npm:^10.4.14":
+  version: 10.4.14
+  resolution: "autoprefixer@npm:10.4.14"
   dependencies:
-    browserslist: ^4.21.4
-    caniuse-lite: ^1.0.30001426
+    browserslist: ^4.21.5
+    caniuse-lite: ^1.0.30001464
     fraction.js: ^4.2.0
     normalize-range: ^0.1.2
     picocolors: ^1.0.0
@@ -5802,7 +5802,7 @@ __metadata:
     postcss: ^8.1.0
   bin:
     autoprefixer: bin/autoprefixer
-  checksum: dcb1cb7ae96a3363d65d82e52f9a0a7d8c982256f6fd032d7e1ec311f099c23acfebfd517ff8e96bf93f716a66c4ea2b80c60aa19efd2f474ce434bd75ef7b79
+  checksum: e9f18e664a4e4a54a8f4ec5f6b49ed228ec45afaa76efcae361c93721795dc5ab644f36d2fdfc0dea446b02a8067b9372f91542ea431994399e972781ed46d95
   languageName: node
   linkType: hard
 
@@ -5819,7 +5819,7 @@ __metadata:
   dependencies:
     "@dg-scripts/eslint-config": ^5.13.4
     "@dg-scripts/stylelint-config": ^5.13.4
-    "@types/node": ^18.14.6
+    "@types/node": ^18.15.0
     eslint: ^8.35.0
     lerna: ^6.5.1
     pm2: ^5.2.2
@@ -6478,10 +6478,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"caniuse-lite@npm:^1.0.0, caniuse-lite@npm:^1.0.30001426, caniuse-lite@npm:^1.0.30001449":
-  version: 1.0.30001451
-  resolution: "caniuse-lite@npm:1.0.30001451"
-  checksum: 48a06a7881093bb4d8a08ed5428f24a1cbdaa544b0a6f0c3614287d4f34b6c853e79a0f608a5bd901c27995f5e951825606fba11e7930251cc422bd61de9d849
+"caniuse-lite@npm:^1.0.0, caniuse-lite@npm:^1.0.30001449, caniuse-lite@npm:^1.0.30001464":
+  version: 1.0.30001464
+  resolution: "caniuse-lite@npm:1.0.30001464"
+  checksum: 67cdee102c1660d62d7b9dbd4740bb7af096236618f2509fd2e0039d50db5f02fb87c21d90b6d573fdcf50deaf3c84503d009e871502b5c221d0ba1dec18ba11
   languageName: node
   linkType: hard
 
@@ -12888,12 +12888,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lz-string@npm:^1.4.4":
-  version: 1.4.4
-  resolution: "lz-string@npm:1.4.4"
+"lz-string@npm:^1.5.0":
+  version: 1.5.0
+  resolution: "lz-string@npm:1.5.0"
   bin:
     lz-string: bin/bin.js
-  checksum: 54e31238a61a84d8f664d9860a9fba7310c5b97a52c444f80543069bc084815eff40b8d4474ae1d93992fdf6c252dca37cf27f6adbeb4dbc3df2f3ac773d0e61
+  checksum: 1ee98b4580246fd90dd54da6e346fb1caefcf05f677c686d9af237a157fdea3fd7c83a4bc58f858cd5b10a34d27afe0fdcbd0505a47e0590726a873dc8b8f65d
   languageName: node
   linkType: hard
 
@@ -19266,7 +19266,7 @@ __metadata:
   resolution: "vue-challenges@workspace:packages/vue-challenges"
   dependencies:
     "@vitejs/plugin-vue": ^4.0.0
-    "@vue/test-utils": ^2.3.0
+    "@vue/test-utils": ^2.3.1
     eslint: ^8.35.0
     jsdom: ^21.1.0
     typescript: ^4.9.5
@@ -19442,10 +19442,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"web-vitals@npm:^3.1.1":
-  version: 3.1.1
-  resolution: "web-vitals@npm:3.1.1"
-  checksum: 26d552d7e0bba470e1426bbf55c3c1a701c683bbde4553791a2c7e1bc3a7b7b29bf66ccf67c74872af3aa39e5668728736b90f8b3fee2910c0c566e7eb1b6096
+"web-vitals@npm:^3.3.0":
+  version: 3.3.0
+  resolution: "web-vitals@npm:3.3.0"
+  checksum: 925a912ec3e0d11fe19687b13abb8fc9d6054433f8ee4636fd4c03de3744264cea448e2c36a20fe82bc5979c796cf0ed20668f2b92beef8e134b195e38c231f8
   languageName: node
   linkType: hard
 
