@@ -19,8 +19,8 @@
     "vuex": "^4.1.0"
   },
   "devDependencies": {
-    "@dg-scripts/eslint-config": "^5.13.4",
-    "@dg-scripts/stylelint-config": "^5.13.4",
+    "@dg-scripts/eslint-config": "^5.13.5",
+    "@dg-scripts/stylelint-config": "^5.13.5",
     "@vitejs/plugin-vue": "^4.1.0",
     "autoprefixer": "^10.4.14",
     "eslint": "^8.36.0",
