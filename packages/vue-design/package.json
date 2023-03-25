@@ -16,7 +16,7 @@
     "preview": "vite preview"
   },
   "devDependencies": {
-    "@dg-scripts/eslint-config": "^5.13.4",
+    "@dg-scripts/eslint-config": "^5.13.5",
     "eslint": "^8.36.0",
     "prettier": "^2.8.7",
     "typescript": "^5.0.2",
