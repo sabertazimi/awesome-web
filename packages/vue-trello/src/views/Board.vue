@@ -54,7 +54,7 @@ const createColumn = (event: Event) => {
 }
 
 .column {
-  @apply mr-4 mb-4 bg-gray-300 p-2 text-left shadow-lg;
+  @apply mb-4 mr-4 bg-gray-300 p-2 text-left shadow-lg;
 
   min-width: 350px;
 }
