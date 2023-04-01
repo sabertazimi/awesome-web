@@ -23,12 +23,12 @@
     "@dg-scripts/stylelint-config": "^5.13.5",
     "@vitejs/plugin-vue": "^4.1.0",
     "autoprefixer": "^10.4.14",
-    "eslint": "^8.36.0",
+    "eslint": "^8.37.0",
     "postcss": "^8.4.21",
     "prettier": "^2.8.7",
-    "stylelint": "^15.3.0",
-    "tailwindcss": "^3.2.7",
-    "typescript": "^5.0.2",
+    "stylelint": "^15.4.0",
+    "tailwindcss": "^3.3.1",
+    "typescript": "^5.0.3",
     "vite": "^4.2.1",
     "vue-tsc": "^1.2.0"
   }
