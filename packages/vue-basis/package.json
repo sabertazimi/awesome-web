@@ -15,7 +15,7 @@
     "serve": "vue-cli-service serve"
   },
   "dependencies": {
-    "core-js": "^3.29.1",
+    "core-js": "^3.30.0",
     "vue": "^3.2.47",
     "vue-router": "^4.1.6",
     "vuex": "^4.1.0"
@@ -29,8 +29,8 @@
     "@vue/cli-plugin-vuex": "^5.0.8",
     "@vue/cli-service": "^5.0.8",
     "@vue/compiler-sfc": "^3.2.47",
-    "eslint": "^8.37.0",
+    "eslint": "^8.38.0",
     "prettier": "^2.8.7",
-    "typescript": "^5.0.3"
+    "typescript": "^5.0.4"
   }
 }
