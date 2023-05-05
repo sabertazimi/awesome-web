@@ -29,7 +29,7 @@
     "@vitejs/plugin-vue": "^4.2.1",
     "@vue/test-utils": "^2.3.2",
     "eslint": "^8.39.0",
-    "jsdom": "^21.1.1",
+    "jsdom": "^22.0.0",
     "typescript": "^5.0.4",
     "vite": "^4.3.3",
     "vitest": "^0.30.1",
