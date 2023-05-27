@@ -3355,8 +3355,8 @@ __metadata:
     "@testing-library/react": ^14.0.0
     "@testing-library/user-event": ^14.4.3
     "@types/jest": ^29.5.1
-    "@types/node": ^18.16.13
-    "@types/react": ^18.2.6
+    "@types/node": ^18.16.16
+    "@types/react": ^18.2.7
     "@types/react-dom": ^18.2.4
     "@types/react-reconciler": ^0.28.2
     react: ^18.2.0
@@ -3477,7 +3477,7 @@ __metadata:
     prettier: ^2.8.8
     snabbdom: ^3.5.1
     typescript: ^5.0.4
-    vite: ^4.3.8
+    vite: ^4.3.9
   languageName: unknown
   linkType: soft
 
@@ -3496,7 +3496,7 @@ __metadata:
     stylelint: ^15.6.2
     tailwindcss: ^3.3.2
     typescript: ^5.0.4
-    vite: ^4.3.8
+    vite: ^4.3.9
     vue: ^3.3.4
     vue-router: ^4.2.1
     vue-tsc: ^1.6.5
@@ -4154,10 +4154,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:^18.16.13":
-  version: 18.16.13
-  resolution: "@types/node@npm:18.16.13"
-  checksum: ec1ffb814750fc7f7c6c7cb138ed56f24cb23a2ffe50d264a265be52b5cafca37b94b8fb3b5b420f5674baa677b0e011160aeaa1a0edd862aa4cfa11f4467918
+"@types/node@npm:*, @types/node@npm:^18.16.16":
+  version: 18.16.16
+  resolution: "@types/node@npm:18.16.16"
+  checksum: 0efad726dd1e0bef71c392c708fc5d78c5b39c46b0ac5186fee74de4ccb1b2e847b3fa468da67d62812f56569da721b15bf31bdc795e6c69b56c73a45079ed2d
   languageName: node
   linkType: hard
 
@@ -4221,14 +4221,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:*, @types/react@npm:^18.2.6":
-  version: 18.2.6
-  resolution: "@types/react@npm:18.2.6"
+"@types/react@npm:*, @types/react@npm:^18.2.7":
+  version: 18.2.7
+  resolution: "@types/react@npm:18.2.7"
   dependencies:
     "@types/prop-types": "*"
     "@types/scheduler": "*"
     csstype: ^3.0.2
-  checksum: dea9d232d8df7ac357367a69dcb557711ab3d5501807ffa77cebeee73d49ee94d095f298e36853c63ed47cce097eee4c7eae2aaa8c02fac3f0171ec1b523a819
+  checksum: caa5da4cf929766738ec789301dc6fb6624bd48dd317d851c4c9b84b1f47cd8ebe17fe01398cadaa0bc938cd4d502d67f4b9de9ff771dc132096bdc86228efba
   languageName: node
   linkType: hard
 
@@ -5988,7 +5988,7 @@ __metadata:
   dependencies:
     "@dg-scripts/eslint-config": ^5.13.5
     "@dg-scripts/stylelint-config": ^5.13.5
-    "@types/node": ^18.16.13
+    "@types/node": ^18.16.16
     eslint: ^8.41.0
     lerna: ^6.6.2
     pm2: ^5.3.0
@@ -19859,9 +19859,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite@npm:^3.0.0 || ^4.0.0, vite@npm:^4.3.8":
-  version: 4.3.8
-  resolution: "vite@npm:4.3.8"
+"vite@npm:^3.0.0 || ^4.0.0, vite@npm:^4.3.9":
+  version: 4.3.9
+  resolution: "vite@npm:4.3.9"
   dependencies:
     esbuild: ^0.17.5
     fsevents: ~2.3.2
@@ -19892,7 +19892,7 @@ __metadata:
       optional: true
   bin:
     vite: bin/vite.js
-  checksum: 454a7c0c1bd1fd5611c9df28c62e3adbe75f48e87fc787179c5af60c4ab9a87aa0eda44be446d898851a135766d36f65f8e7d56317556aa807d30e561de369c4
+  checksum: 8c45a516278d1e0425fac00c0877336790f71484a851a318346a70e0d2aef9f3b9651deb2f9f002c791ceb920eda7d6a3cda753bdefd657321c99f448b02dd25
   languageName: node
   linkType: hard
 
@@ -19987,7 +19987,7 @@ __metadata:
     eslint: ^8.41.0
     jsdom: ^22.0.0
     typescript: ^5.0.4
-    vite: ^4.3.8
+    vite: ^4.3.9
     vitest: ^0.31.1
     vue: ^3.3.4
   languageName: unknown
