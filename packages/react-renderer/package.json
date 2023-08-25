@@ -22,15 +22,15 @@
   "devDependencies": {
     "@sabertazimi/react-scripts": "^5.14.0",
     "@testing-library/dom": "^9.3.1",
-    "@testing-library/jest-dom": "^6.0.1",
+    "@testing-library/jest-dom": "^6.1.2",
     "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "^14.4.3",
-    "@types/jest": "^29.5.3",
-    "@types/node": "^18.17.6",
-    "@types/react": "^18.2.20",
+    "@types/jest": "^29.5.4",
+    "@types/node": "^18.17.11",
+    "@types/react": "^18.2.21",
     "@types/react-dom": "^18.2.7",
-    "@types/react-reconciler": "^0.28.2",
-    "typescript": "^5.1.6"
+    "@types/react-reconciler": "^0.28.3",
+    "typescript": "^5.2.2"
   },
   "eslintConfig": {
     "extends": [
