@@ -14,14 +14,14 @@
   },
   "dependencies": {
     "nanoid": "^5.0.4",
-    "vue": "^3.4.2",
+    "vue": "^3.4.3",
     "vue-router": "^4.2.5",
     "vuex": "^4.1.0"
   },
   "devDependencies": {
     "@dg-scripts/eslint-config": "^5.14.1",
     "@dg-scripts/stylelint-config": "^5.14.1",
-    "@vitejs/plugin-vue": "^5.0.1",
+    "@vitejs/plugin-vue": "^5.0.2",
     "autoprefixer": "^10.4.16",
     "eslint": "^8.56.0",
     "postcss": "^8.4.32",
