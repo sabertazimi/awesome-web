@@ -2,13 +2,5 @@
   "extends": "@dg-scripts",
   "rules": {
     "no-console": "off"
-  },
-  "overrides": [
-    {
-      "files": ["*.json", "*.json5"],
-      "rules": {
-        "jsonc/comma-dangle": ["off"]
-      }
-    }
-  ]
+  }
 }
