@@ -23,6 +23,6 @@
     "vite": "^5.0.12"
   },
   "dependencies": {
-    "snabbdom": "^3.5.1"
+    "snabbdom": "^3.6.0"
   }
 }
