@@ -17,7 +17,7 @@
   "dependencies": {
     "core-js": "^3.36.0",
     "vue": "^3.4.19",
-    "vue-router": "^4.2.5",
+    "vue-router": "^4.3.0",
     "vuex": "^4.1.0"
   },
   "devDependencies": {
@@ -29,7 +29,7 @@
     "@vue/cli-plugin-vuex": "^5.0.8",
     "@vue/cli-service": "^5.0.8",
     "@vue/compiler-sfc": "^3.4.19",
-    "eslint": "^8.56.0",
+    "eslint": "^8.57.0",
     "prettier": "^3.2.5",
     "typescript": "^5.3.3"
   }
