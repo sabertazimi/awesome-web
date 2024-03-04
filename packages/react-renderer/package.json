@@ -4,7 +4,7 @@
   "private": true,
   "homepage": "https://sabertazimi.github.io/awesome-web/react-renderer",
   "scripts": {
-    "build": "react-scripts build && yarn build:post",
+    "build": "react-scripts build && pnpm build:post",
     "build:post": "mkdir -p ../../build/react-renderer && cp -fr ./build/* ../../build/react-renderer",
     "build:profile": "react-scripts build --profile",
     "start": "react-scripts start",

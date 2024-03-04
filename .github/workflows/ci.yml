@@ -18,19 +18,21 @@ jobs:
         with:
           submodules: true
           fetch-depth: 1
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
       - name: Setup Node environment
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
           architecture: x64
           registry-url: https://registry.npmjs.org/
-          cache: 'yarn'
+          cache: 'pnpm'
       - name: Install dependencies
         run: |
-          yarn
+          pnpm install
       - name: Run linter tests
         run: |
-          yarn lint
+          pnpm lint
 
   test:
     name: Testing
@@ -38,7 +40,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
-        node-version: [18]
+        node-version: [20]
         architecture: [x64]
     steps:
       - name: Checkout repository
@@ -46,22 +48,24 @@ jobs:
         with:
           submodules: true
           fetch-depth: 1
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
       - name: Setup Node environment
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
           architecture: ${{ matrix.architecture }}
           registry-url: https://registry.npmjs.org/
-          cache: 'yarn'
+          cache: 'pnpm'
       - name: Install dependencies
         run: |
-          yarn
+          pnpm install
       - name: Run unit tests
         run: |
-          yarn test
+          pnpm test
       - name: Perform code coverage report action
         uses: codecov/codecov-action@v4
-        if: ${{ matrix.node-version == 18 && matrix.os == 'ubuntu-latest' && matrix.architecture == 'x64' }}
+        if: ${{ matrix.node-version == 20 && matrix.os == 'ubuntu-latest' && matrix.architecture == 'x64' }}
 
   build:
     name: Building
@@ -69,7 +73,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
-        node-version: [18]
+        node-version: [20]
         architecture: [x64]
     steps:
       - name: Initialize git configuration
@@ -82,22 +86,24 @@ jobs:
         with:
           submodules: true
           fetch-depth: 1
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
       - name: Setup Node environment
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
           architecture: ${{ matrix.architecture }}
           registry-url: https://registry.npmjs.org/
-          cache: 'yarn'
+          cache: 'pnpm'
       - name: Install dependencies
         run: |
-          yarn
+          pnpm install
       - name: Build applications
         run: |
-          yarn build
+          pnpm build
       - name: Archive production artifacts
         uses: actions/upload-artifact@v4
-        if: ${{ matrix.node-version == 18 && matrix.os == 'ubuntu-latest' && matrix.architecture == 'x64' }}
+        if: ${{ matrix.node-version == 20 && matrix.os == 'ubuntu-latest' && matrix.architecture == 'x64' }}
         with:
           name: build
           path: build

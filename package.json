@@ -3,15 +3,15 @@
   "private": true,
   "description": "A brand new repository for web development prototypes",
   "scripts": {
-    "build": "yarn build:prepare && lerna run build",
+    "build": "pnpm build:prepare && lerna run build",
     "build:prepare": "rm -fr ./build && mkdir -p ./build",
     "lint": "lerna run lint",
     "release": "lerna version --force-publish --sign-git-commit --sign-git-tag",
-    "start": "yarn start:react-renderer",
-    "start:react-renderer": "yarn workspace @sabertazimi/react-renderer start",
-    "start:vue-basis": "yarn workspace @sabertazimi/vue-basis serve",
-    "start:vue-design": "yarn workspace @sabertazimi/vue-design dev",
-    "start:vue-trello": "yarn workspace @sabertazimi/vue-trello dev",
+    "start": "pnpm start:react-renderer",
+    "start:react-renderer": "pnpm --filter @sabertazimi/react-renderer start",
+    "start:vue-basis": "pnpm --filter @sabertazimi/vue-basis serve",
+    "start:vue-design": "pnpm --filter @sabertazimi/vue-design dev",
+    "start:vue-trello": "pnpm --filter @sabertazimi/vue-trello dev",
     "test": "lerna run test"
   },
   "repository": {
@@ -43,7 +43,7 @@
     "url": "https://github.com/sabertazimi/awesome-web/issues"
   },
   "homepage": "https://github.com/sabertazimi/awesome-web",
-  "packageManager": "yarn@4.1.0",
+  "packageManager": "pnpm@8.15.4",
   "devDependencies": {
     "@dg-scripts/eslint-config": "^5.14.2",
     "@dg-scripts/stylelint-config": "^5.14.2",
@@ -56,8 +56,5 @@
     "ts-node": "^10.9.2",
     "tslib": "^2.6.2",
     "typescript": "^5.3.3"
-  },
-  "workspaces": [
-    "./packages/*"
-  ]
+  }
 }
