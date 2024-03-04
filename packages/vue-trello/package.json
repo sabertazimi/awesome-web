@@ -4,10 +4,10 @@
   "private": true,
   "license": "MIT",
   "scripts": {
-    "build": "vue-tsc --noEmit && vite build && yarn build:post",
+    "build": "vue-tsc --noEmit && vite build && pnpm build:post",
     "build:post": "mkdir -p ../../build/vue-trello && cp -fr ./dist/* ../../build/vue-trello",
     "dev": "vite",
-    "lint": "yarn lint:style && yarn lint:type-check",
+    "lint": "pnpm lint:style && pnpm lint:type-check",
     "lint:style": "eslint --ext .ts,.vue ./src && stylelint ./src/**/*.{css,vue}",
     "lint:type-check": "vue-tsc --noEmit",
     "serve": "vite preview"
@@ -21,6 +21,7 @@
   "devDependencies": {
     "@dg-scripts/eslint-config": "^5.14.2",
     "@dg-scripts/stylelint-config": "^5.14.2",
+    "@types/node": "^20.11.24",
     "@vitejs/plugin-vue": "^5.0.4",
     "autoprefixer": "^10.4.18",
     "eslint": "^8.57.0",

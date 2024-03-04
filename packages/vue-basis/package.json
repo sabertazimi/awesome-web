@@ -9,7 +9,7 @@
     "not ie 11"
   ],
   "scripts": {
-    "build": "vue-cli-service build && yarn build:post",
+    "build": "vue-cli-service build && pnpm build:post",
     "build:post": "mkdir -p ../../build/vue-basis && cp -fr ./dist/* ../../build/vue-basis",
     "lint": "vue-cli-service lint",
     "serve": "vue-cli-service serve"
@@ -22,6 +22,7 @@
   },
   "devDependencies": {
     "@dg-scripts/eslint-config": "^5.14.2",
+    "@types/node": "^20.11.24",
     "@vue/cli-plugin-babel": "^5.0.8",
     "@vue/cli-plugin-eslint": "^5.0.8",
     "@vue/cli-plugin-router": "^5.0.8",
