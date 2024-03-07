@@ -1,13 +1,13 @@
-import { mount } from '@vue/test-utils';
-import { describe, expect, it } from 'vitest';
+import { mount } from '@vue/test-utils'
+import { describe, expect, it } from 'vitest'
 
-import App from './App.vue';
-import Tree from './TreeComponent.vue';
+import App from './App.vue'
+import Tree from './TreeComponent.vue'
 
 describe('TreeComponent', () => {
   it('should work', async () => {
-    const wrapper = mount(App);
-    const wrapperTree = wrapper.findComponent(Tree);
+    const wrapper = mount(App)
+    const wrapperTree = wrapper.findComponent(Tree)
     await wrapper.setProps({
       data: [
         {
@@ -79,9 +79,9 @@ describe('TreeComponent', () => {
           ],
         },
       ],
-    });
+    })
     expect(wrapperTree.text()).toMatchInlineSnapshot(
       '"Parent 1child 1child 2grandchild 1grandchild 2Parent 2child 1grandchild 1grandchild 2child 2Parent 3child 1grandchild 1grandchild 2"'
-    );
-  });
-});
+    )
+  })
+})

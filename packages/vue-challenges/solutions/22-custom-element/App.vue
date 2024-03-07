@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { defineCustomElement, onMounted } from 'vue';
+import { defineCustomElement, onMounted } from 'vue'
 
 /**
  * Implement the code to create a custom element.
@@ -13,14 +13,14 @@ const VueJs = defineCustomElement({
     },
   },
   template: `<span>{{ message }}</span>`,
-});
+})
 
-customElements.define('vue-js', VueJs);
+customElements.define('vue-js', VueJs)
 
 onMounted(() => {
   document.getElementById('app')!.innerHTML =
-    '<vue-js message="Hello Vue.js"></vue-js>';
-});
+    '<vue-js message="Hello Vue.js"></vue-js>'
+})
 </script>
 
 <template>

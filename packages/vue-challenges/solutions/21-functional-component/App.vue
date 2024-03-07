@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { h, ref } from 'vue';
+import { h, ref } from 'vue'
 
 interface ListProps {
   list: {
-    name: string;
-  }[];
-  'active-index': number;
-  onToggle(index: number): void;
+    name: string
+  }[]
+  'active-index': number
+  onToggle(index: number): void
 }
 
 /**
@@ -34,8 +34,8 @@ const ListComponent = (props: ListProps) => {
         item.name
       )
     )
-  );
-};
+  )
+}
 
 const list = [
   {
@@ -47,12 +47,12 @@ const list = [
   {
     name: 'Smith',
   },
-];
+]
 
-const activeIndex = ref(0);
+const activeIndex = ref(0)
 
 function toggle(index: number) {
-  activeIndex.value = index;
+  activeIndex.value = index
 }
 </script>
 

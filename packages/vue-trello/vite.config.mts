@@ -1,8 +1,8 @@
-import path from 'node:path';
-import { defineConfig } from 'vite';
-import vue from '@vitejs/plugin-vue';
+import path from 'node:path'
+import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
 
-const isEnvProduction = process.env.NODE_ENV === 'production';
+const isEnvProduction = process.env.NODE_ENV === 'production'
 
 export default defineConfig({
   base: isEnvProduction ? '/awesome-web/vue-trello/' : '/',
@@ -12,4 +12,4 @@ export default defineConfig({
       src: path.resolve(__dirname, './src'),
     },
   },
-});
+})

@@ -1,34 +1,34 @@
 <script setup lang="ts">
-import { useAppRouter } from 'src/router';
-import { useAppStore } from 'src/store';
-import { move as moveTask } from 'src/composables';
-import type { TaskType } from 'src/services';
+import { useAppRouter } from 'src/router'
+import { useAppStore } from 'src/store'
+import { move as moveTask } from 'src/composables'
+import type { TaskType } from 'src/services'
 
-defineProps<{ columnIndex: number; taskIndex: number; task: TaskType }>();
+defineProps<{ columnIndex: number; taskIndex: number; task: TaskType }>()
 
-const store = useAppStore();
-const router = useAppRouter();
+const store = useAppStore()
+const router = useAppRouter()
 
 const goToTask = (task: TaskType) =>
-  router.push({ name: 'task', params: { id: task.id } });
+  router.push({ name: 'task', params: { id: task.id } })
 
 const deleteTask = (columnIndex: number, taskId: string) =>
-  store.commit('deleteTask', { columnIndex, taskId });
+  store.commit('deleteTask', { columnIndex, taskId })
 
 const pickupTask = (
   event: DragEvent,
   fromColumnIndex: number,
   fromTaskIndex: number
 ) => {
-  const dataTransfer = event.dataTransfer;
+  const dataTransfer = event.dataTransfer
 
   if (dataTransfer) {
-    dataTransfer.dropEffect = 'move';
-    dataTransfer.effectAllowed = 'move';
-    dataTransfer.setData('fromColumnIndex', fromColumnIndex.toString());
-    dataTransfer.setData('fromTaskIndex', fromTaskIndex.toString());
+    dataTransfer.dropEffect = 'move'
+    dataTransfer.effectAllowed = 'move'
+    dataTransfer.setData('fromColumnIndex', fromColumnIndex.toString())
+    dataTransfer.setData('fromTaskIndex', fromTaskIndex.toString())
   }
-};
+}
 </script>
 
 <template>

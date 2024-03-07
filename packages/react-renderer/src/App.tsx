@@ -1,15 +1,15 @@
-import { useCallback, useState } from 'react';
-import Logo from './logo.svg';
-import './App.css';
+import { useCallback, useState } from 'react'
+import Logo from './logo.svg'
+import './App.css'
 
 function App() {
-  const [count, setCount] = useState<number>(0);
+  const [count, setCount] = useState<number>(0)
   const inc = useCallback(() => {
-    setCount(count => count + 1);
-  }, []);
+    setCount(count => count + 1)
+  }, [])
   const dec = useCallback(() => {
-    setCount(count => count - 1);
-  }, []);
+    setCount(count => count - 1)
+  }, [])
 
   return (
     <div className="app">
@@ -26,7 +26,7 @@ function App() {
         </div>
       </header>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

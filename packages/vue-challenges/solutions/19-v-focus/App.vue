@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref } from 'vue'
 
-const state = ref(false);
+const state = ref(false)
 
 /**
  * Implement the custom directive
@@ -12,16 +12,16 @@ const state = ref(false);
 const vFocus = {
   updated(el, { value }) {
     if (value) {
-      el.focus();
+      el.focus()
     } else {
-      el.blur();
+      el.blur()
     }
   },
-};
+}
 
 setInterval(() => {
-  state.value = !state.value;
-}, 2000);
+  state.value = !state.value
+}, 2000)
 </script>
 
 <template>

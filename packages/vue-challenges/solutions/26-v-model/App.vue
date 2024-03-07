@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-import type { Directive } from 'vue';
+import { ref } from 'vue'
+import type { Directive } from 'vue'
 
 const isInputElement = (target: unknown): target is HTMLInputElement =>
-  target !== undefined;
+  target !== undefined
 
-const value = ref('Hello Vue.js');
+const value = ref('Hello Vue.js')
 
 /**
  * Implement a custom directive
@@ -14,14 +14,14 @@ const value = ref('Hello Vue.js');
  */
 const vOhModel: Directive<HTMLInputElement, string> = {
   mounted(el, binding) {
-    el.value = binding.value;
+    el.value = binding.value
     el.addEventListener('input', event => {
       if (isInputElement(event.target)) {
-        value.value = event.target.value;
+        value.value = event.target.value
       }
-    });
+    })
   },
-};
+}
 </script>
 
 <template>

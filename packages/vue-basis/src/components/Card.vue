@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type { Event } from '@/services';
-defineProps<{ event: Event }>();
+import type { Event } from '@/services'
+defineProps<{ event: Event }>()
 </script>
 
 <template>

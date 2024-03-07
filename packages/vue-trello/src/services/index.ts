@@ -1,20 +1,20 @@
-import { nanoid } from 'nanoid';
+import { nanoid } from 'nanoid'
 
 interface TaskType {
-  id: string;
-  name: string;
-  description: string;
+  id: string
+  name: string
+  description: string
 }
 
 interface BoardColumnType {
-  id: string;
-  name: string;
-  tasks: TaskType[];
+  id: string
+  name: string
+  tasks: TaskType[]
 }
 
 interface BoardType {
-  name: string;
-  columns: BoardColumnType[];
+  name: string
+  columns: BoardColumnType[]
 }
 
 const defaultBoard: BoardType = {
@@ -64,9 +64,9 @@ const defaultBoard: BoardType = {
       ],
     },
   ],
-};
+}
 
-const getDefaultBoard = (): BoardType => defaultBoard;
+const getDefaultBoard = (): BoardType => defaultBoard
 
-export { getDefaultBoard };
-export type { TaskType, BoardColumnType, BoardType };
+export { getDefaultBoard }
+export type { TaskType, BoardColumnType, BoardType }

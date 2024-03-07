@@ -6,6 +6,7 @@
     "build": "pnpm build:prepare && lerna run build",
     "build:prepare": "rm -fr ./build && mkdir -p ./build",
     "lint": "lerna run lint",
+    "lint:fix": "lerna run lint:fix",
     "release": "lerna version --force-publish --sign-git-commit --sign-git-tag",
     "start": "pnpm start:react-renderer",
     "start:react-renderer": "pnpm --filter @sabertazimi/react-renderer start",

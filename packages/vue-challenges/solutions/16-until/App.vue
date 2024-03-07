@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue';
+import { ref, watch } from 'vue'
 
-const count = ref(0);
+const count = ref(0)
 
 /**
  * Implement the until function
@@ -12,25 +12,25 @@ function until(initial) {
     return new Promise(resolve => {
       const stop = watch(initial, newValue => {
         if (newValue === value) {
-          resolve();
-          stop();
+          resolve()
+          stop()
         }
-      });
-    });
+      })
+    })
   }
 
   return {
     toBe,
-  };
+  }
 }
 
 async function increase() {
-  count.value = 0;
+  count.value = 0
   setInterval(() => {
-    count.value++;
-  }, 1000);
-  await until(count).toBe(3);
-  console.log(count.value === 3); // Make sure the output is true
+    count.value++
+  }, 1000)
+  await until(count).toBe(3)
+  console.log(count.value === 3) // Make sure the output is true
 }
 </script>
 

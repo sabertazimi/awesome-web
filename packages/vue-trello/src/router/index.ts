@@ -1,12 +1,7 @@
-import type { RouteRecordRaw } from 'vue-router';
-import {
-  createRouter,
-  createWebHistory,
-  useRoute,
-  useRouter,
-} from 'vue-router';
-import Board from 'src/views/Board.vue';
-import Task from 'src/views/Task.vue';
+import type { RouteRecordRaw } from 'vue-router'
+import { createRouter, createWebHistory, useRoute, useRouter } from 'vue-router'
+import Board from 'src/views/Board.vue'
+import Task from 'src/views/Task.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -22,15 +17,15 @@ const routes: Array<RouteRecordRaw> = [
       },
     ],
   },
-];
+]
 
-const useAppRoute = () => useRoute();
-const useAppRouter = () => useRouter();
+const useAppRoute = () => useRoute()
+const useAppRouter = () => useRouter()
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes,
-});
+})
 
-export { useAppRoute, useAppRouter };
-export default router;
+export { useAppRoute, useAppRouter }
+export default router

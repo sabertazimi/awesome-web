@@ -1,34 +1,34 @@
 <script setup lang="ts">
-import { useAppStore } from 'src/store';
-import { move as moveColumn } from 'src/composables';
-import type { BoardColumnType } from 'src/services';
-import ColumnTask from 'src/components/ColumnTask.vue';
+import { useAppStore } from 'src/store'
+import { move as moveColumn } from 'src/composables'
+import type { BoardColumnType } from 'src/services'
+import ColumnTask from 'src/components/ColumnTask.vue'
 
-defineProps<{ columnIndex: number; column: BoardColumnType }>();
+defineProps<{ columnIndex: number; column: BoardColumnType }>()
 
-const store = useAppStore();
+const store = useAppStore()
 
 const createTask = (event: Event, columnIndex: number) => {
-  const inputElement = event.target as HTMLInputElement;
+  const inputElement = event.target as HTMLInputElement
   store.commit('createTask', {
     columnIndex,
     name: inputElement.value,
-  });
-  inputElement.value = '';
-};
+  })
+  inputElement.value = ''
+}
 
-const deleteColumn = (id: string) => store.commit('deleteColumn', { id });
+const deleteColumn = (id: string) => store.commit('deleteColumn', { id })
 
 const pickupColumn = (event: DragEvent, fromColumnIndex: number) => {
-  const dataTransfer = event.dataTransfer;
+  const dataTransfer = event.dataTransfer
 
   if (dataTransfer) {
-    dataTransfer.dropEffect = 'move';
-    dataTransfer.effectAllowed = 'move';
-    dataTransfer.setData('fromColumnIndex', fromColumnIndex.toString());
-    dataTransfer.setData('type', 'column');
+    dataTransfer.dropEffect = 'move'
+    dataTransfer.effectAllowed = 'move'
+    dataTransfer.setData('fromColumnIndex', fromColumnIndex.toString())
+    dataTransfer.setData('type', 'column')
   }
-};
+}
 </script>
 
 <template>

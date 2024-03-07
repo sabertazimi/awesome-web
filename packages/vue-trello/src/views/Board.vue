@@ -1,19 +1,19 @@
 <script setup lang="ts">
-import { computed } from 'vue';
-import { useAppStore } from 'src/store';
-import BoardColumn from 'src/components/BoardColumn.vue';
+import { computed } from 'vue'
+import { useAppStore } from 'src/store'
+import BoardColumn from 'src/components/BoardColumn.vue'
 
-const store = useAppStore();
-const columns = computed(() => store.state.board.columns);
+const store = useAppStore()
+const columns = computed(() => store.state.board.columns)
 
 const createColumn = (event: Event) => {
-  const inputElement = event.target as HTMLInputElement;
+  const inputElement = event.target as HTMLInputElement
 
   if (inputElement.value) {
-    store.commit('createColumn', { name: inputElement.value });
-    inputElement.value = '';
+    store.commit('createColumn', { name: inputElement.value })
+    inputElement.value = ''
   }
-};
+}
 </script>
 
 <template>

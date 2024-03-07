@@ -1,4 +1,4 @@
-import { DefaultEventPriority } from 'react-reconciler/constants';
+import { DefaultEventPriority } from 'react-reconciler/constants'
 import type {
   Container,
   Fiber,
@@ -13,7 +13,7 @@ import type {
   TimeoutHandle,
   Type,
   UpdatePayload,
-} from './types';
+} from './types'
 import {
   isAttribute,
   isChildren,
@@ -21,13 +21,13 @@ import {
   isListener,
   isSVGContext,
   isSVGType,
-} from './utils';
+} from './utils'
 
 const createHostContext = (svg: boolean) => {
   return {
     svg,
-  };
-};
+  }
+}
 
 const hostConfig: HostConfig = {
   createInstance(
@@ -37,34 +37,34 @@ const hostConfig: HostConfig = {
     hostContext: HostContext,
     internalHandle: OpaqueHandle
   ): Instance {
-    let element: Instance;
+    let element: Instance
 
     if (isSVGType(type) || isSVGContext(hostContext)) {
-      element = document.createElementNS('http://www.w3.org/2000/svg', type);
+      element = document.createElementNS('http://www.w3.org/2000/svg', type)
     } else {
-      element = document.createElement(type);
+      element = document.createElement(type)
     }
 
     Object.keys(props).forEach((propName: string) => {
-      const propValue = props[propName as PropKey];
+      const propValue = props[propName as PropKey]
 
       if (isClass(propName)) {
-        element.setAttribute('class', propValue);
+        element.setAttribute('class', propValue)
       } else if (isChildren(propName)) {
         if (typeof propValue === 'string' || typeof propValue === 'number') {
-          element.textContent = propValue.toString();
+          element.textContent = propValue.toString()
         }
       } else if (isListener(propName)) {
-        const eventType = propName.toLowerCase().substring(2);
-        element.addEventListener(eventType, propValue);
+        const eventType = propName.toLowerCase().substring(2)
+        element.addEventListener(eventType, propValue)
       } else if (isAttribute(propName)) {
         if (propValue !== null && propValue !== undefined) {
-          element.setAttribute(propName, propValue);
+          element.setAttribute(propName, propValue)
         }
       }
-    });
+    })
 
-    return element;
+    return element
   },
   createTextInstance(
     text: string,
@@ -72,36 +72,36 @@ const hostConfig: HostConfig = {
     hostContext: HostContext,
     internalHandle: OpaqueHandle
   ): TextInstance {
-    const textElement = document.createTextNode(text);
-    return textElement;
+    const textElement = document.createTextNode(text)
+    return textElement
   },
   appendInitialChild(
     parentInstance: Instance,
     child: Instance | TextInstance
   ): void {
-    parentInstance.appendChild(child);
+    parentInstance.appendChild(child)
   },
   appendChild(parentInstance: Instance, child: Instance | TextInstance): void {
-    parentInstance.appendChild(child);
+    parentInstance.appendChild(child)
   },
   appendChildToContainer(
     container: Container,
     child: Instance | TextInstance
   ): void {
-    container.appendChild(child);
+    container.appendChild(child)
   },
   removeChild(parentInstance: Instance, child: Instance | TextInstance): void {
-    parentInstance.removeChild(child);
+    parentInstance.removeChild(child)
   },
   removeChildFromContainer(
     container: Container,
     child: Instance | TextInstance
   ): void {
-    container.removeChild(child);
+    container.removeChild(child)
   },
   clearContainer(container: Container): void {
     while (container.firstChild) {
-      container.firstChild.remove();
+      container.firstChild.remove()
     }
   },
   finalizeInitialChildren(
@@ -111,7 +111,7 @@ const hostConfig: HostConfig = {
     rootContainer: Container,
     hostContext: HostContext
   ): boolean {
-    return false;
+    return false
   },
   prepareUpdate(
     instance: Instance,
@@ -121,7 +121,7 @@ const hostConfig: HostConfig = {
     rootContainer: Container,
     hostContext: HostContext
   ): UpdatePayload | null {
-    return true;
+    return true
   },
   commitUpdate(
     instance: Instance,
@@ -132,50 +132,50 @@ const hostConfig: HostConfig = {
     internalHandle: OpaqueHandle
   ): void {
     Object.keys(nextProps).forEach((propName: string) => {
-      const propValue = nextProps[propName as PropKey];
+      const propValue = nextProps[propName as PropKey]
       if (isChildren(propName)) {
         if (typeof propValue === 'string' || typeof propValue === 'number') {
-          instance.textContent = propValue.toString();
+          instance.textContent = propValue.toString()
         }
       } else if (isAttribute(propName)) {
         if (propValue !== null && propValue !== undefined) {
-          instance.setAttribute(propName, propValue);
+          instance.setAttribute(propName, propValue)
         }
       }
-    });
+    })
   },
   commitTextUpdate(
     textInstance: TextInstance,
     oldText: string,
     newText: string
   ): void {
-    textInstance.textContent = newText;
+    textInstance.textContent = newText
   },
   shouldSetTextContent(type: Type, props: Props): boolean {
     return (
       typeof props.children === 'string' || typeof props.children === 'number'
-    );
+    )
   },
   resetTextContent(instance: Instance): void {
-    instance.textContent = '';
+    instance.textContent = ''
   },
   getRootHostContext(rootContainer: Container): HostContext | null {
     return isSVGType(rootContainer.nodeName)
       ? createHostContext(true)
-      : createHostContext(false);
+      : createHostContext(false)
   },
   getChildHostContext(
     parentHostContext: HostContext,
     type: Type,
     rootContainer: Container
   ): HostContext {
-    return isSVGType(type) ? createHostContext(true) : parentHostContext;
+    return isSVGType(type) ? createHostContext(true) : parentHostContext
   },
   getPublicInstance(instance: Instance | TextInstance): PublicInstance {
-    return instance;
+    return instance
   },
   prepareForCommit(containerInfo: Container): Record<string, any> | null {
-    return null;
+    return null
   },
   resetAfterCommit(containerInfo: Container): void {},
   preparePortalMount(containerInfo: Container): void {},
@@ -183,10 +183,10 @@ const hostConfig: HostConfig = {
     fn: (...args: unknown[]) => unknown,
     delay?: number
   ): TimeoutHandle {
-    return setTimeout(fn, delay);
+    return setTimeout(fn, delay)
   },
   cancelTimeout(id: TimeoutHandle): void {
-    clearTimeout(id);
+    clearTimeout(id)
   },
   noTimeout: -1,
   isPrimaryRenderer: true,
@@ -194,18 +194,18 @@ const hostConfig: HostConfig = {
   supportsMutation: true,
   supportsPersistence: false,
   getCurrentEventPriority(): number {
-    return DefaultEventPriority;
+    return DefaultEventPriority
   },
   getInstanceFromNode(node: any): Fiber | null | undefined {
-    return null;
+    return null
   },
   beforeActiveInstanceBlur(): void {},
   afterActiveInstanceBlur(): void {},
   prepareScopeUpdate(scopeInstance: any, instance: any): void {},
   getInstanceFromScope(scopeInstance: any): Element | null {
-    return null;
+    return null
   },
   detachDeletedInstance(node: Element): void {},
-};
+}
 
-export default hostConfig;
+export default hostConfig

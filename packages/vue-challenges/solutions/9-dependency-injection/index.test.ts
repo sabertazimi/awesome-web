@@ -1,11 +1,11 @@
-import { mount } from '@vue/test-utils';
-import { describe, expect, it } from 'vitest';
+import { mount } from '@vue/test-utils'
+import { describe, expect, it } from 'vitest'
 
-import App from './App.vue';
+import App from './App.vue'
 
 describe('Dependency Injection', () => {
   it("should work'", () => {
-    const wrapper = mount(App);
-    expect(wrapper.vm.$el.textContent).toBe('1');
-  });
-});
+    const wrapper = mount(App)
+    expect(wrapper.vm.$el.textContent).toBe('1')
+  })
+})

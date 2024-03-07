@@ -1,31 +1,31 @@
-import { mount } from '@vue/test-utils';
-import { describe, expect, it, vi } from 'vitest';
+import { mount } from '@vue/test-utils'
+import { describe, expect, it, vi } from 'vitest'
 
-import App from './App.vue';
+import App from './App.vue'
 
 function delay(timeout: number) {
   return new Promise(resolve => {
-    setTimeout(resolve, timeout);
-  });
+    setTimeout(resolve, timeout)
+  })
 }
 
 describe('custom-ref', () => {
   it('should work', async () => {
-    let printLog = '';
+    let printLog = ''
     console.log = vi.fn((log: string) => {
-      printLog = log?.toString()?.trim();
-    });
+      printLog = log?.toString()?.trim()
+    })
 
-    const wrapper = mount(App);
+    const wrapper = mount(App)
 
-    await wrapper.find('input').setValue('hello!');
-    expect(printLog).toMatchInlineSnapshot('""');
-    await delay(200);
-    expect(printLog).toMatchInlineSnapshot('"hello!"');
+    await wrapper.find('input').setValue('hello!')
+    expect(printLog).toMatchInlineSnapshot('""')
+    await delay(200)
+    expect(printLog).toMatchInlineSnapshot('"hello!"')
 
-    await wrapper.find('input').setValue('world');
-    expect(printLog).toMatchInlineSnapshot('"hello!"');
-    await delay(200);
-    expect(printLog).toMatchInlineSnapshot('"world"');
-  });
-});
+    await wrapper.find('input').setValue('world')
+    expect(printLog).toMatchInlineSnapshot('"hello!"')
+    await delay(200)
+    expect(printLog).toMatchInlineSnapshot('"world"')
+  })
+})

@@ -1,4 +1,4 @@
-import { defineComponent, h } from 'vue';
+import { defineComponent, h } from 'vue'
 
 export default defineComponent({
   name: 'MyButton',
@@ -12,10 +12,10 @@ export default defineComponent({
       {
         disabled: this.disabled,
         onClick: () => {
-          if (!this.disabled) this.$emit('custom-click');
+          if (!this.disabled) this.$emit('custom-click')
         },
       },
       this.$slots.default?.()
-    );
+    )
   },
-});
+})

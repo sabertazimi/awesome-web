@@ -1,28 +1,28 @@
-import type { HTMLProps } from 'react';
+import type { HTMLProps } from 'react'
 import type {
   Fiber,
-  HostConfig as _HostConfig,
   OpaqueHandle,
   OpaqueRoot,
-} from 'react-reconciler';
+  HostConfig as _HostConfig,
+} from 'react-reconciler'
 
-type Type = string;
-type Props = HTMLProps<HTMLElement>;
-type PropKey = keyof Props;
-type Container = Document | DocumentFragment | Element;
-type Instance = Element;
-type TextInstance = Text;
+type Type = string
+type Props = HTMLProps<HTMLElement>
+type PropKey = keyof Props
+type Container = Document | DocumentFragment | Element
+type Instance = Element
+type TextInstance = Text
 
-type SuspenseInstance = any;
-type HydratableInstance = any;
-type PublicInstance = any;
-type HostContext = {
-  svg: boolean;
-};
-type UpdatePayload = boolean;
-type _ChildSet = any;
-type TimeoutHandle = any;
-type NoTimeout = number;
+type SuspenseInstance = any
+type HydratableInstance = any
+type PublicInstance = any
+interface HostContext {
+  svg: boolean
+}
+type UpdatePayload = boolean
+type _ChildSet = any
+type TimeoutHandle = any
+type NoTimeout = number
 
 type HostConfig = _HostConfig<
   Type,
@@ -38,7 +38,7 @@ type HostConfig = _HostConfig<
   _ChildSet,
   TimeoutHandle,
   NoTimeout
->;
+>
 
 export type {
   Type,
@@ -59,4 +59,4 @@ export type {
   HostConfig,
   OpaqueHandle,
   OpaqueRoot,
-};
+}

@@ -1,23 +1,23 @@
 <script setup lang="ts">
-import { computed } from 'vue';
-import { useAppRouter } from 'src/router';
-import { useAppStore } from 'src/store';
-import type { TaskType } from 'src/services';
+import { computed } from 'vue'
+import { useAppRouter } from 'src/router'
+import { useAppStore } from 'src/store'
+import type { TaskType } from 'src/services'
 
-const props = defineProps<{ id: string }>();
-const router = useAppRouter();
-const store = useAppStore();
-const task = computed(() => store.getters.getTask(props.id));
+const props = defineProps<{ id: string }>()
+const router = useAppRouter()
+const store = useAppStore()
+const task = computed(() => store.getters.getTask(props.id))
 
-const close = () => router.push({ name: 'board' });
+const close = () => router.push({ name: 'board' })
 
 const updateTask = (event: Event, task: TaskType, key: string) => {
   store.commit('updateTask', {
     task,
     key,
     value: (event.target as HTMLInputElement).value,
-  });
-};
+  })
+}
 </script>
 
 <template>

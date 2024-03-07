@@ -1,6 +1,6 @@
-import ReactReconciler from 'react-reconciler';
-import hostConfig from './hostConfig';
+import ReactReconciler from 'react-reconciler'
+import hostConfig from './hostConfig'
 
-const reconciler = ReactReconciler(hostConfig);
+const reconciler = ReactReconciler(hostConfig)
 
-export default reconciler;
+export default reconciler

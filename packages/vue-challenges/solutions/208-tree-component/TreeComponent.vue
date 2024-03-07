@@ -1,10 +1,10 @@
 <script setup lang="ts">
 interface TreeData {
-  key: string;
-  title: string;
-  children: TreeData[];
+  key: string
+  title: string
+  children: TreeData[]
 }
-defineProps<{ data: TreeData[] }>();
+defineProps<{ data: TreeData[] }>()
 </script>
 
 <template>

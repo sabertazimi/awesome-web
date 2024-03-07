@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import EventCard from '@/components/EventCard.vue'; // @ is an alias to /src
-import { getEvents } from '@/services';
-import type { Event } from '@/services';
+import EventCard from '@/components/EventCard.vue' // @ is an alias to /src
+import { getEvents } from '@/services'
+import type { Event } from '@/services'
 
-const events: Event[] = await getEvents();
+const events: Event[] = await getEvents()
 </script>
 
 <template>

@@ -1,12 +1,12 @@
 <script setup>
 function onClick1() {
-  console.log('onClick1');
+  console.log('onClick1')
 }
 function onCtrlClick() {
-  console.log('onCtrlClick');
+  console.log('onCtrlClick')
 }
 function onClick2() {
-  console.log('onClick2');
+  console.log('onClick2')
 }
 </script>
 

@@ -1,30 +1,30 @@
-import type { InjectionKey } from 'vue';
-import type { Store } from 'vuex';
-import { createStore, useStore } from 'vuex';
-import { getDefaultBoard } from 'src/services';
-import type { BoardColumnType, BoardType, TaskType } from 'src/services';
-import { nanoid } from 'nanoid';
+import type { InjectionKey } from 'vue'
+import type { Store } from 'vuex'
+import { createStore, useStore } from 'vuex'
+import { getDefaultBoard } from 'src/services'
+import type { BoardColumnType, BoardType, TaskType } from 'src/services'
+import { nanoid } from 'nanoid'
 
 interface State {
-  board: BoardType;
+  board: BoardType
 }
 
-type AppStore = Store<State>;
+type AppStore = Store<State>
 
-const key: InjectionKey<AppStore> = Symbol('state');
+const key: InjectionKey<AppStore> = Symbol('state')
 
 const board: BoardType =
   JSON.parse(localStorage.getItem('@sabertazimi/vue-trello-board') as string) ||
-  getDefaultBoard();
+  getDefaultBoard()
 
 const saveStatePlugin = (store: AppStore) => {
   store.subscribe((_, state) => {
     localStorage.setItem(
       '@sabertazimi/vue-trello-board',
       JSON.stringify(state.board)
-    );
-  });
-};
+    )
+  })
+}
 
 const store = createStore<State>({
   state: { board },
@@ -33,7 +33,7 @@ const store = createStore<State>({
       for (const column of state.board.columns) {
         for (const task of column.tasks) {
           if (task.id === id) {
-            return task;
+            return task
           }
         }
       }
@@ -44,8 +44,8 @@ const store = createStore<State>({
       state,
       { columnIndex, name }: { columnIndex: number; name: string }
     ) {
-      const tasks = state.board.columns[columnIndex].tasks;
-      tasks.push({ id: nanoid(), name, description: '' });
+      const tasks = state.board.columns[columnIndex].tasks
+      tasks.push({ id: nanoid(), name, description: '' })
     },
     updateTask(
       state,
@@ -55,17 +55,17 @@ const store = createStore<State>({
         value,
       }: { task: TaskType; key: keyof TaskType; value: string }
     ) {
-      task[key] = value;
+      task[key] = value
     },
     deleteTask(
       state,
       { columnIndex, taskId }: { columnIndex: number; taskId: string }
     ) {
-      const tasks = state.board.columns[columnIndex].tasks;
+      const tasks = state.board.columns[columnIndex].tasks
       tasks.splice(
         tasks.findIndex(task => task.id === taskId),
         1
-      );
+      )
     },
     moveTask(
       state,
@@ -75,30 +75,30 @@ const store = createStore<State>({
         fromTaskIndex,
         toTaskIndex,
       }: {
-        fromColumnIndex: number;
-        toColumnIndex: number;
-        fromTaskIndex: number;
-        toTaskIndex?: number;
+        fromColumnIndex: number
+        toColumnIndex: number
+        fromTaskIndex: number
+        toTaskIndex?: number
       }
     ) {
-      const fromTasks = state.board.columns[fromColumnIndex].tasks;
-      const toTasks = state.board.columns[toColumnIndex].tasks;
-      const taskToMove = fromTasks.splice(fromTaskIndex, 1)[0];
-      toTasks.splice(toTaskIndex ?? toTasks.length, 0, taskToMove);
+      const fromTasks = state.board.columns[fromColumnIndex].tasks
+      const toTasks = state.board.columns[toColumnIndex].tasks
+      const taskToMove = fromTasks.splice(fromTaskIndex, 1)[0]
+      toTasks.splice(toTaskIndex ?? toTasks.length, 0, taskToMove)
     },
     createColumn(state, { name }: { name: string }) {
       const newColumn: BoardColumnType = {
         id: nanoid(),
         name,
         tasks: [],
-      };
-      state.board.columns.push(newColumn);
+      }
+      state.board.columns.push(newColumn)
     },
     deleteColumn(state, { id }: { id: string }) {
       state.board.columns.splice(
         state.board.columns.findIndex(column => column.id === id),
         1
-      );
+      )
     },
     moveColumn(
       state,
@@ -106,22 +106,22 @@ const store = createStore<State>({
         fromColumnIndex,
         toColumnIndex,
       }: {
-        fromColumnIndex: number;
-        toColumnIndex: number;
+        fromColumnIndex: number
+        toColumnIndex: number
       }
     ) {
-      const columnList = state.board.columns;
-      const columnToMove = columnList.splice(fromColumnIndex, 1)[0];
-      columnList.splice(toColumnIndex, 0, columnToMove);
+      const columnList = state.board.columns
+      const columnToMove = columnList.splice(fromColumnIndex, 1)[0]
+      columnList.splice(toColumnIndex, 0, columnToMove)
     },
   },
   actions: {},
   plugins: [saveStatePlugin],
   modules: {},
-});
+})
 
-const useAppStore = () => useStore<State>(key);
+const useAppStore = () => useStore<State>(key)
 
-export { key, useAppStore };
-export type { State, AppStore };
-export default store;
+export { key, useAppStore }
+export type { State, AppStore }
+export default store

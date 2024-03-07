@@ -10,6 +10,7 @@
     "lint": "pnpm lint:style && pnpm lint:type-check",
     "lint:style": "eslint --ext .ts,.vue ./src && stylelint ./src/**/*.{css,vue}",
     "lint:type-check": "vue-tsc --noEmit",
+    "lint:fix": "eslint --fix ./src --ext .vue,.js,.ts,.jsx,.tsx,.json && stylelint ./src/**/*.{css,vue} --fix",
     "serve": "vite preview"
   },
   "dependencies": {

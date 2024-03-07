@@ -1,6 +1,6 @@
-import type { ReactElement } from 'react';
-import Reconciler from './reconciler';
-import type { Container, OpaqueRoot } from './types';
+import type { ReactElement } from 'react'
+import Reconciler from './reconciler'
+import type { Container, OpaqueRoot } from './types'
 
 const Renderer = {
   createRoot: (
@@ -16,22 +16,22 @@ const Renderer = {
         null,
         '',
         (error: Error) => {
-          console.error(error);
+          console.error(error)
         },
         null
-      );
+      )
 
       root.render = function (element: ReactElement) {
-        Reconciler.updateContainer(element, this, null);
-      };
-
-      if (callback) {
-        callback(root);
+        Reconciler.updateContainer(element, this, null)
       }
 
-      return root;
+      if (callback) {
+        callback(root)
+      }
+
+      return root
     }
   },
-};
+}
 
-export default Renderer;
+export default Renderer

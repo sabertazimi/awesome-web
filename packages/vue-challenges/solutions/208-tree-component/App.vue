@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-import TreeComponent from './TreeComponent.vue';
+import { ref } from 'vue'
+import TreeComponent from './TreeComponent.vue'
 const treeData = ref([
   {
     key: '1',
@@ -50,7 +50,7 @@ const treeData = ref([
       },
     ],
   },
-]);
+])
 </script>
 
 <template>

@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import type { Ref } from 'vue';
-import { isRef, reactive, ref, toRef, unref } from 'vue';
+import type { Ref } from 'vue'
+import { isRef, reactive, ref, toRef, unref } from 'vue'
 
-const initial = ref(10);
-const count = ref(0);
+const initial = ref(10)
+const count = ref(0)
 
 // Challenge 1: Update ref
 function update(value: number) {
   // impl...
-  count.value = value;
+  count.value = value
 }
 
 /**
@@ -18,7 +18,7 @@ function update(value: number) {
 console.log(
   // impl ? 1 : 0
   isRef(count) ? 1 : 0
-);
+)
 
 /**
  * Challenge 3: Unwrap ref
@@ -26,10 +26,10 @@ console.log(
  */
 function initialCount(value: number | Ref<number>) {
   // Make the output be true
-  console.log(unref(value) === 10);
+  console.log(unref(value) === 10)
 }
 
-initialCount(initial);
+initialCount(initial)
 
 /**
  * Challenge 4:
@@ -41,16 +41,16 @@ initialCount(initial);
 const state = reactive({
   foo: 1,
   bar: 2,
-});
-const fooRef = ref(toRef(state, 'foo')); // change the impl...
+})
+const fooRef = ref(toRef(state, 'foo')) // change the impl...
 
 // mutating the ref updates the original
-fooRef.value++;
-console.log(state.foo === 2);
+fooRef.value++
+console.log(state.foo === 2)
 
 // mutating the original also updates the ref
-state.foo++;
-console.log(fooRef.value === 3);
+state.foo++
+console.log(fooRef.value === 3)
 </script>
 
 <template>

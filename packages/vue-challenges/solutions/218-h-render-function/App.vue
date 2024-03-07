@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import MyButton from './MyButton';
+import MyButton from './MyButton'
 
 const onClick = () => {
-  console.log('onClick');
-};
+  console.log('onClick')
+}
 </script>
 
 <template>
