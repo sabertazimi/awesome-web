@@ -60,17 +60,17 @@ const { t } = useI18n()
 
 <style scoped>
 .advice {
-  margin-top: 2rem;
   width: 80%;
   height: 50%;
+  margin-top: 2rem;
 }
 
 .claim-advice-container {
   display: flex;
   flex-wrap: wrap;
+  gap: 1rem;
   align-items: center;
   margin-top: 5rem;
-  gap: 1rem;
 }
 
 .claim-advice + .claim-advice {

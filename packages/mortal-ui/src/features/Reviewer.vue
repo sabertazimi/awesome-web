@@ -14,7 +14,7 @@ useHead({
   title: t('title'),
 })
 
-const res = await fetch('/e2e/report.json')
+const res = await fetch(`${import.meta.env.BASE_URL}e2e/report.json`)
 const log = await res.json()
 const machine = createMachine(log)
 machine.run()
@@ -43,12 +43,12 @@ main {
 aside {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
   gap: 0.5rem;
+  justify-content: space-around;
   margin-top: 2rem;
 }
 
-@media (min-width: 1024px) {
+@media (width >= 1024px) {
   main {
     display: flex;
     flex-wrap: wrap;

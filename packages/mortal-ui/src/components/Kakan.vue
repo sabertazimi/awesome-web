@@ -15,11 +15,11 @@ const props = defineProps<{
       <TileGroup
         v-if="i + props.from === 3"
         :key="`tile-group-${i}`"
-        class="tile-group--stacked"
+        class="tile-group-stacked"
         :class="{
-          'tile-group--shimo': props.direction === 1,
-          'tile-group--toimen': props.direction === 2,
-          'tile-group--kami': props.direction === 3,
+          'tile-group-shimo': props.direction === 1,
+          'tile-group-toimen': props.direction === 2,
+          'tile-group-kami': props.direction === 3,
         }"
         :direction="props.direction"
         stacked
@@ -27,11 +27,11 @@ const props = defineProps<{
         <Tile
           v-for="(__, j) in 2"
           :key="`tile-${i}.${j}`"
-          class="tile--sided"
+          class="tile-sided"
           :class="{
-            'tile--shimo': props.direction === 1,
-            'tile--toimen': props.direction === 2,
-            'tile--kami': props.direction === 3,
+            'tile-shimo': props.direction === 1,
+            'tile-toimen': props.direction === 2,
+            'tile-kami': props.direction === 3,
           }"
           :tile="props.tile"
           :direction="props.direction"
@@ -49,31 +49,31 @@ const props = defineProps<{
 </template>
 
 <style scoped>
-.tile--sided {
+.tile-sided {
   margin-top: calc(var(--tile-width) - var(--tile-height));
 }
 
-.tile--shimo.tile--sided {
+.tile-shimo.tile-sided {
   margin-inline: 0;
 }
 
-.tile--kami.tile--sided {
+.tile-kami.tile-sided {
   margin-inline: 0;
 }
 
-.tile-group--stacked {
+.tile-group-stacked {
   transform: translateY(calc((var(--tile-width) - var(--tile-height)) / 2));
 }
 
-.tile-group--shimo.tile-group--stacked {
+.tile-group-shimo.tile-group-stacked {
   transform: translateX(calc(var(--tile-width) - var(--tile-height)));
 }
 
-.tile-group--toimen.tile-group--stacked {
+.tile-group-toimen.tile-group-stacked {
   transform: translateY(calc((var(--tile-height) - var(--tile-width)) * 1.5));
 }
 
-.tile-group--kami.tile-group--stacked {
+.tile-group-kami.tile-group-stacked {
   transform: translateX(calc(var(--tile-height) - var(--tile-width)));
 }
 </style>

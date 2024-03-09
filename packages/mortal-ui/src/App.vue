@@ -13,6 +13,3 @@ import { Reviewer } from '@/features'
     </template>
   </suspense>
 </template>
-
-<style scoped>
-</style>

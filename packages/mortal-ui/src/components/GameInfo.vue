@@ -45,19 +45,16 @@ const { t } = useI18n()
 <style scoped>
 .info {
   display: grid;
-  grid-template-columns: calc(var(--tile-width)) calc(var(--tile-width) * 4) calc(
-      var(--tile-width)
-    );
-  grid-template-rows: repeat(5, calc(var(--tile-width) * 6 / 5));
-  grid-template-areas:
+  grid-template:
     'p3 p2      p2'
     'p3 round   p1'
     'p3 tiles   p1'
     'p3 doras   p1'
-    'p0 p0      p1';
+    'p0 p0      p1' / calc(var(--tile-width)) calc(var(--tile-width) * 4) calc(var(--tile-width));
+  grid-template-rows: repeat(5, calc(var(--tile-width) * 6 / 5));
   margin: auto;
-  background: var(--color-background-dark);
   color: var(--color-text-dark);
+  background: var(--color-background-dark);
 }
 
 .info-round {
@@ -71,8 +68,7 @@ const { t } = useI18n()
 
 .info-doras {
   grid-area: doras;
-  align-self: center;
-  justify-self: center;
+  place-self: center center;
 }
 
 .info-player {
@@ -84,22 +80,23 @@ const { t } = useI18n()
   grid-area: p0;
   margin: auto 10px;
 }
+
 .info-p1 {
   grid-area: p1;
+  margin: 10px auto;
   writing-mode: vertical-rl;
   transform: rotate(180deg);
-  margin: 10px auto;
 }
 
 .info-p2 {
   grid-area: p2;
-  transform: rotate(180deg);
   margin: auto 10px;
+  transform: rotate(180deg);
 }
 
 .info-p3 {
   grid-area: p3;
-  writing-mode: vertical-rl;
   margin: 10px auto;
+  writing-mode: vertical-rl;
 }
 </style>

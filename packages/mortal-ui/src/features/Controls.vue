@@ -140,13 +140,13 @@ function onNext() {
 .controls {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  align-items: center;
   gap: 0.5rem;
+  align-items: center;
 }
 
 .options {
   display: grid;
-  place-items: center;
   gap: 1rem;
+  place-items: center;
 }
 </style>
