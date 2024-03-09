@@ -21,17 +21,17 @@
   position: relative;
   width: 100%;
   height: 100vh;
-  margin: 0;
   padding: 0;
+  margin: 0;
 }
 
 .loading-square {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
   width: 60px;
   height: 60px;
+  transform: translate(-50%, -50%);
 }
 
 .c {
@@ -47,9 +47,9 @@
   bottom: 0;
   width: 100%;
   height: 100%;
-  animation: square 1s infinite;
-  background-color: #1890ff;
   content: '';
+  background-color: #1890ff;
+  animation: square 1s infinite;
 }
 
 .c2::before {

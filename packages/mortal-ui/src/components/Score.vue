@@ -32,5 +32,3 @@ const { t } = useI18n()
     </div>
   </ElDialog>
 </template>
-
-<style scoped></style>

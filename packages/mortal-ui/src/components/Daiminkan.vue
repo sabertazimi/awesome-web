@@ -23,5 +23,3 @@ const adjustedFrom = computed(() => (props.from === 3 ? 4 : props.from))
     />
   </TileGroup>
 </template>
-
-<style scoped></style>

@@ -39,5 +39,3 @@ const props = defineProps<{
     :direction="props.direction"
   />
 </template>
-
-<style scoped></style>

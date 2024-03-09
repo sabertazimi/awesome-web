@@ -20,5 +20,3 @@ const props = defineProps<{
     />
   </TileGroup>
 </template>
-
-<style scoped></style>

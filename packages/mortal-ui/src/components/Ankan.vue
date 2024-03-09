@@ -16,5 +16,3 @@ const props = defineProps<{
     <Tile reversed :direction="props.direction" />
   </TileGroup>
 </template>
-
-<style scoped></style>
