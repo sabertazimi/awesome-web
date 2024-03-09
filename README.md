@@ -12,13 +12,14 @@ A brand new repository for web development prototypes.
 
 ## React Collection
 
-- [React Renderer](https://sabertazimi.github.io/awesome-web/react-renderer)
+- [React Renderer](https://sabertazimi.github.io/awesome-web/react-renderer).
 
 ## Vue Collection
 
-- [Vue Basis](https://sabertazimi.github.io/awesome-web/vue-basis)
-- [Vue Design](https://sabertazimi.github.io/awesome-web/vue-design)
-- [Vue Trello](https://sabertazimi.github.io/awesome-web/vue-trello)
+- [Vue Basis](https://sabertazimi.github.io/awesome-web/vue-basis).
+- [Vue Design](https://sabertazimi.github.io/awesome-web/vue-design).
+- [Vue Trello](https://sabertazimi.github.io/awesome-web/vue-trello).
+- [Mortal UI](https://sabertazimi.github.io/awesome-web/mortal-ui): GUI for Mortal Mahjong AI reviewer.
 
 ## License
 
