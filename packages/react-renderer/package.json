@@ -20,7 +20,7 @@
     "web-vitals": "^3.5.2"
   },
   "devDependencies": {
-    "@sabertazimi/react-scripts": "^5.14.2",
+    "@sabertazimi/react-scripts": "^5.14.3",
     "@testing-library/dom": "^9.3.4",
     "@testing-library/jest-dom": "^6.4.2",
     "@testing-library/react": "^14.2.1",
