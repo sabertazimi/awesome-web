@@ -48,10 +48,10 @@ importers:
         specifier: ^2.3.1
         version: 2.3.1(vue@3.4.21)
       '@unhead/vue':
-        specifier: ^1.8.11
+        specifier: ^1.8.12
         version: 1.8.12(vue@3.4.21)
       element-plus:
-        specifier: ^2.6.0
+        specifier: ^2.6.1
         version: 2.6.1(vue@3.4.21)
       pinia:
         specifier: ^2.1.7
@@ -73,7 +73,7 @@ importers:
         specifier: ^21.1.6
         version: 21.1.6
       '@types/node':
-        specifier: ^20.11.10
+        specifier: ^20.11.25
         version: 20.11.25
       '@vitejs/plugin-vue':
         specifier: ^5.0.4
@@ -97,7 +97,7 @@ importers:
         specifier: ^24.0.0
         version: 24.0.0
       npm-run-all2:
-        specifier: ^6.1.1
+        specifier: ^6.1.2
         version: 6.1.2
       typescript:
         specifier: ^5.4.2
@@ -112,7 +112,7 @@ importers:
         specifier: ^5.1.5
         version: 5.1.5(@types/node@20.11.25)
       vitest:
-        specifier: ^1.2.2
+        specifier: ^1.3.1
         version: 1.3.1(@types/node@20.11.25)(jsdom@24.0.0)
       vue-tsc:
         specifier: ^2.0.6
@@ -3370,7 +3370,6 @@ packages:
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
-    libc: [glibc]
     requiresBuild: true
     dev: true
     optional: true
@@ -3380,7 +3379,6 @@ packages:
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
-    libc: [musl]
     requiresBuild: true
     dev: true
     optional: true
@@ -3390,7 +3388,6 @@ packages:
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
-    libc: [glibc]
     requiresBuild: true
     dev: true
     optional: true
@@ -3400,7 +3397,6 @@ packages:
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
-    libc: [musl]
     requiresBuild: true
     dev: true
     optional: true
@@ -3816,7 +3812,6 @@ packages:
     resolution: {integrity: sha512-0fZBq27b+D7Ar5CQMofVN8sggOVhEtzFUwOwPppQt0k+VR+7UHMZZY4y+64WJ06XOhBTKXtQB/Sv0NwQMXyNAA==}
     cpu: [arm64]
     os: [linux]
-    libc: [glibc]
     requiresBuild: true
     dev: true
     optional: true
@@ -3825,7 +3820,6 @@ packages:
     resolution: {integrity: sha512-eTvzUS3hhhlgeAv6bfigekzWZjaEX9xP9HhxB0Dvrdbkk5w/b+1Sxct2ZuDxNJKzsRStSq1EaEkVSEe7A7ipgQ==}
     cpu: [arm64]
     os: [linux]
-    libc: [musl]
     requiresBuild: true
     dev: true
     optional: true
@@ -3834,7 +3828,6 @@ packages:
     resolution: {integrity: sha512-ix+qAB9qmrCRiaO71VFfY8rkiAZJL8zQRXveS27HS+pKdjwUfEhqo2+YF2oI+H/22Xsiski+qqwIBxVewLK7sw==}
     cpu: [riscv64]
     os: [linux]
-    libc: [glibc]
     requiresBuild: true
     dev: true
     optional: true
@@ -3843,7 +3836,6 @@ packages:
     resolution: {integrity: sha512-TenQhZVOtw/3qKOPa7d+QgkeM6xY0LtwzR8OplmyL5LrgTWIXpTQg2Q2ycBf8jm+SFW2Wt/DTn1gf7nFp3ssVA==}
     cpu: [x64]
     os: [linux]
-    libc: [glibc]
     requiresBuild: true
     dev: true
     optional: true
@@ -3852,7 +3844,6 @@ packages:
     resolution: {integrity: sha512-LfFdRhNnW0zdMvdCb5FNuWlls2WbbSridJvxOvYWgSBOYZtgBfW9UGNJG//rwMqTX1xQE9BAodvMH9tAusKDUw==}
     cpu: [x64]
     os: [linux]
-    libc: [musl]
     requiresBuild: true
     dev: true
     optional: true
