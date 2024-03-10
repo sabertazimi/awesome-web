@@ -1,16 +1,11 @@
 import type { AppStore } from 'src/store'
 
-const moveTask = (
-  store: AppStore,
-  event: DragEvent,
-  toColumnIndex: number,
-  toTaskIndex?: number
-) => {
+function moveTask(store: AppStore, event: DragEvent, toColumnIndex: number, toTaskIndex?: number) {
   const dataTransfer = event.dataTransfer
 
   if (dataTransfer) {
-    const fromColumnIndex = parseInt(dataTransfer.getData('fromColumnIndex'))
-    const fromTaskIndex = parseInt(dataTransfer.getData('fromTaskIndex'))
+    const fromColumnIndex = Number.parseInt(dataTransfer.getData('fromColumnIndex'))
+    const fromTaskIndex = Number.parseInt(dataTransfer.getData('fromTaskIndex'))
     store.commit('moveTask', {
       fromColumnIndex,
       toColumnIndex,
@@ -20,35 +15,25 @@ const moveTask = (
   }
 }
 
-const moveColumn = (
-  store: AppStore,
-  event: DragEvent,
-  toColumnIndex: number
-) => {
+function moveColumn(store: AppStore, event: DragEvent, toColumnIndex: number) {
   const dataTransfer = event.dataTransfer
 
   if (dataTransfer) {
-    const fromColumnIndex = parseInt(dataTransfer.getData('fromColumnIndex'))
+    const fromColumnIndex = Number.parseInt(dataTransfer.getData('fromColumnIndex'))
     store.commit('moveColumn', { fromColumnIndex, toColumnIndex })
   }
 }
 
-const move = (
-  store: AppStore,
-  event: DragEvent,
-  toColumnIndex: number,
-  toTaskIndex?: number
-) => {
+function move(store: AppStore, event: DragEvent, toColumnIndex: number, toTaskIndex?: number) {
   const dataTransfer = event.dataTransfer
 
   if (dataTransfer) {
     const type = dataTransfer.getData('type')
 
-    if (type === 'column') {
+    if (type === 'column')
       moveColumn(store, event, toColumnIndex)
-    } else {
+    else
       moveTask(store, event, toColumnIndex, toTaskIndex)
-    }
   }
 }
 

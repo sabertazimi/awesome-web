@@ -13,15 +13,15 @@ type AppStore = Store<State>
 
 const key: InjectionKey<AppStore> = Symbol('state')
 
-const board: BoardType =
-  JSON.parse(localStorage.getItem('@sabertazimi/vue-trello-board') as string) ||
-  getDefaultBoard()
+const board: BoardType
+  = JSON.parse(localStorage.getItem('@sabertazimi/vue-trello-board') as string)
+  || getDefaultBoard()
 
-const saveStatePlugin = (store: AppStore) => {
+function saveStatePlugin(store: AppStore) {
   store.subscribe((_, state) => {
     localStorage.setItem(
       '@sabertazimi/vue-trello-board',
-      JSON.stringify(state.board)
+      JSON.stringify(state.board),
     )
   })
 }
@@ -32,9 +32,8 @@ const store = createStore<State>({
     getTask: state => (id: string) => {
       for (const column of state.board.columns) {
         for (const task of column.tasks) {
-          if (task.id === id) {
+          if (task.id === id)
             return task
-          }
         }
       }
     },
@@ -42,7 +41,7 @@ const store = createStore<State>({
   mutations: {
     createTask(
       state,
-      { columnIndex, name }: { columnIndex: number; name: string }
+      { columnIndex, name }: { columnIndex: number, name: string },
     ) {
       const tasks = state.board.columns[columnIndex].tasks
       tasks.push({ id: nanoid(), name, description: '' })
@@ -53,18 +52,18 @@ const store = createStore<State>({
         task,
         key,
         value,
-      }: { task: TaskType; key: keyof TaskType; value: string }
+      }: { task: TaskType, key: keyof TaskType, value: string },
     ) {
       task[key] = value
     },
     deleteTask(
       state,
-      { columnIndex, taskId }: { columnIndex: number; taskId: string }
+      { columnIndex, taskId }: { columnIndex: number, taskId: string },
     ) {
       const tasks = state.board.columns[columnIndex].tasks
       tasks.splice(
         tasks.findIndex(task => task.id === taskId),
-        1
+        1,
       )
     },
     moveTask(
@@ -79,7 +78,7 @@ const store = createStore<State>({
         toColumnIndex: number
         fromTaskIndex: number
         toTaskIndex?: number
-      }
+      },
     ) {
       const fromTasks = state.board.columns[fromColumnIndex].tasks
       const toTasks = state.board.columns[toColumnIndex].tasks
@@ -97,7 +96,7 @@ const store = createStore<State>({
     deleteColumn(state, { id }: { id: string }) {
       state.board.columns.splice(
         state.board.columns.findIndex(column => column.id === id),
-        1
+        1,
       )
     },
     moveColumn(
@@ -108,7 +107,7 @@ const store = createStore<State>({
       }: {
         fromColumnIndex: number
         toColumnIndex: number
-      }
+      },
     ) {
       const columnList = state.board.columns
       const columnToMove = columnList.splice(fromColumnIndex, 1)[0]

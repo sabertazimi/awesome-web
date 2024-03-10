@@ -1,6 +1,0 @@
-{
-  "extends": "@dg-scripts",
-  "rules": {
-    "no-console": "off"
-  }
-}

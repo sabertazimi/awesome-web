@@ -6,7 +6,7 @@ import BoardColumn from 'src/components/BoardColumn.vue'
 const store = useAppStore()
 const columns = computed(() => store.state.board.columns)
 
-const createColumn = (event: Event) => {
+function createColumn(event: Event) {
   const inputElement = event.target as HTMLInputElement
 
   if (inputElement.value) {
@@ -32,7 +32,7 @@ const createColumn = (event: Event) => {
           class="column-input"
           placeholder="+ Enter new column ..."
           @keyup.enter="createColumn($event)"
-        />
+        >
       </div>
     </div>
     <router-view v-slot="{ Component }">
