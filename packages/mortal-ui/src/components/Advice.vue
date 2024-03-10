@@ -28,16 +28,20 @@ const { t } = useI18n()
         effect="dark"
         :closable="false"
       />
-      <div
-        class="claim-advice-container"
-      >
+      <div class="claim-advice-container">
         <template
           v-for="(claim, i) in props.review.claimAdvice"
           :key="`claim-advice-${i}`"
         >
           <TileGroup v-if="claim.action.type === 'none'" class="claim-advice">
             <span class="claim-advice-text">{{ t('mortal.pass') }}</span>
-            <Tile :prob="claim.prob" transparent class="claim-advice-none" />
+            <Tile
+              :prob="claim.prob"
+              class="claim-advice-none"
+              transparent
+              :actual="i === props.review.claimActual"
+              :expected="i === props.review.claimExpected"
+            />
           </TileGroup>
           <TileGroup
             v-else-if="
@@ -49,8 +53,17 @@ const { t } = useI18n()
             "
             class="claim-advice"
           >
-            <span class="claim-advice-text">{{ t(`mortal.${claim.action.type}`) }}</span>
-            <Tile v-for="(tile, j) in claim.action.consumed" :key="`claim-advice-i-${j}`" :tile="TileUtils.get(tile)" :prob="claim.prob" />
+            <span class="claim-advice-text">{{
+              t(`mortal.${claim.action.type}`)
+            }}</span>
+            <Tile
+              v-for="(tile, j) in claim.action.consumed"
+              :key="`claim-advice-i-${j}`"
+              :tile="TileUtils.get(tile)"
+              :prob="claim.prob"
+              :actual="i === props.review.claimActual"
+              :expected="i === props.review.claimExpected"
+            />
           </TileGroup>
         </template>
       </div>

@@ -12,6 +12,8 @@ const props = withDefaults(
     small?: boolean
     direction?: number
     prob?: number
+    actual?: boolean
+    expected?: boolean
   }>(),
   {
     tile: '5z', // Default for Ankan
@@ -20,7 +22,10 @@ const props = withDefaults(
 
 const probHeight = computed(() => `${(props.prob || 0) * 100}%`)
 const probMarginTop = computed(() => `-${((props.prob || 0) * 100) / 2}%`)
-const tileImage = computed(() => `url('${import.meta.env.BASE_URL}tiles/${props.tile.toLowerCase()}.svg')`)
+const tileImage = computed(
+  () =>
+    `url('${import.meta.env.BASE_URL}tiles/${props.tile.toLowerCase()}.svg')`,
+)
 </script>
 
 <template>
@@ -37,6 +42,8 @@ const tileImage = computed(() => `url('${import.meta.env.BASE_URL}tiles/${props.
       'tile-toimen': props.direction === 2,
       'tile-kami': props.direction === 3,
       'tile-prob': props.prob,
+      'tile-expected': props.expected,
+      'tile-mismatch': props.actual && !props.expected,
     }"
   >
     <span
@@ -160,5 +167,13 @@ const tileImage = computed(() => `url('${import.meta.env.BASE_URL}tiles/${props.
   background-color: var(--tile-prob-color);
   transition: transform 0.25s ease-in-out;
   transform: translate(-50%, -50%);
+}
+
+.tile-expected {
+  border: 5px solid var(--tile-expected-color);
+}
+
+.tile-mismatch {
+  border: 5px solid var(--tile-mismatch-color);
 }
 </style>
