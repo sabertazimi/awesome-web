@@ -34,9 +34,15 @@ interface GameInfo {
 interface MortalReview {
   show: boolean
   tehaiProb: { [key: string]: number }
+  tehaiActual: { [key: string]: boolean }
+  tehaiExpected: { [key: string]: boolean }
   tsumoProb: number
+  tsumoActual: boolean
+  tsumoExpected: boolean
   isEqual: boolean
   claimAdvice: Detail[]
+  claimActual: number
+  claimExpected: number
 }
 
 class UIState {
@@ -58,9 +64,15 @@ class UIState {
   mortalReview: MortalReview = {
     show: false,
     tehaiProb: {},
+    tehaiActual: {},
+    tehaiExpected: {},
     tsumoProb: 0,
+    tsumoActual: false,
+    tsumoExpected: false,
     isEqual: true,
     claimAdvice: [],
+    claimActual: -1,
+    claimExpected: -1,
   }
 
   constructor(event?: StartKyoku) {

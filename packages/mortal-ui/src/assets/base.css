@@ -34,6 +34,8 @@
   --tile-width-small: calc(var(--tile-width) * 0.75);
   --tile-reversed-color: hsl(47deg 99% 46%);
   --tile-prob-color: hsl(120deg 70% 34%);
+  --tile-expected-color: hsl(270deg 100% 50%);
+  --tile-mismatch-color: hsl(0deg 100% 50%);
   --section-gap: 160px;
 }
 

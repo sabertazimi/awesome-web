@@ -205,9 +205,15 @@ class Machine {
     this.uiState.mortalReview = {
       show: false,
       tehaiProb: {},
+      tehaiActual: {},
+      tehaiExpected: {},
       tsumoProb: 0,
+      tsumoActual: false,
+      tsumoExpected: false,
       isEqual: true,
       claimAdvice: [],
+      claimActual: -1,
+      claimExpected: -1,
     }
   }
 
@@ -216,7 +222,8 @@ class Machine {
 
     // TODO: Remove reviewCounter check after all logs are fixed.
     if (this.reviewCounter < entries.length) {
-      const { last_actor, details, is_equal } = entries[this.reviewCounter]
+      const { last_actor, details, is_equal, actual, expected }
+        = entries[this.reviewCounter]
 
       switch (actor) {
         case this.heroId: {
@@ -224,7 +231,9 @@ class Machine {
 
           const tsumoIndex = details.findIndex(
             ({ action }) =>
-              action.type === 'dahai' && action.tsumogiri === true && TileUtils.get(action.pai) === tsumo,
+              action.type === 'dahai'
+              && action.tsumogiri === true
+              && TileUtils.get(action.pai) === tsumo,
           )
 
           const tehaiProb: { [key: string]: number } = {}
@@ -232,18 +241,41 @@ class Machine {
 
           // TODO: Remove tsumoIndex check after all logs are fixed.
           if (tsumoIndex !== -1) {
-            details.slice(0, tsumoIndex).concat(details.slice(tsumoIndex + 1)).forEach(({ action, prob }) => {
-              if (action.type === 'dahai')
-                tehaiProb[TileUtils.get(action.pai)] = prob
-            })
+            details
+              .slice(0, tsumoIndex)
+              .concat(details.slice(tsumoIndex + 1))
+              .forEach(({ action, prob }) => {
+                if (action.type === 'dahai')
+                  tehaiProb[TileUtils.get(action.pai)] = prob
+              })
             tsumoProb = details[tsumoIndex].prob
+
+            const tehaiActual: { [key: string]: boolean } = {}
+            const tehaiExpected: { [key: string]: boolean } = {}
+            let tsumoActual = false
+            let tsumoExpected = false
+
+            const actualPai
+              = actual.type === 'dahai' ? TileUtils.get(actual.pai) : ''
+            const expectedPai
+              = expected.type === 'dahai' ? TileUtils.get(expected.pai) : ''
+            tehaiActual[actualPai] = true
+            tehaiExpected[expectedPai] = true
+            tsumoActual = actual.type === 'dahai' && actual.tsumogiri
+            tsumoExpected = expected.type === 'dahai' && expected.tsumogiri
 
             this.uiState.mortalReview = {
               show: true,
               tehaiProb,
+              tehaiActual,
+              tehaiExpected,
+              tsumoActual,
+              tsumoExpected,
               tsumoProb,
               isEqual: is_equal,
               claimAdvice: [],
+              claimActual: -1,
+              claimExpected: -1,
             }
             this.reviewCounter += 1
           }
@@ -251,12 +283,25 @@ class Machine {
           break
         }
         case last_actor: {
+          const claimActual = details.findIndex(
+            ({ action }) => action.type === actual.type,
+          )
+          const claimExpected = details.findIndex(
+            ({ action }) => action.type === expected.type,
+          )
+
           this.uiState.mortalReview = {
             show: true,
             tehaiProb: {},
+            tehaiActual: {},
+            tehaiExpected: {},
             tsumoProb: 0,
+            tsumoActual: false,
+            tsumoExpected: false,
             isEqual: is_equal,
             claimAdvice: details,
+            claimActual,
+            claimExpected,
           }
           this.reviewCounter += 1
           break

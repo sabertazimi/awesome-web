@@ -18,12 +18,16 @@ const props = defineProps<{
           :tile="tile"
           :direction="i"
           :prob="i === 0 ? props.state.mortalReview.tehaiProb[tile] : 0"
+          :actual="i === 0 && props.state.mortalReview.tehaiActual[tile]"
+          :expected="i === 0 && props.state.mortalReview.tehaiExpected[tile]"
         />
         <Tile
           :class="`tsumo-p${i}`"
           :tile="props.state.hands[i].tsumo"
           :direction="i"
           :prob="i === 0 ? props.state.mortalReview.tsumoProb : 0"
+          :actual="i === 0 && props.state.mortalReview.tsumoActual"
+          :expected="i === 0 && props.state.mortalReview.tsumoExpected"
         />
         <Claim
           v-for="(claimed, j) in props.state.hands[i].claimed"
