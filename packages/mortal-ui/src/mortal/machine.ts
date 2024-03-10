@@ -109,6 +109,9 @@ class Machine {
             })
           }
 
+          if (actor === this.heroId)
+            this.advanceReview(actor)
+
           this.recordState()
           break
         }
@@ -228,6 +231,12 @@ class Machine {
       switch (actor) {
         case this.heroId: {
           const { tsumo } = this.uiState.hands[0]
+          const tehaiProb: { [key: string]: number } = {}
+          const tehaiActual: { [key: string]: boolean } = {}
+          const tehaiExpected: { [key: string]: boolean } = {}
+          let tsumoProb = 0
+          let tsumoActual = false
+          let tsumoExpected = false
 
           const tsumoIndex = details.findIndex(
             ({ action }) =>
@@ -236,11 +245,9 @@ class Machine {
               && TileUtils.get(action.pai) === tsumo,
           )
 
-          const tehaiProb: { [key: string]: number } = {}
-          let tsumoProb = 0
-
-          // TODO: Remove tsumoIndex check after all logs are fixed.
+          // Dahai review for hero after tsumo or claim.
           if (tsumoIndex !== -1) {
+            // Tsumo.
             details
               .slice(0, tsumoIndex)
               .concat(details.slice(tsumoIndex + 1))
@@ -249,43 +256,52 @@ class Machine {
                   tehaiProb[TileUtils.get(action.pai)] = prob
               })
             tsumoProb = details[tsumoIndex].prob
-
-            const tehaiActual: { [key: string]: boolean } = {}
-            const tehaiExpected: { [key: string]: boolean } = {}
-            let tsumoActual = false
-            let tsumoExpected = false
-
-            const actualPai
-              = actual.type === 'dahai' ? TileUtils.get(actual.pai) : ''
-            const expectedPai
-              = expected.type === 'dahai' ? TileUtils.get(expected.pai) : ''
-            tehaiActual[actualPai] = true
-            tehaiExpected[expectedPai] = true
-            tsumoActual = actual.type === 'dahai' && actual.tsumogiri
-            tsumoExpected = expected.type === 'dahai' && expected.tsumogiri
-
-            this.uiState.mortalReview = {
-              show: true,
-              tehaiProb,
-              tehaiActual,
-              tehaiExpected,
-              tsumoActual,
-              tsumoExpected,
-              tsumoProb,
-              isEqual: is_equal,
-              claimAdvice: [],
-              claimActual: -1,
-              claimExpected: -1,
-            }
-            this.reviewCounter += 1
           }
+          else {
+            // Claim.
+            details.forEach(({ action, prob }) => {
+              if (action.type === 'dahai')
+                tehaiProb[TileUtils.get(action.pai)] = prob
+            })
+            tsumoProb = 0
+          }
+
+          const actualPai
+            = actual.type === 'dahai' && !actual.tsumogiri
+              ? TileUtils.get(actual.pai)
+              : ''
+          const expectedPai
+            = expected.type === 'dahai' && !expected.tsumogiri
+              ? TileUtils.get(expected.pai)
+              : ''
+          tehaiActual[actualPai] = true
+          tehaiExpected[expectedPai] = true
+          tsumoActual = actual.type === 'dahai' && actual.tsumogiri
+          tsumoExpected = expected.type === 'dahai' && expected.tsumogiri
+
+          this.uiState.mortalReview = {
+            show: true,
+            tehaiProb,
+            tehaiActual,
+            tehaiExpected,
+            tsumoActual,
+            tsumoExpected,
+            tsumoProb,
+            isEqual: is_equal,
+            claimAdvice: [],
+            claimActual: -1,
+            claimExpected: -1,
+          }
+          this.reviewCounter += 1
 
           break
         }
         case last_actor: {
+          // TODO: compare consumed tiles for chi, pon, daiminkan, and kakan.
           const claimActual = details.findIndex(
             ({ action }) => action.type === actual.type,
           )
+          // TODO: compare consumed tiles for chi, pon, daiminkan, and kakan.
           const claimExpected = details.findIndex(
             ({ action }) => action.type === expected.type,
           )
