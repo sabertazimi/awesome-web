@@ -19,10 +19,10 @@
     "Learn Vue.js"
   ],
   "main": "index.js",
-  "scripts": {
+  "script": {
     "dev": "vitest --environment jsdom --dir",
-    "lint": "eslint . --ext .vue,.js,.ts,.jsx,.tsx,.json --max-warnings 0",
-    "lint:fix": "eslint --fix . --ext .vue,.js,.ts,.jsx,.tsx,.json",
+    "lint": "eslint . --max-warnings 0",
+    "lint:fix": "eslint --fix .",
     "test": "vitest --environment jsdom --dir solutions"
   },
   "devDependencies": {

@@ -4,22 +4,20 @@ import { useAppStore } from 'src/store'
 import { move as moveTask } from 'src/composables'
 import type { TaskType } from 'src/services'
 
-defineProps<{ columnIndex: number; taskIndex: number; task: TaskType }>()
+defineProps<{ columnIndex: number, taskIndex: number, task: TaskType }>()
 
 const store = useAppStore()
 const router = useAppRouter()
 
-const goToTask = (task: TaskType) =>
-  router.push({ name: 'task', params: { id: task.id } })
+function goToTask(task: TaskType) {
+  return router.push({ name: 'task', params: { id: task.id } })
+}
 
-const deleteTask = (columnIndex: number, taskId: string) =>
-  store.commit('deleteTask', { columnIndex, taskId })
+function deleteTask(columnIndex: number, taskId: string) {
+  return store.commit('deleteTask', { columnIndex, taskId })
+}
 
-const pickupTask = (
-  event: DragEvent,
-  fromColumnIndex: number,
-  fromTaskIndex: number
-) => {
+function pickupTask(event: DragEvent, fromColumnIndex: number, fromTaskIndex: number) {
   const dataTransfer = event.dataTransfer
 
   if (dataTransfer) {

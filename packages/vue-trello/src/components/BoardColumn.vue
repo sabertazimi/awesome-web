@@ -4,11 +4,11 @@ import { move as moveColumn } from 'src/composables'
 import type { BoardColumnType } from 'src/services'
 import ColumnTask from 'src/components/ColumnTask.vue'
 
-defineProps<{ columnIndex: number; column: BoardColumnType }>()
+defineProps<{ columnIndex: number, column: BoardColumnType }>()
 
 const store = useAppStore()
 
-const createTask = (event: Event, columnIndex: number) => {
+function createTask(event: Event, columnIndex: number) {
   const inputElement = event.target as HTMLInputElement
   store.commit('createTask', {
     columnIndex,
@@ -19,7 +19,7 @@ const createTask = (event: Event, columnIndex: number) => {
 
 const deleteColumn = (id: string) => store.commit('deleteColumn', { id })
 
-const pickupColumn = (event: DragEvent, fromColumnIndex: number) => {
+function pickupColumn(event: DragEvent, fromColumnIndex: number) {
   const dataTransfer = event.dataTransfer
 
   if (dataTransfer) {
@@ -63,7 +63,7 @@ const pickupColumn = (event: DragEvent, fromColumnIndex: number) => {
         class="task-input"
         placeholder="+ Enter new task ..."
         @keyup.enter="createTask($event, columnIndex)"
-      />
+      >
     </div>
   </div>
 </template>

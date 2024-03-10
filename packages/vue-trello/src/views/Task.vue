@@ -11,7 +11,7 @@ const task = computed(() => store.getters.getTask(props.id))
 
 const close = () => router.push({ name: 'board' })
 
-const updateTask = (event: Event, task: TaskType, key: string) => {
+function updateTask(event: Event, task: TaskType, key: string) {
   store.commit('updateTask', {
     task,
     key,
@@ -28,7 +28,7 @@ const updateTask = (event: Event, task: TaskType, key: string) => {
         class="task-input"
         :value="task.name"
         @change="updateTask($event, task, 'name')"
-      />
+      >
       <textarea
         id="task-description"
         name="task-description"
@@ -39,7 +39,9 @@ const updateTask = (event: Event, task: TaskType, key: string) => {
         :value="task.description"
         @change="updateTask($event, task, 'description')"
       />
-      <button class="btn ml-auto" @click.stop="close">Close</button>
+      <button class="btn ml-auto" @click.stop="close">
+        Close
+      </button>
     </div>
   </div>
 </template>

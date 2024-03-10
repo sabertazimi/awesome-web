@@ -8,9 +8,9 @@
     "build:post": "mkdir -p ../../build/vue-trello && cp -fr ./dist/* ../../build/vue-trello",
     "dev": "vite",
     "lint": "pnpm lint:style && pnpm lint:type-check",
-    "lint:style": "eslint --ext .ts,.vue ./src && stylelint ./src/**/*.{css,vue}",
+    "lint:style": "eslint ./src && stylelint ./src/**/*.{css,vue}",
     "lint:type-check": "vue-tsc --noEmit",
-    "lint:fix": "eslint --fix ./src --ext .vue,.js,.ts,.jsx,.tsx,.json && stylelint ./src/**/*.{css,vue} --fix",
+    "lint:fix": "eslint --fix ./src && stylelint ./src/**/*.{css,vue} --fix",
     "serve": "vite preview"
   },
   "dependencies": {
@@ -20,7 +20,7 @@
     "vuex": "^4.1.0"
   },
   "devDependencies": {
-    "@dg-scripts/eslint-config": "^5.14.3",
+    "@antfu/eslint-config": "^2.8.0",
     "@dg-scripts/stylelint-config": "^5.14.3",
     "@types/node": "^20.11.25",
     "@vitejs/plugin-vue": "^5.0.4",
