@@ -54,7 +54,7 @@
     "lerna": "^8.1.2",
     "pm2": "^5.3.1",
     "prettier": "^3.2.5",
-    "stylelint": "^16.2.1",
+    "stylelint": "^16.3.0",
     "ts-node": "^10.9.2",
     "tslib": "^2.6.2",
     "typescript": "^5.4.3"
