@@ -21,7 +21,7 @@
     "vuex": "^4.1.0"
   },
   "devDependencies": {
-    "@dg-scripts/eslint-config": "^5.14.3",
+    "@dg-scripts/eslint-config": "^5.16.0",
     "@types/node": "^20.12.2",
     "@vue/cli-plugin-babel": "^5.0.8",
     "@vue/cli-plugin-eslint": "^5.0.8",

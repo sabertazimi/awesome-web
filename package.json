@@ -48,7 +48,7 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.11.5",
-    "@dg-scripts/stylelint-config": "^5.14.3",
+    "@dg-scripts/stylelint-config": "^5.16.0",
     "@types/node": "^20.12.2",
     "eslint": "^8.57.0",
     "lerna": "^8.1.2",
