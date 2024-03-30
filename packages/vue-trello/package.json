@@ -22,7 +22,7 @@
   "devDependencies": {
     "@antfu/eslint-config": "^2.11.5",
     "@dg-scripts/stylelint-config": "^5.14.3",
-    "@types/node": "^20.11.30",
+    "@types/node": "^20.12.2",
     "@vitejs/plugin-vue": "^5.0.4",
     "autoprefixer": "^10.4.19",
     "eslint": "^8.57.0",
