@@ -3,12 +3,14 @@ import Reconciler from './reconciler'
 import type { Container, OpaqueRoot } from './types'
 
 const Renderer = {
-  createRoot: (
+  createRoot(
     container: Container | null,
-    callback?: Function
-  ): OpaqueRoot => {
+    callback?: Function,
+  ): OpaqueRoot {
+    let root: OpaqueRoot | null = null
+
     if (container) {
-      const root = Reconciler.createContainer(
+      root = Reconciler.createContainer(
         container,
         0,
         null,
@@ -16,9 +18,10 @@ const Renderer = {
         null,
         '',
         (error: Error) => {
+          // eslint-disable-next-line no-console -- Output error message
           console.error(error)
         },
-        null
+        null,
       )
 
       root.render = function (element: ReactElement) {
@@ -31,6 +34,8 @@ const Renderer = {
 
       return root
     }
+
+    return root
   },
 }
 

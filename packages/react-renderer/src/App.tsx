@@ -2,13 +2,17 @@ import { useCallback, useState } from 'react'
 import Logo from './logo.svg'
 import './App.css'
 
+/**
+ * The main component of the application.
+ * @returns {JSX.Element} The rendered App component.
+ */
 function App() {
   const [count, setCount] = useState<number>(0)
   const inc = useCallback(() => {
-    setCount(count => count + 1)
+    setCount(num => num + 1)
   }, [])
   const dec = useCallback(() => {
-    setCount(count => count - 1)
+    setCount(num => num - 1)
   }, [])
 
   return (

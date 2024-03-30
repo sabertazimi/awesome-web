@@ -3,6 +3,9 @@
   "version": "1.8.0",
   "private": true,
   "homepage": "https://sabertazimi.github.io/awesome-web/react-renderer",
+  "engines": {
+    "node": ">=14.0.0"
+  },
   "scripts": {
     "build": "react-scripts build && pnpm build:post",
     "build:post": "mkdir -p ../../build/react-renderer && cp -fr ./build/* ../../build/react-renderer",
@@ -20,7 +23,7 @@
     "web-vitals": "^3.5.2"
   },
   "devDependencies": {
-    "@sabertazimi/react-scripts": "^5.14.3",
+    "@sabertazimi/react-scripts": "^5.16.0",
     "@testing-library/dom": "^9.3.4",
     "@testing-library/jest-dom": "^6.4.2",
     "@testing-library/react": "^14.2.2",
@@ -31,13 +34,6 @@
     "@types/react-dom": "^18.2.23",
     "@types/react-reconciler": "^0.28.8",
     "typescript": "^5.4.3"
-  },
-  "eslintConfig": {
-    "extends": [
-      "bod",
-      "bod/jest",
-      "plugin:prettier/recommended"
-    ]
   },
   "stylelint": {
     "extends": [
@@ -75,8 +71,5 @@
       "src/**/App.tsx",
       "!<rootDir>/node_modules/"
     ]
-  },
-  "engines": {
-    "node": ">=14.0.0"
   }
 }

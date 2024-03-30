@@ -13,14 +13,14 @@ interface Event {
 
 const url = 'https://my-json-server.typicode.com/sabertazimi/awesome-web/events'
 
-const getEvent = async (id: number): Promise<Event> => {
+async function getEvent(id: number): Promise<Event> {
   const data = await fetch(`${url}/${id}`)
-  return await data.json()
+  return await data.json() as Event
 }
 
-const getEvents = async (): Promise<Event[]> => {
+async function getEvents(): Promise<Event[]> {
   const data = await fetch(url)
-  return await data.json()
+  return await data.json() as Event[]
 }
 
 export { getEvent, getEvents }

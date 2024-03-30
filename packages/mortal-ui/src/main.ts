@@ -8,6 +8,7 @@ import './assets/main.css'
 
 const locale = localStorage.getItem('locale') || 'en'
 
+// eslint-disable-next-line ts/no-unsafe-argument
 const app = createApp(App)
 
 app.use(createPinia())

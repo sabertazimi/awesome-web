@@ -33,10 +33,10 @@
     "web development"
   ],
   "scripts": {
-    "build": "pnpm build:prepare && lerna run build",
+    "build": "pnpm build:prepare && pnpm -r run build",
     "build:prepare": "rm -fr ./build && mkdir -p ./build",
-    "lint": "lerna run lint",
-    "lint:fix": "lerna run lint:fix",
+    "lint": "pnpm -r run lint",
+    "lint:fix": "pnpm -r run lint:fix",
     "release": "lerna version --force-publish --sign-git-commit --sign-git-tag",
     "start": "pnpm start:mortal-ui",
     "start:react-renderer": "pnpm --filter @sabertazimi/react-renderer start",
@@ -44,19 +44,17 @@
     "start:vue-design": "pnpm --filter @sabertazimi/vue-design dev",
     "start:vue-trello": "pnpm --filter @sabertazimi/vue-trello dev",
     "start:mortal-ui": "pnpm --filter mortal-ui dev",
-    "test": "lerna run test"
+    "test": "pnpm -r run test"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^2.11.5",
-    "@dg-scripts/stylelint-config": "^5.14.3",
+    "@dg-scripts/eslint-config": "^5.16.0",
+    "@dg-scripts/stylelint-config": "^5.16.0",
     "@types/node": "^20.12.2",
     "eslint": "^8.57.0",
     "lerna": "^8.1.2",
-    "pm2": "^5.3.1",
     "prettier": "^3.2.5",
     "stylelint": "^16.3.1",
     "ts-node": "^10.9.2",
-    "tslib": "^2.6.2",
     "typescript": "^5.4.3"
   }
 }

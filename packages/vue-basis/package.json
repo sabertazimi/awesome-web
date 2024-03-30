@@ -2,36 +2,35 @@
   "name": "@sabertazimi/vue-basis",
   "version": "1.8.0",
   "private": true,
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not dead",
-    "not ie 11"
-  ],
+  "license": "MIT",
   "scripts": {
-    "build": "vue-cli-service build && pnpm build:post",
+    "build": "vue-tsc --noEmit && vite build && pnpm build:post",
     "build:post": "mkdir -p ../../build/vue-basis && cp -fr ./dist/* ../../build/vue-basis",
-    "lint": "vue-cli-service lint",
-    "serve": "vue-cli-service serve"
+    "dev": "vite",
+    "lint": "pnpm lint:style && pnpm lint:type-check",
+    "lint:style": "eslint ./src && stylelint ./src/**/*.{css,vue}",
+    "lint:type-check": "vue-tsc --noEmit",
+    "lint:fix": "eslint --fix ./src && stylelint ./src/**/*.{css,vue} --fix",
+    "serve": "vite preview"
   },
   "dependencies": {
-    "core-js": "^3.36.1",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0",
     "vuex": "^4.1.0"
   },
   "devDependencies": {
-    "@dg-scripts/eslint-config": "^5.14.3",
+    "@dg-scripts/eslint-config": "^5.16.0",
+    "@dg-scripts/stylelint-config": "^5.16.0",
     "@types/node": "^20.12.2",
-    "@vue/cli-plugin-babel": "^5.0.8",
-    "@vue/cli-plugin-eslint": "^5.0.8",
-    "@vue/cli-plugin-router": "^5.0.8",
-    "@vue/cli-plugin-typescript": "^5.0.8",
-    "@vue/cli-plugin-vuex": "^5.0.8",
-    "@vue/cli-service": "^5.0.8",
-    "@vue/compiler-sfc": "^3.4.21",
+    "@vitejs/plugin-vue": "^5.0.4",
+    "autoprefixer": "^10.4.19",
     "eslint": "^8.57.0",
+    "postcss": "^8.4.38",
     "prettier": "^3.2.5",
-    "typescript": "^5.4.3"
+    "stylelint": "^16.3.1",
+    "tailwindcss": "^3.4.3",
+    "typescript": "^5.4.3",
+    "vite": "^5.2.7",
+    "vue-tsc": "^2.0.7"
   }
 }
