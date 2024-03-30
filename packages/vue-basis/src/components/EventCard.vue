@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import Card from './Card.vue'
 import type { Event } from '@/services'
+
 defineProps<{ event: Event }>()
 </script>
 

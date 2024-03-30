@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { Event } from '@/services'
+
 defineProps<{ event: Event }>()
 </script>
 
@@ -21,7 +22,7 @@ defineProps<{ event: Event }>()
 
 .event-card:focus,
 .event-card:hover {
-  box-shadow: 0 3px 12px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 3px 12px 0 hsla(0% 0% 0% / 20%);
   transform: scale(1.01);
 }
 </style>
