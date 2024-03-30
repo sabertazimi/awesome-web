@@ -20,7 +20,7 @@
     "vuex": "^4.1.0"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^2.11.5",
+    "@dg-scripts/eslint-config": "^5.16.0",
     "@dg-scripts/stylelint-config": "^5.16.0",
     "@types/node": "^20.12.2",
     "@vitejs/plugin-vue": "^5.0.4",

@@ -1,9 +1,9 @@
 import type { InjectionKey } from 'vue'
 import type { Store } from 'vuex'
 import { createStore, useStore } from 'vuex'
-import { getDefaultBoard } from 'src/services'
-import type { BoardColumnType, BoardType, TaskType } from 'src/services'
 import { nanoid } from 'nanoid'
+import { getDefaultBoard } from '../services'
+import type { BoardColumnType, BoardType, TaskType } from '../services'
 
 interface State {
   board: BoardType
@@ -14,7 +14,7 @@ type AppStore = Store<State>
 const key: InjectionKey<AppStore> = Symbol('state')
 
 const board: BoardType
-  = JSON.parse(localStorage.getItem('@sabertazimi/vue-trello-board') as string)
+  = JSON.parse(localStorage.getItem('@sabertazimi/vue-trello-board') as string) as BoardType
   || getDefaultBoard()
 
 function saveStatePlugin(store: AppStore) {
@@ -54,7 +54,8 @@ const store = createStore<State>({
         value,
       }: { task: TaskType, key: keyof TaskType, value: string },
     ) {
-      task[key] = value
+      if (task)
+        task[key] = value
     },
     deleteTask(
       state,

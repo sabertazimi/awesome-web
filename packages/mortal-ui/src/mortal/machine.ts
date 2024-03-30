@@ -201,8 +201,8 @@ class Machine {
 
   recordState(newRound: boolean = false) {
     if (newRound)
-      this.state.push([JSON.parse(JSON.stringify(this.uiState))])
-    else this.state[this.round].push(JSON.parse(JSON.stringify(this.uiState)))
+      this.state.push([JSON.parse(JSON.stringify(this.uiState))] as UIState[])
+    else this.state[this.round].push(JSON.parse(JSON.stringify(this.uiState)) as UIState)
 
     // Reset mortal review after current state is recorded.
     this.uiState.mortalReview = {
@@ -256,8 +256,7 @@ class Machine {
                   tehaiProb[TileUtils.get(action.pai)] = prob
               })
             tsumoProb = details[tsumoIndex].prob
-          }
-          else {
+          } else {
             // Claim.
             details.forEach(({ action, prob }) => {
               if (action.type === 'dahai')
