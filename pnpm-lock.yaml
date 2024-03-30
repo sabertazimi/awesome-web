@@ -9,11 +9,11 @@ importers:
   .:
     devDependencies:
       '@dg-scripts/eslint-config':
-        specifier: ^5.16.0
-        version: 5.16.0(@vue/compiler-sfc@3.4.21)(eslint@8.57.0)(prettier@3.2.5)(typescript@5.4.3)(vitest@1.4.0)
+        specifier: ^5.17.0
+        version: 5.17.0(@vue/compiler-sfc@3.4.21)(eslint@8.57.0)(prettier@3.2.5)(typescript@5.4.3)(vitest@1.4.0)
       '@dg-scripts/stylelint-config':
-        specifier: ^5.16.0
-        version: 5.16.0(postcss@8.4.38)(prettier@3.2.5)(stylelint@16.3.1)
+        specifier: ^5.17.0
+        version: 5.17.0(postcss@8.4.38)(prettier@3.2.5)(stylelint@16.3.1)
       '@types/node':
         specifier: ^20.12.2
         version: 20.12.2
@@ -58,8 +58,8 @@ importers:
         version: 9.10.2(vue@3.4.21)
     devDependencies:
       '@dg-scripts/eslint-config':
-        specifier: ^5.16.0
-        version: 5.16.0(@vue/compiler-sfc@3.4.21)(eslint@8.57.0)(prettier@3.2.5)(typescript@5.4.3)(vitest@1.4.0)
+        specifier: ^5.17.0
+        version: 5.17.0(@vue/compiler-sfc@3.4.21)(eslint@8.57.0)(prettier@3.2.5)(typescript@5.4.3)(vitest@1.4.0)
       '@types/jsdom':
         specifier: ^21.1.6
         version: 21.1.6
@@ -125,8 +125,8 @@ importers:
         version: 3.5.2
     devDependencies:
       '@sabertazimi/react-scripts':
-        specifier: ^5.16.0
-        version: 5.16.0(@types/node@20.12.2)(react@18.2.0)(ts-node@10.9.2)(typescript@5.4.3)
+        specifier: ^5.17.0
+        version: 5.17.0(@types/node@20.12.2)(react@18.2.0)(ts-node@10.9.2)(typescript@5.4.3)
       '@testing-library/dom':
         specifier: ^9.3.4
         version: 9.3.4
@@ -171,11 +171,11 @@ importers:
         version: 4.1.0(vue@3.4.21)
     devDependencies:
       '@dg-scripts/eslint-config':
-        specifier: ^5.16.0
-        version: 5.16.0(@vue/compiler-sfc@3.4.21)(eslint@8.57.0)(prettier@3.2.5)(typescript@5.4.3)(vitest@1.4.0)
+        specifier: ^5.17.0
+        version: 5.17.0(@vue/compiler-sfc@3.4.21)(eslint@8.57.0)(prettier@3.2.5)(typescript@5.4.3)(vitest@1.4.0)
       '@dg-scripts/stylelint-config':
-        specifier: ^5.16.0
-        version: 5.16.0(postcss@8.4.38)(prettier@3.2.5)(stylelint@16.3.1)
+        specifier: ^5.17.0
+        version: 5.17.0(postcss@8.4.38)(prettier@3.2.5)(stylelint@16.3.1)
       '@types/node':
         specifier: ^20.12.2
         version: 20.12.2
@@ -244,8 +244,8 @@ importers:
         version: 3.6.2
     devDependencies:
       '@dg-scripts/eslint-config':
-        specifier: ^5.16.0
-        version: 5.16.0(@vue/compiler-sfc@3.4.21)(eslint@8.57.0)(prettier@3.2.5)(typescript@5.4.3)(vitest@1.4.0)
+        specifier: ^5.17.0
+        version: 5.17.0(@vue/compiler-sfc@3.4.21)(eslint@8.57.0)(prettier@3.2.5)(typescript@5.4.3)(vitest@1.4.0)
       eslint:
         specifier: ^8.57.0
         version: 8.57.0
@@ -275,11 +275,11 @@ importers:
         version: 4.1.0(vue@3.4.21)
     devDependencies:
       '@dg-scripts/eslint-config':
-        specifier: ^5.16.0
-        version: 5.16.0(@vue/compiler-sfc@3.4.21)(eslint@8.57.0)(prettier@3.2.5)(typescript@5.4.3)(vitest@1.4.0)
+        specifier: ^5.17.0
+        version: 5.17.0(@vue/compiler-sfc@3.4.21)(eslint@8.57.0)(prettier@3.2.5)(typescript@5.4.3)(vitest@1.4.0)
       '@dg-scripts/stylelint-config':
-        specifier: ^5.16.0
-        version: 5.16.0(postcss@8.4.38)(prettier@3.2.5)(stylelint@16.3.1)
+        specifier: ^5.17.0
+        version: 5.17.0(postcss@8.4.38)(prettier@3.2.5)(stylelint@16.3.1)
       '@types/node':
         specifier: ^20.12.2
         version: 20.12.2
@@ -338,8 +338,8 @@ packages:
       '@jridgewell/trace-mapping': 0.3.25
     dev: true
 
-  /@antfu/eslint-config@2.11.5(@vue/compiler-sfc@3.4.21)(eslint-plugin-format@0.1.0)(eslint-plugin-react-hooks@4.6.0)(eslint-plugin-react-refresh@0.4.6)(eslint-plugin-react@7.34.1)(eslint@8.57.0)(typescript@5.4.3)(vitest@1.4.0):
-    resolution: {integrity: sha512-Aixz/pYx4egbCgHjOMgJJHL2HITgvscrq5DowTLd3B5V4cRQaKcpa6eRlT/zhlF72LPxBa65DqnRCTV5IiNAJw==}
+  /@antfu/eslint-config@2.11.6(@vue/compiler-sfc@3.4.21)(eslint-plugin-format@0.1.0)(eslint-plugin-react-hooks@4.6.0)(eslint-plugin-react-refresh@0.4.6)(eslint-plugin-react@7.34.1)(eslint@8.57.0)(typescript@5.4.3)(vitest@1.4.0):
+    resolution: {integrity: sha512-v8f1uskX9w3c7IwvQu1pw02d19qc0o//LjILVlzv3B81bsO22x4hJkwQdJEhvypR3Z82vhCnCXfa6yoMddW1pg==}
     hasBin: true
     peerDependencies:
       '@unocss/eslint-plugin': '>=0.50.0'
@@ -2345,8 +2345,8 @@ packages:
     engines: {node: '>=10'}
     dev: false
 
-  /@dg-scripts/eslint-config@5.16.0(@vue/compiler-sfc@3.4.21)(eslint@8.57.0)(prettier@3.2.5)(typescript@5.4.3)(vitest@1.4.0):
-    resolution: {integrity: sha512-s3aewz8jWiq/oKuRsdb1lQ2u8uR/XygZCq+CD52jdcBw+XEDEHoqg/x/6wjJYHlWoJbxQ9eqJ2hOtSI5ULFZIw==}
+  /@dg-scripts/eslint-config@5.17.0(@vue/compiler-sfc@3.4.21)(eslint@8.57.0)(prettier@3.2.5)(typescript@5.4.3)(vitest@1.4.0):
+    resolution: {integrity: sha512-J2tLVHXMk6oQIf5i2BKM2wQMIquRbSHaXfFhxSqwTKl7+j+PJsGUqkHfuVjvvznkwAyotUfHoKxUw/G+gMXP/w==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       eslint: ^8.0.0
@@ -2360,7 +2360,7 @@ packages:
       next:
         optional: true
     dependencies:
-      '@antfu/eslint-config': 2.11.5(@vue/compiler-sfc@3.4.21)(eslint-plugin-format@0.1.0)(eslint-plugin-react-hooks@4.6.0)(eslint-plugin-react-refresh@0.4.6)(eslint-plugin-react@7.34.1)(eslint@8.57.0)(typescript@5.4.3)(vitest@1.4.0)
+      '@antfu/eslint-config': 2.11.6(@vue/compiler-sfc@3.4.21)(eslint-plugin-format@0.1.0)(eslint-plugin-react-hooks@4.6.0)(eslint-plugin-react-refresh@0.4.6)(eslint-plugin-react@7.34.1)(eslint@8.57.0)(typescript@5.4.3)(vitest@1.4.0)
       '@eslint/eslintrc': 3.0.2
       eslint: 8.57.0
       eslint-plugin-format: 0.1.0(eslint@8.57.0)
@@ -2384,8 +2384,8 @@ packages:
       - vitest
     dev: true
 
-  /@dg-scripts/stylelint-config@5.16.0(postcss@8.4.38)(prettier@3.2.5)(stylelint@16.3.1):
-    resolution: {integrity: sha512-dD8I7AJ87JMVBtuqi3E8X9DDYmh1Jodh67dlzf1xVzZx16SIRqXZRoDD5aHyoxKd/fHFp+4MesYjApkQJpiV2w==}
+  /@dg-scripts/stylelint-config@5.17.0(postcss@8.4.38)(prettier@3.2.5)(stylelint@16.3.1):
+    resolution: {integrity: sha512-V/1UwisoQYWG3Dr5QH6xCL5E6Lcd497rBcxN6+XMsbaZ2jc5amNasZ9eAjoQRTiepahGrey4rabfB0Jfa+CeTQ==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       prettier: ^3.0.0
@@ -2393,7 +2393,7 @@ packages:
     dependencies:
       prettier: 3.2.5
       stylelint: 16.3.1(typescript@5.4.3)
-      stylelint-config-bod: 5.16.0(postcss@8.4.38)(stylelint@16.3.1)
+      stylelint-config-bod: 5.17.0(postcss@8.4.38)(stylelint@16.3.1)
       stylelint-prettier: 5.0.0(prettier@3.2.5)(stylelint@16.3.1)
     transitivePeerDependencies:
       - postcss
@@ -3312,7 +3312,6 @@ packages:
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
-    libc: [glibc]
     requiresBuild: true
     dev: true
     optional: true
@@ -3322,7 +3321,6 @@ packages:
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
-    libc: [musl]
     requiresBuild: true
     dev: true
     optional: true
@@ -3332,7 +3330,6 @@ packages:
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
-    libc: [glibc]
     requiresBuild: true
     dev: true
     optional: true
@@ -3342,7 +3339,6 @@ packages:
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
-    libc: [musl]
     requiresBuild: true
     dev: true
     optional: true
@@ -3665,7 +3661,6 @@ packages:
     resolution: {integrity: sha512-Iu0Kno1vrD7zHQDxOmvweqLkAzjxEVqNhUIXBsZ8hu8Oak7/5VTPrxOEZXYC1nmrBVJp0ZcL2E7lSuuOVaE3+w==}
     cpu: [arm64]
     os: [linux]
-    libc: [glibc]
     requiresBuild: true
     dev: true
     optional: true
@@ -3674,7 +3669,6 @@ packages:
     resolution: {integrity: sha512-C31QrW47llgVyrRjIwiOwsHFcaIwmkKi3PCroQY5aVq4H0A5v/vVVAtFsI1nfBngtoRpeREvZOkIhmRwUKkAdw==}
     cpu: [arm64]
     os: [linux]
-    libc: [musl]
     requiresBuild: true
     dev: true
     optional: true
@@ -3683,7 +3677,6 @@ packages:
     resolution: {integrity: sha512-Oq90dtMHvthFOPMl7pt7KmxzX7E71AfyIhh+cPhLY9oko97Zf2C9tt/XJD4RgxhaGeAraAXDtqxvKE1y/j35lA==}
     cpu: [riscv64]
     os: [linux]
-    libc: [glibc]
     requiresBuild: true
     dev: true
     optional: true
@@ -3692,7 +3685,6 @@ packages:
     resolution: {integrity: sha512-yUD/8wMffnTKuiIsl6xU+4IA8UNhQ/f1sAnQebmE/lyQ8abjsVyDkyRkWop0kdMhKMprpNIhPmYlCxgHrPoXoA==}
     cpu: [x64]
     os: [linux]
-    libc: [glibc]
     requiresBuild: true
     dev: true
     optional: true
@@ -3701,7 +3693,6 @@ packages:
     resolution: {integrity: sha512-9RyNqoFNdF0vu/qqX63fKotBh43fJQeYC98hCaf89DYQpv+xu0D8QFSOS0biA7cGuqJFOc1bJ+m2rhhsKcw1hw==}
     cpu: [x64]
     os: [linux]
-    libc: [musl]
     requiresBuild: true
     dev: true
     optional: true
@@ -3730,8 +3721,8 @@ packages:
     dev: true
     optional: true
 
-  /@sabertazimi/react-scripts@5.16.0(@types/node@20.12.2)(react@18.2.0)(ts-node@10.9.2)(typescript@5.4.3):
-    resolution: {integrity: sha512-/rACTiHHtO6clPaNUffEdfdQUCpeinhwjLol0BsoS/MhODG+gVAcD/Nk6qlWBLLp/RE398nOBwZnwa67EEHseg==}
+  /@sabertazimi/react-scripts@5.17.0(@types/node@20.12.2)(react@18.2.0)(ts-node@10.9.2)(typescript@5.4.3):
+    resolution: {integrity: sha512-4lkqFAz3+2IV2c/AsG62F32e8nDcmpAsDrd5VBXSqFY3P1Kc28myZ9G2P1qSG8jKBAudTwFvHvfyjJpb8zcbww==}
     engines: {node: '>=18.0.0'}
     hasBin: true
     peerDependencies:
@@ -3758,7 +3749,7 @@ packages:
       dotenv: 16.4.5
       dotenv-expand: 11.0.6
       eslint: 8.57.0
-      eslint-config-bod: 5.16.0(eslint@8.57.0)(jest@29.7.0)(typescript@5.4.3)
+      eslint-config-bod: 5.17.0(eslint@8.57.0)(jest@29.7.0)(typescript@5.4.3)
       eslint-webpack-plugin: 4.1.0(eslint@8.57.0)(webpack@5.91.0)
       file-loader: 6.2.0(webpack@5.91.0)
       fs-extra: 11.2.0
@@ -3788,7 +3779,7 @@ packages:
       source-map-loader: 5.0.0(webpack@5.91.0)
       style-loader: 3.3.4(webpack@5.91.0)
       stylelint: 16.3.1(typescript@5.4.3)
-      stylelint-config-bod: 5.16.0(postcss@8.4.38)(stylelint@16.3.1)
+      stylelint-config-bod: 5.17.0(postcss@8.4.38)(stylelint@16.3.1)
       stylelint-prettier: 5.0.0(prettier@3.2.5)(stylelint@16.3.1)
       stylelint-webpack-plugin: 5.0.0(stylelint@16.3.1)(webpack@5.91.0)
       tailwindcss: 3.4.3(ts-node@10.9.2)
@@ -7800,8 +7791,8 @@ packages:
       semver: 7.6.0
     dev: true
 
-  /eslint-config-bod@5.16.0(eslint@8.57.0)(jest@29.7.0)(typescript@5.4.3):
-    resolution: {integrity: sha512-UrPMXgudhRmPEuiYLDit67XTaecZymSEpYddwriTOjoc69goD4Z9ibdsNYotiB5SCTiBReZMHUYwJW/kQLAf8g==}
+  /eslint-config-bod@5.17.0(eslint@8.57.0)(jest@29.7.0)(typescript@5.4.3):
+    resolution: {integrity: sha512-6FDRk96ptG/id30sWUrGdiTEALlOpdZpZGHDLqNY3IHei4npX2CeDsHalgy3erfSVkTiDY/V7Kf24DdLpUj76w==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       eslint: ^8.0.0
@@ -15204,8 +15195,8 @@ packages:
       postcss-selector-parser: 6.0.16
     dev: true
 
-  /stylelint-config-bod@5.16.0(postcss@8.4.38)(stylelint@16.3.1):
-    resolution: {integrity: sha512-iCvYMcPxbj6cdpaZePpehRrTqsW/zvXyfjJx44lu1Lu/wIyWP9FcVOeA4eXa8PbbV4IwgEMvVNc3YT5y2UEkGA==}
+  /stylelint-config-bod@5.17.0(postcss@8.4.38)(stylelint@16.3.1):
+    resolution: {integrity: sha512-oPinZqj3JUcj17SyXw8b+P+CiywQC+0cNL9F9Sqm2CrCHMEUgEssiO49S4fD+sPKBWtVIMDmOKURfSOcgEIC4g==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       stylelint: ^15.0.0 || ^16.0.0
