@@ -26,7 +26,7 @@ jobs:
           node-version: 20
           architecture: x64
           registry-url: https://registry.npmjs.org/
-          cache: 'pnpm'
+          cache: pnpm
       - name: Install dependencies
         run: |
           pnpm install
@@ -56,7 +56,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
           architecture: ${{ matrix.architecture }}
           registry-url: https://registry.npmjs.org/
-          cache: 'pnpm'
+          cache: pnpm
       - name: Install dependencies
         run: |
           pnpm install
@@ -66,6 +66,9 @@ jobs:
       - name: Perform code coverage report action
         uses: codecov/codecov-action@v4
         if: ${{ matrix.node-version == 20 && matrix.os == 'ubuntu-latest' && matrix.architecture == 'x64' }}
+        with:
+          fail_ci_if_error: true
+          token: ${{ secrets.CODECOV_TOKEN }}
 
   build:
     name: Building
@@ -94,7 +97,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
           architecture: ${{ matrix.architecture }}
           registry-url: https://registry.npmjs.org/
-          cache: 'pnpm'
+          cache: pnpm
       - name: Install dependencies
         run: |
           pnpm install
