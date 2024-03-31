@@ -4,7 +4,7 @@
 [![LICENSE](https://img.shields.io/github/license/sabertazimi/awesome-web?style=for-the-badge)](https://raw.githubusercontent.com/sabertazimi/awesome-web/main/LICENSE)
 [![Lerna](https://img.shields.io/github/lerna-json/v/sabertazimi/awesome-web?logo=npm&style=for-the-badge)](https://github.com/lerna/lerna)
 
-[![Code Lines](https://img.shields.io/tokei/lines/github/sabertazimi/awesome-web?style=for-the-badge&logo=visualstudiocode)](https://github.com/sabertazimi/awesome-web)
+[![Code Lines](https://tokei.rs/b1/github/sabertazimi/awesome-web?style=for-the-badge&logo=visualstudiocode)](https://github.com/sabertazimi/awesome-web)
 [![Jest Coverage](https://img.shields.io/codecov/c/github/sabertazimi/awesome-web?logo=codecov&style=for-the-badge)](https://codecov.io/gh/sabertazimi/awesome-web)
 [![CI](https://img.shields.io/github/actions/workflow/status/sabertazimi/awesome-web/ci.yml?branch=main&style=for-the-badge&logo=github)](https://github.com/sabertazimi/awesome-web/actions/workflows/ci.yml)
 
