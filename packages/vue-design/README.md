@@ -1,1 +1,1 @@
-# @sabertazimi/vue-design
+# @awesome-web/vue-design

@@ -1,1 +1,1 @@
-# @sabertazimi/vue-basis
+# @awesome-web/vue-basis

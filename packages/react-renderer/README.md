@@ -1,4 +1,4 @@
-# @sabertazimi/react-renderer
+# @awesome-web/react-renderer
 
 ## Reference
 

@@ -21,7 +21,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [1.7.1](https://github.com/sabertazimi/awesome-web/compare/v1.7.0...v1.7.1) (2022-05-27)
 
-**Note:** Version bump only for package @sabertazimi/vue-trello
+**Note:** Version bump only for package @awesome-web/vue-trello
 
 # [1.7.0](https://github.com/sabertazimi/awesome-web/compare/v1.6.1...v1.7.0) (2022-03-24)
 

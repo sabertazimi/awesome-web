@@ -5,7 +5,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [1.9.0](https://github.com/sabertazimi/awesome-web/compare/v1.8.0...v1.9.0) (2024-04-01)
 
-**Note:** Version bump only for package @sabertazimi/react-renderer
+**Note:** Version bump only for package @awesome-web/react-renderer
 
 # [1.8.0](https://github.com/sabertazimi/awesome-web/compare/v1.7.1...v1.8.0) (2022-08-29)
 
@@ -41,15 +41,15 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [1.6.1](https://github.com/sabertazimi/awesome-web/compare/v1.6.0...v1.6.1) (2021-10-04)
 
-**Note:** Version bump only for package @sabertazimi/react-sandbox
+**Note:** Version bump only for package @awesome-web/react-renderer
 
 # [1.6.0](https://github.com/sabertazimi/awesome-web/compare/v1.5.0...v1.6.0) (2021-09-28)
 
-**Note:** Version bump only for package @sabertazimi/react-sandbox
+**Note:** Version bump only for package @awesome-web/react-renderer
 
 # [1.5.0](https://github.com/sabertazimi/awesome-web/compare/v1.4.0...v1.5.0) (2021-09-26)
 
-**Note:** Version bump only for package @sabertazimi/react-sandbox
+**Note:** Version bump only for package @awesome-web/react-renderer
 
 # [1.4.0](https://github.com/sabertazimi/awesome-web/compare/v1.3.0...v1.4.0) (2021-09-25)
 

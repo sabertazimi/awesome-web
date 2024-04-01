@@ -1,1 +1,1 @@
-# @sabertazimi/vue-trello
+# @awesome-web/vue-trello
