@@ -1,11 +1,9 @@
 {
-  "version": "1.8.0",
+  "version": "1.9.0",
   "npmClient": "pnpm",
   "command": {
     "bootstrap": {
-      "npmClientArgs": [
-        "--no-package-lock"
-      ]
+      "npmClientArgs": ["--no-package-lock"]
     },
     "create": {
       "homepage": "https://sabertazimi.github.io/bod",
@@ -20,9 +18,5 @@
       "message": "chore(release): %s"
     }
   },
-  "ignoreChanges": [
-    "**/__fixtures__/**",
-    "**/__tests__/**",
-    "**/*.md"
-  ]
+  "ignoreChanges": ["**/__fixtures__/**", "**/__tests__/**", "**/*.md"]
 }
