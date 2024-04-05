@@ -43,6 +43,7 @@ const store = createStore<State>({
       state,
       { columnIndex, name }: { columnIndex: number, name: string },
     ) {
+      // eslint-disable-next-line security/detect-object-injection -- columnIndex is safe.
       const tasks = state.board.columns[columnIndex].tasks
       tasks.push({ id: nanoid(), name, description: '' })
     },
@@ -55,12 +56,14 @@ const store = createStore<State>({
       }: { task: TaskType, key: keyof TaskType, value: string },
     ) {
       if (task)
+        // eslint-disable-next-line security/detect-object-injection -- key is safe.
         task[key] = value
     },
     deleteTask(
       state,
       { columnIndex, taskId }: { columnIndex: number, taskId: string },
     ) {
+      // eslint-disable-next-line security/detect-object-injection -- columnIndex is safe.
       const tasks = state.board.columns[columnIndex].tasks
       tasks.splice(
         tasks.findIndex(task => task.id === taskId),
@@ -81,7 +84,9 @@ const store = createStore<State>({
         toTaskIndex?: number
       },
     ) {
+      // eslint-disable-next-line security/detect-object-injection -- columnIndex is safe.
       const fromTasks = state.board.columns[fromColumnIndex].tasks
+      // eslint-disable-next-line security/detect-object-injection -- columnIndex is safe.
       const toTasks = state.board.columns[toColumnIndex].tasks
       const taskToMove = fromTasks.splice(fromTaskIndex, 1)[0]
       toTasks.splice(toTaskIndex ?? toTasks.length, 0, taskToMove)
