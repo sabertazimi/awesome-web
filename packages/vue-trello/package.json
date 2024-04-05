@@ -20,8 +20,8 @@
     "vuex": "^4.1.0"
   },
   "devDependencies": {
-    "@dg-scripts/eslint-config": "^5.17.0",
-    "@dg-scripts/stylelint-config": "^5.17.0",
+    "@dg-scripts/eslint-config": "^5.20.1",
+    "@dg-scripts/stylelint-config": "^5.20.1",
     "@types/node": "^20.12.4",
     "@vitejs/plugin-vue": "^5.0.4",
     "autoprefixer": "^10.4.19",
