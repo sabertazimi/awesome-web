@@ -42,6 +42,7 @@ class Machine {
           const { actor } = event
           const position = TileUtils.getRelativePosition(this.heroId, actor)
           const pai = TileUtils.get(event.pai)
+          // eslint-disable-next-line security/detect-object-injection -- position is always 0-3.
           const hand = this.uiState.hands[position]
 
           hand.tsumo = pai
@@ -56,7 +57,9 @@ class Machine {
           const { actor, tsumogiri } = event
           const position = TileUtils.getRelativePosition(this.heroId, actor)
           const pai = TileUtils.get(event.pai)
+          // eslint-disable-next-line security/detect-object-injection -- position is always 0-3.
           const hand = this.uiState.hands[position]
+          // eslint-disable-next-line security/detect-object-injection -- position is always 0-3.
           const discard = this.uiState.discards[position]
           const { tehai, tsumo } = hand
 
@@ -93,7 +96,9 @@ class Machine {
             this.heroId,
             target,
           )
+          // eslint-disable-next-line security/detect-object-injection -- position is always 0-3.
           const hand = this.uiState.hands[position]
+          // eslint-disable-next-line security/detect-object-injection -- position is always 0-3.
           const targetDiscard = this.uiState.discards[targetPosition]
 
           const consumedTiles = TileUtils.consume(hand.tehai, consumed)
@@ -118,6 +123,7 @@ class Machine {
         case 'kakan': {
           const { actor } = event
           const position = TileUtils.getRelativePosition(this.heroId, actor)
+          // eslint-disable-next-line security/detect-object-injection -- position is always 0-3.
           const hand = this.uiState.hands[position]
           const ponClaimed = hand.claimed.find(
             c => c.type === 'pon' && c.pai === event.pai,
@@ -136,6 +142,7 @@ class Machine {
         case 'ankan': {
           const { actor, consumed } = event
           const position = TileUtils.getRelativePosition(this.heroId, actor)
+          // eslint-disable-next-line security/detect-object-injection -- position is always 0-3.
           const hand = this.uiState.hands[position]
 
           if (hand.tsumo)
@@ -170,8 +177,10 @@ class Machine {
           const { deltasQueue } = this.uiState.info
           const normalizedDeltas: number[] = []
 
-          for (let i = 0; i < 4; i++)
+          for (let i = 0; i < 4; i++) {
+            // eslint-disable-next-line security/detect-object-injection -- deltas is always 4 elements.
             normalizedDeltas[i] = deltas[(i + this.heroId) % 4]
+          }
 
           // Queue for double or triple ron.
           deltasQueue.push(normalizedDeltas)
@@ -255,6 +264,7 @@ class Machine {
                 if (action.type === 'dahai')
                   tehaiProb[TileUtils.get(action.pai)] = prob
               })
+            // eslint-disable-next-line security/detect-object-injection -- tsumoIndex is not user input.
             tsumoProb = details[tsumoIndex].prob
           } else {
             // Claim.
@@ -273,7 +283,9 @@ class Machine {
             = expected.type === 'dahai' && !expected.tsumogiri
               ? TileUtils.get(expected.pai)
               : ''
+          // eslint-disable-next-line security/detect-object-injection -- actualPai is not user input.
           tehaiActual[actualPai] = true
+          // eslint-disable-next-line security/detect-object-injection -- expectedPai is not user input.
           tehaiExpected[expectedPai] = true
           tsumoActual = actual.type === 'dahai' && actual.tsumogiri
           tsumoExpected = expected.type === 'dahai' && expected.tsumogiri
