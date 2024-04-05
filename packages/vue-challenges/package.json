@@ -30,8 +30,8 @@
     "@vue/test-utils": "^2.4.5",
     "eslint": "^8.57.0",
     "jsdom": "^24.0.0",
-    "typescript": "^5.4.3",
-    "vite": "^5.2.7",
+    "typescript": "^5.4.4",
+    "vite": "^5.2.8",
     "vitest": "^1.4.0",
     "vue": "^3.4.21"
   }
