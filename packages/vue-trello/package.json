@@ -14,7 +14,7 @@
     "serve": "vite preview"
   },
   "dependencies": {
-    "nanoid": "^5.0.6",
+    "nanoid": "^5.0.7",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0",
     "vuex": "^4.1.0"
@@ -32,6 +32,6 @@
     "tailwindcss": "^3.4.3",
     "typescript": "^5.4.4",
     "vite": "^5.2.8",
-    "vue-tsc": "^2.0.10"
+    "vue-tsc": "^2.0.11"
   }
 }
