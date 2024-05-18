@@ -1,18 +1,18 @@
-import type { ReportHandler } from 'web-vitals'
+import type { MetricType } from 'web-vitals'
 
 /**
- * Report web vitals.
- * @param {ReportHandler} onPerfEntry report handler
+ * Reports web vitals to the provided callback function.
+ * @param {(metric: MetricType) => void} onPerfEntry The callback function to receive the web vitals data.
  * @returns {void}
  */
-function reportWebVitals(onPerfEntry?: ReportHandler) {
-  if (onPerfEntry && onPerfEntry instanceof Function) {
-    import('web-vitals').then(({ getCLS, getFID, getFCP, getLCP, getTTFB }) => {
-      getCLS(onPerfEntry)
-      getFID(onPerfEntry)
-      getFCP(onPerfEntry)
-      getLCP(onPerfEntry)
-      getTTFB(onPerfEntry)
+function reportWebVitals(onPerfEntry?: (metric: MetricType) => void) {
+  if (onPerfEntry && typeof onPerfEntry === 'function') {
+    import('web-vitals').then(({ onCLS, onINP, onFCP, onLCP, onTTFB }) => {
+      onCLS(onPerfEntry)
+      onINP(onPerfEntry)
+      onFCP(onPerfEntry)
+      onLCP(onPerfEntry)
+      onTTFB(onPerfEntry)
     })
   }
 }
