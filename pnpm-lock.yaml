@@ -121,8 +121,8 @@ importers:
         specifier: ^0.29.2
         version: 0.29.2(react@18.3.1)
       web-vitals:
-        specifier: ^3.5.2
-        version: 3.5.2
+        specifier: ^4.0.0
+        version: 4.0.0
     devDependencies:
       '@sabertazimi/react-scripts':
         specifier: ^5.21.1
@@ -8655,8 +8655,8 @@ packages:
   wcwidth@1.0.1:
     resolution: {integrity: sha512-XHPEwS0q6TaxcvG85+8EYkbiCux2XtWG2mkc47Ng2A77BQu9+DqIOJldST4HgPkuea7dvKSj5VgX3P1d4rW8Tg==}
 
-  web-vitals@3.5.2:
-    resolution: {integrity: sha512-c0rhqNcHXRkY/ogGDJQxZ9Im9D19hDihbzSQJrsioex+KnFgmMzBiy57Z1EjkhX/+OjyBpclDCzz2ITtjokFmg==}
+  web-vitals@4.0.0:
+    resolution: {integrity: sha512-8wQd4jkwFRwY5q3yAmHZAJ5MjnKR1vRACK+g2OEC8nUqi0WOxBrXfOxGNlJ+QtxzzSn/TkQO58wkW0coE68n0Q==}
 
   webidl-conversions@3.0.1:
     resolution: {integrity: sha512-2JAn3z8AR6rjK8Sm8orRC0h/bcl/DqL7tRPdGZ4I1CjdF+EaMLmYxBHyXuKL849eucPFhvBoxMsflfOb8kxaeQ==}
@@ -19220,7 +19220,7 @@ snapshots:
     dependencies:
       defaults: 1.0.4
 
-  web-vitals@3.5.2: {}
+  web-vitals@4.0.0: {}
 
   webidl-conversions@3.0.1: {}
 
