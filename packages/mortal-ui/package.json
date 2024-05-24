@@ -3,7 +3,7 @@
   "type": "module",
   "version": "1.9.0",
   "private": true,
-  "packageManager": "pnpm@9.1.1",
+  "packageManager": "pnpm@9.1.2",
   "scripts": {
     "start": "pnpm dev",
     "dev": "vite",
@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.3.1",
-    "@unhead/vue": "^1.9.10",
+    "@unhead/vue": "^1.9.11",
     "element-plus": "^2.7.3",
     "pinia": "^2.1.7",
     "vue": "^3.4.27",
