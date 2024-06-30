@@ -1,0 +1,1 @@
+import{_ as e,o as t,c as o,a as s}from"./index-CaBJurvR.js";const c={},a={class:"about"},n=s("h1",null,"A site for events to better the world",-1),r=[n];function _(d,i){return t(),o("div",a,r)}const f=e(c,[["render",_]]);export{f as default};
