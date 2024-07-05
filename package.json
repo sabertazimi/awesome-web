@@ -49,12 +49,12 @@
   "devDependencies": {
     "@dg-scripts/eslint-config": "^5.21.1",
     "@dg-scripts/stylelint-config": "^5.21.1",
-    "@types/node": "^20.14.9",
+    "@types/node": "^20.14.10",
     "eslint": "^8.57.0",
-    "lerna": "^8.1.5",
+    "lerna": "^8.1.6",
     "prettier": "^3.3.2",
     "stylelint": "^16.6.1",
     "ts-node": "^10.9.2",
-    "typescript": "^5.5.2"
+    "typescript": "^5.5.3"
   }
 }
