@@ -3,7 +3,7 @@
   "type": "module",
   "version": "1.9.0",
   "private": true,
-  "packageManager": "pnpm@9.4.0",
+  "packageManager": "pnpm@9.5.0",
   "scripts": {
     "start": "pnpm dev",
     "dev": "vite",
@@ -20,7 +20,7 @@
   "dependencies": {
     "@element-plus/icons-vue": "^2.3.1",
     "@unhead/vue": "^1.9.15",
-    "element-plus": "^2.7.6",
+    "element-plus": "^2.7.7",
     "pinia": "^2.1.7",
     "vue": "^3.4.31",
     "vue-i18n": "^9.13.1"
@@ -38,7 +38,7 @@
     "jsdom": "^24.1.0",
     "npm-run-all2": "^6.2.2",
     "typescript": "^5.5.3",
-    "unplugin-auto-import": "^0.17.6",
+    "unplugin-auto-import": "^0.18.0",
     "unplugin-vue-components": "^0.27.2",
     "vite": "^5.3.3",
     "vitest": "^1.6.0",
