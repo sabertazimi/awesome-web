@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.3.1",
-    "@unhead/vue": "^1.9.15",
+    "@unhead/vue": "^1.9.16",
     "element-plus": "^2.7.7",
     "pinia": "^2.1.7",
     "vue": "^3.4.31",
