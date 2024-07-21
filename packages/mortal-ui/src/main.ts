@@ -6,7 +6,7 @@ import App from './App.vue'
 import locales from './locales'
 import './assets/main.css'
 
-const locale = localStorage.getItem('locale') || 'en'
+const locale = localStorage.getItem('locale') ?? 'en'
 
 // eslint-disable-next-line ts/no-unsafe-argument -- Safe to use.
 const app = createApp(App)

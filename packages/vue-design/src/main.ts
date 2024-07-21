@@ -12,6 +12,11 @@ patch(document.querySelector<HTMLDivElement>('#app')!, prevVNode)
 
 const button = document.querySelector('.button')!
 button.addEventListener('click', () => {
-  state ? patch(prevVNode, nextVNode) : patch(nextVNode, prevVNode)
+  if (state) {
+    patch(prevVNode, nextVNode)
+  } else {
+    patch(nextVNode, prevVNode)
+  }
+
   state = !state
 })
