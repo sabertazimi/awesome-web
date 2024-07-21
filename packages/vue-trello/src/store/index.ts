@@ -14,6 +14,7 @@ type AppStore = Store<State>
 const key: InjectionKey<AppStore> = Symbol('state')
 
 const board: BoardType
+  // eslint-disable-next-line ts/strict-boolean-expressions -- return default board if null.
   = JSON.parse(localStorage.getItem('@sabertazimi/vue-trello-board') as string) as BoardType
   || getDefaultBoard()
 
@@ -55,6 +56,7 @@ const store = createStore<State>({
         value,
       }: { task: TaskType, key: keyof TaskType, value: string },
     ) {
+      // eslint-disable-next-line ts/strict-boolean-expressions -- `task` may be null.
       if (task)
         // eslint-disable-next-line security/detect-object-injection -- key is safe.
         task[key] = value
