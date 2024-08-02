@@ -22,15 +22,15 @@
     "@unhead/vue": "^1.9.16",
     "element-plus": "^2.7.8",
     "pinia": "^2.2.0",
-    "vue": "^3.4.34",
+    "vue": "^3.4.35",
     "vue-i18n": "^9.13.1"
   },
   "devDependencies": {
     "@dg-scripts/eslint-config": "^5.21.3",
     "@types/jsdom": "^21.1.7",
-    "@types/node": "^20.14.13",
-    "@vitejs/plugin-vue": "^5.1.1",
-    "@vitest/coverage-v8": "^2.0.4",
+    "@types/node": "^20.14.14",
+    "@vitejs/plugin-vue": "^5.1.2",
+    "@vitest/coverage-v8": "^2.0.5",
     "@vue/test-utils": "^2.4.6",
     "@vue/tsconfig": "^0.5.1",
     "eslint": "^8.57.0",
@@ -41,7 +41,7 @@
     "unplugin-auto-import": "^0.18.2",
     "unplugin-vue-components": "^0.27.3",
     "vite": "^5.3.5",
-    "vitest": "^2.0.4",
+    "vitest": "^2.0.5",
     "vue-tsc": "^2.0.29"
   }
 }

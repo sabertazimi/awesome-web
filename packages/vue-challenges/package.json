@@ -26,13 +26,13 @@
     "test": "vitest --environment jsdom --dir solutions"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^5.1.1",
+    "@vitejs/plugin-vue": "^5.1.2",
     "@vue/test-utils": "^2.4.6",
     "eslint": "^8.57.0",
     "jsdom": "^24.1.1",
     "typescript": "^5.5.4",
     "vite": "^5.3.5",
-    "vitest": "^2.0.4",
-    "vue": "^3.4.34"
+    "vitest": "^2.0.5",
+    "vue": "^3.4.35"
   }
 }
