@@ -1,7 +1,7 @@
 {
   "name": "awesome-web",
   "private": true,
-  "packageManager": "pnpm@9.9.0",
+  "packageManager": "pnpm@9.10.0",
   "description": "A brand new repository for web development prototypes",
   "author": "sabertazimi",
   "license": "MIT",
@@ -55,6 +55,6 @@
     "prettier": "^3.3.3",
     "stylelint": "^16.9.0",
     "ts-node": "^10.9.2",
-    "typescript": "^5.5.4"
+    "typescript": "^5.6.2"
   }
 }
