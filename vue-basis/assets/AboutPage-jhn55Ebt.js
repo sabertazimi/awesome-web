@@ -1,0 +1,1 @@
+import{_ as t,o,c as s,a as r}from"./index-CY2prpw4.js";const a={},n={class:"about"};function c(_,e){return o(),s("div",n,e[0]||(e[0]=[r("h1",null,"A site for events to better the world",-1)]))}const d=t(a,[["render",c]]);export{d as default};
