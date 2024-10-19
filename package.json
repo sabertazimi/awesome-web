@@ -49,7 +49,7 @@
   "devDependencies": {
     "@dg-scripts/eslint-config": "^5.21.3",
     "@dg-scripts/stylelint-config": "^5.21.3",
-    "@types/node": "^20.16.12",
+    "@types/node": "^20.16.13",
     "eslint": "^8.57.1",
     "lerna": "^8.1.8",
     "prettier": "^3.3.3",
