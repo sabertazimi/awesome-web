@@ -1,5 +1,5 @@
-import { ref } from 'vue'
 import { defineStore } from 'pinia'
+import { ref } from 'vue'
 
 export const useMortalStore = defineStore('mortal', () => {
   const round = ref(0)

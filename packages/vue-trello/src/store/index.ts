@@ -1,9 +1,9 @@
 import type { InjectionKey } from 'vue'
 import type { Store } from 'vuex'
-import { createStore, useStore } from 'vuex'
-import { nanoid } from 'nanoid'
-import { getDefaultBoard } from '../services'
 import type { BoardColumnType, BoardType, TaskType } from '../services'
+import { nanoid } from 'nanoid'
+import { createStore, useStore } from 'vuex'
+import { getDefaultBoard } from '../services'
 
 interface State {
   board: BoardType
@@ -130,5 +130,5 @@ const store = createStore<State>({
 const useAppStore = () => useStore<State>(key)
 
 export { key, useAppStore }
-export type { State, AppStore }
+export type { AppStore, State }
 export default store

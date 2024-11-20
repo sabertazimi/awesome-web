@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import { useI18n } from 'vue-i18n'
 import { Button } from '@/components'
 import { useMortalStore } from '@/stores'
+import { ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 const props = defineProps<{
   rounds: number

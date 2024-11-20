@@ -109,8 +109,7 @@ const tileImage = computed(
 .tile-shimo {
   margin-inline: calc((var(--tile-height) - var(--tile-width)) / 2);
   margin-top: calc(var(--tile-width) - var(--tile-height));
-  transform: rotate(-90deg)
-    translateX(calc((var(--tile-width) - var(--tile-height)) / 2));
+  transform: rotate(-90deg) translateX(calc((var(--tile-width) - var(--tile-height)) / 2));
 }
 
 .tile-toimen {
@@ -120,25 +119,21 @@ const tileImage = computed(
 .tile-kami {
   margin-inline: calc((var(--tile-height) - var(--tile-width)) / 2);
   margin-top: calc(var(--tile-width) - var(--tile-height));
-  transform: rotate(-270deg)
-    translateX(calc((var(--tile-height) - var(--tile-width)) / 2));
+  transform: rotate(-270deg) translateX(calc((var(--tile-height) - var(--tile-width)) / 2));
 }
 
 .tile-sided {
   margin-inline: calc((var(--tile-height) - var(--tile-width)) / 2);
-  transform: rotate(-90deg)
-    translateX(calc((var(--tile-width) - var(--tile-height)) / 2));
+  transform: rotate(-90deg) translateX(calc((var(--tile-width) - var(--tile-height)) / 2));
 }
 
 .tile-shimo.tile-sided {
   margin-top: 0;
-  transform: rotate(-180deg)
-    translateX(calc((var(--tile-width) - var(--tile-height)) / 2));
+  transform: rotate(-180deg) translateX(calc((var(--tile-width) - var(--tile-height)) / 2));
 }
 
 .tile-toimen.tile-sided {
-  transform: rotate(-270deg)
-    translateX(calc((var(--tile-width) - var(--tile-height)) / 2));
+  transform: rotate(-270deg) translateX(calc((var(--tile-width) - var(--tile-height)) / 2));
 }
 
 .tile-kami.tile-sided {

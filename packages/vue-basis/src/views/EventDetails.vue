@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { getEvent } from '@/services'
 import type { Event } from '@/services'
+import { getEvent } from '@/services'
 
 const props = defineProps<{ id: string }>()
 const event: Event = await getEvent(Number.parseInt(props.id))

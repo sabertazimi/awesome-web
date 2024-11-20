@@ -69,4 +69,4 @@ const defaultBoard: BoardType = {
 const getDefaultBoard = (): BoardType => defaultBoard
 
 export { getDefaultBoard }
-export type { TaskType, BoardColumnType, BoardType }
+export type { BoardColumnType, BoardType, TaskType }
