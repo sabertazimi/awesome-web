@@ -1,12 +1,12 @@
 <script setup lang="ts">
+import { Advice } from '@/components'
+import { createMachine } from '@/mortal'
+import { useMortalStore } from '@/stores'
 import { useHead } from '@unhead/vue'
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import Controls from './Controls.vue'
 import Game from './Game.vue'
-import { useMortalStore } from '@/stores'
-import { createMachine } from '@/mortal'
-import { Advice } from '@/components'
 
 const { t } = useI18n()
 

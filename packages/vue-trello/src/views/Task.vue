@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import type { TaskType } from 'src/services'
 import { useAppRouter } from 'src/router'
 import { useAppStore } from 'src/store'
-import type { TaskType } from 'src/services'
+import { computed } from 'vue'
 
 const props = defineProps<{ id: string }>()
 const router = useAppRouter()

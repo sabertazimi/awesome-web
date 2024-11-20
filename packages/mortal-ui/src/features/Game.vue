@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { Claim, GameInfo, Score, Tile, TileGroup } from '@/components'
 import type { UIState } from '@/mortal'
+import { Claim, GameInfo, Score, Tile, TileGroup } from '@/components'
 
 const props = defineProps<{
   state: UIState
@@ -57,18 +57,10 @@ const props = defineProps<{
   display: grid;
   grid-template:
     'hand-p3 hand-p2    hand-p2    hand-p2    hand-p2' 1fr
-    'hand-p3 .          discard-p2 .          hand-p1' calc(
-      var(--tile-height) * 3
-    )
-    'hand-p3 discard-p3 info       discard-p1 hand-p1' calc(
-      var(--tile-width) * 6
-    )
-    'hand-p3 .          discard-p0 .          hand-p1' calc(
-      var(--tile-height) * 3
-    )
-    'hand-p0 hand-p0    hand-p0    hand-p0    hand-p1' 1fr / 1fr calc(
-      var(--tile-height) * 3
-    )
+    'hand-p3 .          discard-p2 .          hand-p1' calc(var(--tile-height) * 3)
+    'hand-p3 discard-p3 info       discard-p1 hand-p1' calc(var(--tile-width) * 6)
+    'hand-p3 .          discard-p0 .          hand-p1' calc(var(--tile-height) * 3)
+    'hand-p0 hand-p0    hand-p0    hand-p0    hand-p1' 1fr / 1fr calc(var(--tile-height) * 3)
     calc(var(--tile-width) * 6) calc(var(--tile-height) * 3) 1fr;
   width: 100%;
   height: 100%;

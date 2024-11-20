@@ -202,6 +202,8 @@ class Machine {
         case 'end_game':
           this.rounds = this.round + 1
           break
+        case 'none':
+          break
         default:
           break
       }

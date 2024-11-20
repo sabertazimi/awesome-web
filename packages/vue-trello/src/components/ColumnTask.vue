@@ -1,8 +1,8 @@
 <script setup lang="ts">
+import type { TaskType } from 'src/services'
+import { move as moveTask } from 'src/composables'
 import { useAppRouter } from 'src/router'
 import { useAppStore } from 'src/store'
-import { move as moveTask } from 'src/composables'
-import type { TaskType } from 'src/services'
 
 defineProps<{ columnIndex: number, taskIndex: number, task: TaskType }>()
 

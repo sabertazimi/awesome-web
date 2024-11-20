@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { useAppStore } from 'src/store'
-import { move as moveColumn } from 'src/composables'
 import type { BoardColumnType } from 'src/services'
 import ColumnTask from 'src/components/ColumnTask.vue'
+import { move as moveColumn } from 'src/composables'
+import { useAppStore } from 'src/store'
 
 defineProps<{ columnIndex: number, column: BoardColumnType }>()
 

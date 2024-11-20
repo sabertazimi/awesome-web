@@ -1,7 +1,7 @@
 import type { RouteRecordRaw } from 'vue-router'
-import { createRouter, createWebHistory, useRoute, useRouter } from 'vue-router'
 import Board from 'src/views/Board.vue'
 import Task from 'src/views/Task.vue'
+import { createRouter, createWebHistory, useRoute, useRouter } from 'vue-router'
 
 const routes: Array<RouteRecordRaw> = [
   {

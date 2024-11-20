@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { useAppStore } from 'src/store'
 import BoardColumn from 'src/components/BoardColumn.vue'
+import { useAppStore } from 'src/store'
+import { computed } from 'vue'
 
 const store = useAppStore()
 const columns = computed(() => store.state.board.columns)
