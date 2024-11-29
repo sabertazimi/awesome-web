@@ -1,7 +1,7 @@
 {
   "name": "awesome-web",
   "private": true,
-  "packageManager": "pnpm@9.14.2",
+  "packageManager": "pnpm@9.14.3",
   "description": "A brand new repository for web development prototypes",
   "author": "sabertazimi",
   "license": "MIT",
@@ -49,11 +49,11 @@
   "devDependencies": {
     "@dg-scripts/eslint-config": "^5.21.4",
     "@dg-scripts/stylelint-config": "^5.21.4",
-    "@types/node": "^22.9.1",
+    "@types/node": "^22.10.1",
     "eslint": "^9.15.0",
     "lerna": "^8.1.9",
-    "prettier": "^3.3.3",
-    "stylelint": "^16.10.0",
+    "prettier": "^3.4.1",
+    "stylelint": "^16.11.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.6.3"
   }
