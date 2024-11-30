@@ -56,5 +56,10 @@
     "stylelint": "^16.11.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.7.2"
+  },
+  "pnpm": {
+    "patchedDependencies": {
+      "vue-tsc@2.1.10": "patches/vue-tsc@2.1.10.patch"
+    }
   }
 }
