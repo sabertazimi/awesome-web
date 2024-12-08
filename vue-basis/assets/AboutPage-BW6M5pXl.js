@@ -1,0 +1,1 @@
+import{_ as t,c as o,a as s,o as r}from"./index-BWLdDzuY.js";const a={},n={class:"about"};function c(_,e){return r(),o("div",n,e[0]||(e[0]=[s("h1",null,"A site for events to better the world",-1)]))}const d=t(a,[["render",c]]);export{d as default};
