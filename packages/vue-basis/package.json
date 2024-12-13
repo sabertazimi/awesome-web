@@ -21,7 +21,7 @@
   "devDependencies": {
     "@dg-scripts/eslint-config": "^5.21.4",
     "@dg-scripts/stylelint-config": "^5.21.4",
-    "@types/node": "^22.10.1",
+    "@types/node": "^22.10.2",
     "@vitejs/plugin-vue": "^5.2.1",
     "autoprefixer": "^10.4.20",
     "eslint": "^9.16.0",
