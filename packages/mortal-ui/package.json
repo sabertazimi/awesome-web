@@ -3,7 +3,7 @@
   "type": "module",
   "version": "1.9.0",
   "private": true,
-  "packageManager": "pnpm@9.15.3",
+  "packageManager": "pnpm@9.15.4",
   "scripts": {
     "start": "pnpm dev",
     "dev": "vite",
@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.3.1",
-    "@unhead/vue": "^1.11.15",
+    "@unhead/vue": "^1.11.18",
     "element-plus": "^2.9.3",
     "pinia": "^2.3.0",
     "vue": "^3.5.13",
@@ -28,7 +28,7 @@
   "devDependencies": {
     "@dg-scripts/eslint-config": "^5.21.5",
     "@types/jsdom": "^21.1.7",
-    "@types/node": "^22.10.5",
+    "@types/node": "^22.10.7",
     "@vitejs/plugin-vue": "^5.2.1",
     "@vitest/coverage-v8": "^2.1.8",
     "@vue/test-utils": "^2.4.6",
