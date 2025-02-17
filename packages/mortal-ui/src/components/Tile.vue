@@ -24,7 +24,7 @@ const probHeight = computed(() => `${(props.prob || 0) * 100}%`)
 const probMarginTop = computed(() => `-${((props.prob || 0) * 100) / 2}%`)
 const tileImage = computed(
   () =>
-    `url('${import.meta.env.BASE_URL}tiles/${props.tile.toLowerCase()}.svg')`,
+    `url('${import.meta.env.BASE_URL}tiles/${props.tile.toLowerCase() || '5z'}.svg')`,
 )
 </script>
 
