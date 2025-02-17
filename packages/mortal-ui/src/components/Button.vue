@@ -1,7 +1,17 @@
 <script setup lang="ts">
+import type { VNode } from 'vue'
 import { ArrowLeft, ArrowRight } from '@element-plus/icons-vue'
 
-const props = defineProps<{ type?: 'primary' | 'left' | 'right', block?: boolean, onClick?: (payload: MouseEvent) => void }>()
+interface ButtonProps {
+  type?: 'primary' | 'left' | 'right'
+  block?: boolean
+  onClick?: (payload: MouseEvent) => void
+}
+
+const props = defineProps<ButtonProps>()
+defineSlots<{
+  default: () => VNode | VNode[] | string
+}>()
 </script>
 
 <template>
