@@ -17,9 +17,9 @@
     "test:node": "react-scripts test --env=node"
   },
   "dependencies": {
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "react-reconciler": "^0.31.0"
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-reconciler": "^0.32.0"
   },
   "devDependencies": {
     "@sabertazimi/react-scripts": "^5.21.5",
@@ -28,7 +28,7 @@
     "@testing-library/react": "^16.2.0",
     "@testing-library/user-event": "^14.6.1",
     "@types/jest": "^29.5.14",
-    "@types/node": "^22.13.11",
+    "@types/node": "^22.13.14",
     "@types/react": "^19.0.12",
     "@types/react-dom": "^19.0.4",
     "@types/react-reconciler": "^0.31.0",
