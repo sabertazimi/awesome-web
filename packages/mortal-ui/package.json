@@ -37,7 +37,7 @@
     "eslint-plugin-format": "^1.0.1",
     "jsdom": "^26.0.0",
     "npm-run-all2": "^7.0.2",
-    "typescript": "^5.8.2",
+    "typescript": "^5.8.3",
     "unplugin-auto-import": "^19.1.2",
     "unplugin-vue-components": "^28.4.1",
     "vite": "^6.2.5",
