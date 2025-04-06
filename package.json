@@ -53,7 +53,7 @@
     "eslint": "^9.24.0",
     "lerna": "^8.2.1",
     "prettier": "^3.5.3",
-    "stylelint": "^16.17.0",
+    "stylelint": "^16.18.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.3"
   }
