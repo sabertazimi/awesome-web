@@ -42,8 +42,8 @@ importers:
         specifier: ^2.3.1
         version: 2.3.1(vue@3.5.13(typescript@5.8.3))
       '@unhead/vue':
-        specifier: ^1.11.20
-        version: 1.11.20(vue@3.5.13(typescript@5.8.3))
+        specifier: ^2.0.8
+        version: 2.0.8(vue@3.5.13(typescript@5.8.3))
       element-plus:
         specifier: ^2.9.8
         version: 2.9.8(vue@3.5.13(typescript@5.8.3))
@@ -2644,19 +2644,10 @@ packages:
     resolution: {integrity: sha512-pCh/qEA8Lb1wVIqNvBke8UaRjJ6wrAWkJO5yyIbs8Yx6TNGYyfNjOo61tLv+WwLvoLPp4BQ8B7AHKijl8NGUfw==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
-  '@unhead/dom@1.11.20':
-    resolution: {integrity: sha512-jgfGYdOH+xHJF/j8gudjsYu3oIjFyXhCWcgKaw3vQnT616gSqyqnGQGOItL+BQtQZACKNISwIfx5PuOtztMKLA==}
-
-  '@unhead/schema@1.11.20':
-    resolution: {integrity: sha512-0zWykKAaJdm+/Y7yi/Yds20PrUK7XabLe9c3IRcjnwYmSWY6z0Cr19VIs3ozCj8P+GhR+/TI2mwtGlueCEYouA==}
-
-  '@unhead/shared@1.11.20':
-    resolution: {integrity: sha512-1MOrBkGgkUXS+sOKz/DBh4U20DNoITlJwpmvSInxEUNhghSNb56S0RnaHRq0iHkhrO/cDgz2zvfdlRpoPLGI3w==}
-
-  '@unhead/vue@1.11.20':
-    resolution: {integrity: sha512-sqQaLbwqY9TvLEGeq8Fd7+F2TIuV3nZ5ihVISHjWpAM3y7DwNWRU7NmT9+yYT+2/jw1Vjwdkv5/HvDnvCLrgmg==}
+  '@unhead/vue@2.0.8':
+    resolution: {integrity: sha512-e30+CfCl1avR+hzFtpvnBSesZ5TN2KbShStdT2Z+zs5WIBUvobQwVxSR0arX43To6KfwtCXAfi0iOOIH0kufHQ==}
     peerDependencies:
-      vue: '>=2.7 || >=3'
+      vue: '>=3.5.13'
 
   '@vitejs/plugin-vue@5.2.3':
     resolution: {integrity: sha512-IYSLEQj4LgZZuoVpdSUCw3dIynTWQgPlaRP6iAvMle4My0HdYwr5g5wQAfwOeHQBmYwEkqF70nRpSilr6PoUDg==}
@@ -6681,9 +6672,6 @@ packages:
   package-manager-detector@0.2.7:
     resolution: {integrity: sha512-g4+387DXDKlZzHkP+9FLt8yKj8+/3tOkPv7DVTJGGRm00RkEWgqbFstX1mXJ4M0VDYhUqsTOiISqNOJnhAu3PQ==}
 
-  packrup@0.1.2:
-    resolution: {integrity: sha512-ZcKU7zrr5GlonoS9cxxrb5HVswGnyj6jQvwFBa6p5VFw7G71VAHcUKL5wyZSU/ECtPM/9gacWxy2KFQKt1gMNA==}
-
   pacote@18.0.6:
     resolution: {integrity: sha512-+eK3G27SMwsB8kLIuj4h1FUhHtwiEUo21Tw8wNjmvdlpOEr613edv+8FUsTj/4F/VN5ywGE19X18N7CC2EJk6A==}
     engines: {node: ^16.14.0 || >=18.0.0}
@@ -8622,8 +8610,8 @@ packages:
   undici-types@6.21.0:
     resolution: {integrity: sha512-iwDZqg0QAGrg9Rav5H4n0M64c3mkR59cJ6wQp+7C4nI0gsmExaedaYLNO44eT4AtBBwjbTiGPMlt2Md0T9H9JQ==}
 
-  unhead@1.11.20:
-    resolution: {integrity: sha512-3AsNQC0pjwlLqEYHLjtichGWankK8yqmocReITecmpB1H0aOabeESueyy+8X1gyJx4ftZVwo9hqQ4O3fPWffCA==}
+  unhead@2.0.8:
+    resolution: {integrity: sha512-63WR+y08RZE7ChiFdgNY64haAkhCtUS5/HM7xo4Q83NA63txWbEh2WGmrKbArdQmSct+XlqbFN8ZL1yWpQEHEA==}
 
   unicode-canonical-property-names-ecmascript@2.0.0:
     resolution: {integrity: sha512-yY5PpDlfVIU5+y/BSCxAJRBIS1Zc2dDG3Ujq+sR0U+JjUevW2JhocOF+soROYDSaAezOzOKuyyixhD6mBknSmQ==}
@@ -9275,9 +9263,6 @@ packages:
   yocto-queue@1.0.0:
     resolution: {integrity: sha512-9bnSc/HEW2uRy67wc+T8UwauLuPJVn28jb+GtJY16iiKWyvmYJRXVT4UamsAEGQfPohgr2q4Tq0sQbQlxTfi1g==}
     engines: {node: '>=12.20'}
-
-  zhead@2.2.4:
-    resolution: {integrity: sha512-8F0OI5dpWIA5IGG5NHUg9staDwz/ZPxZtvGVf01j7vHqSyZ0raHY+78atOVxRqb73AotX22uV1pXt3gYSstGag==}
 
   zwitch@2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
@@ -12195,27 +12180,10 @@ snapshots:
       '@typescript-eslint/types': 8.18.0
       eslint-visitor-keys: 4.2.0
 
-  '@unhead/dom@1.11.20':
-    dependencies:
-      '@unhead/schema': 1.11.20
-      '@unhead/shared': 1.11.20
-
-  '@unhead/schema@1.11.20':
+  '@unhead/vue@2.0.8(vue@3.5.13(typescript@5.8.3))':
     dependencies:
       hookable: 5.5.3
-      zhead: 2.2.4
-
-  '@unhead/shared@1.11.20':
-    dependencies:
-      '@unhead/schema': 1.11.20
-      packrup: 0.1.2
-
-  '@unhead/vue@1.11.20(vue@3.5.13(typescript@5.8.3))':
-    dependencies:
-      '@unhead/schema': 1.11.20
-      '@unhead/shared': 1.11.20
-      hookable: 5.5.3
-      unhead: 1.11.20
+      unhead: 2.0.8
       vue: 3.5.13(typescript@5.8.3)
 
   '@vitejs/plugin-vue@5.2.3(vite@6.3.2(@types/node@22.14.1)(jiti@1.21.6)(terser@5.37.0))(vue@3.5.13(typescript@5.8.3))':
@@ -17310,8 +17278,6 @@ snapshots:
 
   package-manager-detector@0.2.7: {}
 
-  packrup@0.1.2: {}
-
   pacote@18.0.6:
     dependencies:
       '@npmcli/git': 5.0.4
@@ -19384,11 +19350,8 @@ snapshots:
 
   undici-types@6.21.0: {}
 
-  unhead@1.11.20:
+  unhead@2.0.8:
     dependencies:
-      '@unhead/dom': 1.11.20
-      '@unhead/schema': 1.11.20
-      '@unhead/shared': 1.11.20
       hookable: 5.5.3
 
   unicode-canonical-property-names-ecmascript@2.0.0: {}
@@ -20182,7 +20145,5 @@ snapshots:
   yocto-queue@0.1.0: {}
 
   yocto-queue@1.0.0: {}
-
-  zhead@2.2.4: {}
 
   zwitch@2.0.4: {}
