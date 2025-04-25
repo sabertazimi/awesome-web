@@ -28,11 +28,11 @@
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.2.3",
     "@vue/test-utils": "^2.4.6",
-    "eslint": "^9.25.0",
+    "eslint": "^9.25.1",
     "jsdom": "^26.1.0",
     "typescript": "^5.8.3",
-    "vite": "^6.3.2",
-    "vitest": "^3.1.1",
+    "vite": "^6.3.3",
+    "vitest": "^3.1.2",
     "vue": "^3.5.13"
   }
 }
