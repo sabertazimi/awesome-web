@@ -36,7 +36,7 @@
     "eslint": "^9.26.0",
     "eslint-plugin-format": "^1.0.1",
     "jsdom": "^26.1.0",
-    "npm-run-all2": "^7.0.2",
+    "npm-run-all2": "^8.0.1",
     "typescript": "^5.8.3",
     "unplugin-auto-import": "^19.1.2",
     "unplugin-vue-components": "^28.5.0",
