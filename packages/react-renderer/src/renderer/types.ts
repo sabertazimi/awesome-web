@@ -16,13 +16,12 @@ type TextInstance = Text
 type SuspenseInstance = any
 type HydratableInstance = any
 type PublicInstance = any
-interface HostContext {
-  svg: boolean
-}
+type HostContext = boolean
 type UpdatePayload = boolean
 type _ChildSet = any
 type TimeoutHandle = any
 type NoTimeout = number
+type TransitionStatus = any
 
 type HostConfig = _HostConfig<
   Type,
@@ -37,26 +36,14 @@ type HostConfig = _HostConfig<
   UpdatePayload,
   _ChildSet,
   TimeoutHandle,
-  NoTimeout
+  NoTimeout,
+  TransitionStatus
 >
 
 export type {
-  Type,
-  Props,
-  PropKey,
   Container,
-  Fiber,
-  Instance,
-  TextInstance,
-  SuspenseInstance,
-  HydratableInstance,
-  PublicInstance,
-  HostContext,
-  UpdatePayload,
-  _ChildSet,
-  TimeoutHandle,
-  NoTimeout,
-  HostConfig,
-  OpaqueHandle,
-  OpaqueRoot,
+  Fiber, HostConfig, HostContext, HydratableInstance, Instance, NoTimeout, OpaqueHandle,
+  OpaqueRoot, PropKey, Props, PublicInstance, SuspenseInstance, TextInstance, TimeoutHandle, Type, UpdatePayload,
+  _ChildSet
 }
+
