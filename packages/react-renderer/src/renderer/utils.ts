@@ -51,7 +51,7 @@ function isSVGType(type: Type) {
  * @returns {boolean} `true` if the context is an SVG context, `false` otherwise.
  */
 function isSVGContext(context: HostContext) {
-  return context.svg
+  return context
 }
 
-export { isClass, isChildren, isListener, isAttribute, isSVGType, isSVGContext }
+export { isAttribute, isChildren, isClass, isListener, isSVGContext, isSVGType }

@@ -1,4 +1,3 @@
-import { DefaultEventPriority } from 'react-reconciler/constants'
 import type {
   Container,
   Fiber,
@@ -12,7 +11,6 @@ import type {
   TextInstance,
   TimeoutHandle,
   Type,
-  UpdatePayload,
 } from './types'
 import {
   isAttribute,
@@ -29,7 +27,7 @@ import {
  * @returns {{svg: boolean}} The host context object.
  */
 function createHostContext(svg: boolean) {
-  return ({ svg })
+  return svg
 }
 
 const hostConfig: HostConfig = {
@@ -120,19 +118,8 @@ const hostConfig: HostConfig = {
   ): boolean {
     return false
   },
-  prepareUpdate(
-    instance: Instance,
-    type: Type,
-    oldProps: Props,
-    newProps: Props,
-    rootContainer: Container,
-    hostContext: HostContext,
-  ): UpdatePayload | null {
-    return true
-  },
   commitUpdate(
     instance: Instance,
-    updatePayload: UpdatePayload,
     type: Type,
     prevProps: Props,
     nextProps: Props,
@@ -201,9 +188,6 @@ const hostConfig: HostConfig = {
   supportsHydration: false,
   supportsMutation: true,
   supportsPersistence: false,
-  getCurrentEventPriority(): number {
-    return DefaultEventPriority
-  },
   getInstanceFromNode(node: any): Fiber | null | undefined {
     return null
   },
@@ -214,6 +198,53 @@ const hostConfig: HostConfig = {
     return null
   },
   detachDeletedInstance(node: Element): void {},
+
+  // New required methods for react-reconciler 0.32.0
+  getCurrentUpdatePriority(): number {
+    return 16 // DefaultEventPriority
+  },
+  setCurrentUpdatePriority(newPriority: number): void {},
+  resolveUpdatePriority(): number {
+    return 16 // DefaultEventPriority
+  },
+  shouldAttemptEagerTransition(): boolean {
+    return false
+  },
+  NotPendingTransition: null,
+  HostTransitionContext: {
+    $$typeof: Symbol.for('react.context'),
+    _currentValue: null,
+    _currentValue2: null,
+    _threadCount: 0,
+    Provider: null as any,
+    Consumer: null as any,
+  } as any,
+  requestPostPaintCallback(callback: (time: number) => void): void {
+    // No-op for basic implementation
+  },
+  maySuspendCommit(type: Type, props: Props): boolean {
+    return false
+  },
+  preloadInstance(type: Type, props: Props): boolean {
+    return true
+  },
+  startSuspendingCommit(): void {},
+  suspendInstance(type: Type, props: Props): void {},
+  waitForCommitToBeReady(): null {
+    return null
+  },
+  supportsMicrotasks: false,
+  scheduleMicrotask(fn: () => unknown): void {
+    // No-op implementation
+  },
+  resetFormInstance(instance: Instance): void {},
+  trackSchedulerEvent(): void {},
+  resolveEventType(): null {
+    return null
+  },
+  resolveEventTimeStamp(): number {
+    return Date.now()
+  },
 }
 
 export default hostConfig
