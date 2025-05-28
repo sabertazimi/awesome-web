@@ -36,13 +36,14 @@ const hostConfig: HostConfig = {
     props: Props,
     rootContainer: Container,
     hostContext: HostContext,
-    internalHandle: OpaqueHandle
+    internalHandle: OpaqueHandle,
   ): Instance {
     let element: Instance
 
     if (isSVGType(type) || isSVGContext(hostContext)) {
       element = document.createElementNS('http://www.w3.org/2000/svg', type)
-    } else {
+    }
+    else {
       element = document.createElement(type)
     }
 
@@ -51,14 +52,17 @@ const hostConfig: HostConfig = {
 
       if (isClass(propName)) {
         element.setAttribute('class', propValue)
-      } else if (isChildren(propName)) {
+      }
+      else if (isChildren(propName)) {
         if (typeof propValue === 'string' || typeof propValue === 'number') {
           element.textContent = propValue.toString()
         }
-      } else if (isListener(propName)) {
+      }
+      else if (isListener(propName)) {
         const eventType = propName.toLowerCase().slice(2)
         element.addEventListener(eventType, propValue)
-      } else if (isAttribute(propName)) {
+      }
+      else if (isAttribute(propName)) {
         if (propValue !== null && typeof propValue !== 'undefined') {
           element.setAttribute(propName, propValue)
         }
@@ -71,14 +75,14 @@ const hostConfig: HostConfig = {
     text: string,
     rootContainer: Container,
     hostContext: HostContext,
-    internalHandle: OpaqueHandle
+    internalHandle: OpaqueHandle,
   ): TextInstance {
     const textElement = document.createTextNode(text)
     return textElement
   },
   appendInitialChild(
     parentInstance: Instance,
-    child: Instance | TextInstance
+    child: Instance | TextInstance,
   ): void {
     parentInstance.appendChild(child)
   },
@@ -87,7 +91,7 @@ const hostConfig: HostConfig = {
   },
   appendChildToContainer(
     container: Container,
-    child: Instance | TextInstance
+    child: Instance | TextInstance,
   ): void {
     container.appendChild(child)
   },
@@ -96,7 +100,7 @@ const hostConfig: HostConfig = {
   },
   removeChildFromContainer(
     container: Container,
-    child: Instance | TextInstance
+    child: Instance | TextInstance,
   ): void {
     container.removeChild(child)
   },
@@ -110,7 +114,7 @@ const hostConfig: HostConfig = {
     type: Type,
     props: Props,
     rootContainer: Container,
-    hostContext: HostContext
+    hostContext: HostContext,
   ): boolean {
     return false
   },
@@ -119,7 +123,7 @@ const hostConfig: HostConfig = {
     type: Type,
     prevProps: Props,
     nextProps: Props,
-    internalHandle: OpaqueHandle
+    internalHandle: OpaqueHandle,
   ): void {
     Object.keys(nextProps).forEach((propName: string) => {
       const propValue = nextProps[propName as PropKey]
@@ -127,7 +131,8 @@ const hostConfig: HostConfig = {
         if (typeof propValue === 'string' || typeof propValue === 'number') {
           instance.textContent = propValue.toString()
         }
-      } else if (isAttribute(propName)) {
+      }
+      else if (isAttribute(propName)) {
         if (propValue !== null && typeof propValue !== 'undefined') {
           instance.setAttribute(propName, propValue)
         }
@@ -137,7 +142,7 @@ const hostConfig: HostConfig = {
   commitTextUpdate(
     textInstance: TextInstance,
     oldText: string,
-    newText: string
+    newText: string,
   ): void {
     textInstance.textContent = newText
   },
@@ -157,7 +162,7 @@ const hostConfig: HostConfig = {
   getChildHostContext(
     parentHostContext: HostContext,
     type: Type,
-    rootContainer: Container
+    rootContainer: Container,
   ): HostContext {
     return isSVGType(type) ? createHostContext(true) : parentHostContext
   },
@@ -171,7 +176,7 @@ const hostConfig: HostConfig = {
   preparePortalMount(containerInfo: Container): void {},
   scheduleTimeout(
     fn: (...args: unknown[]) => unknown,
-    delay?: number
+    delay?: number,
   ): TimeoutHandle {
     return setTimeout(fn, delay)
   },
