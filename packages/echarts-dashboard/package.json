@@ -1,13 +1,14 @@
 {
   "name": "echarts-dashboard",
-  "private": true,
-  "version": "0.0.1",
-  "packageManager": "pnpm@10.11.0",
   "type": "module",
+  "version": "0.0.1",
+  "private": true,
+  "packageManager": "pnpm@10.11.0",
   "scripts": {
     "start": "pnpm run dev",
     "dev": "vite",
     "build": "vite build",
+    "build:post": "mkdir -p ../../build/echarts-dashboard && cp -fr ./dist/* ../../build/echarts-dashboard",
     "preview": "vite preview",
     "lint": "vue-tsc -b"
   },
