@@ -1,0 +1,55 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-primary-blue: #66ffff;
+  --color-secondary-cyan: #06b6d4;
+  --color-accent-green: #10b981;
+}
+
+@layer components {
+  .primary-bg-gradient {
+    background: radial-gradient(
+      50% 91.7% at 50% 46.06%,
+      #606799 0%,
+      #3e457a 29%,
+      #2c3367 68.5%,
+      #050d4b 100%
+    );
+  }
+
+  .card {
+    background: rgba(5, 13, 75, 0.2);
+    border: 2px solid #08488a;
+    box-shadow: inset 0px 1px 10px 1px rgba(18, 142, 232, 0.243455);
+    border-radius: 8px;
+  }
+}
+
+/* 全局样式重置 */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    sans-serif;
+  color: white;
+}
+
+/* 自定义滚动条 */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(30, 58, 138, 0.2);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary-blue);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--secondary-cyan);
+}
