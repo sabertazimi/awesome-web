@@ -20,6 +20,7 @@ A brand new repository for web development prototypes.
 - [Vue Design](https://sabertazimi.github.io/awesome-web/vue-design).
 - [Vue Trello](https://sabertazimi.github.io/awesome-web/vue-trello).
 - [Mortal UI](https://sabertazimi.github.io/awesome-web/mortal-ui): GUI for Mortal Mahjong AI reviewer.
+- [Echarts Dashboard](https://sabertazimi.github.io/awesome-web/echarts-dashboard): Echarts dashboard.
 
 ## License
 

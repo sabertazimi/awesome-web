@@ -7,7 +7,7 @@
   "scripts": {
     "start": "pnpm run dev",
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && pnpm build:post",
     "build:post": "mkdir -p ../../build/echarts-dashboard && cp -fr ./dist/* ../../build/echarts-dashboard",
     "preview": "vite preview",
     "lint": "vue-tsc -b"
