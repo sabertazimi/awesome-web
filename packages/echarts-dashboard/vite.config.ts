@@ -6,7 +6,7 @@ import { defineConfig } from 'vite'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [vue(), tailwindcss()],
-  base: '/echarts-dashboard/',
+  base: '/awesome-web/echarts-dashboard/',
   resolve: {
     alias: {
       '@': resolve(__dirname, 'src')
