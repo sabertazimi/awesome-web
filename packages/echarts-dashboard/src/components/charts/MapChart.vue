@@ -140,6 +140,7 @@ const initChart = async () => {
           coordinateSystem: 'geo',
           geoIndex: 1, // 关联到主地图层（第二个 geo 配置）
           data: scatterData,
+          symbol: `image://${import.meta.env.BASE_URL}position.svg`,
           symbolSize: (val: number[]) => Math.sqrt(val[2] / 100) + 15,
           label: {
             show: true,
@@ -153,7 +154,7 @@ const initChart = async () => {
             },
             padding: [10, 10],
             width: 40,
-            height: 17,
+            height: 20,
           },
           emphasis: {
             scale: 1.3,
