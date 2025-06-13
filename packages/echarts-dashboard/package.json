@@ -3,7 +3,7 @@
   "type": "module",
   "version": "0.0.1",
   "private": true,
-  "packageManager": "pnpm@10.11.1",
+  "packageManager": "pnpm@10.12.1",
   "scripts": {
     "start": "pnpm run dev",
     "dev": "vite",
@@ -13,12 +13,12 @@
     "lint": "vue-tsc -b"
   },
   "dependencies": {
-    "@tailwindcss/vite": "^4.1.8",
-    "@types/node": "^22.15.30",
+    "@tailwindcss/vite": "^4.1.10",
+    "@types/node": "^22.15.31",
     "@vueuse/core": "^13.3.0",
     "echarts": "^5.6.0",
     "echarts-wordcloud": "^2.1.0",
-    "tailwindcss": "^4.1.8",
+    "tailwindcss": "^4.1.10",
     "vue": "^3.5.16",
     "vue-echarts": "^7.0.3"
   },
