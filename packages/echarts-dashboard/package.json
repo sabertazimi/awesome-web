@@ -19,7 +19,7 @@
     "echarts": "^5.6.0",
     "echarts-wordcloud": "^2.1.0",
     "tailwindcss": "^4.1.11",
-    "vue": "^3.5.17",
+    "vue": "^3.5.18",
     "vue-echarts": "^7.0.3"
   },
   "devDependencies": {
