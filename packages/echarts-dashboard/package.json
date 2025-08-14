@@ -16,7 +16,7 @@
     "@tailwindcss/vite": "^4.1.11",
     "@types/node": "^22.17.1",
     "@vueuse/core": "^13.6.0",
-    "echarts": "^5.6.0",
+    "echarts": "^6.0.0",
     "echarts-wordcloud": "^2.1.0",
     "tailwindcss": "^4.1.11",
     "vue": "^3.5.18",

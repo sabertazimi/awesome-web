@@ -48,11 +48,11 @@ importers:
         specifier: ^13.6.0
         version: 13.6.0(vue@3.5.18(typescript@5.9.2))
       echarts:
-        specifier: ^5.6.0
-        version: 5.6.0
+        specifier: ^6.0.0
+        version: 6.0.0
       echarts-wordcloud:
         specifier: ^2.1.0
-        version: 2.1.0(echarts@5.6.0)
+        version: 2.1.0(echarts@6.0.0)
       tailwindcss:
         specifier: ^4.1.11
         version: 4.1.11
@@ -61,7 +61,7 @@ importers:
         version: 3.5.18(typescript@5.9.2)
       vue-echarts:
         specifier: ^7.0.3
-        version: 7.0.3(@vue/runtime-core@3.5.18)(echarts@5.6.0)(vue@3.5.18(typescript@5.9.2))
+        version: 7.0.3(@vue/runtime-core@3.5.18)(echarts@6.0.0)(vue@3.5.18(typescript@5.9.2))
     devDependencies:
       '@vitejs/plugin-vue':
         specifier: ^6.0.0
@@ -4227,8 +4227,8 @@ packages:
     peerDependencies:
       echarts: ^5.0.1
 
-  echarts@5.6.0:
-    resolution: {integrity: sha512-oTbVTsXfKuEhxftHqL5xprgLoc0k7uScAwtryCgWF6hPYFLRwOUHiFmHGCBKP5NPFNkDVopOieyUqYGH8Fa3kA==}
+  echarts@6.0.0:
+    resolution: {integrity: sha512-Tte/grDQRiETQP4xz3iZWSvoHrkCQtwqd6hs+mifXcjrCuo2iKWbajFObuLJVBlDIJlOzgQPd1hsaKt/3+OMkQ==}
 
   editorconfig@1.0.4:
     resolution: {integrity: sha512-L9Qe08KWTlqYMVvMcTIvMAdl1cDUubzRNYL+WfA4bLDMHe4nemKkpmYzkznE1FwLKu0EEmy6obgQKzMJrg4x9Q==}
@@ -9611,8 +9611,8 @@ packages:
     resolution: {integrity: sha512-9bnSc/HEW2uRy67wc+T8UwauLuPJVn28jb+GtJY16iiKWyvmYJRXVT4UamsAEGQfPohgr2q4Tq0sQbQlxTfi1g==}
     engines: {node: '>=12.20'}
 
-  zrender@5.6.1:
-    resolution: {integrity: sha512-OFXkDJKcrlx5su2XbzJvj/34Q3m6PvyCZkVPHGYpcCJ52ek4U/ymZyfuV1nKE23AyBJ51E/6Yr0mhZ7xGTO4ag==}
+  zrender@6.0.0:
+    resolution: {integrity: sha512-41dFXEEXuJpNecuUQq6JlbybmnHaqqpGlbH1yxnA5V9MMP4SbohSVZsJIwz+zdjQXSSlR1Vc34EgH1zxyTDvhg==}
 
   zwitch@2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
@@ -14229,14 +14229,14 @@ snapshots:
 
   eastasianwidth@0.2.0: {}
 
-  echarts-wordcloud@2.1.0(echarts@5.6.0):
+  echarts-wordcloud@2.1.0(echarts@6.0.0):
     dependencies:
-      echarts: 5.6.0
+      echarts: 6.0.0
 
-  echarts@5.6.0:
+  echarts@6.0.0:
     dependencies:
       tslib: 2.3.0
-      zrender: 5.6.1
+      zrender: 6.0.0
 
   editorconfig@1.0.4:
     dependencies:
@@ -20277,9 +20277,9 @@ snapshots:
     dependencies:
       vue: 3.5.18(typescript@5.9.2)
 
-  vue-echarts@7.0.3(@vue/runtime-core@3.5.18)(echarts@5.6.0)(vue@3.5.18(typescript@5.9.2)):
+  vue-echarts@7.0.3(@vue/runtime-core@3.5.18)(echarts@6.0.0)(vue@3.5.18(typescript@5.9.2)):
     dependencies:
-      echarts: 5.6.0
+      echarts: 6.0.0
       vue: 3.5.18(typescript@5.9.2)
       vue-demi: 0.13.11(vue@3.5.18(typescript@5.9.2))
     optionalDependencies:
@@ -20843,7 +20843,7 @@ snapshots:
 
   yocto-queue@1.0.0: {}
 
-  zrender@5.6.1:
+  zrender@6.0.0:
     dependencies:
       tslib: 2.3.0
 
