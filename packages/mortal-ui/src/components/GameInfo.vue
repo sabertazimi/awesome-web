@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import type { GameInfo } from '@/mortal'
+import { useI18n } from 'vue-i18n'
 import { Button, Tile, TileGroup } from '@/components'
 import { TileUtils } from '@/mortal'
-import { useI18n } from 'vue-i18n'
 
 const props = defineProps<{
   info: GameInfo

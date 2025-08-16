@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { MortalReview } from '@/mortal'
-import { TileUtils } from '@/mortal'
 import { useI18n } from 'vue-i18n'
+import { TileUtils } from '@/mortal'
 import TileGroup from './TileGroup.vue'
 
 const props = defineProps<{
