@@ -95,24 +95,24 @@ interface Rule {
   aka53: number
 }
 
-type Event =
-  | None
-  | StartGame
-  | StartKyoku
-  | Tsumo
-  | Dahai
-  | Chi
-  | Pon
-  | Daiminkan
-  | Kakan
-  | Ankan
-  | Dora
-  | Reach
-  | ReachAccepted
-  | Hora
-  | Ryukyoku
-  | EndKyoku
-  | EndGame
+type Event
+  = | None
+    | StartGame
+    | StartKyoku
+    | Tsumo
+    | Dahai
+    | Chi
+    | Pon
+    | Daiminkan
+    | Kakan
+    | Ankan
+    | Dora
+    | Reach
+    | ReachAccepted
+    | Hora
+    | Ryukyoku
+    | EndKyoku
+    | EndGame
 
 interface None {
   type: 'none'
