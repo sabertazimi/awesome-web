@@ -9,6 +9,7 @@
       "@/*": ["./src/*"]
     },
     "types": ["element-plus/global", "node", "jsdom"],
+    "exactOptionalPropertyTypes": false,
     "noEmit": true
   },
   "include": [

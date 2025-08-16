@@ -45,7 +45,9 @@ class Machine {
           // eslint-disable-next-line security/detect-object-injection -- position is always 0-3.
           const hand = this.uiState.hands[position]
 
-          hand.tsumo = pai
+          if (hand) {
+            hand.tsumo = pai
+          }
 
           if (actor === this.heroId)
             this.advanceReview(actor)
@@ -61,25 +63,31 @@ class Machine {
           const hand = this.uiState.hands[position]
           // eslint-disable-next-line security/detect-object-injection -- position is always 0-3.
           const discard = this.uiState.discards[position]
-          const { tehai, tsumo } = hand
 
-          if (tsumo)
-            tehai.push(tsumo)
+          if (hand) {
+            const { tehai, tsumo } = hand
 
-          const discardIndex = tehai.findIndex(t => t === pai)
-          hand.tehai = tehai
-            .slice(0, discardIndex)
-            .concat(tehai.slice(discardIndex + 1))
-          TileUtils.sort(hand.tehai)
-          hand.tsumo = ''
+            if (tsumo) {
+              tehai.push(tsumo)
+            }
 
-          discard.tiles.push({
-            type:
-              this.gameLog[index - 1].type === 'reach' ? 'riichi' : 'normal',
-            pai,
-            tsumogiri,
-            claimed: false,
-          })
+            const discardIndex = tehai.findIndex(t => t === pai)
+            hand.tehai = tehai
+              .slice(0, discardIndex)
+              .concat(tehai.slice(discardIndex + 1))
+            TileUtils.sort(hand.tehai)
+            hand.tsumo = ''
+          }
+
+          if (discard) {
+            discard.tiles.push({
+              type:
+                this.gameLog[index - 1]?.type === 'reach' ? 'riichi' : 'normal',
+              pai,
+              tsumogiri,
+              claimed: false,
+            })
+          }
 
           if (actor !== this.heroId)
             this.advanceReview(actor)
@@ -101,17 +109,21 @@ class Machine {
           // eslint-disable-next-line security/detect-object-injection -- position is always 0-3.
           const targetDiscard = this.uiState.discards[targetPosition]
 
-          const consumedTiles = TileUtils.consume(hand.tehai, consumed)
-          hand.tehai = consumedTiles
-          hand.claimed.push(event)
+          if (hand) {
+            const consumedTiles = TileUtils.consume(hand.tehai, consumed)
+            hand.tehai = consumedTiles
+            hand.claimed.push(event)
+          }
 
-          const targetDiscardTile = targetDiscard.tiles.pop()
-          if (targetDiscardTile) {
-            targetDiscard.tiles.push({
-              ...targetDiscardTile,
-              tsumogiri: false,
-              claimed: true,
-            })
+          if (targetDiscard) {
+            const targetDiscardTile = targetDiscard.tiles.pop()
+            if (targetDiscardTile) {
+              targetDiscard.tiles.push({
+                ...targetDiscardTile,
+                tsumogiri: false,
+                claimed: true,
+              })
+            }
           }
 
           if (actor === this.heroId)
@@ -125,15 +137,18 @@ class Machine {
           const position = TileUtils.getRelativePosition(this.heroId, actor)
           // eslint-disable-next-line security/detect-object-injection -- position is always 0-3.
           const hand = this.uiState.hands[position]
-          const ponClaimed = hand.claimed.find(
-            c => c.type === 'pon' && c.pai === event.pai,
-          )
 
-          if (ponClaimed?.type === 'pon') {
-            const { target } = ponClaimed
-            event.target = target // Register target to event.
-            hand.claimed = hand.claimed.filter(c => c !== ponClaimed)
-            hand.claimed.push(event)
+          if (hand) {
+            const ponClaimed = hand.claimed.find(
+              c => c.type === 'pon' && c.pai === event.pai,
+            )
+
+            if (ponClaimed?.type === 'pon') {
+              const { target } = ponClaimed
+              event.target = target // Register target to event.
+              hand.claimed = hand.claimed.filter(c => c !== ponClaimed)
+              hand.claimed.push(event)
+            }
           }
 
           this.recordState()
@@ -145,13 +160,16 @@ class Machine {
           // eslint-disable-next-line security/detect-object-injection -- position is always 0-3.
           const hand = this.uiState.hands[position]
 
-          if (hand.tsumo)
-            hand.tehai.push(hand.tsumo)
+          if (hand) {
+            if (hand.tsumo) {
+              hand.tehai.push(hand.tsumo)
+            }
 
-          const consumedTiles = TileUtils.consume(hand.tehai, consumed)
-          hand.tehai = consumedTiles
-          event.pai = consumed[0] // Register ankan tile to event.
-          hand.claimed.push(event)
+            const consumedTiles = TileUtils.consume(hand.tehai, consumed)
+            hand.tehai = consumedTiles
+            event.pai = consumed[0] // Register ankan tile to event.
+            hand.claimed.push(event)
+          }
 
           this.recordState()
           break
@@ -179,7 +197,7 @@ class Machine {
 
           for (let i = 0; i < 4; i++) {
             // eslint-disable-next-line security/detect-object-injection -- deltas is always 4 elements.
-            normalizedDeltas[i] = deltas[(i + this.heroId) % 4]
+            normalizedDeltas[i] = deltas[(i + this.heroId) % 4] ?? 0
           }
 
           // Queue for double or triple ron.
@@ -196,7 +214,7 @@ class Machine {
         }
         case 'end_kyoku':
           this.uiState.info.endOfKyoku = true
-          this.turns.push(this.state[this.round].length + 1)
+          this.turns.push(this.state?.[this.round]?.length ?? 0 + 1)
           this.recordState()
           break
         case 'end_game':
@@ -211,9 +229,11 @@ class Machine {
   }
 
   recordState(newRound: boolean = false) {
-    if (newRound)
+    if (newRound) {
       this.state.push([JSON.parse(JSON.stringify(this.uiState))] as UIState[])
-    else this.state[this.round].push(JSON.parse(JSON.stringify(this.uiState)) as UIState)
+    } else {
+      this.state?.[this.round]?.push(JSON.parse(JSON.stringify(this.uiState)) as UIState)
+    }
 
     // Reset mortal review after current state is recorded.
     this.uiState.mortalReview = {
@@ -232,16 +252,27 @@ class Machine {
   }
 
   advanceReview(actor: number) {
-    const { entries } = this.reviewLog.kyokus[this.round]
+    const kyoku = this.reviewLog.kyokus[this.round]
+
+    if (!kyoku) {
+      return
+    }
+
+    const { entries } = kyoku
 
     // TODO: Remove reviewCounter check after all logs are fixed.
     if (this.reviewCounter < entries.length) {
-      const { last_actor, details, is_equal, actual, expected }
-        = entries[this.reviewCounter]
+      const review = entries[this.reviewCounter]
+
+      if (!review) {
+        return
+      }
+
+      const { last_actor, details, is_equal, actual, expected } = review
 
       switch (actor) {
         case this.heroId: {
-          const { tsumo } = this.uiState.hands[0]
+          const { tsumo } = this.uiState.hands[0] ?? {}
           const tehaiProb: { [key: string]: number } = {}
           const tehaiActual: { [key: string]: boolean } = {}
           const tehaiExpected: { [key: string]: boolean } = {}
@@ -267,7 +298,7 @@ class Machine {
                   tehaiProb[TileUtils.get(action.pai)] = prob
               })
             // eslint-disable-next-line security/detect-object-injection -- tsumoIndex is not user input.
-            tsumoProb = details[tsumoIndex].prob
+            tsumoProb = details[tsumoIndex]?.prob ?? 0
           } else {
             // Claim.
             details.forEach(({ action, prob }) => {

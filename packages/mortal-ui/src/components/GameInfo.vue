@@ -36,7 +36,7 @@ const { t } = useI18n()
       :class="`info-p${index}`"
     >
       {{
-        `${t(TileUtils.Winds[Math.abs(info.heroId + index - info.kyoku + 1) % 4])} ${props.info.scores[index]}`
+        `${t(TileUtils.Winds[Math.abs(info.heroId + index - info.kyoku + 1) % 4] || 'E')} ${props.info.scores[index]}`
       }}
     </span>
   </div>
