@@ -1,4 +1,13 @@
 {
+  "files": [],
+  "references": [
+    { "path": "./packages/echarts-dashboard" },
+    { "path": "./packages/mortal-ui" },
+    { "path": "./packages/react-renderer" },
+    { "path": "./packages/vue-challenges" },
+    { "path": "./packages/vue-design" },
+    { "path": "./packages/vue-trello" }
+  ],
   "compilerOptions": {
     "target": "esnext",
     "jsx": "preserve",
@@ -13,7 +22,5 @@
     "sourceMap": true,
     "esModuleInterop": true,
     "skipLibCheck": true
-  },
-  "include": ["packaages/*/src"],
-  "exclude": ["node_modules", "build", "dist", "coverage"]
+  }
 }

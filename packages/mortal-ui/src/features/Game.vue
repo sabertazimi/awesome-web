@@ -13,7 +13,7 @@ const props = defineProps<{
     <template v-for="(_, i) in 4" :key="`player-${i}`">
       <TileGroup class="hand" :class="`hand-p${i}`" :direction="i">
         <Tile
-          v-for="(tile, j) in props.state.hands[i].tehai"
+          v-for="(tile, j) in props.state.hands[i]?.tehai"
           :key="`tehai-p${j}`"
           :tile="tile"
           :direction="i"
@@ -23,14 +23,14 @@ const props = defineProps<{
         />
         <Tile
           :class="`tsumo-p${i}`"
-          :tile="props.state.hands[i].tsumo"
+          :tile="props.state.hands[i]?.tsumo"
           :direction="i"
           :prob="i === 0 ? props.state.mortalReview.tsumoProb : 0"
           :actual="i === 0 && props.state.mortalReview.tsumoActual"
           :expected="i === 0 && props.state.mortalReview.tsumoExpected"
         />
         <Claim
-          v-for="(claimed, j) in props.state.hands[i].claimed"
+          v-for="(claimed, j) in props.state.hands[i]?.claimed"
           :key="`claimed-p${i}-${j}`"
           :claim="claimed"
           :direction="i"
@@ -38,7 +38,7 @@ const props = defineProps<{
       </TileGroup>
       <TileGroup class="discard" :class="`discard-p${i}`" :direction="i">
         <Tile
-          v-for="(tile, j) in props.state.discards[i].tiles"
+          v-for="(tile, j) in props.state.discards[i]?.tiles"
           :key="`discard-p${j}`"
           :tile="tile.pai"
           :sided="tile.type === 'riichi'"

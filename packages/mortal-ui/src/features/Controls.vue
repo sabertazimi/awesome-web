@@ -33,7 +33,7 @@ function onPrevRound() {
     store.round = props.rounds - 1
   else store.round -= 1
 
-  store.turn = props.turns[store.round] - 1
+  store.turn = (props.turns[store.round] ?? 0) - 1
 }
 
 function onNextRound() {
@@ -68,7 +68,7 @@ function onPrev() {
 }
 
 function onNext() {
-  if (store.turn === props.turns[store.round] - 1)
+  if (store.turn === (props.turns[store.round] ?? 0) - 1)
     onNextRound()
   else
     store.turn += 1

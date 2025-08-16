@@ -102,7 +102,7 @@ class UIState {
 
       for (let i = 0; i < 4; i++) {
         // eslint-disable-next-line security/detect-object-injection -- scores is always 4 elements.
-        normalizedScores[i] = scores[(i + heroId) % 4]
+        normalizedScores[i] = scores[(i + heroId) % 4] ?? 0
       }
 
       this.info = {

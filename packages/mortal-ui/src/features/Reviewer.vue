@@ -20,18 +20,18 @@ const machine = createMachine(log)
 machine.run()
 
 const store = useMortalStore()
-const state = computed(() => machine.state[store.round][store.turn])
-const review = computed(() => machine.state[store.round][store.turn].mortalReview)
+const state = computed(() => machine.state[store.round]?.[store.turn])
+const review = computed(() => machine.state[store.round]?.[store.turn]?.mortalReview)
 </script>
 
 <template>
   <main>
-    <Game :state="state" />
+    <Game v-if="state" :state="state" />
   </main>
 
   <aside>
     <Controls :rounds="machine.rounds" :turns="machine.turns" />
-    <Advice :review="review" />
+    <Advice v-if="review" :review="review" />
   </aside>
 </template>
 
