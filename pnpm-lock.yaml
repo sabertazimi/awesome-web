@@ -88,8 +88,8 @@ importers:
         specifier: ^2.0.14
         version: 2.0.14(vue@3.5.19(typescript@5.9.2))
       element-plus:
-        specifier: ^2.11.0
-        version: 2.11.0(vue@3.5.19(typescript@5.9.2))
+        specifier: ^2.11.1
+        version: 2.11.1(vue@3.5.19(typescript@5.9.2))
       pinia:
         specifier: ^3.0.3
         version: 3.0.3(typescript@5.9.2)(vue@3.5.19(typescript@5.9.2))
@@ -4324,8 +4324,8 @@ packages:
   electron-to-chromium@1.5.202:
     resolution: {integrity: sha512-NxbYjRmiHcHXV1Ws3fWUW+SLb62isauajk45LUJ/HgIOkUA7jLZu/X2Iif+X9FBNK8QkF9Zb4Q2mcwXCcY30mg==}
 
-  element-plus@2.11.0:
-    resolution: {integrity: sha512-Kdr3knlpEpUTfEDbWIyh+/CvQbeNb+Kig971M+G/QinVcD2BfsUNWo5OCogaF0Nvy/BuBFdZ7KoS+PtpWBzidw==}
+  element-plus@2.11.1:
+    resolution: {integrity: sha512-weYFIniyNXTAe9vJZnmZpYzurh4TDbdKhBsJwhbzuo0SDZ8PLwHVll0qycJUxc6SLtH+7A9F7dvdDh5CnqeIVA==}
     peerDependencies:
       vue: ^3.2.0
 
@@ -14527,7 +14527,7 @@ snapshots:
 
   electron-to-chromium@1.5.202: {}
 
-  element-plus@2.11.0(vue@3.5.19(typescript@5.9.2)):
+  element-plus@2.11.1(vue@3.5.19(typescript@5.9.2)):
     dependencies:
       '@ctrl/tinycolor': 3.6.1
       '@element-plus/icons-vue': 2.3.2(vue@3.5.19(typescript@5.9.2))
