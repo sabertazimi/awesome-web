@@ -3,7 +3,7 @@
   "type": "module",
   "version": "1.9.0",
   "private": true,
-  "packageManager": "pnpm@10.17.0",
+  "packageManager": "pnpm@10.17.1",
   "scripts": {
     "start": "pnpm run dev",
     "dev": "vite",
@@ -19,14 +19,14 @@
     "echarts": "^6.0.0",
     "echarts-wordcloud": "^2.1.0",
     "tailwindcss": "^4.1.13",
-    "vue": "^3.5.21",
+    "vue": "^3.5.22",
     "vue-echarts": "^7.0.3"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^6.0.1",
     "@vue/tsconfig": "^0.8.1",
     "typescript": "~5.9.2",
-    "vite": "^7.1.6",
-    "vue-tsc": "^3.0.7"
+    "vite": "^7.1.7",
+    "vue-tsc": "^3.0.8"
   }
 }
