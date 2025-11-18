@@ -21,6 +21,17 @@ const Renderer = {
           // eslint-disable-next-line no-console -- Output error message
           console.error(error)
         },
+        (error: Error) => {
+          // eslint-disable-next-line no-console -- Output error message
+          console.error(error)
+        },
+        (error: Error) => {
+          // eslint-disable-next-line no-console -- Output error message
+          console.error(error)
+        },
+        () => {
+          // Default transition indicator callback
+        },
         null,
       )
 
