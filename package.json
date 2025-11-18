@@ -34,7 +34,7 @@
   ],
   "scripts": {
     "build": "pnpm build:prepare && pnpm -r run build",
-    "build:prepare": "rm -fr ./build && mkdir -p ./build",
+    "build:prepare": "rimraf ./build && mkdirp ./build",
     "lint": "pnpm -r run lint",
     "lint:fix": "pnpm -r run lint:fix",
     "release": "lerna version --force-publish --sign-git-commit --sign-git-tag",
@@ -52,7 +52,9 @@
     "@types/node": "^24.10.1",
     "eslint": "^9.39.1",
     "lerna": "^9.0.1",
+    "mkdirp": "^3.0.1",
     "prettier": "^3.6.2",
+    "rimraf": "^6.1.0",
     "stylelint": "^16.25.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.3"
