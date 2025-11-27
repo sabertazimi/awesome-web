@@ -6,8 +6,8 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<CalendarView />} />
-        <Route path="/players" element={<PlayersView />} />
+        <Route path={`${import.meta.env.BASE_URL}`} element={<CalendarView />} />
+        <Route path={`${import.meta.env.BASE_URL}players`} element={<PlayersView />} />
       </Routes>
     </BrowserRouter>
   )

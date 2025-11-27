@@ -17,7 +17,7 @@ export function getPlayerOptions(): PlayerOption[] {
       label: pro.pro_name,
       value: pro.pro_name,
       teamColor: team?.team_color || '#999',
-      avatarUrl: `/src/assets/avatars/${pro.id}.png`,
+      avatarUrl: `${import.meta.env.BASE_URL}avatars/${pro.id}.png`,
     }
   })
 }

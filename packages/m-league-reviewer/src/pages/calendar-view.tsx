@@ -161,7 +161,7 @@ export default function CalendarView() {
         <div className="flex items-center gap-4">
           <h1 className="text-primary text-4xl font-bold">M.League 复盘日历</h1>
           <Button asChild>
-            <Link to="/players">选手图鉴</Link>
+            <Link to={`${import.meta.env.BASE_URL}players`}>选手图鉴</Link>
           </Button>
         </div>
 
