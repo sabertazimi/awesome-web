@@ -16,7 +16,7 @@ export default function PlayersView() {
     <div className="container mx-auto min-h-screen p-8">
       <div className="mb-12 flex items-center justify-between">
         <Button variant="outline" asChild>
-          <Link to="/">
+          <Link to={`${import.meta.env.BASE_URL}`}>
             <ArrowLeftIcon className="text-primary mr-2 size-4" />
             返回日历
           </Link>

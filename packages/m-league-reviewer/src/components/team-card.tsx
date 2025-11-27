@@ -17,7 +17,7 @@ export function TeamCard({ team, children }: TeamCardProps) {
       {/* 队伍标题 */}
       <div className="mb-6 flex items-center gap-4">
         <img
-          src={`/src/assets/teams/${team.id}.png`}
+          src={`${import.meta.env.BASE_URL}teams/${team.id}.png`}
           alt={team.team_name}
           className="h-16 w-16 object-contain"
         />

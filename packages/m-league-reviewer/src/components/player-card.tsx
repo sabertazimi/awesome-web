@@ -22,7 +22,7 @@ export function PlayerCard({ player, teamColor }: PlayerCardProps) {
       <CardHeader className="py-4" style={{ backgroundColor: teamColor }}>
         <div className="flex flex-col items-center">
           <img
-            src={`/src/assets/avatars/${player.id}.png`}
+            src={`${import.meta.env.BASE_URL}avatars/${player.id}.png`}
             alt={player.pro_name}
             className="border-border h-24 w-24 rounded-full border-4 object-cover shadow-lg"
           />
