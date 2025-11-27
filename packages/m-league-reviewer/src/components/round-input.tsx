@@ -1,0 +1,200 @@
+import type { RoundInfo } from '@/api/reviews'
+import { useEffect, useRef, useState } from 'react'
+import { formatRound } from '@/api/reviews'
+import { Button } from '@/components/ui/button'
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
+import { cn } from '@/lib/utils'
+
+interface RoundInputProps {
+  value: RoundInfo
+  onChange: (value: RoundInfo) => void
+  onClose?: () => void
+  open?: boolean
+  onOpenChange?: (open: boolean) => void
+  existingRounds?: RoundInfo[] // 已存在的小局列表，用于检测重复
+}
+
+/**
+ * 小局输入组件
+ * 组合式面板，支持东/南场、小局数、本场数的快捷输入
+ */
+export function RoundInput({ value, onChange, onClose, open, onOpenChange, existingRounds = [] }: RoundInputProps) {
+  const [localValue, setLocalValue] = useState<RoundInfo>(value)
+  const [error, setError] = useState<string>('')
+  const roundButtonsRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    setLocalValue(value)
+    setError('') // 重置错误
+  }, [value])
+
+  // 检查是否与已存在的小局重复
+  const isDuplicate = (round: RoundInfo): boolean => {
+    return existingRounds.some(
+      existing =>
+        existing.field === round.field
+        && existing.round === round.round
+        && existing.honba === round.honba
+        // 排除当前正在编辑的小局
+        && !(
+          existing.field === value.field
+          && existing.round === value.round
+          && existing.honba === value.honba
+        ),
+    )
+  }
+
+  const handleFieldChange = (field: 'east' | 'south') => {
+    setLocalValue({ ...localValue, field })
+  }
+
+  const handleRoundChange = (round: number) => {
+    setLocalValue({ ...localValue, round })
+  }
+
+  const handleHonbaChange = (honba: number) => {
+    setLocalValue({ ...localValue, honba })
+  }
+
+  const handleConfirm = () => {
+    // 检查是否重复
+    if (isDuplicate(localValue)) {
+      setError('该小局已存在，请选择其他小局')
+      return
+    }
+
+    // 先关闭弹窗
+    if (onOpenChange) {
+      onOpenChange(false)
+    }
+    // 延迟保存数据，避免重新打开
+    setTimeout(() => {
+      onChange(localValue)
+      if (onClose) {
+        onClose()
+      }
+    }, 0)
+  }
+
+  const handleCancel = () => {
+    setLocalValue(value) // 恢复原值
+    if (onOpenChange) {
+      onOpenChange(false)
+    }
+    if (onClose) {
+      onClose()
+    }
+  }
+
+  return (
+    <Popover open={open} onOpenChange={onOpenChange}>
+      <PopoverTrigger asChild>
+        <div className="flex min-h-[32px] w-full items-center">
+          <span className={cn('text-sm', !value.field && 'text-muted-foreground')}>
+            {formatRound(value) || '小局'}
+          </span>
+        </div>
+      </PopoverTrigger>
+      <PopoverContent className="w-auto p-3" align="start" onClick={e => e.stopPropagation()}>
+        <div className="space-y-3">
+          {/* 场风选择 */}
+          <div>
+            <label className="mb-1.5 block text-xs font-medium">场风</label>
+            <div className="flex gap-2">
+              <Button
+                size="sm"
+                variant={localValue.field === 'east' ? 'default' : 'outline'}
+                onClick={() => handleFieldChange('east')}
+                className="w-16"
+              >
+                東
+              </Button>
+              <Button
+                size="sm"
+                variant={localValue.field === 'south' ? 'default' : 'outline'}
+                onClick={() => handleFieldChange('south')}
+                className="w-16"
+              >
+                南
+              </Button>
+            </div>
+          </div>
+
+          {/* 小局数选择 */}
+          <div>
+            <label className="mb-1.5 block text-xs font-medium">小局</label>
+            <div ref={roundButtonsRef} className="grid grid-cols-4 gap-2">
+              {[1, 2, 3, 4].map(num => (
+                <Button
+                  key={num}
+                  size="sm"
+                  variant={localValue.round === num ? 'default' : 'outline'}
+                  onClick={() => handleRoundChange(num)}
+                  className="w-12"
+                >
+                  {num}
+                </Button>
+              ))}
+            </div>
+          </div>
+
+          {/* 本场数选择 */}
+          <div>
+            <label className="mb-1.5 block text-xs font-medium">本場</label>
+            <div className="grid grid-cols-5 gap-2">
+              {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map(num => (
+                <Button
+                  key={num}
+                  size="sm"
+                  variant={localValue.honba === num ? 'default' : 'outline'}
+                  onClick={() => handleHonbaChange(num)}
+                  className="w-12"
+                >
+                  {num}
+                </Button>
+              ))}
+            </div>
+          </div>
+
+          {/* 错误提示 */}
+          {error && (
+            <div className="text-destructive rounded-md bg-destructive/10 px-3 py-2 text-xs">
+              {error}
+            </div>
+          )}
+
+          {/* 确认按钮 */}
+          <div className="flex justify-end gap-2 pt-2">
+            <Button size="sm" variant="outline" onClick={handleCancel}>
+              取消
+            </Button>
+            <Button size="sm" onClick={handleConfirm}>
+              确认
+            </Button>
+          </div>
+        </div>
+      </PopoverContent>
+    </Popover>
+  )
+}
+
+interface RoundDisplayProps {
+  value: RoundInfo
+  placeholder?: string
+}
+
+/**
+ * 小局显示组件
+ * 显示格式化后的小局信息
+ */
+export function RoundDisplay({ value, placeholder = '小局' }: RoundDisplayProps) {
+  const displayText = formatRound(value)
+
+  return (
+    <div className="flex min-h-[32px] items-center">
+      <span className={cn('text-sm', !displayText && 'text-muted-foreground')}>
+        {displayText || placeholder}
+      </span>
+    </div>
+  )
+}

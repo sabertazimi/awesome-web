@@ -34,7 +34,7 @@
   ],
   "scripts": {
     "build": "pnpm build:prepare && pnpm -r run build",
-    "build:prepare": "rimraf ./build && mkdirp ./build",
+    "build:prepare": "rimraf ./dist && mkdirp ./dist",
     "lint": "pnpm -r run lint",
     "lint:fix": "pnpm -r run lint:fix",
     "release": "lerna version --force-publish --sign-git-commit --sign-git-tag",

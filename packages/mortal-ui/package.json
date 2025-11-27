@@ -8,7 +8,7 @@
     "start": "pnpm dev",
     "dev": "vite",
     "build": "run-p type-check \"build-only {@}\" -- && pnpm build:post",
-    "build:post": "mkdirp ../../build/mortal-ui && cp -fr ./dist/* ../../build/mortal-ui && cp -fr ./e2e ../../build/mortal-ui",
+    "build:post": "mkdirp ../../dist/mortal-ui && cp -fr ./dist/* ../../dist/mortal-ui && cp -fr ./e2e ../../dist/mortal-ui",
     "preview": "vite preview",
     "test": "vitest run --coverage",
     "build-only": "vite build",

@@ -12,14 +12,15 @@ A brand new repository for web development prototypes.
 
 ## React Collection
 
+- [M.League Reviewer](https://sabertazimi.github.io/awesome-web/m-league-reviewer): Reviewer for M.League daily games.
 - [React Renderer](https://sabertazimi.github.io/awesome-web/react-renderer).
 
 ## Vue Collection
 
-- [Vue Design](https://sabertazimi.github.io/awesome-web/vue-design).
-- [Vue Trello](https://sabertazimi.github.io/awesome-web/vue-trello).
 - [Mortal UI](https://sabertazimi.github.io/awesome-web/mortal-ui): GUI for Mortal Mahjong AI reviewer.
 - [Echarts Dashboard](https://sabertazimi.github.io/awesome-web/echarts-dashboard): Echarts dashboard.
+- [Vue Trello](https://sabertazimi.github.io/awesome-web/vue-trello).
+- [Vue Design](https://sabertazimi.github.io/awesome-web/vue-design).
 
 ## License
 
