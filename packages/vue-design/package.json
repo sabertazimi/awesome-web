@@ -7,7 +7,7 @@
   },
   "scripts": {
     "build": "tsc && vite build && pnpm build:post",
-    "build:post": "mkdirp ../../build/vue-design && cp -fr ./dist/* ../../build/vue-design",
+    "build:post": "mkdirp ../../dist/vue-design && cp -fr ./dist/* ../../dist/vue-design",
     "dev": "vite",
     "lint": "pnpm lint:style && pnpm lint:type-check",
     "lint:fix": "eslint ./src --fix",

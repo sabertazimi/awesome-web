@@ -8,7 +8,7 @@
   },
   "scripts": {
     "build": "react-scripts build && pnpm build:post",
-    "build:post": "mkdirp ../../build/react-renderer && cp -fr ./build/* ../../build/react-renderer",
+    "build:post": "mkdirp ../../dist/react-renderer && cp -fr ./build/* ../../dist/react-renderer",
     "build:profile": "react-scripts build --profile",
     "start": "react-scripts start",
     "start:https": "HTTPS=true react-scripts start",

@@ -1,0 +1,6 @@
+---
+alwaysApply: true
+---
+
+- 所有 UI 组件请尽可能使用 Shadcn UI 组件库实现。请使用 Shadcn MCP 与 Context7 MCP 获取 Shadcn UI 组件库的最新文档。
+- 图标请使用 Lucide React 图标库。
