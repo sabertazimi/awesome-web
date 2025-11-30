@@ -1,0 +1,11 @@
+{
+  "files": {
+    "main.css": "/awesome-web/react-renderer/static/css/main.e1baecee.css",
+    "main.js": "/awesome-web/react-renderer/static/js/main.4d9219e1.js",
+    "index.html": "/awesome-web/react-renderer/index.html"
+  },
+  "entrypoints": [
+    "static/css/main.e1baecee.css",
+    "static/js/main.4d9219e1.js"
+  ]
+}
