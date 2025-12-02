@@ -6,7 +6,13 @@ import { CalendarIcon, LinkIcon, LoaderIcon, UsersIcon } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { useDebounce } from 'react-use'
 import { teams } from '@/api/data'
-import { createDefaultRoundInfo, createEmptyHosetsuResult, deleteReview, getReviewById, updateReview } from '@/api/reviews'
+import {
+  createDefaultRoundInfo,
+  createEmptyHosetsuResult,
+  deleteReview,
+  getReviewById,
+  updateReview,
+} from '@/api/reviews'
 import { EditableField } from '@/components/editable-field'
 import { ReviewTable } from '@/components/review-table'
 import {
@@ -233,7 +239,7 @@ export default function ReviewDrawer({ open, onOpenChange, reviewId, date, onDel
   return (
     <>
       <Drawer open={open} onOpenChange={onOpenChange} direction="right">
-        <DrawerContent className="top-0 right-0 left-auto mt-0 h-screen rounded-none data-[vaul-drawer-direction=left]:sm:max-w-[50vw] data-[vaul-drawer-direction=right]:sm:max-w-[50vw]">
+        <DrawerContent className="top-0 right-0 left-auto mt-0 h-screen rounded-none data-[vaul-drawer-direction=left]:sm:max-w-full data-[vaul-drawer-direction=right]:sm:max-w-full">
           <div className="flex h-full flex-col">
             <DrawerHeader className="border-b">
               <div className="flex items-center justify-between">
@@ -560,6 +566,7 @@ export default function ReviewDrawer({ open, onOpenChange, reviewId, date, onDel
                 <ReviewTable
                   tableData={tableA}
                   tableName="A"
+                  selectedTeams={selectedTeams}
                   editingField={editingField}
                   onEditField={setEditingField}
                   onUpdatePlayer={(playerIndex, value) => {
@@ -580,6 +587,7 @@ export default function ReviewDrawer({ open, onOpenChange, reviewId, date, onDel
                 <ReviewTable
                   tableData={tableB}
                   tableName="B"
+                  selectedTeams={selectedTeams}
                   editingField={editingField}
                   onEditField={setEditingField}
                   onUpdatePlayer={(playerIndex, value) => {

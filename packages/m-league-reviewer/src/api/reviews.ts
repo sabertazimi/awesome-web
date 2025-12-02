@@ -136,7 +136,7 @@ export function getReviewById(id: string): Review | undefined {
 }
 
 // 创建新复盘
-export function createReview(date: string, title: string, content: string = ''): Review {
+export function createReview(date: string, title: string, content: string = '', teams: string[] = []): Review {
   const reviews = getReviews()
   const newReview: Review = {
     id: `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
@@ -144,7 +144,7 @@ export function createReview(date: string, title: string, content: string = ''):
     title,
     linkA: 'https://docs.qq.com/sheet/DZGJMY2JHelBXSlp6?tab=BB08J2',
     linkB: '',
-    teams: [],
+    teams,
     status: 'in_progress',
     socialUrl: 'https://m-league.jp/games',
     tableA: [],

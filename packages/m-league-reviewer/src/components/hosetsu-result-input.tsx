@@ -28,15 +28,9 @@ const typeConfig: Record<HosetsuType, { label: string, color: string }> = {
 
 /**
  * 何切结果输入组件
- * 支持方案B（右键菜单）和方案C（工具栏）
+ * 支持右键菜单和工具栏
  */
-export function HosetsuResultInput({
-  value,
-  onChange,
-  onClose,
-  onKeyDown,
-  autoFocus,
-}: HosetsuResultInputProps) {
+export function HosetsuResultInput({ value, onChange, onClose, onKeyDown, autoFocus }: HosetsuResultInputProps) {
   // 确保 value 有默认的 type 字段
   const normalizedValue: HosetsuResult = {
     ...value,
@@ -80,11 +74,11 @@ export function HosetsuResultInput({
       e.preventDefault()
       onClose?.()
     } else if (e.key === 'b' && e.ctrlKey) {
-    // Ctrl+B 切换严重性
+      // Ctrl+B 切换严重性
       e.preventDefault()
       handleSignificantToggle()
     } else if (e.key === 't' && e.ctrlKey) {
-    // Ctrl+T 显示工具栏
+      // Ctrl+T 显示工具栏
       e.preventDefault()
       setShowToolbar(!showToolbar)
     }
@@ -119,7 +113,8 @@ export function HosetsuResultInput({
           }
 
           // 检查是否点击了 Select 的下拉菜单（Radix UI Portal）
-          const isSelectContent = relatedTarget.closest('[role="listbox"]') || relatedTarget.closest('[data-radix-popper-content-wrapper]')
+          const isSelectContent
+            = relatedTarget.closest('[role="listbox"]') || relatedTarget.closest('[data-radix-popper-content-wrapper]')
           if (isSelectContent) {
             // 点击了下拉菜单，不关闭
             return
@@ -136,9 +131,9 @@ export function HosetsuResultInput({
         placeholder="何切描述..."
       />
 
-      {/* 工具栏（方案C） */}
+      {/* 工具栏 */}
       {showToolbar && (
-        <div className="hosetsu-toolbar border-border bg-popover absolute left-0 top-full z-50 mt-1 flex items-center gap-2 rounded-md border p-2 shadow-md">
+        <div className="hosetsu-toolbar border-border bg-popover absolute top-full left-0 z-50 mt-1 flex items-center gap-2 rounded-md border p-2 shadow-md">
           {/* 何切类型选择 */}
           <Select
             value={localValue.type}
@@ -177,9 +172,7 @@ export function HosetsuResultInput({
             严重
           </Button>
 
-          <div className="text-muted-foreground text-[10px]">
-            Ctrl+B: 严重 | Enter/Tab: 确认
-          </div>
+          <div className="text-muted-foreground text-[10px]">Ctrl+B: 严重 | Enter/Tab: 确认</div>
         </div>
       )}
     </div>
@@ -206,20 +199,10 @@ export function HosetsuResultDisplay({ value, placeholder = '' }: HosetsuResultD
         <>
           {/* 何切类型指示器 */}
           {type !== 'other' && config && (
-            <div
-              className={cn('size-2 shrink-0 rounded-full', config.color)}
-              title={config.label}
-            />
+            <div className={cn('size-2 shrink-0 rounded-full', config.color)} title={config.label} />
           )}
           {/* 描述文本 */}
-          <span
-            className={cn(
-              'text-sm',
-              value.isSignificant && 'text-primary font-bold',
-            )}
-          >
-            {value.description}
-          </span>
+          <span className={cn('text-sm', value.isSignificant && 'text-primary font-bold')}>{value.description}</span>
         </>
       ) : (
         <span className="text-muted-foreground text-sm">{placeholder}</span>
@@ -235,13 +218,9 @@ interface HosetsuResultContextMenuProps {
 }
 
 /**
- * 何切结果右键菜单组件（方案B）
+ * 何切结果右键菜单组件
  */
-export function HosetsuResultContextMenu({
-  value,
-  onChange,
-  children,
-}: HosetsuResultContextMenuProps) {
+export function HosetsuResultContextMenu({ value, onChange, children }: HosetsuResultContextMenuProps) {
   const [open, setOpen] = useState(false)
 
   const handleTypeChange = (type: HosetsuType) => {

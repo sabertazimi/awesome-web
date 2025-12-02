@@ -23,5 +23,6 @@ dist-ssr
 *.sln
 *.sw?
 
+src/api/data.js
 scripts/*.js
 data/*.json

@@ -12,6 +12,7 @@ import { cn } from '@/lib/utils'
 interface ReviewTableProps {
   tableData: TableData[]
   tableName: 'A' | 'B'
+  selectedTeams: string[]
   editingField: string | null
   onEditField: (fieldId: string | null) => void
   onUpdatePlayer: (playerIndex: number, value: string) => void
@@ -30,6 +31,7 @@ interface ReviewTableProps {
 export function ReviewTable({
   tableData,
   tableName,
+  selectedTeams,
   editingField,
   onEditField,
   onUpdatePlayer,
@@ -214,6 +216,7 @@ export function ReviewTable({
                           }
                         }}
                         placeholder={`プロ ${playerIndex + 1}`}
+                        filterByTeams={selectedTeams}
                       />
                     ) : (
                       <PlayerDisplay

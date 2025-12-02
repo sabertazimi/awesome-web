@@ -10,8 +10,19 @@ export interface PlayerOption {
 }
 
 // 生成选手选项列表
-export function getPlayerOptions(): PlayerOption[] {
-  return pros.map((pro) => {
+export function getPlayerOptions(filterByTeams?: string[]): PlayerOption[] {
+  let filteredPros = pros
+
+  // 如果提供了队伍过滤，只显示这些队伍的选手
+  if (filterByTeams && filterByTeams.length > 0) {
+    const teamIds = filterByTeams
+      .map(teamName => teams.find(t => t.team_name === teamName)?.id)
+      .filter((id): id is number => id !== undefined)
+
+    filteredPros = pros.filter(pro => teamIds.includes(pro.team_id))
+  }
+
+  return filteredPros.map((pro) => {
     const team = teams.find(t => t.id === pro.team_id)
     return {
       label: pro.pro_name,
@@ -29,6 +40,7 @@ interface PlayerSelectProps {
   open?: boolean
   placeholder?: string
   showClearOption?: boolean
+  filterByTeams?: string[]
 }
 
 /**
@@ -42,8 +54,9 @@ export function PlayerSelect({
   open,
   placeholder = 'プロ',
   showClearOption = true,
+  filterByTeams,
 }: PlayerSelectProps) {
-  const playerOptions = getPlayerOptions()
+  const playerOptions = getPlayerOptions(filterByTeams)
 
   return (
     <Select

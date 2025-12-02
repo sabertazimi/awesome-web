@@ -1,6 +1,7 @@
 export interface Team {
   id: number
   team_name: string
+  team_full_name: string
   team_code: string
   team_color: string
 }
@@ -15,32 +16,41 @@ export interface Pro {
   pro_year: number
 }
 
+export interface GameSchedule {
+  date: string // Format: YYYY-MM-DD (ISO 8601)
+  dayOfWeek: string // 月, 火, 木, 金
+  teamIds: number[] // Team IDs sorted by id
+}
+
 export const teams: Team[] = [
-  { id: 1, team_name: 'JETS', team_code: 'T011', team_color: '#006934' },
-  { id: 2, team_name: 'ドリブンズ', team_code: 'T001', team_color: '#9cb832' },
-  { id: 3, team_name: '風林火山', team_code: 'T002', team_color: '#000000' },
+  { id: 1, team_name: 'JETS', team_full_name: 'EARTH JETS', team_code: 'T011', team_color: '#006934' },
+  { id: 2, team_name: 'ドリブンズ', team_full_name: '赤坂ドリブンズ', team_code: 'T001', team_color: '#9cb832' },
+  { id: 3, team_name: '風林火山', team_full_name: 'EX風林火山', team_code: 'T002', team_color: '#000000' },
   {
     id: 4,
     team_name: 'サクラナイツ',
+    team_full_name: 'KADOKAWAサクラナイツ',
     team_code: 'T008',
     team_color: '#f895b5',
   },
   {
     id: 5,
     team_name: '麻雀格闘倶楽部',
+    team_full_name: 'KONAMI麻雀格闘倶楽部',
     team_code: 'T003',
     team_color: '#920101',
   },
-  { id: 6, team_name: 'ABEMAS', team_code: 'T004', team_color: '#c6ae6f' },
+  { id: 6, team_name: 'ABEMAS', team_full_name: '渋谷ABEMAS', team_code: 'T004', team_color: '#c6ae6f' },
   {
     id: 7,
     team_name: 'フェニックス',
+    team_full_name: 'セガサミーフェニックス',
     team_code: 'T005',
     team_color: '#b74801',
   },
-  { id: 8, team_name: '雷電', team_code: 'T006', team_color: '#dbb400' },
-  { id: 9, team_name: 'BEAST', team_code: 'T010', team_color: '#002953' },
-  { id: 10, team_name: 'Pirates', team_code: 'T007', team_color: '#0582c8' },
+  { id: 8, team_name: '雷電', team_full_name: 'TEAM RAIDEN / 雷電', team_code: 'T006', team_color: '#dbb400' },
+  { id: 9, team_name: 'BEAST', team_full_name: 'BEAST X', team_code: 'T010', team_color: '#002953' },
+  { id: 10, team_name: 'Pirates', team_full_name: 'U-NEXT Pirates', team_code: 'T007', team_color: '#0582c8' },
 ]
 
 export const pros: Pro[] = [
