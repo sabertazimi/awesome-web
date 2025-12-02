@@ -8,20 +8,46 @@ import getGameSchedule from './get-game-schedule.js'
 import { req, sleep } from './utils.js'
 
 /**
- * Generate month parameters for fetching game schedules
- * From 2025/09 to 2026/05
+ * Extract year from season string
+ * @param season - Season string like 'games/2024-season' or 'games'
+ * @returns Start year of the season
  */
-function generateMonthParams(): Array<{ mly: number, mlm: number }> {
-  const params: Array<{ mly: number, mlm: number }> = []
-
-  // 2025: September to December (9-12)
-  for (let month = 9; month <= 12; month++) {
-    params.push({ mly: 2025, mlm: month })
+function getSeasonStartYear(season: string): number {
+  // Try to extract year from season string (e.g., 'games/2024-season' -> 2024)
+  const yearMatch = season.match(/(\d{4})/)
+  if (yearMatch) {
+    return Number.parseInt(yearMatch[1], 10)
   }
 
-  // 2026: January to May (1-5)
+  // If no year found (e.g., 'games'), use current date to determine season year
+  const now = new Date()
+  const currentYear = now.getFullYear()
+  const currentMonth = now.getMonth() + 1 // getMonth() returns 0-11
+
+  // M.League season starts in September
+  // If current month is 1-8, we're in the second half of the season (use previous year)
+  // If current month is 9-12, we're in the first half of the season (use current year)
+  return currentMonth >= 9 ? currentYear : currentYear - 1
+}
+
+/**
+ * Generate month parameters for fetching game schedules
+ * M.League season runs from September to May of the following year
+ * @param season - Season string to determine the year range
+ */
+function generateMonthParams(season: string): Array<{ mly: number, mlm: number }> {
+  const params: Array<{ mly: number, mlm: number }> = []
+  const startYear = getSeasonStartYear(season)
+  const endYear = startYear + 1
+
+  // First year: September to December (9-12)
+  for (let month = 9; month <= 12; month++) {
+    params.push({ mly: startYear, mlm: month })
+  }
+
+  // Second year: January to May (1-5)
   for (let month = 1; month <= 5; month++) {
-    params.push({ mly: 2026, mlm: month })
+    params.push({ mly: endYear, mlm: month })
   }
 
   return params
@@ -33,10 +59,11 @@ function generateMonthParams(): Array<{ mly: number, mlm: number }> {
 async function fetchGameSchedule() {
   // Get the last season from seasonList
   const currentSeason = config.seasonList[config.seasonList.length - 1]
-  console.log(`Fetching game schedule for season: ${currentSeason}`)
+  const startYear = getSeasonStartYear(currentSeason)
+  console.log(`Fetching game schedule for season: ${currentSeason} (${startYear}-${startYear + 1})`)
 
   const allSchedules: GameSchedule[] = []
-  const monthParams = generateMonthParams()
+  const monthParams = generateMonthParams(currentSeason)
 
   for (const { mly, mlm } of monthParams) {
     try {
@@ -46,7 +73,7 @@ async function fetchGameSchedule() {
       const response = await req.get<string>(url)
 
       const seasonPage = parse(response.data)
-      const schedules = getGameSchedule(seasonPage, mly, mlm)
+      const schedules = getGameSchedule(seasonPage, mly)
 
       if (schedules.length > 0) {
         allSchedules.push(...schedules)

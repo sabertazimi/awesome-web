@@ -36,9 +36,9 @@ export const teams: Team[] = [
   {
     id: 5,
     team_name: '麻雀格闘倶楽部',
+    team_full_name: 'KONAMI麻雀格闘倶楽部',
     team_code: 'T003',
     team_color: '#920101',
-    team_full_name: 'KONAMI麻雀格闘倶楽部',
   },
   { id: 6, team_name: 'ABEMAS', team_full_name: '渋谷ABEMAS', team_code: 'T004', team_color: '#c6ae6f' },
   {

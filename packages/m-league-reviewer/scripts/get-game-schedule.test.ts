@@ -28,7 +28,7 @@ describe('getGameSchedule', () => {
     `
 
     const seasonPage = parse(html)
-    const schedules = getGameSchedule(seasonPage, 2025, 12)
+    const schedules = getGameSchedule(seasonPage, 2025)
 
     expect(schedules).toHaveLength(2)
 
@@ -68,7 +68,7 @@ describe('getGameSchedule', () => {
     `
 
     const seasonPage = parse(html)
-    const schedules = getGameSchedule(seasonPage, 2025, 12)
+    const schedules = getGameSchedule(seasonPage, 2025)
 
     // Should be merged into one record
     expect(schedules).toHaveLength(1)
@@ -105,7 +105,7 @@ describe('getGameSchedule', () => {
     `
 
     const seasonPage = parse(html)
-    const schedules = getGameSchedule(seasonPage, 2025, 12)
+    const schedules = getGameSchedule(seasonPage, 2025)
 
     // Should be merged into one record
     expect(schedules).toHaveLength(1)
@@ -178,7 +178,7 @@ describe('getGameSchedule', () => {
     `
 
     const seasonPage = parse(html)
-    const schedules = getGameSchedule(seasonPage, 2025, 12)
+    const schedules = getGameSchedule(seasonPage, 2025)
 
     // 4 unique days: 12/1, 12/2, 12/4, 12/5
     expect(schedules).toHaveLength(4)
@@ -211,7 +211,7 @@ describe('getGameSchedule', () => {
   it('should return empty array for empty HTML', () => {
     const html = '<div></div>'
     const seasonPage = parse(html)
-    const schedules = getGameSchedule(seasonPage, 2025, 12)
+    const schedules = getGameSchedule(seasonPage, 2025)
 
     expect(schedules).toEqual([])
   })
@@ -229,7 +229,7 @@ describe('getGameSchedule', () => {
     `
 
     const seasonPage = parse(html)
-    const schedules = getGameSchedule(seasonPage, 2025, 12)
+    const schedules = getGameSchedule(seasonPage, 2025)
 
     // Should skip items with malformed dates
     expect(schedules).toEqual([])
@@ -250,7 +250,7 @@ describe('getGameSchedule', () => {
     `
 
     const seasonPage = parse(html)
-    const schedules = getGameSchedule(seasonPage, 2025, 12)
+    const schedules = getGameSchedule(seasonPage, 2025)
 
     expect(schedules).toHaveLength(1)
     expect(schedules[0].date).toBe('2025-12-01')
@@ -266,7 +266,7 @@ describe('getGameSchedule', () => {
     `
 
     const seasonPage = parse(html)
-    const schedules = getGameSchedule(seasonPage, 2025, 12)
+    const schedules = getGameSchedule(seasonPage, 2025)
 
     expect(schedules).toEqual([])
   })
@@ -284,7 +284,7 @@ describe('getGameSchedule', () => {
     `
 
     const seasonPage = parse(html)
-    const schedules = getGameSchedule(seasonPage, 2025, 12)
+    const schedules = getGameSchedule(seasonPage, 2025)
 
     expect(schedules).toHaveLength(1)
     expect(schedules[0].date).toBe('2025-12-01')
@@ -315,7 +315,7 @@ describe('getGameSchedule', () => {
     `
 
     const seasonPage = parse(html)
-    const schedules = getGameSchedule(seasonPage, 2025, 12)
+    const schedules = getGameSchedule(seasonPage, 2025)
 
     expect(schedules).toHaveLength(1)
     expect(schedules[0].date).toBe('2025-12-01')
@@ -341,40 +341,12 @@ describe('getGameSchedule', () => {
     `
 
     const seasonPage = parse(html)
-    const schedules = getGameSchedule(seasonPage, 2025, 12)
+    const schedules = getGameSchedule(seasonPage, 2025)
 
     expect(schedules).toHaveLength(1)
     expect(schedules[0].date).toBe('2025-12-01')
     // Should only include teams with valid alt attributes (1 and 5)
     expect(schedules[0].teamIds).toEqual([1, 5])
     expect(schedules[0].teamIds).toHaveLength(2)
-  })
-
-  it('should handle year transition correctly', () => {
-    const html = `
-      <ul class="p-gamesSchedule2__lists">
-        <li class="p-gamesSchedule2__list">
-          <p class="p-gamesSchedule2__data">12<span class="p-gamesSchedule2__slash">/</span>25<span class="p-gamesSchedule2__dayWeek">（月）</span></p>
-          <ul class="p-gamesSchedule2__logos">
-            <li><img src="test.png" alt="EARTH JETS"></li>
-          </ul>
-        </li>
-        <li class="p-gamesSchedule2__list">
-          <p class="p-gamesSchedule2__data">1<span class="p-gamesSchedule2__slash">/</span>5<span class="p-gamesSchedule2__dayWeek">（火）</span></p>
-          <ul class="p-gamesSchedule2__logos">
-            <li><img src="test.png" alt="KONAMI麻雀格闘倶楽部"></li>
-          </ul>
-        </li>
-      </ul>
-    `
-
-    const seasonPage = parse(html)
-    const schedules = getGameSchedule(seasonPage, 2025, 12)
-
-    expect(schedules).toHaveLength(2)
-    // December should be 2025
-    expect(schedules[0].date).toBe('2025-12-25')
-    // January should be 2026 (next year)
-    expect(schedules[1].date).toBe('2026-01-05')
   })
 })

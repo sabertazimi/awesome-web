@@ -8,10 +8,9 @@ import { teams } from '../src/api/data.js'
  * Monday/Tuesday: 4 teams, Thursday/Friday: 8 teams
  * @param seasonPage - Parsed HTML element of the season page
  * @param year - Year for the schedule (e.g., 2025)
- * @param month - Month for the schedule (1-12)
  * @returns Array of game schedules
  */
-export default function getGameSchedule(seasonPage: HTMLElement, year: number, month: number): GameSchedule[] {
+export default function getGameSchedule(seasonPage: HTMLElement, year: number): GameSchedule[] {
   // Use Map to group schedules by date
   const scheduleMap = new Map<string, GameSchedule>()
 
@@ -36,13 +35,7 @@ export default function getGameSchedule(seasonPage: HTMLElement, year: number, m
 
     const monthStr = dateMatch[1].padStart(2, '0')
     const dayStr = dateMatch[2].padStart(2, '0')
-
-    // Determine the actual year based on the month
-    // If the parsed month is less than the input month, it's the next year
-    const parsedMonth = Number.parseInt(dateMatch[1], 10)
-    const actualYear = parsedMonth < month ? year + 1 : year
-
-    const date = `${actualYear}-${monthStr}-${dayStr}`
+    const date = `${year}-${monthStr}-${dayStr}`
 
     // Extract day of week
     const dayOfWeekMatch = dateText.match(/（(.+)）/)
