@@ -560,6 +560,7 @@ export default function ReviewDrawer({ open, onOpenChange, reviewId, date, onDel
                 <ReviewTable
                   tableData={tableA}
                   tableName="A"
+                  selectedTeams={selectedTeams}
                   editingField={editingField}
                   onEditField={setEditingField}
                   onUpdatePlayer={(playerIndex, value) => {
@@ -580,6 +581,7 @@ export default function ReviewDrawer({ open, onOpenChange, reviewId, date, onDel
                 <ReviewTable
                   tableData={tableB}
                   tableName="B"
+                  selectedTeams={selectedTeams}
                   editingField={editingField}
                   onEditField={setEditingField}
                   onUpdatePlayer={(playerIndex, value) => {

@@ -1,11 +1,6 @@
 import type { HTMLElement } from 'node-html-parser'
+import type { GameSchedule } from '../src/api/data.js'
 import { teams } from '../src/api/data.js'
-
-export interface GameSchedule {
-  date: string // Format: YYYY-MM-DD (ISO 8601)
-  dayOfWeek: string // 月, 火, 木, 金
-  teamIds: number[] // Team IDs sorted by id
-}
 
 /**
  * Extract game schedule from the season page
@@ -94,3 +89,5 @@ export default function getGameSchedule(seasonPage: HTMLElement, year: number, m
   // Convert Map to array, preserving insertion order
   return Array.from(scheduleMap.values())
 }
+
+export type { GameSchedule }

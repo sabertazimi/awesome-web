@@ -16,6 +16,12 @@ export interface Pro {
   pro_year: number
 }
 
+export interface GameSchedule {
+  date: string // Format: YYYY-MM-DD (ISO 8601)
+  dayOfWeek: string // 月, 火, 木, 金
+  teamIds: number[] // Team IDs sorted by id
+}
+
 export const teams: Team[] = [
   { id: 1, team_name: 'JETS', team_full_name: 'EARTH JETS', team_code: 'T011', team_color: '#006934' },
   { id: 2, team_name: 'ドリブンズ', team_full_name: '赤坂ドリブンズ', team_code: 'T001', team_color: '#9cb832' },

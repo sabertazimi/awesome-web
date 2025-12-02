@@ -1,7 +1,10 @@
+import type { GameSchedule } from '@/api/data'
 import type { Review } from '@/api/reviews'
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router'
+import { teams } from '@/api/data'
 import { createReview, deleteReview, getReviewsByDate } from '@/api/reviews'
+import gameScheduleData from '@/assets/game-schedule.json'
 import { CalendarDayCard } from '@/components/calendar-day-card'
 import ReviewDrawer from '@/components/review-drawer'
 import {
@@ -17,6 +20,8 @@ import {
 import { Button } from '@/components/ui/button'
 import { WeekNavigation } from '@/components/week-navigation'
 import { formatDate, getWeekDays } from '@/lib/date-utils'
+
+const gameSchedules: GameSchedule[] = gameScheduleData
 
 export default function CalendarView() {
   const [currentDate, setCurrentDate] = useState(() => new Date())
@@ -94,7 +99,13 @@ export default function CalendarView() {
     if (!title.trim())
       return
 
-    const newReview = createReview(date, title.trim())
+    // 根据日期自动设置参赛队伍
+    const schedule = gameSchedules.find(s => s.date === date)
+    const teamNames = schedule ? schedule.teamIds
+      .map(teamId => teams.find(t => t.id === teamId)?.team_name)
+      .filter((name): name is string => name !== undefined) : []
+
+    const newReview = createReview(date, title.trim(), '', teamNames)
     setReviews(prev => ({
       ...prev,
       [date]: [...(prev[date] || []), newReview],
