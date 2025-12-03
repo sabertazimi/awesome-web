@@ -6,7 +6,8 @@ import { teams } from '@/api/data'
 import { createReview, deleteReview, getReviewsByDate } from '@/api/reviews'
 import gameScheduleData from '@/assets/game-schedule.json'
 import { CalendarDayCard } from '@/components/calendar-day-card'
-import ReviewDrawer from '@/components/review-drawer'
+import { DefaultLayout } from '@/components/default-layout'
+import { ReviewDrawer } from '@/components/review-drawer'
 import {
   AlertDialog,
   AlertDialogAction,
@@ -18,8 +19,10 @@ import {
   AlertDialogTitle,
 } from '@/components/ui/alert-dialog'
 import { Button } from '@/components/ui/button'
+import { VoidSection } from '@/components/void-section'
 import { WeekNavigation } from '@/components/week-navigation'
 import { formatDate, getWeekDays } from '@/lib/date-utils'
+import { cn } from '@/lib/utils'
 
 const gameSchedules: GameSchedule[] = gameScheduleData
 
@@ -166,48 +169,56 @@ export default function CalendarView() {
   }
 
   return (
-    <div className="container mx-auto min-h-screen p-8">
-      {/* 标题和导航 */}
-      <div className="mb-8 flex items-center justify-between">
-        <div className="flex items-center gap-4">
-          <h1 className="text-primary text-4xl font-bold">M.League 复盘日历</h1>
-          <Button asChild>
-            <Link to={`${import.meta.env.BASE_URL}players`}>选手图鉴</Link>
-          </Button>
+    <DefaultLayout className="flex flex-col">
+      <VoidSection number="01">
+        <div className="flex flex-wrap items-center justify-between gap-4">
+          <div className="flex items-center gap-4">
+            <h1 className="text-foreground font-mono text-4xl font-bold">M.League 复盘日历</h1>
+            <Button asChild variant="outline">
+              <Link to={`${import.meta.env.BASE_URL}players`}>选手图鉴</Link>
+            </Button>
+          </div>
+          <WeekNavigation onPreviousWeek={goToPreviousWeek} onCurrentWeek={goToCurrentWeek} onNextWeek={goToNextWeek} />
         </div>
+      </VoidSection>
+      <VoidSection number="02" fileName="week-calendar.tsx" className="flex flex-1" contentClassName="p-0 sm:pt-0">
+        <div className="grid h-full grid-cols-1 grid-rows-4 md:grid-cols-2 md:grid-rows-2">
+          {weekDays
+            .filter((_, index) => index !== 2) // 跳过周三
+            .map((day, renderedIndex) => {
+              const dateStr = formatDate(day)
+              const dayReviews = reviews[dateStr] || []
+              const isToday = formatDate(new Date()) === dateStr
 
-        <WeekNavigation onPreviousWeek={goToPreviousWeek} onCurrentWeek={goToCurrentWeek} onNextWeek={goToNextWeek} />
-      </div>
-
-      {/* 周历表格 */}
-      <div className="grid grid-cols-5 gap-4">
-        {weekDays.map((day) => {
-          const dateStr = formatDate(day)
-          const dayReviews = reviews[dateStr] || []
-          const isToday = formatDate(new Date()) === dateStr
-
-          return (
-            <CalendarDayCard
-              key={dateStr}
-              day={day}
-              reviews={dayReviews}
-              isToday={isToday}
-              isAddingReview={newReviewDate === dateStr}
-              newReviewTitle={newReviewTitle}
-              availableTitles={getAvailableTitles(dateStr)}
-              onReviewClick={id => openReviewDrawer(dateStr, id)}
-              onReviewDelete={(e, id) => {
-                e.stopPropagation()
-                openDeleteDialog(dateStr, id)
-              }}
-              onStartAddReview={() => startAddReview(dateStr)}
-              onCancelAddReview={cancelAddReview}
-              onSaveReview={title => saveNewReview(dateStr, title)}
-              onTitleChange={setNewReviewTitle}
-            />
-          )
-        })}
-      </div>
+              return (
+                <CalendarDayCard
+                  key={dateStr}
+                  day={day}
+                  reviews={dayReviews}
+                  isToday={isToday}
+                  isAddingReview={newReviewDate === dateStr}
+                  newReviewTitle={newReviewTitle}
+                  availableTitles={getAvailableTitles(dateStr)}
+                  onReviewClick={id => openReviewDrawer(dateStr, id)}
+                  onReviewDelete={(e, id) => {
+                    e.stopPropagation()
+                    openDeleteDialog(dateStr, id)
+                  }}
+                  onStartAddReview={() => startAddReview(dateStr)}
+                  onCancelAddReview={cancelAddReview}
+                  onSaveReview={title => saveNewReview(dateStr, title)}
+                  onTitleChange={setNewReviewTitle}
+                  className={cn(
+                    'border-border',
+                    renderedIndex === 0 && 'border-b md:border-r',
+                    renderedIndex === 1 && 'border-b',
+                    renderedIndex === 2 && 'border-b md:border-r md:border-b-0',
+                  )}
+                />
+              )
+            })}
+        </div>
+      </VoidSection>
 
       {/* 删除确认对话框 */}
       <AlertDialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>
@@ -234,6 +245,6 @@ export default function CalendarView() {
         onDeleted={handleReviewDeleted}
         onUpdated={handleReviewUpdated}
       />
-    </div>
+    </DefaultLayout>
   )
 }

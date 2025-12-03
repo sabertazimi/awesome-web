@@ -13,9 +13,8 @@ interface PlayerCardProps {
 export function PlayerCard({ player, teamColor }: PlayerCardProps) {
   return (
     <Card
-      className="overflow-hidden border-2 pt-0 transition-transform hover:scale-105"
+      className="overflow-hidden pt-0"
       style={{
-        borderColor: teamColor,
         backgroundColor: `${teamColor}10`,
       }}
     >
@@ -24,9 +23,9 @@ export function PlayerCard({ player, teamColor }: PlayerCardProps) {
           <img
             src={`${import.meta.env.BASE_URL}avatars/${player.id}.png`}
             alt={player.pro_name}
-            className="border-border h-24 w-24 rounded-full border-4 object-cover shadow-lg"
+            className="size-24 rounded-full border-4 border-white/20 object-cover shadow-lg"
           />
-          <h3 className="text-card mt-3 text-xl font-bold">{player.pro_name}</h3>
+          <h3 className="text-card mt-3 font-mono text-xl font-bold">{player.pro_name}</h3>
         </div>
       </CardHeader>
       <CardContent className="space-y-2 pt-4">

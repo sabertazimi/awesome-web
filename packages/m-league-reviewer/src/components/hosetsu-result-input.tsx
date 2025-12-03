@@ -118,7 +118,7 @@ export function HosetsuResultInput({ value, onChange, onClose, onKeyDown, autoFo
         placeholder="何切描述..."
       />
 
-      <div className="hosetsu-toolbar border-border bg-popover absolute top-full left-0 z-50 mt-1 flex items-center gap-2 rounded-md border p-2 shadow-md">
+      <div className="hosetsu-toolbar border-border bg-popover absolute top-full left-0 z-50 mt-1 flex items-center gap-2 border p-2 shadow-md">
         <Select
           value={localValue.type}
           onValueChange={(v) => {
@@ -136,7 +136,7 @@ export function HosetsuResultInput({ value, onChange, onClose, onKeyDown, autoFo
             {Object.entries(typeConfig).map(([key, config]) => (
               <SelectItem key={key} value={key} className="text-xs">
                 <div className="flex items-center gap-2">
-                  <div className={cn('size-2 rounded-full', config.color)} />
+                  <div className={cn('size-2', config.color)} />
                   <span>{config.label}</span>
                 </div>
               </SelectItem>
@@ -192,9 +192,7 @@ export function HosetsuResultDisplay({ value, placeholder = '' }: HosetsuResultD
     <div className="flex min-h-[32px] items-center gap-2">
       {value.description ? (
         <>
-          {type !== 'other' && config && (
-            <div className={cn('size-2 shrink-0 rounded-full', config.color)} title={config.label} />
-          )}
+          {type !== 'other' && config && <div className={cn('size-2 shrink-0', config.color)} title={config.label} />}
           <span className={cn('text-sm', value.isSignificant && 'text-primary font-bold')}>{value.description}</span>
         </>
       ) : (
@@ -256,7 +254,7 @@ export function HosetsuResultContextMenu({ value, onChange, children }: HosetsuR
                 (value.type || 'other') === key && 'bg-accent',
               )}
             >
-              <div className={cn('size-2 rounded-full', config.color)} />
+              <div className={cn('size-2', config.color)} />
               <span>{config.label}</span>
               {(value.type || 'other') === key && <CheckIcon className="ml-auto size-3" />}
             </Button>

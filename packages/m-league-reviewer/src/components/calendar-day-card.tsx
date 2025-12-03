@@ -20,6 +20,7 @@ interface CalendarDayCardProps {
   onCancelAddReview: () => void
   onSaveReview: (title: string) => void
   onTitleChange: (title: string) => void
+  className?: string
 }
 
 /**
@@ -39,11 +40,12 @@ export function CalendarDayCard({
   onCancelAddReview,
   onSaveReview,
   onTitleChange,
+  className,
 }: CalendarDayCardProps) {
   const dateStr = formatDate(day)
 
   return (
-    <Card key={dateStr} className={`min-h-[400px] ${isToday ? 'ring-primary ring-2' : ''}`}>
+    <Card key={dateStr} className={cn('min-h-96', isToday && 'ring-primary ring-2 ring-inset', className)}>
       <CardHeader className="pb-3">
         <div className="text-center">
           <div className="text-muted-foreground text-sm">{getWeekdayText(day)}</div>
@@ -64,7 +66,7 @@ export function CalendarDayCard({
 
         {/* 添加新复盘 */}
         {isAddingReview ? (
-          <div className="border-border bg-accent flex flex-col items-center justify-center gap-2 space-y-2 rounded-lg border p-3">
+          <div className="border-border bg-accent flex flex-col items-center justify-center gap-2 space-y-2 border p-3">
             <Select value={newReviewTitle} onValueChange={onTitleChange}>
               <SelectTrigger>
                 <SelectValue placeholder="选择复盘类型..." />
@@ -87,13 +89,8 @@ export function CalendarDayCard({
             </div>
           </div>
         ) : (
-          <Button
-            variant="outline"
-            className="w-full border-dashed"
-            onClick={onStartAddReview}
-            disabled={availableTitles.length === 0}
-          >
-            <PlusIcon className="text-primary mr-2 size-4" />
+          <Button className="w-full" onClick={onStartAddReview} disabled={availableTitles.length === 0}>
+            <PlusIcon className="size-4" />
             {availableTitles.length === 0 ? '已达上限' : '添加复盘'}
           </Button>
         )}

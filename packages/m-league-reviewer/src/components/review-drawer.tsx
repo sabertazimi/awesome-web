@@ -53,7 +53,7 @@ interface ReviewDrawerProps {
   onUpdated?: () => void
 }
 
-export default function ReviewDrawer({ open, onOpenChange, reviewId, date, onDeleted, onUpdated }: ReviewDrawerProps) {
+export function ReviewDrawer({ open, onOpenChange, reviewId, date, onDeleted, onUpdated }: ReviewDrawerProps) {
   const [title, setTitle] = useState('')
   const [linkA, setLinkA] = useState('')
   const [linkB, setLinkB] = useState('')
@@ -239,29 +239,36 @@ export default function ReviewDrawer({ open, onOpenChange, reviewId, date, onDel
   return (
     <>
       <Drawer open={open} onOpenChange={onOpenChange} direction="right">
-        <DrawerContent className="top-0 right-0 left-auto mt-0 h-screen rounded-none data-[vaul-drawer-direction=left]:sm:max-w-full data-[vaul-drawer-direction=right]:sm:max-w-full">
+        <DrawerContent className="border-border top-0 right-0 left-auto mt-0 h-screen border-l data-[vaul-drawer-direction=left]:sm:max-w-full data-[vaul-drawer-direction=right]:sm:max-w-full">
           <div className="flex h-full flex-col">
-            <DrawerHeader className="border-b">
+            {/* 顶部文件名标签 */}
+            <div className="border-border flex items-center justify-between border-b px-6 py-3">
+              <span className="text-muted-foreground font-mono text-xs">review.tsx</span>
+              <div className="flex items-center gap-2">
+                <Button size="sm" variant="destructive" onClick={() => setDeleteDialogOpen(true)}>
+                  删除
+                </Button>
+                <DrawerClose asChild>
+                  <Button size="sm" variant="ghost">
+                    关闭
+                  </Button>
+                </DrawerClose>
+              </div>
+            </div>
+
+            <DrawerHeader className="border-border border-b">
               <div className="flex items-center justify-between">
                 <div className="flex-1">
-                  <DrawerDescription className="text-muted-foreground text-sm">比赛复盘</DrawerDescription>
-                  <DrawerTitle className="text-primary mt-1 text-2xl font-bold">{title || '复盘详情'}</DrawerTitle>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Button size="sm" variant="destructive" onClick={() => setDeleteDialogOpen(true)}>
-                    删除
-                  </Button>
-                  <DrawerClose asChild>
-                    <Button size="sm" variant="ghost">
-                      关闭
-                    </Button>
-                  </DrawerClose>
+                  <DrawerDescription className="text-muted-foreground font-mono text-sm">比赛复盘</DrawerDescription>
+                  <DrawerTitle className="text-foreground mt-1 font-mono text-2xl font-bold">
+                    {title || '复盘详情'}
+                  </DrawerTitle>
                 </div>
               </div>
             </DrawerHeader>
 
-            <div className="flex-1 overflow-y-auto p-6">
-              <div className="space-y-6">
+            <div className="flex-1 overflow-y-auto py-6">
+              <div className="bg-border space-y-px">
                 {/* 基本信息 */}
                 <Card>
                   <CardHeader>
@@ -387,7 +394,7 @@ export default function ReviewDrawer({ open, onOpenChange, reviewId, date, onDel
                           <PopoverTrigger asChild>
                             <div
                               className={cn(
-                                'mt-1 cursor-pointer rounded px-3 py-2 transition-all',
+                                'mt-1 cursor-pointer px-3 py-2 transition-all',
                                 editingField !== 'date' && 'hover:bg-accent hover:shadow-md',
                               )}
                             >
@@ -605,7 +612,7 @@ export default function ReviewDrawer({ open, onOpenChange, reviewId, date, onDel
                 />
 
                 {/* 备注 */}
-                <Card>
+                <Card className="border-0">
                   <CardHeader>
                     <CardTitle>备注</CardTitle>
                   </CardHeader>

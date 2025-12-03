@@ -3,7 +3,7 @@
     <div>
       <h3 class="text-white text-base font-medium">{{ props.title }}</h3>
     </div>
-    <div class="rounded-none overflow-hidden">
+    <div class="overflow-hidden">
       <div class="odd">
         <div class="grid grid-cols-3 gap-4 px-4 py-2 text-white text-[10px] h-6 overflow-hidden">
           <span>最新人员监控</span>

@@ -11,7 +11,7 @@
           <div class="flex gap-3">
             <!-- 项目图片 -->
             <div
-              class="w-12 h-10 bg-gray-600 rounded flex-shrink-0 overflow-hidden"
+              class="w-12 h-10 bg-gray-600 shrink-0 overflow-hidden"
             >
               <img
                 v-if="project.image"
@@ -27,7 +27,7 @@
                 <h5 class="text-white text-xs font-medium truncate">
                   {{ project.title }}
                 </h5>
-                <span class="text-white/80 text-xs ml-2 flex-shrink-0">{{
+                <span class="text-white/80 text-xs ml-2 shrink-0">{{
                   project.organization
                 }}</span>
               </div>
