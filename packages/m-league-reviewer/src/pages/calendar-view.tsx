@@ -171,7 +171,7 @@ export default function CalendarView() {
 
   return (
     <DefaultLayout number="02" className="flex flex-col">
-      <VoidSection number="00">
+      <VoidSection number="00" enableFlickeringGrid>
         <div className="grid grid-cols-1 items-center gap-4 md:grid-cols-[1fr_auto_1fr]">
           <Button asChild variant="outline" className="justify-self-start">
             <Link to={`${import.meta.env.BASE_URL}players`}>
