@@ -42,7 +42,7 @@ export function VoidSection({
         {children}
         {fileName && <code className="text-muted-foreground absolute top-4 right-4 font-mono text-xs">{fileName}</code>}
         {showThemeSwitcher && (
-          <ThemeSwitcher className="absolute top-0 right-4 sm:top-1/2 sm:right-0 sm:translate-x-full sm:-translate-y-1/2" />
+          <ThemeSwitcher className="absolute top-0 right-4 sm:right-0 sm:translate-x-full" />
         )}
       </div>
     </section>
