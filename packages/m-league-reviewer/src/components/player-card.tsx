@@ -25,7 +25,7 @@ export function PlayerCard({ player, teamColor }: PlayerCardProps) {
             <AvatarImage src={`${import.meta.env.BASE_URL}avatars/${player.id}.png`} alt={player.pro_name} />
             <AvatarFallback>{player.pro_name.slice(0, 2)}</AvatarFallback>
           </Avatar>
-          <h3 className="text-card mt-3 font-mono text-xl font-bold">{player.pro_name}</h3>
+          <h3 className="text-primary-foreground mt-3 font-mono text-xl font-bold">{player.pro_name}</h3>
         </div>
       </CardHeader>
       <CardContent className="space-y-2 pt-4">
