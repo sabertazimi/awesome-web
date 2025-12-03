@@ -1,3 +1,4 @@
+import { FlickeringGrid } from '@/components/ui/flickering-grid'
 import { ThemeSwitcher } from '@/components/ui/theme-switcher'
 import { cn } from '@/lib/utils'
 
@@ -5,7 +6,9 @@ interface VoidSectionProps {
   number?: string
   fileName?: string
   title?: string
-  showThemeSwitcher?: boolean
+  enableThemeSwitcher?: boolean
+  enableFlickeringGrid?: boolean
+  reverseFlickeringGridDirection?: boolean
   className?: string
   contentClassName?: string
   children: React.ReactNode
@@ -20,13 +23,32 @@ export function VoidSection({
   number,
   fileName,
   title,
-  showThemeSwitcher = false,
+  enableThemeSwitcher = false,
+  enableFlickeringGrid = false,
+  reverseFlickeringGridDirection = false,
   className,
   contentClassName,
   children,
 }: VoidSectionProps) {
   return (
     <section className={cn('border-border relative w-full border-b last:border-b-0', className)}>
+      {enableFlickeringGrid && (
+        <div
+          className={cn(
+            'absolute top-0 left-0 z-0 size-full',
+            reverseFlickeringGridDirection ? 'mask-[linear-gradient(to_bottom,transparent_25%,black_95%)]' : 'mask-[linear-gradient(to_top,transparent_25%,black_95%)]',
+          )}
+        >
+          <FlickeringGrid
+            className="absolute top-0 left-0 size-full"
+            squareSize={4}
+            gridGap={6}
+            color="#6B7280"
+            maxOpacity={0.5}
+            flickerChance={0.1}
+          />
+        </div>
+      )}
       <div
         className={cn(
           'border-border relative mx-auto w-screen max-w-7xl border-0 p-8 pt-20 sm:w-[calc(100vw-6rem)] sm:border-x sm:pt-8 xl:w-5xl 2xl:w-6xl',
@@ -41,9 +63,7 @@ export function VoidSection({
         {title && <h2 className="text-foreground mb-6 font-mono text-2xl font-bold">{title}</h2>}
         {children}
         {fileName && <code className="text-muted-foreground absolute top-4 right-4 font-mono text-xs">{fileName}</code>}
-        {showThemeSwitcher && (
-          <ThemeSwitcher className="absolute top-0 right-4 sm:right-0 sm:translate-x-full" />
-        )}
+        {enableThemeSwitcher && <ThemeSwitcher className="absolute top-0 right-4 sm:right-0 sm:translate-x-full" />}
       </div>
     </section>
   )

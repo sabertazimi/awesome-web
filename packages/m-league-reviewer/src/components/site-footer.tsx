@@ -11,7 +11,7 @@ interface SiteFooterProps {
 
 export function SiteFooter({ number, fileName, className }: SiteFooterProps) {
   return (
-    <VoidSection number={number} fileName={fileName}>
+    <VoidSection number={number} fileName={fileName} enableFlickeringGrid reverseFlickeringGridDirection>
       <footer className={cn('flex items-center justify-between', className)}>
         <div>
           <span className="text-muted-foreground text-sm">Copyright © </span>
