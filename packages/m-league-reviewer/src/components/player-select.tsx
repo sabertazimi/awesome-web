@@ -1,5 +1,6 @@
 import { Trash2Icon } from 'lucide-react'
 import { pros, teams } from '@/api/data'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 
 export interface PlayerOption {
@@ -95,7 +96,10 @@ export function PlayerSelect({
             }}
           >
             <div className="flex items-center gap-2">
-              <img src={opt.avatarUrl} alt={opt.label} className="size-6 rounded-full object-cover" />
+              <Avatar>
+                <AvatarImage src={opt.avatarUrl} alt={opt.label} />
+                <AvatarFallback>{opt.label.slice(0, 2)}</AvatarFallback>
+              </Avatar>
               <span>{opt.label}</span>
             </div>
           </SelectItem>
@@ -122,7 +126,10 @@ export function PlayerDisplay({ playerName, playerOptions, placeholder = 'プロ
     <div className="flex min-h-[32px] items-center gap-2">
       {playerName && player ? (
         <>
-          <img src={player.avatarUrl} alt={playerName} className="size-6 rounded-full object-cover" />
+          <Avatar>
+            <AvatarImage src={player.avatarUrl} alt={playerName} />
+            <AvatarFallback>{playerName.slice(0, 2)}</AvatarFallback>
+          </Avatar>
           <span className="font-medium">{playerName}</span>
         </>
       ) : (

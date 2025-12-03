@@ -34,7 +34,7 @@ export default function PlayersView() {
           fileName={`team-${team.id}.tsx`}
           title={team.team_name}
         >
-          <div className="grid grid-cols-1 gap-px bg-border md:grid-cols-2 lg:grid-cols-4">
+          <div className="-mx-8 grid grid-cols-1 gap-px md:grid-cols-2 lg:grid-cols-4">
             {members.map(pro => (
               <PlayerCard key={pro.id} player={pro} teamColor={team.team_color} />
             ))}
