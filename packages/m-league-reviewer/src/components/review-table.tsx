@@ -171,7 +171,7 @@ export function ReviewTable({
           <TableBody>
             {/* 第一行: 选手名称 */}
             <TableRow className="bg-accent">
-              <TableCell className="w-[100px] font-semibold">小局</TableCell>
+              <TableCell className="w-24 font-semibold">小局</TableCell>
               {[0, 1, 2, 3].map((playerIndex) => {
                 const fieldId = `${tableName}-player-${playerIndex}`
                 const isEditing = editingField === fieldId
@@ -228,7 +228,7 @@ export function ReviewTable({
                   </TableCell>
                 )
               })}
-              <TableCell className="w-[80px]"></TableCell>
+              <TableCell className="w-12"></TableCell>
             </TableRow>
 
             {/* 后续行: 局数和结果 */}
@@ -308,7 +308,7 @@ export function ReviewTable({
                     </TableCell>
                   )
                 })}
-                <TableCell>
+                <TableCell align="center">
                   <Button
                     size="sm"
                     variant="ghost"
@@ -320,26 +320,40 @@ export function ReviewTable({
                 </TableCell>
               </TableRow>
             ))}
+
+            {/* 添加局数行 */}
+            <TableRow className="hover:bg-accent group border-none transition-all">
+              <TableCell colSpan={6} className="h-8 border-none p-0">
+                <div
+                  className="flex size-full cursor-pointer items-center justify-center opacity-0 transition-all duration-200 group-hover:opacity-100"
+                  onClick={onAddRow}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault()
+                      onAddRow()
+                    }
+                  }}
+                  role="button"
+                  tabIndex={0}
+                  title="添加局数"
+                  aria-label="添加新局数"
+                >
+                  <PlusIcon className="text-primary size-4" />
+                </div>
+              </TableCell>
+            </TableRow>
+
+            {/* 占位行：防止下拉菜单被遮挡 */}
+            <TableRow className="pointer-events-none border-none opacity-0" aria-hidden="true">
+              <TableCell className="h-12 border-none p-0" />
+              <TableCell className="h-12 border-none p-0" />
+              <TableCell className="h-12 border-none p-0" />
+              <TableCell className="h-12 border-none p-0" />
+              <TableCell className="h-12 border-none p-0" />
+              <TableCell className="h-12 border-none p-0" />
+            </TableRow>
           </TableBody>
         </Table>
-
-        {/* 添加局数区域 */}
-        <div
-          className="hover:border-border hover:bg-accent mt-2 flex cursor-pointer items-center justify-center rounded border py-0.5 opacity-0 transition-all duration-200 hover:opacity-100"
-          onClick={onAddRow}
-          onKeyDown={(e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-              e.preventDefault()
-              onAddRow()
-            }
-          }}
-          role="button"
-          tabIndex={0}
-          title="添加局数"
-          aria-label="添加新局数"
-        >
-          <PlusIcon className="text-primary size-4" />
-        </div>
       </CardContent>
     </Card>
   )
