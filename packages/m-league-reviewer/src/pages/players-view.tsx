@@ -14,8 +14,8 @@ export default function PlayersView() {
   }))
 
   return (
-    <DefaultLayout>
-      <VoidSection number="01" showThemeSwitcher>
+    <DefaultLayout number="11">
+      <VoidSection number="00">
         <div className="grid grid-cols-1 items-center gap-4 md:grid-cols-[1fr_auto_1fr]">
           <Button variant="outline" asChild className="justify-self-start">
             <Link to={`${import.meta.env.BASE_URL}`}>
@@ -30,8 +30,8 @@ export default function PlayersView() {
       {teamGroups.map(({ team, members }, index) => (
         <VoidSection
           key={team.id}
-          number={String(index + 2).padStart(2, '0')}
-          fileName={`team-${team.id}.tsx`}
+          number={(index + 1).toString().padStart(2, '0')}
+          fileName={`${team.team_name}.json`}
           title={team.team_name}
         >
           <div className="-mx-8 grid grid-cols-1 gap-px md:grid-cols-2 lg:grid-cols-4">
