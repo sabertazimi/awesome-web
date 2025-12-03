@@ -3,6 +3,7 @@ import { AlertCircleIcon, CheckIcon } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
+import { Kbd, KbdGroup } from '@/components/ui/kbd'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { cn } from '@/lib/utils'
@@ -15,7 +16,7 @@ interface HosetsuResultInputProps {
   autoFocus?: boolean
 }
 
-// 何切类型配置
+/** 何切类型配置 */
 const typeConfig: Record<HosetsuType, { label: string, color: string }> = {
   discard: { label: '放铳', color: 'bg-red-500' },
   tile_efficiency: { label: '损牌效', color: 'bg-orange-500' },
@@ -26,18 +27,20 @@ const typeConfig: Record<HosetsuType, { label: string, color: string }> = {
   other: { label: '其他', color: 'bg-gray-500' },
 }
 
+function isHosetsuType(value: string): value is HosetsuType {
+  return Object.keys(typeConfig).includes(value)
+}
+
 /**
  * 何切结果输入组件
  * 支持右键菜单和工具栏
  */
 export function HosetsuResultInput({ value, onChange, onClose, onKeyDown, autoFocus }: HosetsuResultInputProps) {
-  // 确保 value 有默认的 type 字段
   const normalizedValue: HosetsuResult = {
     ...value,
     type: value.type || 'other',
   }
   const [localValue, setLocalValue] = useState<HosetsuResult>(normalizedValue)
-  const [showToolbar, setShowToolbar] = useState(false)
   const inputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
@@ -74,13 +77,8 @@ export function HosetsuResultInput({ value, onChange, onClose, onKeyDown, autoFo
       e.preventDefault()
       onClose?.()
     } else if (e.key === 'b' && e.ctrlKey) {
-      // Ctrl+B 切换严重性
       e.preventDefault()
       handleSignificantToggle()
-    } else if (e.key === 't' && e.ctrlKey) {
-      // Ctrl+T 显示工具栏
-      e.preventDefault()
-      setShowToolbar(!showToolbar)
     }
   }
 
@@ -91,90 +89,87 @@ export function HosetsuResultInput({ value, onChange, onClose, onKeyDown, autoFo
         value={localValue.description}
         onChange={e => handleDescriptionChange(e.target.value)}
         onKeyDown={handleKeyDownInternal}
-        onFocus={() => setShowToolbar(true)}
         onBlur={(e) => {
-          // 检查焦点是否移动到工具栏或其内部元素
-          const relatedTarget = e.relatedTarget as HTMLElement
-
           // 如果没有 relatedTarget，说明点击了真正的空白区域
+          const relatedTarget = e.relatedTarget
           if (!relatedTarget) {
-            setTimeout(() => {
-              setShowToolbar(false)
-              onClose?.()
-            }, 150)
+            onClose?.()
             return
           }
 
-          // 检查是否点击了工具栏或其子元素（包括 Select 下拉框）
+          // 点击了工具栏内的元素，不关闭
           const toolbar = document.querySelector('.hosetsu-toolbar')
           if (toolbar && toolbar.contains(relatedTarget)) {
-            // 点击了工具栏内的元素，不关闭
             return
           }
 
-          // 检查是否点击了 Select 的下拉菜单（Radix UI Portal）
+          // 点击了下拉菜单，不关闭
           const isSelectContent
             = relatedTarget.closest('[role="listbox"]') || relatedTarget.closest('[data-radix-popper-content-wrapper]')
           if (isSelectContent) {
-            // 点击了下拉菜单，不关闭
             return
           }
 
           // 其他情况，关闭工具栏
-          setTimeout(() => {
-            setShowToolbar(false)
-            onClose?.()
-          }, 150)
+          onClose?.()
         }}
         autoFocus={autoFocus}
         className="h-8"
         placeholder="何切描述..."
       />
 
-      {/* 工具栏 */}
-      {showToolbar && (
-        <div className="hosetsu-toolbar border-border bg-popover absolute top-full left-0 z-50 mt-1 flex items-center gap-2 rounded-md border p-2 shadow-md">
-          {/* 何切类型选择 */}
-          <Select
-            value={localValue.type}
-            onValueChange={(v) => {
-              handleTypeChange(v as HosetsuType)
-              inputRef.current?.focus()
-            }}
-          >
-            <SelectTrigger className="h-7 w-32 text-xs">
-              <SelectValue />
-            </SelectTrigger>
-            <SelectContent>
-              {Object.entries(typeConfig).map(([key, config]) => (
-                <SelectItem key={key} value={key} className="text-xs">
-                  <div className="flex items-center gap-2">
-                    <div className={cn('size-2 rounded-full', config.color)} />
-                    <span>{config.label}</span>
-                  </div>
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+      <div className="hosetsu-toolbar border-border bg-popover absolute top-full left-0 z-50 mt-1 flex items-center gap-2 rounded-md border p-2 shadow-md">
+        <Select
+          value={localValue.type}
+          onValueChange={(v) => {
+            if (isHosetsuType(v)) {
+              handleTypeChange(v)
+            }
 
-          {/* 严重性切换 */}
-          <Button
-            size="sm"
-            variant={localValue.isSignificant ? 'default' : 'outline'}
-            onClick={() => {
-              handleSignificantToggle()
-              inputRef.current?.focus()
-            }}
-            className="h-7 gap-1 text-xs"
-            title="标记为严重分歧 (Ctrl+B)"
-          >
-            <AlertCircleIcon className="size-3" />
-            严重
-          </Button>
+            inputRef.current?.focus()
+          }}
+        >
+          <SelectTrigger className="h-7 w-32 text-xs">
+            <SelectValue />
+          </SelectTrigger>
+          <SelectContent>
+            {Object.entries(typeConfig).map(([key, config]) => (
+              <SelectItem key={key} value={key} className="text-xs">
+                <div className="flex items-center gap-2">
+                  <div className={cn('size-2 rounded-full', config.color)} />
+                  <span>{config.label}</span>
+                </div>
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+        <Button
+          size="sm"
+          variant={localValue.isSignificant ? 'default' : 'outline'}
+          onClick={() => {
+            handleSignificantToggle()
+            inputRef.current?.focus()
+          }}
+          className="h-7 gap-1 text-xs"
+          title="标记为严重分歧 (Ctrl+B)"
+        >
+          <AlertCircleIcon className="size-3" />
+          严重
+        </Button>
 
-          <div className="text-muted-foreground text-[10px]">Ctrl+B: 严重 | Enter/Tab: 确认</div>
+        <div className="text-muted-foreground text-xs">
+          <KbdGroup>
+            <Kbd>⌘</Kbd>
+            <Kbd>B</Kbd>
+            <span>严重</span>
+          </KbdGroup>
+          <KbdGroup>
+            <Kbd>⇥</Kbd>
+            <Kbd>⏎</Kbd>
+            <span>确认</span>
+          </KbdGroup>
         </div>
-      )}
+      </div>
     </div>
   )
 }
@@ -197,11 +192,9 @@ export function HosetsuResultDisplay({ value, placeholder = '' }: HosetsuResultD
     <div className="flex min-h-[32px] items-center gap-2">
       {value.description ? (
         <>
-          {/* 何切类型指示器 */}
           {type !== 'other' && config && (
             <div className={cn('size-2 shrink-0 rounded-full', config.color)} title={config.label} />
           )}
-          {/* 描述文本 */}
           <span className={cn('text-sm', value.isSignificant && 'text-primary font-bold')}>{value.description}</span>
         </>
       ) : (
@@ -223,12 +216,16 @@ interface HosetsuResultContextMenuProps {
 export function HosetsuResultContextMenu({ value, onChange, children }: HosetsuResultContextMenuProps) {
   const [open, setOpen] = useState(false)
 
-  const handleTypeChange = (type: HosetsuType) => {
-    onChange({ ...value, type })
+  const handleTypeChange = (type: string, e: React.MouseEvent) => {
+    e.stopPropagation()
+    if (isHosetsuType(type)) {
+      onChange({ ...value, type })
+    }
     setOpen(false)
   }
 
-  const handleSignificantToggle = () => {
+  const handleSignificantToggle = (e: React.MouseEvent) => {
+    e.stopPropagation()
     onChange({ ...value, isSignificant: !value.isSignificant })
     setOpen(false)
   }
@@ -245,7 +242,7 @@ export function HosetsuResultContextMenu({ value, onChange, children }: HosetsuR
           {children}
         </div>
       </PopoverTrigger>
-      <PopoverContent className="w-48 p-2" align="start">
+      <PopoverContent className="w-48 p-2" align="start" onClick={e => e.stopPropagation()}>
         <div className="space-y-1">
           <div className="text-muted-foreground mb-2 text-xs font-medium">何切类型</div>
           {Object.entries(typeConfig).map(([key, config]) => (
@@ -253,7 +250,7 @@ export function HosetsuResultContextMenu({ value, onChange, children }: HosetsuR
               key={key}
               variant="ghost"
               size="sm"
-              onClick={() => handleTypeChange(key as HosetsuType)}
+              onClick={e => handleTypeChange(key, e)}
               className={cn(
                 'h-auto w-full justify-start gap-2 px-2 py-1.5 text-xs font-normal',
                 (value.type || 'other') === key && 'bg-accent',
@@ -268,7 +265,7 @@ export function HosetsuResultContextMenu({ value, onChange, children }: HosetsuR
           <Button
             variant="ghost"
             size="sm"
-            onClick={handleSignificantToggle}
+            onClick={e => handleSignificantToggle(e)}
             className={cn(
               'h-auto w-full justify-start gap-2 px-2 py-1.5 text-xs font-normal',
               value.isSignificant && 'bg-accent',
