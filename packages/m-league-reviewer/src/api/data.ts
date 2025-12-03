@@ -83,7 +83,7 @@ export const pros: Pro[] = [
   },
   {
     id: 4,
-    pro_name: 'HIRO柴田',
+    pro_name: '柴田弘幸',
     team_id: 1,
     birth: '1976-02-16',
     birth_place: '神奈川県',
