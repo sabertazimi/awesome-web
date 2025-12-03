@@ -179,7 +179,10 @@ export default function CalendarView() {
               选手图鉴
             </Link>
           </Button>
-          <h1 className="text-foreground font-mono text-4xl font-bold">M.League 复盘日历</h1>
+          <h1 className="text-foreground flex items-center gap-4 font-mono text-4xl font-bold">
+            <img src={`${import.meta.env.BASE_URL}logo.svg`} alt="M.League" className="h-10 w-auto" />
+            复盘日历
+          </h1>
           <WeekNavigation
             onPreviousWeek={goToPreviousWeek}
             onCurrentWeek={goToCurrentWeek}
