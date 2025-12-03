@@ -76,7 +76,7 @@ export function ThemeSwitcher({
       size={size}
       // eslint-disable-next-line ts/no-misused-promises -- toggleTheme is a valid promise
       onClick={toggleTheme}
-      className={cn(className)}
+      className={className}
       {...props}
     >
       {isDark ? <Moon className={cn('size-6', iconClassName)} /> : <Sun className={cn('size-6', iconClassName)} />}
