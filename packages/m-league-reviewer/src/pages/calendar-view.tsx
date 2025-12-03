@@ -6,7 +6,8 @@ import { teams } from '@/api/data'
 import { createReview, deleteReview, getReviewsByDate } from '@/api/reviews'
 import gameScheduleData from '@/assets/game-schedule.json'
 import { CalendarDayCard } from '@/components/calendar-day-card'
-import ReviewDrawer from '@/components/review-drawer'
+import { DefaultLayout } from '@/components/default-layout'
+import { ReviewDrawer } from '@/components/review-drawer'
 import {
   AlertDialog,
   AlertDialogAction,
@@ -166,7 +167,7 @@ export default function CalendarView() {
   }
 
   return (
-    <div className="container mx-auto min-h-screen p-8">
+    <DefaultLayout className="flex flex-col">
       {/* 标题和导航 */}
       <div className="mb-8 flex items-center justify-between">
         <div className="flex items-center gap-4">
@@ -175,13 +176,17 @@ export default function CalendarView() {
             <Link to={`${import.meta.env.BASE_URL}players`}>选手图鉴</Link>
           </Button>
         </div>
-
         <WeekNavigation onPreviousWeek={goToPreviousWeek} onCurrentWeek={goToCurrentWeek} onNextWeek={goToNextWeek} />
       </div>
 
       {/* 周历表格 */}
-      <div className="grid grid-cols-5 gap-4">
-        {weekDays.map((day) => {
+      <div className="grid flex-1 grid-cols-2 grid-rows-2 gap-4">
+        {weekDays.map((day, index) => {
+          // 跳过周三
+          if (index === 2) {
+            return null
+          }
+
           const dateStr = formatDate(day)
           const dayReviews = reviews[dateStr] || []
           const isToday = formatDate(new Date()) === dateStr
@@ -234,6 +239,6 @@ export default function CalendarView() {
         onDeleted={handleReviewDeleted}
         onUpdated={handleReviewUpdated}
       />
-    </div>
+    </DefaultLayout>
   )
 }

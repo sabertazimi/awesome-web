@@ -1,6 +1,7 @@
 import { ArrowLeftIcon } from 'lucide-react'
 import { Link } from 'react-router'
 import { pros, teams } from '@/api/data'
+import { DefaultLayout } from '@/components/default-layout'
 import { PlayerCard } from '@/components/player-card'
 import { TeamCard } from '@/components/team-card'
 import { Button } from '@/components/ui/button'
@@ -13,7 +14,7 @@ export default function PlayersView() {
   }))
 
   return (
-    <div className="container mx-auto min-h-screen p-8">
+    <DefaultLayout>
       <div className="mb-12 flex items-center justify-between">
         <Button variant="outline" asChild>
           <Link to={`${import.meta.env.BASE_URL}`}>
@@ -24,7 +25,6 @@ export default function PlayersView() {
         <h1 className="text-primary text-4xl font-bold">M.League 选手图鉴</h1>
         <div className="w-[100px]"></div>
       </div>
-
       <div className="space-y-12">
         {teamGroups.map(({ team, members }) => (
           <TeamCard key={team.id} team={team}>
@@ -34,6 +34,6 @@ export default function PlayersView() {
           </TeamCard>
         ))}
       </div>
-    </div>
+    </DefaultLayout>
   )
 }

@@ -53,7 +53,7 @@ interface ReviewDrawerProps {
   onUpdated?: () => void
 }
 
-export default function ReviewDrawer({ open, onOpenChange, reviewId, date, onDeleted, onUpdated }: ReviewDrawerProps) {
+export function ReviewDrawer({ open, onOpenChange, reviewId, date, onDeleted, onUpdated }: ReviewDrawerProps) {
   const [title, setTitle] = useState('')
   const [linkA, setLinkA] = useState('')
   const [linkB, setLinkB] = useState('')
