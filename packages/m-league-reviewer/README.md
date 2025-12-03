@@ -16,6 +16,7 @@
 ## 技术栈
 
 - **React** - 前端框架
+- **React Router** - 路由管理 (Framework Mode)
 - **TypeScript** - 类型安全
 - **Vite** - 构建工具
 - **Shadcn UI** - UI 组件库
@@ -46,6 +47,9 @@ src/
 ├── api/          # API 接口
 ├── components/   # React 组件
 │   └── ui/       # UI 基础组件
-├── pages/        # 页面组件
-└── lib/          # 工具函数
+├── views/        # 视图组件
+├── hooks/        # 自定义 Hooks
+├── lib/          # 工具函数
+├── assets/       # 静态资源
+└── routes/       # 路由配置
 ```

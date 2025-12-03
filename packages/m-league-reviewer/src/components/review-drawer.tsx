@@ -4,7 +4,6 @@ import { format } from 'date-fns'
 import { zhCN } from 'date-fns/locale/zh-CN'
 import { CalendarIcon, LinkIcon, LoaderIcon, UsersIcon } from 'lucide-react'
 import { useEffect, useState } from 'react'
-import { useDebounce } from 'react-use'
 import { teams } from '@/api/data'
 import {
   createDefaultRoundInfo,
@@ -42,6 +41,7 @@ import { MultiSelect } from '@/components/ui/multi-select'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Textarea } from '@/components/ui/textarea'
+import useDebounce from '@/hooks/useDebounce'
 import { cn } from '@/lib/utils'
 
 interface ReviewDrawerProps {

@@ -9,6 +9,7 @@ import gameScheduleData from '@/assets/game-schedule.json'
 import { CalendarDayCard } from '@/components/calendar-day-card'
 import { DefaultLayout } from '@/components/default-layout'
 import { ReviewDrawer } from '@/components/review-drawer'
+import { SiteHeader } from '@/components/site-header'
 import {
   AlertDialog,
   AlertDialogAction,
@@ -19,7 +20,6 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from '@/components/ui/alert-dialog'
-import { Button } from '@/components/ui/button'
 import { VoidSection } from '@/components/void-section'
 import { WeekNavigation } from '@/components/week-navigation'
 import { formatDate, getWeekDays } from '@/lib/date-utils'
@@ -171,26 +171,22 @@ export default function CalendarView() {
 
   return (
     <DefaultLayout number="02" className="flex flex-col">
-      <VoidSection number="00" enableFlickeringGrid>
-        <div className="grid grid-cols-1 items-center gap-4 md:grid-cols-[1fr_auto_1fr]">
-          <Button asChild variant="outline" className="justify-self-start">
-            <Link to={`${import.meta.env.BASE_URL}players`}>
-              <UsersIcon className="text-primary size-4" />
-              选手图鉴
-            </Link>
-          </Button>
-          <h1 className="text-foreground flex items-center gap-4 font-mono text-4xl font-bold">
-            <img src={`${import.meta.env.BASE_URL}logo.svg`} alt="M.League" className="h-10 w-auto" />
-            复盘日历
-          </h1>
-          <WeekNavigation
-            onPreviousWeek={goToPreviousWeek}
-            onCurrentWeek={goToCurrentWeek}
-            onNextWeek={goToNextWeek}
-            className="md:justify-self-end"
-          />
-        </div>
-      </VoidSection>
+      <SiteHeader
+        title="复盘日历"
+        link={(
+          <Link to="/players">
+            <UsersIcon className="text-primary size-4" />
+            选手图鉴
+          </Link>
+        )}
+      >
+        <WeekNavigation
+          onPreviousWeek={goToPreviousWeek}
+          onCurrentWeek={goToCurrentWeek}
+          onNextWeek={goToNextWeek}
+          className="md:justify-self-end"
+        />
+      </SiteHeader>
       <VoidSection number="01" fileName="calendar.tsx" className="flex flex-1" contentClassName="p-0 sm:pt-0">
         <div className="grid h-full grid-cols-1 grid-rows-4 md:grid-cols-2 md:grid-rows-2">
           {weekDays

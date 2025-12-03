@@ -23,6 +23,10 @@ dist-ssr
 *.sln
 *.sw?
 
+# React Router
+/.react-router/
+/build/
+
 src/api/data.js
 scripts/*.js
 data/*.json
