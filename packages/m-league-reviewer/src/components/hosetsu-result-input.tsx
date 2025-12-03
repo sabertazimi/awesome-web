@@ -216,12 +216,16 @@ interface HosetsuResultContextMenuProps {
 export function HosetsuResultContextMenu({ value, onChange, children }: HosetsuResultContextMenuProps) {
   const [open, setOpen] = useState(false)
 
-  const handleTypeChange = (type: HosetsuType) => {
-    onChange({ ...value, type })
+  const handleTypeChange = (type: string, e: React.MouseEvent) => {
+    e.stopPropagation()
+    if (isHosetsuType(type)) {
+      onChange({ ...value, type })
+    }
     setOpen(false)
   }
 
-  const handleSignificantToggle = () => {
+  const handleSignificantToggle = (e: React.MouseEvent) => {
+    e.stopPropagation()
     onChange({ ...value, isSignificant: !value.isSignificant })
     setOpen(false)
   }
@@ -238,7 +242,7 @@ export function HosetsuResultContextMenu({ value, onChange, children }: HosetsuR
           {children}
         </div>
       </PopoverTrigger>
-      <PopoverContent className="w-48 p-2" align="start">
+      <PopoverContent className="w-48 p-2" align="start" onClick={e => e.stopPropagation()}>
         <div className="space-y-1">
           <div className="text-muted-foreground mb-2 text-xs font-medium">何切类型</div>
           {Object.entries(typeConfig).map(([key, config]) => (
@@ -246,7 +250,7 @@ export function HosetsuResultContextMenu({ value, onChange, children }: HosetsuR
               key={key}
               variant="ghost"
               size="sm"
-              onClick={() => handleTypeChange(key as HosetsuType)}
+              onClick={e => handleTypeChange(key, e)}
               className={cn(
                 'h-auto w-full justify-start gap-2 px-2 py-1.5 text-xs font-normal',
                 (value.type || 'other') === key && 'bg-accent',
@@ -261,7 +265,7 @@ export function HosetsuResultContextMenu({ value, onChange, children }: HosetsuR
           <Button
             variant="ghost"
             size="sm"
-            onClick={handleSignificantToggle}
+            onClick={e => handleSignificantToggle(e)}
             className={cn(
               'h-auto w-full justify-start gap-2 px-2 py-1.5 text-xs font-normal',
               value.isSignificant && 'bg-accent',
