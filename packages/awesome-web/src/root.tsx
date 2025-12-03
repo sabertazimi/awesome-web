@@ -1,9 +1,9 @@
 import type { Route } from './+types/root'
 import { ArrowLeftIcon } from 'lucide-react'
 import { isRouteErrorResponse, Link, Links, Meta, Outlet, Scripts, ScrollRestoration } from 'react-router'
-import { DefaultLayout } from '@/components/default-layout'
 import { SiteHeader } from '@/components/site-header'
-import { VoidSection } from '@/components/void-section'
+import { SiteLayout } from '@/components/site-layout'
+import { SiteSection } from '@/components/site-section'
 import '@/assets/base.css'
 
 export const links: Route.LinksFunction = () => [
@@ -50,34 +50,34 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
   if (isRouteErrorResponse(error)) {
     message = error.status === 404 ? '404' : 'Error'
     details = error.status === 404 ? 'The requested page could not be found.' : error.statusText || details
-  } else if (import.meta.env.DEV && error && error instanceof Error) {
+  } else if (import.meta.env.DEV && error !== null && error instanceof Error) {
     details = error.message
     stack = error.stack
   }
 
   return (
-    <DefaultLayout number="02" className="flex flex-col">
+    <SiteLayout number="02" className="flex flex-col">
       <SiteHeader
         title={message}
         link={(
           <Link to="/">
             <ArrowLeftIcon className="text-primary size-4" />
-            返回日历
+            返回首页
           </Link>
         )}
       />
-      <VoidSection number="01" fileName="error.tsx" className="flex flex-1">
+      <SiteSection number="01" fileName="error.tsx" className="flex flex-1">
         <div className="flex h-full items-center justify-center">
           <div className="flex flex-col gap-4">
             <p>{details}</p>
-            {stack && (
+            {stack !== undefined && (
               <pre className="w-full overflow-x-auto p-4">
                 <code>{stack}</code>
               </pre>
             )}
           </div>
         </div>
-      </VoidSection>
-    </DefaultLayout>
+      </SiteSection>
+    </SiteLayout>
   )
 }
