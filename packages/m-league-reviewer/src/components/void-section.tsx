@@ -1,9 +1,11 @@
+import { ThemeSwitcher } from '@/components/ui/theme-switcher'
 import { cn } from '@/lib/utils'
 
 interface VoidSectionProps {
   number?: string
   fileName?: string
   title?: string
+  showThemeSwitcher?: boolean
   className?: string
   contentClassName?: string
   children: React.ReactNode
@@ -14,7 +16,15 @@ interface VoidSectionProps {
  * 模仿 voidzero.dev 的设计风格
  * 布局结构：左侧区域（编号） | 中间区域（内容 container） | 右侧区域（文件名）
  */
-export function VoidSection({ number, fileName, title, className, contentClassName, children }: VoidSectionProps) {
+export function VoidSection({
+  number,
+  fileName,
+  title,
+  showThemeSwitcher = false,
+  className,
+  contentClassName,
+  children,
+}: VoidSectionProps) {
   return (
     <section className={cn('border-border relative w-full border-b last:border-b-0', className)}>
       <div
@@ -31,6 +41,9 @@ export function VoidSection({ number, fileName, title, className, contentClassNa
         {title && <h2 className="text-foreground mb-6 font-mono text-2xl font-bold">{title}</h2>}
         {children}
         {fileName && <code className="text-muted-foreground absolute top-4 right-4 font-mono text-xs">{fileName}</code>}
+        {showThemeSwitcher && (
+          <ThemeSwitcher className="absolute top-0 right-4 sm:right-0 sm:translate-x-full" />
+        )}
       </div>
     </section>
   )

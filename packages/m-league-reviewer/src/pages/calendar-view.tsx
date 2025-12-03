@@ -1,5 +1,6 @@
 import type { GameSchedule } from '@/api/data'
 import type { Review } from '@/api/reviews'
+import { UsersIcon } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router'
 import { teams } from '@/api/data'
@@ -170,18 +171,24 @@ export default function CalendarView() {
 
   return (
     <DefaultLayout className="flex flex-col">
-      <VoidSection number="01">
-        <div className="flex flex-wrap items-center justify-between gap-4">
-          <div className="flex items-center gap-4">
-            <h1 className="text-foreground font-mono text-4xl font-bold">M.League 复盘日历</h1>
-            <Button asChild variant="outline">
-              <Link to={`${import.meta.env.BASE_URL}players`}>选手图鉴</Link>
-            </Button>
-          </div>
-          <WeekNavigation onPreviousWeek={goToPreviousWeek} onCurrentWeek={goToCurrentWeek} onNextWeek={goToNextWeek} />
+      <VoidSection number="01" showThemeSwitcher>
+        <div className="grid grid-cols-1 items-center gap-4 md:grid-cols-[1fr_auto_1fr]">
+          <Button asChild variant="outline" className="justify-self-start">
+            <Link to={`${import.meta.env.BASE_URL}players`}>
+              <UsersIcon className="text-primary size-4" />
+              选手图鉴
+            </Link>
+          </Button>
+          <h1 className="text-foreground font-mono text-4xl font-bold">M.League 复盘日历</h1>
+          <WeekNavigation
+            onPreviousWeek={goToPreviousWeek}
+            onCurrentWeek={goToCurrentWeek}
+            onNextWeek={goToNextWeek}
+            className="md:justify-self-end"
+          />
         </div>
       </VoidSection>
-      <VoidSection number="02" fileName="week-calendar.tsx" className="flex flex-1" contentClassName="p-0 sm:pt-0">
+      <VoidSection number="02" fileName="calendar.tsx" className="flex flex-1" contentClassName="p-0 sm:pt-0">
         <div className="grid h-full grid-cols-1 grid-rows-4 md:grid-cols-2 md:grid-rows-2">
           {weekDays
             .filter((_, index) => index !== 2) // 跳过周三

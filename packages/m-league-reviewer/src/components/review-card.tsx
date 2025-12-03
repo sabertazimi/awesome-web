@@ -24,10 +24,7 @@ export function ReviewCard({ review, onClick, onDelete }: ReviewCardProps) {
 
   return (
     <div
-      className={cn(
-        'group relative cursor-pointer space-y-4 border-none p-3 transition-colors',
-        statusColor,
-      )}
+      className={cn('group relative cursor-pointer space-y-4 border-none p-3 transition-colors', statusColor)}
       onClick={onClick}
     >
       {/* 标题 */}
@@ -91,8 +88,8 @@ export function ReviewCard({ review, onClick, onDelete }: ReviewCardProps) {
 
       {/* 删除按钮 */}
       <Button
-        variant="outline"
-        className="text-destructive absolute top-2.5 right-3 size-6 opacity-0 transition-all duration-200 group-hover:opacity-100"
+        variant="ghost"
+        className="absolute top-1 right-1 size-6 opacity-0 transition-all duration-200 group-hover:opacity-100"
         onClick={onDelete}
         title="删除"
       >
