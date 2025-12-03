@@ -1,7 +1,7 @@
 {
   "name": "echarts-dashboard",
   "type": "module",
-  "version": "1.9.0",
+  "version": "1.10.0",
   "private": true,
   "packageManager": "pnpm@10.24.0",
   "scripts": {
