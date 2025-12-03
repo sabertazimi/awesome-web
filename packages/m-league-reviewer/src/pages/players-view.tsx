@@ -15,16 +15,16 @@ export default function PlayersView() {
 
   return (
     <DefaultLayout>
-      <VoidSection number="01" fileName="players-view.tsx">
-        <div className="flex items-center justify-between">
-          <Button variant="outline" asChild>
+      <VoidSection number="01" showThemeSwitcher>
+        <div className="grid grid-cols-1 items-center gap-4 md:grid-cols-[1fr_auto_1fr]">
+          <Button variant="outline" asChild className="justify-self-start">
             <Link to={`${import.meta.env.BASE_URL}`}>
-              <ArrowLeftIcon className="mr-2 size-4" />
+              <ArrowLeftIcon className="text-primary size-4" />
               返回日历
             </Link>
           </Button>
           <h1 className="text-foreground font-mono text-4xl font-bold">M.League 选手图鉴</h1>
-          <div className="w-[100px]"></div>
+          <div className="sr-only"></div>
         </div>
       </VoidSection>
       {teamGroups.map(({ team, members }, index) => (
