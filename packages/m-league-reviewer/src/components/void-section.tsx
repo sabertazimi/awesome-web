@@ -6,6 +6,8 @@ interface VoidSectionProps {
   number?: string
   fileName?: string
   title?: string
+  titleImage?: string
+  titleImageAlt?: string
   enableThemeSwitcher?: boolean
   enableFlickeringGrid?: boolean
   reverseFlickeringGridDirection?: boolean
@@ -23,6 +25,8 @@ export function VoidSection({
   number,
   fileName,
   title,
+  titleImage,
+  titleImageAlt,
   enableThemeSwitcher = false,
   enableFlickeringGrid = false,
   reverseFlickeringGridDirection = false,
@@ -60,7 +64,12 @@ export function VoidSection({
             <span className="text-primary font-mono text-lg font-semibold">{number}</span>
           </div>
         )}
-        {title && <h2 className="text-foreground mb-6 font-mono text-2xl font-bold">{title}</h2>}
+        {title && (
+          <div className={cn('mb-6 flex items-center gap-4', titleImage && 'justify-center')}>
+            {titleImage && <img src={titleImage} alt={titleImageAlt || title} className="h-16 w-16 object-contain" />}
+            <h2 className="text-foreground font-mono text-2xl font-bold">{title}</h2>
+          </div>
+        )}
         {children}
         {fileName && <code className="text-muted-foreground absolute top-4 right-4 font-mono text-xs">{fileName}</code>}
         {enableThemeSwitcher && <ThemeSwitcher className="absolute top-0 right-4 sm:right-0 sm:translate-x-full" />}
