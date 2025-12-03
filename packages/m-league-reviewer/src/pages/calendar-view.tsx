@@ -171,7 +171,7 @@ export default function CalendarView() {
   return (
     <DefaultLayout className="flex flex-col">
       <VoidSection number="01">
-        <div className="flex items-center justify-between">
+        <div className="flex flex-wrap items-center justify-between gap-4">
           <div className="flex items-center gap-4">
             <h1 className="text-foreground font-mono text-4xl font-bold">M.League 复盘日历</h1>
             <Button asChild variant="outline">
@@ -182,44 +182,41 @@ export default function CalendarView() {
         </div>
       </VoidSection>
       <VoidSection number="02" fileName="week-calendar.tsx" className="flex flex-1" contentClassName="p-0 sm:pt-0">
-        <div className="grid h-full grid-cols-2 grid-rows-2">
-          {weekDays.map((day, index) => {
-            // 跳过周三
-            if (index === 2) {
-              return null
-            }
+        <div className="grid h-full grid-cols-1 grid-rows-4 md:grid-cols-2 md:grid-rows-2">
+          {weekDays
+            .filter((_, index) => index !== 2) // 跳过周三
+            .map((day, renderedIndex) => {
+              const dateStr = formatDate(day)
+              const dayReviews = reviews[dateStr] || []
+              const isToday = formatDate(new Date()) === dateStr
 
-            const dateStr = formatDate(day)
-            const dayReviews = reviews[dateStr] || []
-            const isToday = formatDate(new Date()) === dateStr
-
-            return (
-              <CalendarDayCard
-                key={dateStr}
-                day={day}
-                reviews={dayReviews}
-                isToday={isToday}
-                isAddingReview={newReviewDate === dateStr}
-                newReviewTitle={newReviewTitle}
-                availableTitles={getAvailableTitles(dateStr)}
-                onReviewClick={id => openReviewDrawer(dateStr, id)}
-                onReviewDelete={(e, id) => {
-                  e.stopPropagation()
-                  openDeleteDialog(dateStr, id)
-                }}
-                onStartAddReview={() => startAddReview(dateStr)}
-                onCancelAddReview={cancelAddReview}
-                onSaveReview={title => saveNewReview(dateStr, title)}
-                onTitleChange={setNewReviewTitle}
-                className={cn(
-                  'border-border',
-                  index === 0 && 'border-r border-b',
-                  index === 1 && 'border-b',
-                  index === 3 && 'border-r',
-                )}
-              />
-            )
-          })}
+              return (
+                <CalendarDayCard
+                  key={dateStr}
+                  day={day}
+                  reviews={dayReviews}
+                  isToday={isToday}
+                  isAddingReview={newReviewDate === dateStr}
+                  newReviewTitle={newReviewTitle}
+                  availableTitles={getAvailableTitles(dateStr)}
+                  onReviewClick={id => openReviewDrawer(dateStr, id)}
+                  onReviewDelete={(e, id) => {
+                    e.stopPropagation()
+                    openDeleteDialog(dateStr, id)
+                  }}
+                  onStartAddReview={() => startAddReview(dateStr)}
+                  onCancelAddReview={cancelAddReview}
+                  onSaveReview={title => saveNewReview(dateStr, title)}
+                  onTitleChange={setNewReviewTitle}
+                  className={cn(
+                    'border-border',
+                    renderedIndex === 0 && 'border-b md:border-r',
+                    renderedIndex === 1 && 'border-b',
+                    renderedIndex === 2 && 'border-b md:border-r md:border-b-0',
+                  )}
+                />
+              )
+            })}
         </div>
       </VoidSection>
 
