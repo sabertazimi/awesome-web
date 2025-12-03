@@ -218,7 +218,7 @@ export default function CalendarView() {
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel>取消</AlertDialogCancel>
-            <AlertDialogAction variant="destructive" className="hover:bg-destructive/90" onClick={confirmDeleteReview}>
+            <AlertDialogAction variant="destructive" onClick={confirmDeleteReview}>
               删除
             </AlertDialogAction>
           </AlertDialogFooter>
