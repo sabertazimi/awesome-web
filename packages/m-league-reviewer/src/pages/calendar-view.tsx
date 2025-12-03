@@ -170,8 +170,8 @@ export default function CalendarView() {
   }
 
   return (
-    <DefaultLayout className="flex flex-col">
-      <VoidSection number="01" showThemeSwitcher>
+    <DefaultLayout number="02" className="flex flex-col">
+      <VoidSection number="00">
         <div className="grid grid-cols-1 items-center gap-4 md:grid-cols-[1fr_auto_1fr]">
           <Button asChild variant="outline" className="justify-self-start">
             <Link to={`${import.meta.env.BASE_URL}players`}>
@@ -188,7 +188,7 @@ export default function CalendarView() {
           />
         </div>
       </VoidSection>
-      <VoidSection number="02" fileName="calendar.tsx" className="flex flex-1" contentClassName="p-0 sm:pt-0">
+      <VoidSection number="01" fileName="calendar.tsx" className="flex flex-1" contentClassName="p-0 sm:pt-0">
         <div className="grid h-full grid-cols-1 grid-rows-4 md:grid-cols-2 md:grid-rows-2">
           {weekDays
             .filter((_, index) => index !== 2) // 跳过周三

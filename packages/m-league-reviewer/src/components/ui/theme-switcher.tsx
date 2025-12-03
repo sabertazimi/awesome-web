@@ -72,11 +72,11 @@ export function ThemeSwitcher({
   return (
     <Button
       ref={buttonRef}
-      variant="ghost"
+      variant="link"
       size={size}
       // eslint-disable-next-line ts/no-misused-promises -- toggleTheme is a valid promise
       onClick={toggleTheme}
-      className={className}
+      className={cn('text-muted-foreground hover:text-primary transition-colors', className)}
       {...props}
     >
       {isDark ? <Moon className={cn('size-6', iconClassName)} /> : <Sun className={cn('size-6', iconClassName)} />}

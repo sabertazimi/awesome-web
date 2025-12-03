@@ -87,6 +87,9 @@ importers:
 
   packages/m-league-reviewer:
     dependencies:
+      '@icons-pack/react-simple-icons':
+        specifier: ^13.8.0
+        version: 13.8.0(react@19.2.0)
       '@radix-ui/react-alert-dialog':
         specifier: ^1.1.15
         version: 1.1.15(@types/react-dom@19.2.3(@types/react@19.2.7))(@types/react@19.2.7)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
@@ -1884,6 +1887,11 @@ packages:
   '@hutson/parse-repository-url@3.0.2':
     resolution: {integrity: sha512-H9XAx3hc0BQHY6l+IFSWHDySypcXsvsuLhgYLUGywmJ5pswRVQJUHpOsobnLYp2ZUaUlKiKDrgWWhosOwAEM8Q==}
     engines: {node: '>=6.9.0'}
+
+  '@icons-pack/react-simple-icons@13.8.0':
+    resolution: {integrity: sha512-iZrhL1fSklfCCVn68IYHaAoKfcby3RakUTn2tRPyHBkhr2tkYqeQbjJWf+NizIYBzKBn2IarDJXmTdXd6CuEfw==}
+    peerDependencies:
+      react: ^16.13 || ^17 || ^18 || ^19
 
   '@inquirer/ansi@1.0.0':
     resolution: {integrity: sha512-JWaTfCxI1eTmJ1BIv86vUfjVatOdxwD0DAVKYevY8SazeUUZtW+tNbsdejVO1GYE0GXJW1N1ahmiC3TFd+7wZA==}
@@ -13167,6 +13175,10 @@ snapshots:
   '@humanwhocodes/retry@0.4.2': {}
 
   '@hutson/parse-repository-url@3.0.2': {}
+
+  '@icons-pack/react-simple-icons@13.8.0(react@19.2.0)':
+    dependencies:
+      react: 19.2.0
 
   '@inquirer/ansi@1.0.0': {}
 
