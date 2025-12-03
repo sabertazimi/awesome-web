@@ -14,7 +14,7 @@ interface PlayerCardProps {
 export function PlayerCard({ player, teamColor }: PlayerCardProps) {
   return (
     <Card
-      className="overflow-hidden pt-0"
+      className="overflow-hidden pt-0 transition-all duration-200 hover:-translate-y-2 hover:shadow-xl"
       style={{
         backgroundColor: `${teamColor}30`,
       }}

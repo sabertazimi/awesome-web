@@ -3,7 +3,7 @@ import { Link } from 'react-router'
 import { pros, teams } from '@/api/data'
 import { DefaultLayout } from '@/components/default-layout'
 import { PlayerCard } from '@/components/player-card'
-import { Button } from '@/components/ui/button'
+import { SiteHeader } from '@/components/site-header'
 import { VoidSection } from '@/components/void-section'
 
 export default function PlayersView() {
@@ -15,21 +15,15 @@ export default function PlayersView() {
 
   return (
     <DefaultLayout number="11">
-      <VoidSection number="00" enableFlickeringGrid>
-        <div className="grid grid-cols-1 items-center gap-4 md:grid-cols-[1fr_auto_1fr]">
-          <Button variant="outline" asChild className="justify-self-start">
-            <Link to={`${import.meta.env.BASE_URL}`}>
-              <ArrowLeftIcon className="text-primary size-4" />
-              返回日历
-            </Link>
-          </Button>
-          <h1 className="text-foreground flex items-center gap-4 font-mono text-4xl font-bold">
-            <img src={`${import.meta.env.BASE_URL}logo.svg`} alt="M.League" className="h-10 w-auto" />
-            选手图鉴
-          </h1>
-          <div className="sr-only"></div>
-        </div>
-      </VoidSection>
+      <SiteHeader
+        title="选手图鉴"
+        link={(
+          <Link to="/">
+            <ArrowLeftIcon className="text-primary size-4" />
+            返回日历
+          </Link>
+        )}
+      />
       {teamGroups.map(({ team, members }, index) => (
         <VoidSection
           key={team.id}
