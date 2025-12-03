@@ -87,7 +87,7 @@ export function PlayerSelect({
           <SelectItem
             key={opt.value}
             value={opt.value}
-            className="focus:text-background data-highlighted:text-background data-highlighted:ring-primary rounded-none data-highlighted:ring-2 data-highlighted:ring-inset"
+            className="focus:text-background data-highlighted:text-background data-highlighted:ring-primary data-highlighted:ring-2 data-highlighted:ring-inset"
             iconClassName="text-background"
             style={{
               backgroundColor: opt.teamColor,

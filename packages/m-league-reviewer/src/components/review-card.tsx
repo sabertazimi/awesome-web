@@ -25,13 +25,13 @@ export function ReviewCard({ review, onClick, onDelete }: ReviewCardProps) {
   return (
     <div
       className={cn(
-        'group relative cursor-pointer space-y-4 rounded-lg border-none p-3 transition-colors',
+        'group relative cursor-pointer space-y-4 border-none p-3 transition-colors',
         statusColor,
       )}
       onClick={onClick}
     >
       {/* 标题 */}
-      <p className="text-sm font-medium">{review.title}</p>
+      <p className="font-mono text-sm font-medium">{review.title}</p>
 
       {/* 链接 */}
       {(review.linkA || review.linkB) && (

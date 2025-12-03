@@ -810,7 +810,7 @@ export function MultiSelect({
               getAllOptions().length
             } options selected. ${placeholder}`}
             className={cn(
-              'flex h-auto min-h-10 items-center justify-between rounded-md border bg-inherit p-1 hover:bg-inherit [&_svg]:pointer-events-auto',
+              'flex h-auto min-h-10 items-center justify-between border bg-inherit p-1 hover:bg-inherit [&_svg]:pointer-events-auto',
               autoSize ? 'w-auto' : 'w-full',
               responsiveSettings.compactMode && 'min-h-8 text-sm',
               screenSize === 'mobile' && 'min-h-12 text-base',
@@ -902,7 +902,7 @@ export function MultiSelect({
                               }
                             }}
                             aria-label={`Remove ${option.label} from selection`}
-                            className="-m-0.5 ml-2 h-4 w-4 cursor-pointer rounded-sm p-0.5 hover:bg-white/20 focus:ring-1 focus:ring-white/50 focus:outline-none"
+                            className="-m-0.5 ml-2 h-4 w-4 cursor-pointer p-0.5 hover:bg-white/20 focus:ring-1 focus:ring-white/50 focus:outline-none"
                           >
                             <XCircle className={cn('h-3 w-3', responsiveSettings.compactMode && 'h-2.5 w-2.5')} />
                           </div>
@@ -952,7 +952,7 @@ export function MultiSelect({
                       }
                     }}
                     aria-label={`Clear all ${selectedValues.length} selected options`}
-                    className="text-muted-foreground hover:text-foreground focus:ring-ring mx-2 flex h-4 w-4 cursor-pointer items-center justify-center rounded-sm focus:ring-2 focus:ring-offset-1 focus:outline-none"
+                    className="text-muted-foreground hover:text-foreground focus:ring-ring mx-2 flex h-4 w-4 cursor-pointer items-center justify-center focus:ring-2 focus:ring-offset-1 focus:outline-none"
                   >
                     <XIcon className="h-4 w-4" />
                   </div>
@@ -1028,7 +1028,7 @@ export function MultiSelect({
                   >
                     <div
                       className={cn(
-                        'border-primary mr-2 flex h-4 w-4 items-center justify-center rounded-sm border',
+                        'border-primary mr-2 flex h-4 w-4 items-center justify-center border',
                         selectedValues.length === getAllOptions().filter(opt => !opt.disabled).length ? 'bg-primary text-primary-foreground' : 'opacity-50 [&_svg]:invisible',
                       )}
                       aria-hidden="true"
@@ -1064,7 +1064,6 @@ export function MultiSelect({
                           className={cn(
                             'cursor-pointer',
                             option.disabled && 'cursor-not-allowed opacity-50',
-                            hasCustomColor && 'rounded-none',
                           )}
                           style={customStyle?.backgroundColor ? {
                             backgroundColor: customStyle.backgroundColor,
@@ -1074,7 +1073,7 @@ export function MultiSelect({
                         >
                           <div
                             className={cn(
-                              'mr-2 flex h-4 w-4 items-center justify-center rounded-sm border',
+                              'mr-2 flex h-4 w-4 items-center justify-center border',
                               hasCustomColor ? 'border-white' : 'border-primary',
                               isSelected ? 'bg-primary text-primary-foreground' : 'opacity-50 [&_svg]:invisible',
                             )}
@@ -1111,7 +1110,6 @@ export function MultiSelect({
                         className={cn(
                           'cursor-pointer',
                           option.disabled && 'cursor-not-allowed opacity-50',
-                          hasCustomColor && 'rounded-none',
                         )}
                         style={customStyle?.backgroundColor ? {
                           backgroundColor: customStyle.backgroundColor,
@@ -1121,7 +1119,7 @@ export function MultiSelect({
                       >
                         <div
                           className={cn(
-                            'mr-2 flex h-4 w-4 items-center justify-center rounded-sm border',
+                            'mr-2 flex h-4 w-4 items-center justify-center border',
                             hasCustomColor ? 'border-white' : 'border-primary',
                             isSelected ? 'text-primary-foreground' : 'opacity-50 [&_svg]:invisible',
                           )}

@@ -19,8 +19,10 @@ import {
   AlertDialogTitle,
 } from '@/components/ui/alert-dialog'
 import { Button } from '@/components/ui/button'
+import { VoidSection } from '@/components/void-section'
 import { WeekNavigation } from '@/components/week-navigation'
 import { formatDate, getWeekDays } from '@/lib/date-utils'
+import { cn } from '@/lib/utils'
 
 const gameSchedules: GameSchedule[] = gameScheduleData
 
@@ -168,51 +170,58 @@ export default function CalendarView() {
 
   return (
     <DefaultLayout className="flex flex-col">
-      {/* 标题和导航 */}
-      <div className="mb-8 flex items-center justify-between">
-        <div className="flex items-center gap-4">
-          <h1 className="text-primary text-4xl font-bold">M.League 复盘日历</h1>
-          <Button asChild>
-            <Link to={`${import.meta.env.BASE_URL}players`}>选手图鉴</Link>
-          </Button>
+      <VoidSection number="01">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <h1 className="text-foreground font-mono text-4xl font-bold">M.League 复盘日历</h1>
+            <Button asChild variant="outline">
+              <Link to={`${import.meta.env.BASE_URL}players`}>选手图鉴</Link>
+            </Button>
+          </div>
+          <WeekNavigation onPreviousWeek={goToPreviousWeek} onCurrentWeek={goToCurrentWeek} onNextWeek={goToNextWeek} />
         </div>
-        <WeekNavigation onPreviousWeek={goToPreviousWeek} onCurrentWeek={goToCurrentWeek} onNextWeek={goToNextWeek} />
-      </div>
+      </VoidSection>
+      <VoidSection number="02" fileName="week-calendar.tsx" className="flex flex-1" contentClassName="p-0 sm:pt-0">
+        <div className="grid h-full grid-cols-2 grid-rows-2">
+          {weekDays.map((day, index) => {
+            // 跳过周三
+            if (index === 2) {
+              return null
+            }
 
-      {/* 周历表格 */}
-      <div className="grid flex-1 grid-cols-2 grid-rows-2 gap-4">
-        {weekDays.map((day, index) => {
-          // 跳过周三
-          if (index === 2) {
-            return null
-          }
+            const dateStr = formatDate(day)
+            const dayReviews = reviews[dateStr] || []
+            const isToday = formatDate(new Date()) === dateStr
 
-          const dateStr = formatDate(day)
-          const dayReviews = reviews[dateStr] || []
-          const isToday = formatDate(new Date()) === dateStr
-
-          return (
-            <CalendarDayCard
-              key={dateStr}
-              day={day}
-              reviews={dayReviews}
-              isToday={isToday}
-              isAddingReview={newReviewDate === dateStr}
-              newReviewTitle={newReviewTitle}
-              availableTitles={getAvailableTitles(dateStr)}
-              onReviewClick={id => openReviewDrawer(dateStr, id)}
-              onReviewDelete={(e, id) => {
-                e.stopPropagation()
-                openDeleteDialog(dateStr, id)
-              }}
-              onStartAddReview={() => startAddReview(dateStr)}
-              onCancelAddReview={cancelAddReview}
-              onSaveReview={title => saveNewReview(dateStr, title)}
-              onTitleChange={setNewReviewTitle}
-            />
-          )
-        })}
-      </div>
+            return (
+              <CalendarDayCard
+                key={dateStr}
+                day={day}
+                reviews={dayReviews}
+                isToday={isToday}
+                isAddingReview={newReviewDate === dateStr}
+                newReviewTitle={newReviewTitle}
+                availableTitles={getAvailableTitles(dateStr)}
+                onReviewClick={id => openReviewDrawer(dateStr, id)}
+                onReviewDelete={(e, id) => {
+                  e.stopPropagation()
+                  openDeleteDialog(dateStr, id)
+                }}
+                onStartAddReview={() => startAddReview(dateStr)}
+                onCancelAddReview={cancelAddReview}
+                onSaveReview={title => saveNewReview(dateStr, title)}
+                onTitleChange={setNewReviewTitle}
+                className={cn(
+                  'border-border',
+                  index === 0 && 'border-r border-b',
+                  index === 1 && 'border-b',
+                  index === 3 && 'border-r',
+                )}
+              />
+            )
+          })}
+        </div>
+      </VoidSection>
 
       {/* 删除确认对话框 */}
       <AlertDialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>

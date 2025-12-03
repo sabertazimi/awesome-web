@@ -158,7 +158,7 @@ export function RoundInput({ value, onChange, onClose, open, onOpenChange, exist
 
           {/* 错误提示 */}
           {error && (
-            <div className="text-destructive rounded-md bg-destructive/10 px-3 py-2 text-xs">
+            <div className="text-destructive bg-destructive/10 px-3 py-2 text-xs">
               {error}
             </div>
           )}

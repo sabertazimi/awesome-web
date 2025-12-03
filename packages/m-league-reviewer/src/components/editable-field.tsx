@@ -27,7 +27,7 @@ export function EditableField({
   return (
     <div
       className={cn(
-        'rounded px-3 py-2 transition-all',
+        'px-3 py-2 transition-all',
         cursorType === 'text' && 'cursor-text',
         cursorType === 'pointer' && 'cursor-pointer',
         !isEditing && 'hover:bg-accent hover:shadow-md',
