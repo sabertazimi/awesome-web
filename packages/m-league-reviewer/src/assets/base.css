@@ -117,7 +117,14 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
+  }
+
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none;
+    mix-blend-mode: normal;
   }
 }
