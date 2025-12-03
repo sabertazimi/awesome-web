@@ -68,12 +68,14 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
       />
       <VoidSection number="01" className="flex flex-1">
         <div className="flex h-full items-center justify-center">
-          <p>{details}</p>
-          {stack && (
-            <pre className="w-full overflow-x-auto p-4">
-              <code>{stack}</code>
-            </pre>
-          )}
+          <div className="flex flex-col gap-4">
+            <p>{details}</p>
+            {stack && (
+              <pre className="w-full overflow-x-auto p-4">
+                <code>{stack}</code>
+              </pre>
+            )}
+          </div>
         </div>
       </VoidSection>
     </DefaultLayout>
