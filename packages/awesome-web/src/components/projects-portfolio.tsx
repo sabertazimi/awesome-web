@@ -117,7 +117,7 @@ export function ProjectsPortfolio() {
   ]
 
   return (
-    <BentoGrid className="sm:p-4">
+    <BentoGrid className="sm:pt-4">
       {projects.map((project, index) => (
         <BentoCard
           key={project.name}
