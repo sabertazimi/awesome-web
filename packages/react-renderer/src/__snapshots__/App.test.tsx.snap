@@ -16,17 +16,17 @@ exports[`Renderer should pass snapshot testing 1`] = `
         class="flex flex-row items-center justify-center"
       >
         <button
-          class="p-4 text-6xl text-white"
+          class="px-8 text-6xl text-black bg-background"
         >
           -
         </button>
         <div
-          class="p-4 text-6xl text-white"
+          class="px-8 text-6xl text-white"
         >
           0
         </div>
         <button
-          class="p-4 text-6xl text-white"
+          class="px-8 text-6xl text-black bg-background"
         >
           +
         </button>
