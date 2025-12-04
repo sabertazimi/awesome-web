@@ -20,11 +20,11 @@ function App() {
       <header className="app-header">
         <Logo className="app-logo" title="logo" />
         <div className="flex flex-row items-center justify-center">
-          <button className="p-4 text-6xl text-white" onClick={dec}>
+          <button className="px-8 text-6xl text-black bg-background" onClick={dec}>
             -
           </button>
-          <div className="p-4 text-6xl text-white">{count}</div>
-          <button className="p-4 text-6xl text-white" onClick={inc}>
+          <div className="px-8 text-6xl text-white">{count}</div>
+          <button className="px-8 text-6xl text-black bg-background" onClick={inc}>
             +
           </button>
         </div>
