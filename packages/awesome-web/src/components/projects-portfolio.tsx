@@ -23,7 +23,12 @@ function getProjectGridSpan(index: number) {
   const row = Math.floor(index / 2)
   const isOddRow = row % 2 === 0
   const isFirstInRow = index % 2 === 0
-  return isOddRow ? isFirstInRow ? 'lg:col-span-2' : 'lg:col-span-1' : isFirstInRow ? 'lg:col-span-1' : 'lg:col-span-2'
+
+  if (isOddRow) {
+    return isFirstInRow ? 'lg:col-span-2' : 'lg:col-span-1'
+  } else {
+    return isFirstInRow ? 'lg:col-span-1' : 'lg:col-span-2'
+  }
 }
 
 const projectBackgroundClassName
