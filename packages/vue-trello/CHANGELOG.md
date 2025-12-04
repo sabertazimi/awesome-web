@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/sabertazimi/awesome-web/compare/v1.10.0...v2.0.0) (2025-12-04)
+
+**Note:** Version bump only for package @awesome-web/vue-trello
+
 # [1.10.0](https://github.com/sabertazimi/awesome-web/compare/v1.9.0...v1.10.0) (2025-12-03)
 
 ### Bug Fixes

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/sabertazimi/awesome-web/compare/v1.10.0...v2.0.0) (2025-12-04)
+
+### Bug Fixes
+
+- **m.league:** rectify shadcn/ui config ([293dba9](https://github.com/sabertazimi/awesome-web/commit/293dba99cdfff4acda58e5661d09d4c08657b471))
+
+- feat!(awesome web): add portfolio index page (#866) ([d837d8b](https://github.com/sabertazimi/awesome-web/commit/d837d8b356938ac8157b67e48a7a3326c8278522)), closes [#866](https://github.com/sabertazimi/awesome-web/issues/866)
+
+### BREAKING CHANGES
+
+- - style: format code
+
 # [1.10.0](https://github.com/sabertazimi/awesome-web/compare/v1.9.0...v1.10.0) (2025-12-03)
 
 ### Bug Fixes
