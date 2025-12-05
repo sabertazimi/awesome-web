@@ -17,8 +17,8 @@
     "test:node": "react-scripts test --env=node"
   },
   "dependencies": {
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0",
+    "react": "^19.2.1",
+    "react-dom": "^19.2.1",
     "react-reconciler": "^0.33.0"
   },
   "devDependencies": {
