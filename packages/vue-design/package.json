@@ -19,7 +19,7 @@
     "snabbdom": "^3.6.3"
   },
   "devDependencies": {
-    "@dg-scripts/eslint-config": "^5.21.7",
+    "@dg-scripts/eslint-config": "^5.21.8",
     "eslint": "^9.39.1",
     "prettier": "^3.7.3",
     "typescript": "^5.9.3",
