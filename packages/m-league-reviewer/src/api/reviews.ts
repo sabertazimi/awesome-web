@@ -136,7 +136,7 @@ export function getReviewById(id: string): Review | undefined {
 export function createReview(date: string, title: string, content: string = '', teams: string[] = []): Review {
   const reviews = getReviews()
   const newReview: Review = {
-    id: `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+    id: `review-${Date.now()}-${Math.random().toString(36).slice(2, 11)}`,
     date,
     title,
     linkA: 'https://docs.qq.com/sheet/DZGJMY2JHelBXSlp6?tab=BB08J2',
@@ -184,7 +184,7 @@ export function getNotes(): Note[] {
 
 export function createNote(content: string): Note {
   const note: Note = {
-    id: `note_${Date.now()}_${Math.random().toString(36).slice(2, 9)}`,
+    id: `note-${Date.now()}-${Math.random().toString(36).slice(2, 11)}`,
     content,
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
