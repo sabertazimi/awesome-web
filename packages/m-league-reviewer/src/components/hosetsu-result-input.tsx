@@ -179,7 +179,7 @@ export function HosetsuResultInput({ value, onChange, onClose, onKeyDown, autoFo
   }
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter' || e.key === 'Tab') {
+    if (e.key === 'Enter') {
       e.preventDefault()
       onClose?.()
       onKeyDown?.(e)
@@ -218,7 +218,7 @@ export function HosetsuResultInput({ value, onChange, onClose, onKeyDown, autoFo
             return
           }
 
-          // 点击了工具栏内的元素，不关闭
+          // 切换焦点到工具栏内的元素时，不关闭
           const toolbar = document.querySelector('.hosetsu-toolbar')
           if (toolbar && toolbar.contains(relatedTarget)) {
             return
@@ -261,8 +261,17 @@ export function HosetsuResultInput({ value, onChange, onClose, onKeyDown, autoFo
               if (isHosetsuType(v)) {
                 handleTypeChange(v)
               }
-
-              inputRef.current?.focus()
+            }}
+            onOpenChange={(open) => {
+              // 当 Select 关闭时,在 Radix UI 焦点管理完成后恢复焦点
+              if (!open) {
+                // 使用双重 requestAnimationFrame 确保在 Radix UI 的焦点恢复之后执行
+                requestAnimationFrame(() => {
+                  requestAnimationFrame(() => {
+                    inputRef.current?.focus()
+                  })
+                })
+              }
             }}
           >
             <SelectTrigger className="h-7 w-32 text-xs">
@@ -327,8 +336,8 @@ export function HosetsuResultInput({ value, onChange, onClose, onKeyDown, autoFo
             <span>粘贴</span>
           </KbdGroup>
           <KbdGroup>
-            <Kbd>⇥</Kbd>
-            <Kbd>⏎</Kbd>
+            <Kbd>⌘</Kbd>
+            <Kbd>S</Kbd>
             <span>确认</span>
           </KbdGroup>
         </div>
