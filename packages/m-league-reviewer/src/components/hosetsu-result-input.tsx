@@ -1,5 +1,5 @@
 import type { HosetsuResult, HosetsuType } from '@/api/reviews'
-import { AlertCircleIcon, CheckIcon } from 'lucide-react'
+import { AlertCircleIcon, CheckIcon, XIcon } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -74,6 +74,21 @@ export function HosetsuResultInput({ value, onChange, onClose, onKeyDown, autoFo
     onChange(newValue)
   }
 
+  const handleClear = (e: React.MouseEvent) => {
+    e.preventDefault()
+    e.stopPropagation()
+    // 重置所有字段到默认值
+    const newValue: HosetsuResult = {
+      description: '',
+      type: 'other',
+      isSignificant: false,
+    }
+    setLocalValue(newValue)
+    onChange(newValue)
+    // 延迟聚焦，确保状态更新完成
+    setTimeout(() => inputRef.current?.focus(), 0)
+  }
+
   const handleKeyDownInternal = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter' || e.key === 'Tab') {
       e.preventDefault()
@@ -106,6 +121,12 @@ export function HosetsuResultInput({ value, onChange, onClose, onKeyDown, autoFo
             return
           }
 
+          // 点击了清空按钮，不关闭
+          const clearButton = e.currentTarget.parentElement?.querySelector('[title="清空输入"]')
+          if (clearButton && clearButton.contains(relatedTarget)) {
+            return
+          }
+
           // 点击了工具栏内的元素，不关闭
           const toolbar = document.querySelector('.hosetsu-toolbar')
           if (toolbar && toolbar.contains(relatedTarget)) {
@@ -123,9 +144,22 @@ export function HosetsuResultInput({ value, onChange, onClose, onKeyDown, autoFo
           onClose?.()
         }}
         autoFocus={autoFocus}
-        className="h-8"
+        className="h-8 pr-8"
         placeholder="何切描述..."
       />
+      {localValue.description && (
+        <Button
+          type="button"
+          size="icon"
+          variant="ghost"
+          onMouseDown={handleClear}
+          className="absolute top-1/2 right-1 size-6 -translate-y-1/2"
+          title="清空输入"
+          tabIndex={-1}
+        >
+          <XIcon className="size-4" />
+        </Button>
+      )}
 
       <div className="hosetsu-toolbar border-border bg-popover absolute top-full left-0 z-50 mt-1 flex items-center gap-2 border p-2 shadow-md">
         <Select
