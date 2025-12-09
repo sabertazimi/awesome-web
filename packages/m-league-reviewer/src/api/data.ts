@@ -1,9 +1,10 @@
+import { cva } from 'class-variance-authority'
+
 export interface Team {
   id: number
   team_name: string
   team_full_name: string
   team_code: string
-  team_color: string
 }
 
 export interface Pro {
@@ -23,35 +24,60 @@ export interface GameSchedule {
 }
 
 export const teams: Team[] = [
-  { id: 1, team_name: 'JETS', team_full_name: 'EARTH JETS', team_code: 'T011', team_color: '#006934' },
-  { id: 2, team_name: 'ドリブンズ', team_full_name: '赤坂ドリブンズ', team_code: 'T001', team_color: '#9cb832' },
-  { id: 3, team_name: '風林火山', team_full_name: 'EX風林火山', team_code: 'T002', team_color: '#000000' },
-  {
-    id: 4,
-    team_name: 'サクラナイツ',
-    team_full_name: 'KADOKAWAサクラナイツ',
-    team_code: 'T008',
-    team_color: '#f895b5',
-  },
-  {
-    id: 5,
-    team_name: '麻雀格闘倶楽部',
-    team_full_name: 'KONAMI麻雀格闘倶楽部',
-    team_code: 'T003',
-    team_color: '#920101',
-  },
-  { id: 6, team_name: 'ABEMAS', team_full_name: '渋谷ABEMAS', team_code: 'T004', team_color: '#c6ae6f' },
-  {
-    id: 7,
-    team_name: 'フェニックス',
-    team_full_name: 'セガサミーフェニックス',
-    team_code: 'T005',
-    team_color: '#b74801',
-  },
-  { id: 8, team_name: '雷電', team_full_name: 'TEAM RAIDEN / 雷電', team_code: 'T006', team_color: '#dbb400' },
-  { id: 9, team_name: 'BEAST', team_full_name: 'BEAST X', team_code: 'T010', team_color: '#002953' },
-  { id: 10, team_name: 'Pirates', team_full_name: 'U-NEXT Pirates', team_code: 'T007', team_color: '#0582c8' },
+  { id: 1, team_name: 'JETS', team_full_name: 'EARTH JETS', team_code: 'T011' },
+  { id: 2, team_name: 'ドリブンズ', team_full_name: '赤坂ドリブンズ', team_code: 'T001' },
+  { id: 3, team_name: '風林火山', team_full_name: 'EX風林火山', team_code: 'T002' },
+  { id: 4, team_name: 'サクラナイツ', team_full_name: 'KADOKAWAサクラナイツ', team_code: 'T008' },
+  { id: 5, team_name: '麻雀格闘倶楽部', team_full_name: 'KONAMI麻雀格闘倶楽部', team_code: 'T003' },
+  { id: 6, team_name: 'ABEMAS', team_full_name: '渋谷ABEMAS', team_code: 'T004' },
+  { id: 7, team_name: 'フェニックス', team_full_name: 'セガサミーフェニックス', team_code: 'T005' },
+  { id: 8, team_name: '雷電', team_full_name: 'TEAM RAIDEN / 雷電', team_code: 'T006' },
+  { id: 9, team_name: 'BEAST', team_full_name: 'BEAST X', team_code: 'T010' },
+  { id: 10, team_name: 'Pirates', team_full_name: 'U-NEXT Pirates', team_code: 'T007' },
 ]
+
+const teamColorVariants = cva(
+  'text-white data-highlighted:text-white data-highlighted:ring-primary data-highlighted:ring-2 data-highlighted:ring-inset data-[selected=true]:text-white data-[selected=true]:ring-primary data-[selected=true]:ring-2 data-[selected=true]:ring-inset',
+  {
+    variants: {
+      team: {
+        1: 'bg-team-1 border-team-1 data-highlighted:bg-team-1/80 data-highlighted:border-team-1/80 data-[selected=true]:bg-team-1/80 data-[selected=true]:border-team-1/80',
+        2: 'bg-team-2 border-team-2 data-highlighted:bg-team-2/80 data-highlighted:border-team-2/80 data-[selected=true]:bg-team-2/80 data-[selected=true]:border-team-2/80',
+        3: 'bg-team-3 border-team-3 data-highlighted:bg-team-3/80 data-highlighted:border-team-3/80 data-[selected=true]:bg-team-3/80 data-[selected=true]:border-team-3/80',
+        4: 'bg-team-4 border-team-4 data-highlighted:bg-team-4/80 data-highlighted:border-team-4/80 data-[selected=true]:bg-team-4/80 data-[selected=true]:border-team-4/80',
+        5: 'bg-team-5 border-team-5 data-highlighted:bg-team-5/80 data-highlighted:border-team-5/80 data-[selected=true]:bg-team-5/80 data-[selected=true]:border-team-5/80',
+        6: 'bg-team-6 border-team-6 data-highlighted:bg-team-6/80 data-highlighted:border-team-6/80 data-[selected=true]:bg-team-6/80 data-[selected=true]:border-team-6/80',
+        7: 'bg-team-7 border-team-7 data-highlighted:bg-team-7/80 data-highlighted:border-team-7/80 data-[selected=true]:bg-team-7/80 data-[selected=true]:border-team-7/80',
+        8: 'bg-team-8 border-team-8 data-highlighted:bg-team-8/80 data-highlighted:border-team-8/80 data-[selected=true]:bg-team-8/80 data-[selected=true]:border-team-8/80',
+        9: 'bg-team-9 border-team-9 data-highlighted:bg-team-9/80 data-highlighted:border-team-9/80 data-[selected=true]:bg-team-9/80 data-[selected=true]:border-team-9/80',
+        10: 'bg-team-10 border-team-10 data-highlighted:bg-team-10/80 data-highlighted:border-team-10/80 data-[selected=true]:bg-team-10/80 data-[selected=true]:border-team-10/80',
+      },
+    },
+  },
+)
+
+export function getTeamColorClass(teamId: number): string {
+  if (teamId >= 1 && teamId <= 10) {
+    return teamColorVariants({ team: teamId as 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 })
+  }
+  return 'bg-muted border-muted text-muted-foreground'
+}
+
+export function getTeamColorClassByName(teamName: string): string {
+  const team = teams.find(t => t.team_name === teamName)
+  if (!team) {
+    return 'bg-muted border-muted text-muted-foreground'
+  }
+  return getTeamColorClass(team.id)
+}
+
+export function getTeamColorClassByFullName(teamFullName: string): string {
+  const team = teams.find(t => t.team_full_name === teamFullName)
+  if (!team) {
+    return 'bg-muted border-muted text-muted-foreground'
+  }
+  return getTeamColorClass(team.id)
+}
 
 export const pros: Pro[] = [
   {

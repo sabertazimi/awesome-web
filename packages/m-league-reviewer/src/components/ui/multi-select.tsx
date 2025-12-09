@@ -72,17 +72,8 @@ interface MultiSelectOption {
   icon?: React.ComponentType<{ className?: string }>
   /** Whether this option is disabled */
   disabled?: boolean
-  /** Custom styling for the option */
-  style?: {
-    /** Background color for badge and dropdown option */
-    backgroundColor?: string
-    /** Text color for badge and dropdown option */
-    color?: string
-    /** Custom icon color */
-    iconColor?: string
-    /** Gradient background for badge (overrides backgroundColor for badge only) */
-    gradient?: string
-  }
+  /** Custom className for badge and dropdown option */
+  className?: string
 }
 
 /**
@@ -841,35 +832,23 @@ export function MultiSelect({
                     .map((value) => {
                       const option = getOptionByValue(value)
                       const IconComponent = option?.icon
-                      const customStyle = option?.style
                       if (!option) {
                         return null
                       }
-                      const badgeStyle: React.CSSProperties = {
-                        animationDuration: `${animation}s`,
-                        ...(customStyle?.backgroundColor && {
-                          backgroundColor: customStyle.backgroundColor,
-                          color: customStyle.color || 'white',
-                        }),
-                        ...(customStyle?.gradient && {
-                          background: customStyle.gradient,
-                          color: customStyle.color || 'white',
-                        }),
-                      }
+
                       return (
                         <Badge
                           key={value}
                           className={cn(
                             getBadgeAnimationClass(),
-                            multiSelectVariants({ variant }),
-                            customStyle?.gradient && 'border-transparent text-white',
+                            !option.className && multiSelectVariants({ variant }),
+                            option.className,
                             responsiveSettings.compactMode && 'px-1.5 py-0.5 text-xs',
                             screenSize === 'mobile' && 'max-w-[120px] truncate',
                             singleLine && 'shrink-0 whitespace-nowrap',
                             '[&>svg]:pointer-events-auto',
                           )}
                           style={{
-                            ...badgeStyle,
                             animationDuration: `${animationConfig?.duration || animation}s`,
                             animationDelay: `${animationConfig?.delay || 0}s`,
                           }}
@@ -879,11 +858,7 @@ export function MultiSelect({
                               className={cn(
                                 'mr-2 h-4 w-4',
                                 responsiveSettings.compactMode && 'mr-1 h-3 w-3',
-                                customStyle?.iconColor && 'text-current',
                               )}
-                              {...(customStyle?.iconColor && {
-                                style: { color: customStyle.iconColor },
-                              })}
                             />
                           )}
                           <span className={cn(screenSize === 'mobile' && 'truncate')}>{option.label}</span>
@@ -1048,8 +1023,6 @@ export function MultiSelect({
                   <CommandGroup key={group.heading} heading={group.heading}>
                     {group.options.map((option) => {
                       const isSelected = selectedValues.includes(option.value)
-                      const customStyle = option.style
-                      const hasCustomColor = customStyle?.backgroundColor || customStyle?.gradient
 
                       return (
                         <CommandItem
@@ -1064,17 +1037,14 @@ export function MultiSelect({
                           className={cn(
                             'cursor-pointer',
                             option.disabled && 'cursor-not-allowed opacity-50',
+                            option.className,
                           )}
-                          style={customStyle?.backgroundColor ? {
-                            backgroundColor: customStyle.backgroundColor,
-                            color: customStyle.color || '#fff',
-                          } : undefined}
                           disabled={option.disabled}
                         >
                           <div
                             className={cn(
                               'mr-2 flex h-4 w-4 items-center justify-center border',
-                              hasCustomColor ? 'border-white' : 'border-primary',
+                              option.className ? 'border-primary-foreground' : 'border-primary',
                               isSelected ? 'bg-primary text-primary-foreground' : 'opacity-50 [&_svg]:invisible',
                             )}
                             aria-hidden="true"
@@ -1094,8 +1064,6 @@ export function MultiSelect({
                 <CommandGroup>
                   {filteredOptions.map((option) => {
                     const isSelected = selectedValues.includes(option.value)
-                    const customStyle = option.style
-                    const hasCustomColor = customStyle?.backgroundColor || customStyle?.gradient
 
                     return (
                       <CommandItem
@@ -1110,17 +1078,14 @@ export function MultiSelect({
                         className={cn(
                           'cursor-pointer',
                           option.disabled && 'cursor-not-allowed opacity-50',
+                          option.className,
                         )}
-                        style={customStyle?.backgroundColor ? {
-                          backgroundColor: customStyle.backgroundColor,
-                          color: customStyle.color || '#fff',
-                        } : undefined}
                         disabled={option.disabled}
                       >
                         <div
                           className={cn(
                             'mr-2 flex h-4 w-4 items-center justify-center border',
-                            hasCustomColor ? 'border-white' : 'border-primary',
+                            option.className ? 'border-primary-foreground' : 'border-primary',
                             isSelected ? 'text-primary-foreground' : 'opacity-50 [&_svg]:invisible',
                           )}
                           aria-hidden="true"
