@@ -1,25 +1,26 @@
 import type { Pro } from '@/api/data'
+import { getTeamColorClass } from '@/api/data'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
+import { cn } from '@/lib/utils'
 
 interface PlayerCardProps {
   player: Pro
-  teamColor: string
+  teamId: number
 }
 
 /**
  * 选手卡片组件
  * 显示选手的头像、姓名和详细信息
  */
-export function PlayerCard({ player, teamColor }: PlayerCardProps) {
+export function PlayerCard({ player, teamId }: PlayerCardProps) {
+  const teamColors = getTeamColorClass(teamId)
+
   return (
     <Card
-      className="overflow-hidden pt-0 transition-all duration-200 hover:-translate-y-2 hover:shadow-xl"
-      style={{
-        backgroundColor: `${teamColor}30`,
-      }}
+      className={cn('overflow-hidden pt-0 transition-all duration-200 hover:-translate-y-2 hover:shadow-xl', teamColors)}
     >
-      <CardHeader className="py-4" style={{ backgroundColor: teamColor }}>
+      <CardHeader className={cn('py-4', teamColors)}>
         <div className="flex flex-col items-center">
           <Avatar className="size-24 border-4 border-white/20 shadow-lg">
             <AvatarImage src={`${import.meta.env.BASE_URL}avatars/${player.id}.png`} alt={player.pro_name} />

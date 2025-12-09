@@ -4,7 +4,7 @@ import { format } from 'date-fns'
 import { zhCN } from 'date-fns/locale/zh-CN'
 import { CalendarIcon, LinkIcon, LoaderIcon, UsersIcon } from 'lucide-react'
 import { useEffect, useState } from 'react'
-import { teams } from '@/api/data'
+import { getTeamColorClassByName, teams } from '@/api/data'
 import {
   createDefaultRoundInfo,
   createEmptyHosetsuResult,
@@ -104,11 +104,7 @@ export function ReviewDrawer({ open, onOpenChange, reviewId, date, onDeleted, on
   const teamOptions: MultiSelectOption[] = teams.map(team => ({
     label: team.team_name,
     value: team.team_name,
-    style: {
-      backgroundColor: team.team_color,
-      color: '#fff',
-      gradient: `linear-gradient(135deg, ${team.team_color} 0%, ${team.team_color} 100%)`,
-    },
+    className: getTeamColorClassByName(team.team_name),
   }))
 
   useEffect(() => {
@@ -504,16 +500,12 @@ export function ReviewDrawer({ open, onOpenChange, reviewId, date, onDeleted, on
                           <div className="flex min-h-[32px] flex-wrap items-center gap-2">
                             {selectedTeams.length > 0 ? (
                               selectedTeams.map((teamName) => {
-                                const team = teams.find(t => t.team_name === teamName)
+                                const teamColors = getTeamColorClassByName(teamName)
                                 return (
                                   <Badge
                                     key={teamName}
                                     variant="outline"
-                                    style={{
-                                      backgroundColor: team?.team_color || '#999',
-                                      color: '#fff',
-                                      borderColor: team?.team_color || '#999',
-                                    }}
+                                    className={teamColors}
                                   >
                                     {teamName}
                                   </Badge>

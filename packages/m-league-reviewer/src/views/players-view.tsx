@@ -35,7 +35,7 @@ export default function PlayersView() {
         >
           <div className="-mx-8 grid grid-cols-1 gap-px md:grid-cols-2 lg:grid-cols-4">
             {members.map(pro => (
-              <PlayerCard key={pro.id} player={pro} teamColor={team.team_color} />
+              <PlayerCard key={pro.id} player={pro} teamId={team.id} />
             ))}
           </div>
         </VoidSection>

@@ -1,6 +1,7 @@
 import type { HosetsuResult, RoundInfo, TableData } from '@/api/reviews'
 import { PlusIcon, Trash2Icon } from 'lucide-react'
 import { useCallback, useRef } from 'react'
+import { getTeamColorClass } from '@/api/data'
 import { HosetsuResultContextMenu, HosetsuResultDisplay, HosetsuResultInput } from '@/components/hosetsu-result-input'
 import { getPlayerOptions, PlayerDisplay, PlayerSelect } from '@/components/player-select'
 import { RoundInput } from '@/components/round-input'
@@ -176,7 +177,8 @@ export function ReviewTable({
                 const fieldId = `${tableName}-player-${playerIndex}`
                 const isEditing = editingField === fieldId
                 const playerName = data.players[playerIndex]
-                const playerTeamColor = playerName ? playerOptions.find(p => p.value === playerName)?.teamColor : undefined
+                const playerTeamId = playerName ? playerOptions.find(p => p.value === playerName)?.teamId : undefined
+                const teamColors = playerTeamId ? getTeamColorClass(playerTeamId) : ''
 
                 return (
                   <TableCell
@@ -189,13 +191,8 @@ export function ReviewTable({
                       'focus-visible:ring-primary cursor-pointer transition-all focus-visible:ring-2 focus-visible:outline-none focus-visible:ring-inset',
                       !isEditing && playerName && 'hover:shadow-md',
                       !isEditing && !playerName && 'hover:bg-muted hover:shadow-md',
+                      teamColors,
                     )}
-                    style={
-                      playerName && playerTeamColor ? {
-                        backgroundColor: `${playerTeamColor}`,
-                        color: '#fff',
-                      } : undefined
-                    }
                     onClick={() => !isEditing && onEditField(fieldId)}
                     onKeyDown={e => !isEditing && handleKeyDown(e, fieldId)}
                   >

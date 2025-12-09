@@ -1,6 +1,6 @@
 import type { Review } from '@/api/reviews'
 import { ExternalLinkIcon, XIcon } from 'lucide-react'
-import { teams } from '@/api/data'
+import { getTeamColorClassByName, teams } from '@/api/data'
 import { statusColors } from '@/api/reviews'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -69,20 +69,18 @@ export function ReviewCard({ review, onClick, onDelete }: ReviewCardProps) {
       {/* 参赛队伍 */}
       {reviewTeams && reviewTeams.length > 0 && (
         <div className="flex flex-wrap gap-1">
-          {reviewTeams.map(team => (
-            <Badge
-              key={team!.id}
-              variant="outline"
-              className="h-5 px-1.5 text-[10px] font-medium"
-              style={{
-                backgroundColor: team!.team_color,
-                color: '#fff',
-                borderColor: team!.team_color,
-              }}
-            >
-              {team!.team_name}
-            </Badge>
-          ))}
+          {reviewTeams.map((team) => {
+            const teamColors = getTeamColorClassByName(team!.team_name)
+            return (
+              <Badge
+                key={team!.id}
+                variant="outline"
+                className={cn('h-5 px-1.5 text-[10px] font-medium', teamColors)}
+              >
+                {team!.team_name}
+              </Badge>
+            )
+          })}
         </div>
       )}
 

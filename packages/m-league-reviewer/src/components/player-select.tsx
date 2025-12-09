@@ -1,12 +1,12 @@
 import { Trash2Icon } from 'lucide-react'
-import { pros, teams } from '@/api/data'
+import { getTeamColorClass, pros, teams } from '@/api/data'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 
 export interface PlayerOption {
   label: string
   value: string
-  teamColor: string
+  teamId: number
   avatarUrl: string
 }
 
@@ -24,11 +24,10 @@ export function getPlayerOptions(filterByTeams?: string[]): PlayerOption[] {
   }
 
   return filteredPros.map((pro) => {
-    const team = teams.find(t => t.id === pro.team_id)
     return {
       label: pro.pro_name,
       value: pro.pro_name,
-      teamColor: team?.team_color || '#999',
+      teamId: pro.team_id,
       avatarUrl: `${import.meta.env.BASE_URL}avatars/${pro.id}.png`,
     }
   })
@@ -84,26 +83,20 @@ export function PlayerSelect({
             </div>
           </SelectItem>
         )}
-        {playerOptions.map(opt => (
-          <SelectItem
-            key={opt.value}
-            value={opt.value}
-            className="focus:text-background data-highlighted:text-background data-highlighted:ring-primary data-highlighted:ring-2 data-highlighted:ring-inset"
-            iconClassName="text-background"
-            style={{
-              backgroundColor: opt.teamColor,
-              color: '#fff',
-            }}
-          >
-            <div className="flex items-center gap-2">
-              <Avatar>
-                <AvatarImage src={opt.avatarUrl} alt={opt.label} />
-                <AvatarFallback>{opt.label.slice(0, 2)}</AvatarFallback>
-              </Avatar>
-              <span>{opt.label}</span>
-            </div>
-          </SelectItem>
-        ))}
+        {playerOptions.map((opt) => {
+          const teamColors = getTeamColorClass(opt.teamId)
+          return (
+            <SelectItem key={opt.value} value={opt.value} className={teamColors}>
+              <div className="flex items-center gap-2">
+                <Avatar>
+                  <AvatarImage src={opt.avatarUrl} alt={opt.label} />
+                  <AvatarFallback>{opt.label.slice(0, 2)}</AvatarFallback>
+                </Avatar>
+                <span>{opt.label}</span>
+              </div>
+            </SelectItem>
+          )
+        })}
       </SelectContent>
     </Select>
   )
