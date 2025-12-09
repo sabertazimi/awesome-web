@@ -144,7 +144,7 @@ export function HosetsuResultInput({ value, onChange, onClose, onKeyDown, autoFo
           onClose?.()
         }}
         autoFocus={autoFocus}
-        className="h-8 pr-8"
+        className={cn('h-8 pr-8', localValue.isSignificant && 'text-primary font-bold')}
         placeholder="何切描述..."
       />
       {localValue.description && (
@@ -178,9 +178,7 @@ export function HosetsuResultInput({ value, onChange, onClose, onKeyDown, autoFo
           <SelectContent>
             {Object.entries(typeConfig).map(([key, config]) => (
               <SelectItem key={key} value={key} className="text-xs">
-                <Badge className={cn(config.color, 'text-white border-transparent')}>
-                  {config.label}
-                </Badge>
+                <Badge className={cn(config.color, 'border-transparent text-white')}>{config.label}</Badge>
               </SelectItem>
             ))}
           </SelectContent>
@@ -235,9 +233,7 @@ export function HosetsuResultDisplay({ value, placeholder = '' }: HosetsuResultD
       {value.description ? (
         <>
           {type !== 'other' && config && (
-            <Badge className={cn(config.color, 'text-white border-transparent')}>
-              {config.label}
-            </Badge>
+            <Badge className={cn(config.color, 'border-transparent text-white')}>{config.label}</Badge>
           )}
           <span className={cn('text-sm', value.isSignificant && 'text-primary font-bold')}>{value.description}</span>
         </>
@@ -300,9 +296,7 @@ export function HosetsuResultContextMenu({ value, onChange, children }: HosetsuR
                 (value.type || 'other') === key && 'bg-accent',
               )}
             >
-              <Badge className={cn(config.color, 'text-white border-transparent')}>
-                {config.label}
-              </Badge>
+              <Badge className={cn(config.color, 'border-transparent text-white')}>{config.label}</Badge>
               {(value.type || 'other') === key && <CheckIcon className="ml-auto size-3" />}
             </Button>
           ))}
