@@ -57,7 +57,7 @@ export const statusColors = {
   completed: 'bg-primary text-primary-foreground',
 }
 
-// 全局笔记
+// 复盘笔记
 export interface Note {
   id: string
   content: string
