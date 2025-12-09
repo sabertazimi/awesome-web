@@ -88,7 +88,7 @@ export function ReviewTable({
           break
         case 'ArrowRight':
         case 'Tab':
-          if (e.key === 'Tab' && !e.shiftKey) {
+          if ((e.key === 'Tab' && !e.shiftKey) || e.key === 'ArrowRight') {
             e.preventDefault()
           }
           // 向右移动一个单元格
@@ -202,7 +202,6 @@ export function ReviewTable({
                         onChange={(value) => {
                           onUpdatePlayer(playerIndex, value)
                           onEditField(null)
-                          // 选择后聚焦回单元格
                           setTimeout(() => focusCell(fieldId), 0)
                         }}
                         open={isEditing}
@@ -290,6 +289,7 @@ export function ReviewTable({
                           onClose={() => {
                             onEditField(null)
                             onBlur()
+                            setTimeout(() => focusCell(fieldId), 0)
                           }}
                           onKeyDown={e => handleInputKeyDown(e as React.KeyboardEvent<HTMLInputElement>, fieldId)}
                           autoFocus
