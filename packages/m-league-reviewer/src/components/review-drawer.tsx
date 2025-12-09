@@ -581,7 +581,7 @@ export function ReviewDrawer({ open, onOpenChange, reviewId, date, onDeleted, on
                   onRemoveRow={roundIndex => removeTableRow('B', roundIndex)}
                   onBlur={handleBlur}
                 />
-                <Card className="border-0">
+                <Card className="hidden border-0">
                   <CardHeader>
                     <CardTitle>备注</CardTitle>
                   </CardHeader>
