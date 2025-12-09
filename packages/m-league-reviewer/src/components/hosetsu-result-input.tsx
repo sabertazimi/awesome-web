@@ -141,7 +141,7 @@ export function HosetsuResultInput({ value, onChange, onClose, onKeyDown, autoFo
           setLocalValue(parsed)
           onChange(parsed)
         } else {
-          console.warn('Failed to parse clipboard content as HosetsuResult, text:', text)
+          console.warn('Failed to parse clipboard content as HosetsuResult.')
         }
         inputRef.current?.focus()
       })
@@ -246,6 +246,7 @@ export function HosetsuResultInput({ value, onChange, onClose, onKeyDown, autoFo
           onMouseDown={handleClear}
           className="absolute top-1/2 right-1 size-6 -translate-y-1/2"
           title="清空输入"
+          aria-label="清空输入"
           tabIndex={-1}
         >
           <XIcon className="size-4" />
@@ -407,7 +408,7 @@ export function HosetsuResultContextMenu({ value, onChange, children }: HosetsuR
         if (parsed) {
           onChange(parsed)
         } else {
-          console.warn('Context menu: Failed to parse clipboard content as HosetsuResult, text:', text)
+          console.warn('Context menu: Failed to parse clipboard content as HosetsuResult.')
         }
         setOpen(false)
       })
