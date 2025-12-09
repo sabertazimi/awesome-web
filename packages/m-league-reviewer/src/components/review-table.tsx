@@ -87,10 +87,7 @@ export function ReviewTable({
           targetIndex = currentIndex - 1
           break
         case 'ArrowRight':
-        case 'Tab':
-          if ((e.key === 'Tab' && !e.shiftKey) || e.key === 'ArrowRight') {
-            e.preventDefault()
-          }
+          e.preventDefault()
           // 向右移动一个单元格
           targetIndex = currentIndex + 1
           break
@@ -127,21 +124,14 @@ export function ReviewTable({
   // 处理输入框的键盘事件
   const handleInputKeyDown = useCallback(
     (e: React.KeyboardEvent<HTMLInputElement>, currentCellId: string) => {
-      if (e.key === 'Enter' || e.key === 'Tab') {
+      if (e.key === 'Enter') {
         e.preventDefault()
         onBlur()
-        // Enter/Tab 确认后移动到下一个单元格
+        // Enter 确认后移动到下一个单元格
         const cells = getFocusableCells()
         const currentIndex = cells.findIndex(cell => cell.getAttribute('data-cell-id') === currentCellId)
 
-        let targetIndex = currentIndex
-        if (e.key === 'Tab' && e.shiftKey) {
-          // Shift+Tab 向左移动
-          targetIndex = currentIndex - 1
-        } else {
-          // Enter 或 Tab 向右移动
-          targetIndex = currentIndex + 1
-        }
+        const targetIndex = currentIndex + 1
 
         if (targetIndex >= 0 && targetIndex < cells.length) {
           setTimeout(() => {
