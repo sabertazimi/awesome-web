@@ -1,6 +1,7 @@
 import type { HosetsuResult, HosetsuType } from '@/api/reviews'
 import { AlertCircleIcon, CheckIcon } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
+import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Kbd, KbdGroup } from '@/components/ui/kbd'
@@ -19,10 +20,15 @@ interface HosetsuResultInputProps {
 /** 何切类型配置 */
 const typeConfig: Record<HosetsuType, { label: string, color: string }> = {
   discard: { label: '放铳', color: 'bg-red-500' },
-  tile_efficiency: { label: '损牌效', color: 'bg-orange-500' },
+  tile_efficiency: { label: '牌效', color: 'bg-orange-500' },
   aggressive: { label: '强攻', color: 'bg-yellow-500' },
-  riichi_dama: { label: '立直/默听', color: 'bg-blue-500' },
-  defense: { label: '防守', color: 'bg-green-500' },
+  riichi: { label: '立直', color: 'bg-blue-500' },
+  dama: { label: '默听', color: 'bg-cyan-500' },
+  hand_sequence: { label: '手顺', color: 'bg-indigo-500' },
+  betaori: { label: '兜牌', color: 'bg-green-500' },
+  fold: { label: '下车', color: 'bg-teal-500' },
+  retreat: { label: '退向', color: 'bg-lime-500' },
+  refuse_tenpai: { label: '拒听', color: 'bg-emerald-500' },
   call: { label: '鸣牌', color: 'bg-purple-500' },
   other: { label: '其他', color: 'bg-gray-500' },
 }
@@ -135,10 +141,9 @@ export function HosetsuResultInput({ value, onChange, onClose, onKeyDown, autoFo
           <SelectContent>
             {Object.entries(typeConfig).map(([key, config]) => (
               <SelectItem key={key} value={key} className="text-xs">
-                <div className="flex items-center gap-2">
-                  <div className={cn('size-2', config.color)} />
-                  <span>{config.label}</span>
-                </div>
+                <Badge className={cn(config.color, 'text-white border-transparent')}>
+                  {config.label}
+                </Badge>
               </SelectItem>
             ))}
           </SelectContent>
@@ -192,7 +197,11 @@ export function HosetsuResultDisplay({ value, placeholder = '' }: HosetsuResultD
     <div className="flex min-h-[32px] items-center gap-2">
       {value.description ? (
         <>
-          {type !== 'other' && config && <div className={cn('size-2 shrink-0', config.color)} title={config.label} />}
+          {type !== 'other' && config && (
+            <Badge className={cn(config.color, 'text-white border-transparent')}>
+              {config.label}
+            </Badge>
+          )}
           <span className={cn('text-sm', value.isSignificant && 'text-primary font-bold')}>{value.description}</span>
         </>
       ) : (
@@ -254,8 +263,9 @@ export function HosetsuResultContextMenu({ value, onChange, children }: HosetsuR
                 (value.type || 'other') === key && 'bg-accent',
               )}
             >
-              <div className={cn('size-2', config.color)} />
-              <span>{config.label}</span>
+              <Badge className={cn(config.color, 'text-white border-transparent')}>
+                {config.label}
+              </Badge>
               {(value.type || 'other') === key && <CheckIcon className="ml-auto size-3" />}
             </Button>
           ))}

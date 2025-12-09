@@ -8,12 +8,17 @@ export interface RoundInfo {
 // 何切类型
 export type HosetsuType
   = 'discard' // 放铳
-    | 'tile_efficiency' // 损牌效
+    | 'tile_efficiency' // 牌效
     | 'aggressive' // 强攻
-    | 'riichi_dama' // 立直或默听选择
-    | 'defense' // 防守
-    | 'call' // 鸣牌选择
-    | 'other' // 其他/杂项
+    | 'riichi' // 立直
+    | 'dama' // 默听
+    | 'hand_sequence' // 手顺
+    | 'betaori' // 兜牌
+    | 'fold' // 下车
+    | 'retreat' // 退向
+    | 'refuse_tenpai' // 拒听
+    | 'call' // 鸣牌
+    | 'other' // 其他
 
 // 何切结果
 export interface HosetsuResult {
