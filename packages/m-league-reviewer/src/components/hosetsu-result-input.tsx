@@ -1,5 +1,5 @@
 import type { HosetsuResult, HosetsuType } from '@/api/reviews'
-import { AlertCircleIcon, CheckIcon, XIcon } from 'lucide-react'
+import { AlertCircleIcon, CheckIcon, ClipboardCopyIcon, ClipboardPasteIcon, XIcon } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -7,6 +7,7 @@ import { Input } from '@/components/ui/input'
 import { Kbd, KbdGroup } from '@/components/ui/kbd'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import { Separator } from '@/components/ui/separator'
 import { cn } from '@/lib/utils'
 
 interface HosetsuResultInputProps {
@@ -35,6 +36,41 @@ const typeConfig: Record<HosetsuType, { label: string, color: string }> = {
 
 function isHosetsuType(value: string): value is HosetsuType {
   return Object.keys(typeConfig).includes(value)
+}
+
+/**
+ * 复制 HosetsuResult 到剪贴板
+ */
+function copyHosetsuResultToClipboard(value: HosetsuResult) {
+  const data = JSON.stringify(value)
+  navigator.clipboard.writeText(data).catch(err => console.error('Failed to copy:', err))
+}
+
+/**
+ * 从文本解析并验证 HosetsuResult
+ * @returns 解析成功返回 HosetsuResult，失败返回 null
+ */
+function parseHosetsuResult(text: string): HosetsuResult | null {
+  try {
+    const parsed = JSON.parse(text) as HosetsuResult
+
+    // 验证是否为有效的 HosetsuResult
+    if (
+      typeof parsed === 'object'
+      && parsed !== null
+      && 'description' in parsed
+      && (parsed.type === undefined || isHosetsuType(parsed.type))
+    ) {
+      return {
+        description: parsed.description || '',
+        type: parsed.type || 'other',
+        isSignificant: parsed.isSignificant || false,
+      }
+    }
+  } catch {
+    // 解析失败
+  }
+  return null
 }
 
 /**
@@ -89,7 +125,60 @@ export function HosetsuResultInput({ value, onChange, onClose, onKeyDown, autoFo
     setTimeout(() => inputRef.current?.focus(), 0)
   }
 
-  const handleKeyDownInternal = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  // 按钮触发的复制
+  const handleCopyButton = () => {
+    copyHosetsuResultToClipboard(localValue)
+    inputRef.current?.focus()
+  }
+
+  // 按钮触发的粘贴
+  const handlePasteButton = () => {
+    navigator.clipboard
+      .readText()
+      .then((text) => {
+        const parsed = parseHosetsuResult(text)
+        if (parsed) {
+          setLocalValue(parsed)
+          onChange(parsed)
+        } else {
+          console.warn('Failed to parse clipboard content as HosetsuResult, text:', text)
+        }
+        inputRef.current?.focus()
+      })
+      .catch((err) => {
+        console.error('Failed to read clipboard:', err)
+        inputRef.current?.focus()
+      })
+  }
+
+  // 键盘快捷键触发的复制
+  const handleCopy = (e: React.ClipboardEvent<HTMLInputElement>) => {
+    // 如果有选中文本，让浏览器处理默认的文本复制
+    const selection = window.getSelection()
+    if (selection && selection.toString()) {
+      return
+    }
+
+    // 否则复制完整的 HosetsuResult 对象
+    e.preventDefault()
+    copyHosetsuResultToClipboard(localValue)
+  }
+
+  // 键盘快捷键触发的粘贴
+  const handlePaste = (e: React.ClipboardEvent<HTMLInputElement>) => {
+    const text = e.clipboardData.getData('text')
+    const parsed = parseHosetsuResult(text)
+
+    // 如果成功解析了 HosetsuResult，应用并阻止默认粘贴行为
+    if (parsed) {
+      e.preventDefault()
+      setLocalValue(parsed)
+      onChange(parsed)
+    }
+    // 否则让浏览器处理默认的文本粘贴
+  }
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter' || e.key === 'Tab') {
       e.preventDefault()
       onClose?.()
@@ -112,7 +201,9 @@ export function HosetsuResultInput({ value, onChange, onClose, onKeyDown, autoFo
         ref={inputRef}
         value={localValue.description}
         onChange={e => handleDescriptionChange(e.target.value)}
-        onKeyDown={handleKeyDownInternal}
+        onKeyDown={handleKeyDown}
+        onCopy={handleCopy}
+        onPaste={handlePaste}
         onBlur={(e) => {
           // 如果没有 relatedTarget，说明点击了真正的空白区域
           const relatedTarget = e.relatedTarget
@@ -161,47 +252,78 @@ export function HosetsuResultInput({ value, onChange, onClose, onKeyDown, autoFo
         </Button>
       )}
 
-      <div className="hosetsu-toolbar border-border bg-popover absolute top-full left-0 z-50 mt-1 flex items-center gap-2 border p-2 shadow-md">
-        <Select
-          value={localValue.type}
-          onValueChange={(v) => {
-            if (isHosetsuType(v)) {
-              handleTypeChange(v)
-            }
+      <div className="hosetsu-toolbar border-border bg-popover absolute top-full left-0 z-50 mt-1 flex flex-col gap-2 border p-2 shadow-md">
+        <div className="flex items-center gap-2">
+          <Select
+            value={localValue.type}
+            onValueChange={(v) => {
+              if (isHosetsuType(v)) {
+                handleTypeChange(v)
+              }
 
-            inputRef.current?.focus()
-          }}
-        >
-          <SelectTrigger className="h-7 w-32 text-xs">
-            <SelectValue />
-          </SelectTrigger>
-          <SelectContent>
-            {Object.entries(typeConfig).map(([key, config]) => (
-              <SelectItem key={key} value={key} className="text-xs">
-                <Badge className={cn(config.color, 'border-transparent text-white')}>{config.label}</Badge>
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
-        <Button
-          size="sm"
-          variant={localValue.isSignificant ? 'default' : 'outline'}
-          onClick={() => {
-            handleSignificantToggle()
-            inputRef.current?.focus()
-          }}
-          className="h-7 gap-1 text-xs"
-          title="标记为严重分歧 (Ctrl+B)"
-        >
-          <AlertCircleIcon className="size-3" />
-          严重
-        </Button>
-
-        <div className="text-muted-foreground text-xs">
+              inputRef.current?.focus()
+            }}
+          >
+            <SelectTrigger className="h-7 w-32 text-xs">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              {Object.entries(typeConfig).map(([key, config]) => (
+                <SelectItem key={key} value={key} className="text-xs">
+                  <Badge className={cn(config.color, 'border-transparent text-white')}>{config.label}</Badge>
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+          <Button
+            size="sm"
+            variant={localValue.isSignificant ? 'default' : 'outline'}
+            onClick={() => {
+              handleSignificantToggle()
+              inputRef.current?.focus()
+            }}
+            className="h-7 gap-1 text-xs"
+            title="标记为严重分歧 (Ctrl+B)"
+          >
+            <AlertCircleIcon className="size-3" />
+            严重
+          </Button>
+          <Button
+            size="sm"
+            variant="outline"
+            onClick={handleCopyButton}
+            className="h-7 gap-1 text-xs"
+            title="复制 (Ctrl+C)"
+          >
+            <ClipboardCopyIcon className="size-3" />
+            复制
+          </Button>
+          <Button
+            size="sm"
+            variant="outline"
+            onClick={handlePasteButton}
+            className="h-7 gap-1 text-xs"
+            title="粘贴 (Ctrl+V)"
+          >
+            <ClipboardPasteIcon className="size-3" />
+            粘贴
+          </Button>
+        </div>
+        <div className="text-muted-foreground flex flex-wrap gap-x-3 gap-y-1 text-xs">
           <KbdGroup>
             <Kbd>⌘</Kbd>
             <Kbd>B</Kbd>
             <span>严重</span>
+          </KbdGroup>
+          <KbdGroup>
+            <Kbd>⌘</Kbd>
+            <Kbd>C</Kbd>
+            <span>复制</span>
+          </KbdGroup>
+          <KbdGroup>
+            <Kbd>⌘</Kbd>
+            <Kbd>V</Kbd>
+            <span>粘贴</span>
           </KbdGroup>
           <KbdGroup>
             <Kbd>⇥</Kbd>
@@ -270,6 +392,42 @@ export function HosetsuResultContextMenu({ value, onChange, children }: HosetsuR
     setOpen(false)
   }
 
+  const handleCopy = (e: React.MouseEvent) => {
+    e.stopPropagation()
+    copyHosetsuResultToClipboard(value)
+    setOpen(false)
+  }
+
+  const handlePaste = (e: React.MouseEvent) => {
+    e.stopPropagation()
+    navigator.clipboard
+      .readText()
+      .then((text) => {
+        const parsed = parseHosetsuResult(text)
+        if (parsed) {
+          onChange(parsed)
+        } else {
+          console.warn('Context menu: Failed to parse clipboard content as HosetsuResult, text:', text)
+        }
+        setOpen(false)
+      })
+      .catch((err) => {
+        console.error('Context menu: Failed to read clipboard:', err)
+        setOpen(false)
+      })
+  }
+
+  const handleClear = (e: React.MouseEvent) => {
+    e.stopPropagation()
+    const newValue: HosetsuResult = {
+      description: '',
+      type: 'other',
+      isSignificant: false,
+    }
+    onChange(newValue)
+    setOpen(false)
+  }
+
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
@@ -300,19 +458,47 @@ export function HosetsuResultContextMenu({ value, onChange, children }: HosetsuR
               {(value.type || 'other') === key && <CheckIcon className="ml-auto size-3" />}
             </Button>
           ))}
-          <div className="border-border my-2 border-t" />
+          <Separator />
           <Button
             variant="ghost"
             size="sm"
             onClick={e => handleSignificantToggle(e)}
             className={cn(
               'h-auto w-full justify-start gap-2 px-2 py-1.5 text-xs font-normal',
-              value.isSignificant && 'bg-accent',
+              value.isSignificant && 'bg-primary text-primary-foreground',
             )}
           >
             <AlertCircleIcon className="size-3" />
             <span>标记为严重</span>
             {value.isSignificant && <CheckIcon className="ml-auto size-3" />}
+          </Button>
+          <Separator />
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={e => handleCopy(e)}
+            className="h-auto w-full justify-start gap-2 px-2 py-1.5 text-xs font-normal"
+          >
+            <ClipboardCopyIcon className="size-3" />
+            <span>复制</span>
+          </Button>
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={e => handlePaste(e)}
+            className="h-auto w-full justify-start gap-2 px-2 py-1.5 text-xs font-normal"
+          >
+            <ClipboardPasteIcon className="size-3" />
+            <span>粘贴</span>
+          </Button>
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={e => handleClear(e)}
+            className="h-auto w-full justify-start gap-2 px-2 py-1.5 text-xs font-normal"
+          >
+            <XIcon className="size-3" />
+            <span>清空</span>
           </Button>
         </div>
       </PopoverContent>
