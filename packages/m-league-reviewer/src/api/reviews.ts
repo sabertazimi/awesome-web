@@ -89,27 +89,53 @@ export function createEmptyHosetsuResult(): HosetsuResult {
 
 // 创建默认的小局信息
 export function createDefaultRoundInfo(existingRounds: RoundInfo[] = []): RoundInfo {
-  // 尝试按顺序找到第一个不存在的小局
-  const fields: Array<'east' | 'south'> = ['east', 'south']
-
-  for (const field of fields) {
-    for (let round = 1; round <= 4; round++) {
-      for (let honba = 0; honba <= 9; honba++) {
-        const candidate: RoundInfo = { field, round, honba }
-        const exists = existingRounds.some(
-          existing =>
-            existing.field === candidate.field
-            && existing.round === candidate.round
-            && existing.honba === candidate.honba,
-        )
-        if (!exists) {
-          return candidate
-        }
-      }
+  // 如果没有已存在的小局,返回东一0本场
+  if (existingRounds.length === 0) {
+    return {
+      field: 'east',
+      round: 1,
+      honba: 0,
     }
   }
 
-  // 如果所有小局都存在（不太可能），返回东一0本场
+  // 找到最后一个小局,递增到下一个小局
+  const lastRound = existingRounds[existingRounds.length - 1]
+  return getNextRound(lastRound)
+}
+
+// 获取下一个小局
+function getNextRound(current: RoundInfo): RoundInfo {
+  const MAX_HONBA = 9 // 本场数上限
+  const MAX_ROUND = 4 // 小局数上限
+
+  // 如果本场数未达到上限,直接+1
+  if (current.honba < MAX_HONBA) {
+    return {
+      field: current.field,
+      round: current.round,
+      honba: current.honba + 1,
+    }
+  }
+
+  // 本场数已达上限,进入下一局
+  if (current.round < MAX_ROUND) {
+    return {
+      field: current.field,
+      round: current.round + 1,
+      honba: 0,
+    }
+  }
+
+  // 小局数也达上限,切换场风
+  if (current.field === 'east') {
+    return {
+      field: 'south',
+      round: 1,
+      honba: 0,
+    }
+  }
+
+  // 南四已满,回到东一
   return {
     field: 'east',
     round: 1,
