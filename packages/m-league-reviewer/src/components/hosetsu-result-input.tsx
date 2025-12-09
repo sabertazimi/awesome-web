@@ -85,6 +85,9 @@ export function HosetsuResultInput({ value, onChange, onClose, onKeyDown, autoFo
     } else if (e.key === 'b' && e.ctrlKey) {
       e.preventDefault()
       handleSignificantToggle()
+    } else if (e.key === 's' && e.ctrlKey) {
+      e.preventDefault()
+      onClose?.()
     }
   }
 
