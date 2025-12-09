@@ -1,10 +1,7 @@
-import type { Note } from '@/api/reviews'
 import { BookTextIcon } from 'lucide-react'
-import { useEffect, useState } from 'react'
-import { createNote, getNotes, updateNote } from '@/api/reviews'
+import NotesEditor from '@/components/notes-editor'
 import { Button } from '@/components/ui/button'
 import { Drawer, DrawerClose, DrawerContent, DrawerHeader, DrawerTitle } from '@/components/ui/drawer'
-import { Textarea } from '@/components/ui/textarea'
 
 interface NotesDrawerProps {
   open: boolean
@@ -16,38 +13,6 @@ interface NotesDrawerProps {
  * 用于管理从对局复盘中提炼的文本记录
  */
 export function NotesDrawer({ open, onOpenChange }: NotesDrawerProps) {
-  const [note, setNote] = useState<Note | null>(null)
-  const [content, setContent] = useState('')
-
-  // 加载或创建笔记
-  useEffect(() => {
-    if (open) {
-      const notes = getNotes()
-      if (notes.length === 0) {
-        // 没有笔记，创建一条空笔记
-        const newNote = createNote('')
-        setNote(newNote)
-        setContent('')
-      } else {
-        // 使用第一条笔记
-        setNote(notes[0])
-        setContent(notes[0].content)
-      }
-    }
-  }, [open])
-
-  // 自动保存笔记内容
-  useEffect(() => {
-    if (!note || !open)
-      return
-
-    const timer = setTimeout(() => {
-      updateNote(note.id, content)
-    }, 500) // 500ms 防抖
-
-    return () => clearTimeout(timer)
-  }, [content, note, open])
-
   return (
     <Drawer open={open} onOpenChange={onOpenChange} direction="right">
       <DrawerContent className="data-[vaul-drawer-direction=left]:w-full data-[vaul-drawer-direction=right]:w-full data-[vaul-drawer-direction=left]:sm:max-w-full data-[vaul-drawer-direction=right]:sm:max-w-full">
@@ -66,16 +31,7 @@ export function NotesDrawer({ open, onOpenChange }: NotesDrawerProps) {
               复盘笔记
             </DrawerTitle>
           </DrawerHeader>
-          <div className="flex flex-1 flex-col overflow-hidden p-6">
-            {note && (
-              <Textarea
-                value={content}
-                onChange={e => setContent(e.target.value)}
-                placeholder="在此记录从对局复盘中提炼的文本内容..."
-                className="flex-1 resize-none"
-              />
-            )}
-          </div>
+          <NotesEditor open={open} />
         </div>
       </DrawerContent>
     </Drawer>
