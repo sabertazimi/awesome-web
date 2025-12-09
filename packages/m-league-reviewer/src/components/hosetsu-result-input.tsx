@@ -218,7 +218,7 @@ export function HosetsuResultInput({ value, onChange, onClose, onKeyDown, autoFo
             return
           }
 
-          // Tab 键切换到工具栏内的元素，不关闭
+          // 切换焦点到工具栏内的元素时，不关闭
           const toolbar = document.querySelector('.hosetsu-toolbar')
           if (toolbar && toolbar.contains(relatedTarget)) {
             return
