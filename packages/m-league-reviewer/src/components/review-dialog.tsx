@@ -29,13 +29,13 @@ import { Button } from '@/components/ui/button'
 import { Calendar } from '@/components/ui/calendar'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import {
-  Drawer,
-  DrawerClose,
-  DrawerContent,
-  DrawerDescription,
-  DrawerHeader,
-  DrawerTitle,
-} from '@/components/ui/drawer'
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/ui/dialog'
 import { Input } from '@/components/ui/input'
 import { MultiSelect } from '@/components/ui/multi-select'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
@@ -44,7 +44,7 @@ import { Textarea } from '@/components/ui/textarea'
 import useDebounce from '@/hooks/useDebounce'
 import { cn } from '@/lib/utils'
 
-interface ReviewDrawerProps {
+interface ReviewDialogProps {
   open: boolean
   onOpenChange: (open: boolean) => void
   reviewId: string | null
@@ -53,7 +53,7 @@ interface ReviewDrawerProps {
   onUpdated?: () => void
 }
 
-export function ReviewDrawer({ open, onOpenChange, reviewId, date, onDeleted, onUpdated }: ReviewDrawerProps) {
+export function ReviewDialog({ open, onOpenChange, reviewId, date, onDeleted, onUpdated }: ReviewDialogProps) {
   const [title, setTitle] = useState('')
   const [linkA, setLinkA] = useState('')
   const [linkB, setLinkB] = useState('')
@@ -234,8 +234,8 @@ export function ReviewDrawer({ open, onOpenChange, reviewId, date, onDeleted, on
 
   return (
     <>
-      <Drawer open={open} onOpenChange={onOpenChange} direction="right">
-        <DrawerContent className="data-[vaul-drawer-direction=left]:w-full data-[vaul-drawer-direction=right]:w-full data-[vaul-drawer-direction=left]:sm:max-w-full data-[vaul-drawer-direction=right]:sm:max-w-full">
+      <Dialog open={open} onOpenChange={onOpenChange}>
+        <DialogContent className="h-screen max-w-full p-0 sm:max-w-full" showCloseButton={false}>
           <div className="flex h-full flex-col">
             <div className="border-border flex items-center justify-between border-b px-6 py-3">
               <span className="text-muted-foreground font-mono text-xs">review.tsx</span>
@@ -243,21 +243,21 @@ export function ReviewDrawer({ open, onOpenChange, reviewId, date, onDeleted, on
                 <Button size="sm" variant="destructive" onClick={() => setDeleteDialogOpen(true)}>
                   删除
                 </Button>
-                <DrawerClose asChild>
+                <DialogClose asChild>
                   <Button size="sm">关闭</Button>
-                </DrawerClose>
+                </DialogClose>
               </div>
             </div>
-            <DrawerHeader className="border-border border-b">
+            <DialogHeader className="border-border border-b px-6 py-4">
               <div className="flex items-center justify-between">
                 <div className="flex-1">
-                  <DrawerDescription className="text-muted-foreground font-mono text-sm">比赛复盘</DrawerDescription>
-                  <DrawerTitle className="text-foreground mt-1 font-mono text-2xl font-bold">
+                  <DialogDescription className="text-muted-foreground font-mono text-sm">比赛复盘</DialogDescription>
+                  <DialogTitle className="text-foreground mt-1 font-mono text-2xl font-bold">
                     {title || '复盘详情'}
-                  </DrawerTitle>
+                  </DialogTitle>
                 </div>
               </div>
-            </DrawerHeader>
+            </DialogHeader>
             <div className="flex-1 overflow-y-auto py-6">
               <div className="bg-border space-y-px">
                 <Card>
@@ -614,8 +614,8 @@ export function ReviewDrawer({ open, onOpenChange, reviewId, date, onDeleted, on
               </div>
             </div>
           </div>
-        </DrawerContent>
-      </Drawer>
+        </DialogContent>
+      </Dialog>
 
       <AlertDialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>
         <AlertDialogContent>

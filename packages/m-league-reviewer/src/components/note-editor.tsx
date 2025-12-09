@@ -5,7 +5,7 @@ import StarterKit from '@tiptap/starter-kit'
 import { useEffect, useState } from 'react'
 import { createNote, getNotes, updateNote } from '@/api/reviews'
 
-function NotesEditor({ open }: { open: boolean }) {
+export function NoteEditor({ open }: { open: boolean }) {
   const [note, setNote] = useState<Note | null>(null)
   const editor = useEditor({
     extensions: [
@@ -67,5 +67,3 @@ function NotesEditor({ open }: { open: boolean }) {
 
   return <EditorContent className="flex-1 overflow-auto" editor={editor} />
 }
-
-export default NotesEditor
