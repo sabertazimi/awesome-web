@@ -3,6 +3,7 @@ import { ArrowLeftIcon } from 'lucide-react'
 import { isRouteErrorResponse, Link, Links, Meta, Outlet, Scripts, ScrollRestoration } from 'react-router'
 import { DefaultLayout } from '@/components/default-layout'
 import { SiteHeader } from '@/components/site-header'
+import { Button } from '@/components/ui/button'
 import { VoidSection } from '@/components/void-section'
 import '@/assets/base.css'
 
@@ -60,10 +61,12 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
       <SiteHeader
         title={message}
         link={(
-          <Link to="/">
-            <ArrowLeftIcon className="text-primary size-4" />
-            返回日历
-          </Link>
+          <Button asChild variant="outline">
+            <Link to="/">
+              <ArrowLeftIcon className="text-primary size-4" />
+              返回日历
+            </Link>
+          </Button>
         )}
       />
       <VoidSection number="01" fileName="error.tsx" className="flex flex-1">

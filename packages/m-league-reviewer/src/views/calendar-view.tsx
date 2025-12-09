@@ -1,6 +1,6 @@
 import type { GameSchedule } from '@/api/data'
 import type { Review } from '@/api/reviews'
-import { UsersIcon } from 'lucide-react'
+import { BookTextIcon, UsersIcon } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router'
 import { teams } from '@/api/data'
@@ -8,6 +8,7 @@ import { createReview, deleteReview, getReviewsByDate } from '@/api/reviews'
 import gameScheduleData from '@/assets/game-schedule.json'
 import { CalendarDayCard } from '@/components/calendar-day-card'
 import { DefaultLayout } from '@/components/default-layout'
+import { NotesDrawer } from '@/components/notes-drawer'
 import { ReviewDrawer } from '@/components/review-drawer'
 import { SiteHeader } from '@/components/site-header'
 import {
@@ -20,6 +21,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from '@/components/ui/alert-dialog'
+import { Button } from '@/components/ui/button'
 import { VoidSection } from '@/components/void-section'
 import { WeekNavigation } from '@/components/week-navigation'
 import { formatDate, getWeekDays } from '@/lib/date-utils'
@@ -42,7 +44,7 @@ export default function CalendarView() {
     id: string
     date: string
   } | null>(null)
-
+  const [notesDrawerOpen, setNotesDrawerOpen] = useState(false)
   const weekDays = getWeekDays(currentDate)
 
   // 当 currentDate 改变时,重新加载本周的复盘数据
@@ -174,18 +176,21 @@ export default function CalendarView() {
       <SiteHeader
         title="复盘日历"
         link={(
-          <Link to="/players">
-            <UsersIcon className="text-primary size-4" />
-            选手图鉴
-          </Link>
+          <div className="flex items-center gap-4">
+            <Button asChild variant="outline">
+              <Link to="/players">
+                <UsersIcon className="text-primary size-4" />
+                选手图鉴
+              </Link>
+            </Button>
+            <Button variant="ghost" onClick={() => setNotesDrawerOpen(true)}>
+              <BookTextIcon className="text-primary size-4" />
+              复盘笔记
+            </Button>
+          </div>
         )}
       >
-        <WeekNavigation
-          onPreviousWeek={goToPreviousWeek}
-          onCurrentWeek={goToCurrentWeek}
-          onNextWeek={goToNextWeek}
-          className="md:justify-self-end"
-        />
+        <WeekNavigation onPreviousWeek={goToPreviousWeek} onCurrentWeek={goToCurrentWeek} onNextWeek={goToNextWeek} />
       </SiteHeader>
       <VoidSection number="01" fileName="calendar.tsx" className="flex flex-1" contentClassName="p-0 sm:pt-0">
         <div className="grid h-full grid-cols-1 grid-rows-4 md:grid-cols-2 md:grid-rows-2">
@@ -225,8 +230,6 @@ export default function CalendarView() {
             })}
         </div>
       </VoidSection>
-
-      {/* 删除确认对话框 */}
       <AlertDialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>
         <AlertDialogContent>
           <AlertDialogHeader>
@@ -241,8 +244,6 @@ export default function CalendarView() {
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
-
-      {/* 复盘抽屉 */}
       <ReviewDrawer
         open={drawerOpen}
         onOpenChange={setDrawerOpen}
@@ -251,6 +252,7 @@ export default function CalendarView() {
         onDeleted={handleReviewDeleted}
         onUpdated={handleReviewUpdated}
       />
+      <NotesDrawer open={notesDrawerOpen} onOpenChange={setNotesDrawerOpen} />
     </DefaultLayout>
   )
 }
