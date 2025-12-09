@@ -18,7 +18,7 @@ function NotesEditor({ open }: { open: boolean }) {
     ],
     editorProps: {
       attributes: {
-        class: 'prose dark:prose-invert mx-auto min-h-full p-4 focus:outline-none',
+        class: 'prose dark:prose-invert prose-strong:text-primary mx-auto min-h-full p-4 focus:outline-none ',
       },
       handleKeyDown: (_view, event) => {
         // 处理 Ctrl+S / Cmd+S 保存
