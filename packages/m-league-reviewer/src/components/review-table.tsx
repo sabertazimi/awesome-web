@@ -88,7 +88,7 @@ export function ReviewTable({
           break
         case 'ArrowRight':
         case 'Tab':
-          if (e.key === 'Tab' && !e.shiftKey) {
+          if ((e.key === 'Tab' && !e.shiftKey) || e.key === 'ArrowRight') {
             e.preventDefault()
           }
           // 向右移动一个单元格
