@@ -1,0 +1,39 @@
+import { BookTextIcon } from 'lucide-react'
+import NotesEditor from '@/components/notes-editor'
+import { Button } from '@/components/ui/button'
+import { Dialog, DialogClose, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog'
+
+interface NotesDialogProps {
+  open: boolean
+  onOpenChange: (open: boolean) => void
+}
+
+/**
+ * 复盘笔记对话框组件
+ * 用于管理从对局复盘中提炼的文本记录
+ */
+export function NotesDialog({ open, onOpenChange }: NotesDialogProps) {
+  return (
+    <Dialog open={open} onOpenChange={onOpenChange}>
+      <DialogContent className="h-screen max-w-full p-0 sm:max-w-full" showCloseButton={false}>
+        <div className="flex h-full flex-col">
+          <div className="border-border flex items-center justify-between border-b px-6 py-3">
+            <span className="text-muted-foreground font-mono text-xs">notes.tsx</span>
+            <div className="flex items-center gap-2">
+              <DialogClose asChild>
+                <Button size="sm">关闭</Button>
+              </DialogClose>
+            </div>
+          </div>
+          <DialogHeader className="border-border border-b px-6 py-4">
+            <DialogTitle className="text-foreground flex items-center gap-2 font-mono text-2xl font-bold">
+              <BookTextIcon className="size-6" />
+              复盘笔记
+            </DialogTitle>
+          </DialogHeader>
+          <NotesEditor open={open} />
+        </div>
+      </DialogContent>
+    </Dialog>
+  )
+}

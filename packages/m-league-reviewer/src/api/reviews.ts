@@ -1,3 +1,5 @@
+import type { JSONContent } from '@tiptap/react'
+
 // 小局信息
 export interface RoundInfo {
   field: 'east' | 'south' // 东场/南场
@@ -60,7 +62,7 @@ export const statusColors = {
 // 复盘笔记
 export interface Note {
   id: string
-  content: string
+  content: JSONContent // Tiptap JSON content
   createdAt: string
   updatedAt: string
 }
@@ -182,10 +184,10 @@ export function getNotes(): Note[] {
   return notes
 }
 
-export function createNote(content: string): Note {
+export function createNote(content: JSONContent | null = null): Note {
   const note: Note = {
     id: `note-${Date.now()}-${Math.random().toString(36).slice(2, 11)}`,
-    content,
+    content: content || { type: 'doc', content: [] },
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
   }
@@ -197,7 +199,7 @@ export function createNote(content: string): Note {
   return note
 }
 
-export function updateNote(id: string, content: string): Note | null {
+export function updateNote(id: string, content: JSONContent): Note | null {
   const notes = getNotes()
   const index = notes.findIndex(n => n.id === id)
 

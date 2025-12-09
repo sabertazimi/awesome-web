@@ -8,7 +8,7 @@ import { createReview, deleteReview, getReviewsByDate } from '@/api/reviews'
 import gameScheduleData from '@/assets/game-schedule.json'
 import { CalendarDayCard } from '@/components/calendar-day-card'
 import { DefaultLayout } from '@/components/default-layout'
-import { NotesDrawer } from '@/components/notes-drawer'
+import { NotesDialog } from '@/components/notes-dialog'
 import { ReviewDrawer } from '@/components/review-drawer'
 import { SiteHeader } from '@/components/site-header'
 import {
@@ -252,7 +252,7 @@ export default function CalendarView() {
         onDeleted={handleReviewDeleted}
         onUpdated={handleReviewUpdated}
       />
-      <NotesDrawer open={notesDrawerOpen} onOpenChange={setNotesDrawerOpen} />
+      <NotesDialog open={notesDrawerOpen} onOpenChange={setNotesDrawerOpen} />
     </DefaultLayout>
   )
 }

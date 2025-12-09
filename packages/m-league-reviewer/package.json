@@ -26,6 +26,10 @@
     "@radix-ui/react-slot": "^1.2.4",
     "@react-router/node": "^7.10.1",
     "@react-router/serve": "^7.10.1",
+    "@tiptap/extensions": "^3.13.0",
+    "@tiptap/pm": "^3.13.0",
+    "@tiptap/react": "^3.13.0",
+    "@tiptap/starter-kit": "^3.13.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",
@@ -42,6 +46,7 @@
   "devDependencies": {
     "@dg-scripts/eslint-config": "^5.21.8",
     "@react-router/dev": "^7.10.1",
+    "@tailwindcss/typography": "^0.5.19",
     "@tailwindcss/vite": "^4.1.17",
     "@types/node": "^24.10.1",
     "@types/react": "^19.2.7",
