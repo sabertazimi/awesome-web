@@ -8,8 +8,8 @@ import { createReview, deleteReview, getReviewsByDate } from '@/api/reviews'
 import gameScheduleData from '@/assets/game-schedule.json'
 import { CalendarDayCard } from '@/components/calendar-day-card'
 import { DefaultLayout } from '@/components/default-layout'
-import { NotesDialog } from '@/components/notes-dialog'
-import { ReviewDrawer } from '@/components/review-drawer'
+import { NoteDialog } from '@/components/note-dialog'
+import { ReviewDialog } from '@/components/review-dialog'
 import { SiteHeader } from '@/components/site-header'
 import {
   AlertDialog,
@@ -39,12 +39,12 @@ export default function CalendarView() {
     date: string
     id: string
   } | null>(null)
-  const [drawerOpen, setDrawerOpen] = useState(false)
+  const [reviewDialogOpen, setReviewDialogOpen] = useState(false)
   const [selectedReview, setSelectedReview] = useState<{
     id: string
     date: string
   } | null>(null)
-  const [notesDrawerOpen, setNotesDrawerOpen] = useState(false)
+  const [noteDialogOpen, setNoteDialogOpen] = useState(false)
   const weekDays = getWeekDays(currentDate)
 
   // 当 currentDate 改变时,重新加载本周的复盘数据
@@ -140,9 +140,9 @@ export default function CalendarView() {
   }
 
   // 打开复盘抽屉
-  const openReviewDrawer = (date: string, id: string) => {
+  const openReviewDialog = (date: string, id: string) => {
     setSelectedReview({ id, date })
-    setDrawerOpen(true)
+    setReviewDialogOpen(true)
   }
 
   // 复盘被删除后的回调
@@ -183,7 +183,7 @@ export default function CalendarView() {
                 选手图鉴
               </Link>
             </Button>
-            <Button variant="ghost" onClick={() => setNotesDrawerOpen(true)}>
+            <Button variant="ghost" onClick={() => setNoteDialogOpen(true)}>
               <BookTextIcon className="text-primary size-4" />
               复盘笔记
             </Button>
@@ -210,7 +210,7 @@ export default function CalendarView() {
                   isAddingReview={newReviewDate === dateStr}
                   newReviewTitle={newReviewTitle}
                   availableTitles={getAvailableTitles(dateStr)}
-                  onReviewClick={id => openReviewDrawer(dateStr, id)}
+                  onReviewClick={id => openReviewDialog(dateStr, id)}
                   onReviewDelete={(e, id) => {
                     e.stopPropagation()
                     openDeleteDialog(dateStr, id)
@@ -244,15 +244,15 @@ export default function CalendarView() {
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
-      <ReviewDrawer
-        open={drawerOpen}
-        onOpenChange={setDrawerOpen}
+      <ReviewDialog
+        open={reviewDialogOpen}
+        onOpenChange={setReviewDialogOpen}
         reviewId={selectedReview?.id || null}
         date={selectedReview?.date || null}
         onDeleted={handleReviewDeleted}
         onUpdated={handleReviewUpdated}
       />
-      <NotesDialog open={notesDrawerOpen} onOpenChange={setNotesDrawerOpen} />
+      <NoteDialog open={noteDialogOpen} onOpenChange={setNoteDialogOpen} />
     </DefaultLayout>
   )
 }

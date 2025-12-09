@@ -1,9 +1,9 @@
 import { BookTextIcon } from 'lucide-react'
-import NotesEditor from '@/components/notes-editor'
+import { NoteEditor } from '@/components/note-editor'
 import { Button } from '@/components/ui/button'
 import { Dialog, DialogClose, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 
-interface NotesDialogProps {
+interface NoteDialogProps {
   open: boolean
   onOpenChange: (open: boolean) => void
 }
@@ -12,13 +12,13 @@ interface NotesDialogProps {
  * 复盘笔记对话框组件
  * 用于管理从对局复盘中提炼的文本记录
  */
-export function NotesDialog({ open, onOpenChange }: NotesDialogProps) {
+export function NoteDialog({ open, onOpenChange }: NoteDialogProps) {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="h-screen max-w-full p-0 sm:max-w-full" showCloseButton={false}>
         <div className="flex h-full flex-col">
           <div className="border-border flex items-center justify-between border-b px-6 py-3">
-            <span className="text-muted-foreground font-mono text-xs">notes.tsx</span>
+            <span className="text-muted-foreground font-mono text-xs">note.tsx</span>
             <div className="flex items-center gap-2">
               <DialogClose asChild>
                 <Button size="sm">关闭</Button>
@@ -31,7 +31,7 @@ export function NotesDialog({ open, onOpenChange }: NotesDialogProps) {
               复盘笔记
             </DialogTitle>
           </DialogHeader>
-          <NotesEditor open={open} />
+          <NoteEditor open={open} />
         </div>
       </DialogContent>
     </Dialog>
