@@ -284,7 +284,7 @@ export function HosetsuResultInput({ value, onChange, onClose, onKeyDown, autoFo
               inputRef.current?.focus()
             }}
             className="h-7 gap-1 text-xs"
-            title="标记为严重分歧 (Ctrl+B)"
+            title="标记为严重 (Ctrl+B)"
           >
             <AlertCircleIcon className="size-3" />
             严重
