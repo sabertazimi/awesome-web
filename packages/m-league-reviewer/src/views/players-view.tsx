@@ -4,6 +4,7 @@ import { pros, teams } from '@/api/data'
 import { DefaultLayout } from '@/components/default-layout'
 import { PlayerCard } from '@/components/player-card'
 import { SiteHeader } from '@/components/site-header'
+import { Button } from '@/components/ui/button'
 import { VoidSection } from '@/components/void-section'
 
 export default function PlayersView() {
@@ -18,10 +19,12 @@ export default function PlayersView() {
       <SiteHeader
         title="选手图鉴"
         link={(
-          <Link to="/">
-            <ArrowLeftIcon className="text-primary size-4" />
-            返回日历
-          </Link>
+          <Button asChild variant="outline">
+            <Link to="/">
+              <ArrowLeftIcon className="text-primary size-4" />
+              返回日历
+            </Link>
+          </Button>
         )}
       />
       {teamGroups.map(({ team, members }, index) => (

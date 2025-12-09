@@ -57,9 +57,176 @@ export const statusColors = {
   completed: 'bg-primary text-primary-foreground',
 }
 
-const STORAGE_KEY = 'm-league-reviews'
+// 复盘笔记
+export interface Note {
+  id: string
+  content: string
+  createdAt: string
+  updatedAt: string
+}
 
-// 数字转日语汉字
+// 存储结构
+interface StorageData {
+  reviews: Review[]
+  notes: Note[]
+}
+
+const STORAGE_KEY = 'm-league-data'
+
+// 从 localStorage 获取所有数据
+function getStorageData(): StorageData {
+  try {
+    const data = localStorage.getItem(STORAGE_KEY)
+    if (!data) {
+      return { reviews: [], notes: [] }
+    }
+    const parsed = JSON.parse(data) as StorageData
+    return {
+      reviews: parsed.reviews || [],
+      notes: parsed.notes || [],
+    }
+  } catch (error) {
+    console.error('Failed to load storage data:', error)
+    return { reviews: [], notes: [] }
+  }
+}
+
+// 保存所有数据到 localStorage
+function saveStorageData(data: StorageData): void {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data))
+  } catch (error) {
+    console.error('Failed to save storage data:', error)
+  }
+}
+
+// 保存复盘数据
+function saveReviews(reviews: Review[]): void {
+  const data = getStorageData()
+  data.reviews = reviews
+  saveStorageData(data)
+}
+
+// 保存笔记数据
+function saveNotes(notes: Note[]): void {
+  const data = getStorageData()
+  data.notes = notes
+  saveStorageData(data)
+}
+
+// 从 localStorage 获取所有复盘数据
+export function getReviews(): Review[] {
+  const { reviews } = getStorageData()
+  return reviews
+}
+
+// 根据日期获取复盘列表
+export function getReviewsByDate(date: string): Review[] {
+  const reviews = getReviews()
+  return reviews.filter(review => review.date === date)
+}
+
+// 根据 ID 获取单个复盘
+export function getReviewById(id: string): Review | undefined {
+  const reviews = getReviews()
+  return reviews.find(review => review.id === id)
+}
+
+// 创建新复盘
+export function createReview(date: string, title: string, content: string = '', teams: string[] = []): Review {
+  const reviews = getReviews()
+  const newReview: Review = {
+    id: `review-${Date.now()}-${Math.random().toString(36).slice(2, 11)}`,
+    date,
+    title,
+    linkA: 'https://docs.qq.com/sheet/DZGJMY2JHelBXSlp6?tab=BB08J2',
+    linkB: '',
+    teams,
+    status: 'in_progress',
+    socialUrl: 'https://m-league.jp/games',
+    tableA: [],
+    tableB: [],
+    content,
+    createdAt: new Date().toISOString(),
+  }
+  reviews.push(newReview)
+  saveReviews(reviews)
+  return newReview
+}
+
+// 更新复盘
+export function updateReview(id: string, updates: Partial<Omit<Review, 'id' | 'createdAt'>>): Review | null {
+  const reviews = getReviews()
+  const index = reviews.findIndex(review => review.id === id)
+  if (index === -1)
+    return null
+
+  reviews[index] = { ...reviews[index], ...updates }
+  saveReviews(reviews)
+  return reviews[index]
+}
+
+// 删除复盘
+export function deleteReview(id: string): boolean {
+  const reviews = getReviews()
+  const filtered = reviews.filter(review => review.id !== id)
+  if (filtered.length === reviews.length)
+    return false
+
+  saveReviews(filtered)
+  return true
+}
+
+export function getNotes(): Note[] {
+  const { notes } = getStorageData()
+  return notes
+}
+
+export function createNote(content: string): Note {
+  const note: Note = {
+    id: `note-${Date.now()}-${Math.random().toString(36).slice(2, 11)}`,
+    content,
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+  }
+
+  const notes = getNotes()
+  notes.push(note)
+  saveNotes(notes)
+
+  return note
+}
+
+export function updateNote(id: string, content: string): Note | null {
+  const notes = getNotes()
+  const index = notes.findIndex(n => n.id === id)
+
+  if (index === -1) {
+    return null
+  }
+
+  notes[index] = {
+    ...notes[index],
+    content,
+    updatedAt: new Date().toISOString(),
+  }
+
+  saveNotes(notes)
+  return notes[index]
+}
+
+export function deleteNote(id: string): boolean {
+  const notes = getNotes()
+  const filtered = notes.filter(n => n.id !== id)
+
+  if (filtered.length === notes.length) {
+    return false
+  }
+
+  saveNotes(filtered)
+  return true
+}
+
 function numberToJapanese(num: number): string {
   const map: Record<number, string> = {
     1: '一',
@@ -75,7 +242,6 @@ function numberToJapanese(num: number): string {
   return map[num] || num.toString()
 }
 
-// 格式化小局显示
 export function formatRound(roundInfo: RoundInfo): string {
   const fieldText = roundInfo.field === 'east' ? '東' : '南'
   const roundText = numberToJapanese(roundInfo.round)
@@ -83,7 +249,6 @@ export function formatRound(roundInfo: RoundInfo): string {
   return `${fieldText}${roundText}${honbaText}`
 }
 
-// 创建空的何切结果
 export function createEmptyHosetsuResult(): HosetsuResult {
   return {
     description: '',
@@ -92,7 +257,6 @@ export function createEmptyHosetsuResult(): HosetsuResult {
   }
 }
 
-// 创建默认的小局信息
 export function createDefaultRoundInfo(existingRounds: RoundInfo[] = []): RoundInfo {
   // 如果没有已存在的小局,返回东一0本场
   if (existingRounds.length === 0) {
@@ -146,67 +310,4 @@ function getNextRound(current: RoundInfo): RoundInfo {
     round: 1,
     honba: 0,
   }
-}
-
-// 从 localStorage 获取所有复盘数据
-export function getReviews(): Review[] {
-  const data = localStorage.getItem(STORAGE_KEY)
-  return data ? (JSON.parse(data) as Review[]) : []
-}
-
-// 根据日期获取复盘列表
-export function getReviewsByDate(date: string): Review[] {
-  const reviews = getReviews()
-  return reviews.filter(review => review.date === date)
-}
-
-// 根据 ID 获取单个复盘
-export function getReviewById(id: string): Review | undefined {
-  const reviews = getReviews()
-  return reviews.find(review => review.id === id)
-}
-
-// 创建新复盘
-export function createReview(date: string, title: string, content: string = '', teams: string[] = []): Review {
-  const reviews = getReviews()
-  const newReview: Review = {
-    id: `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
-    date,
-    title,
-    linkA: 'https://docs.qq.com/sheet/DZGJMY2JHelBXSlp6?tab=BB08J2',
-    linkB: '',
-    teams,
-    status: 'in_progress',
-    socialUrl: 'https://m-league.jp/games',
-    tableA: [],
-    tableB: [],
-    content,
-    createdAt: new Date().toISOString(),
-  }
-  reviews.push(newReview)
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(reviews))
-  return newReview
-}
-
-// 更新复盘
-export function updateReview(id: string, updates: Partial<Omit<Review, 'id' | 'createdAt'>>): Review | null {
-  const reviews = getReviews()
-  const index = reviews.findIndex(review => review.id === id)
-  if (index === -1)
-    return null
-
-  reviews[index] = { ...reviews[index], ...updates }
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(reviews))
-  return reviews[index]
-}
-
-// 删除复盘
-export function deleteReview(id: string): boolean {
-  const reviews = getReviews()
-  const filtered = reviews.filter(review => review.id !== id)
-  if (filtered.length === reviews.length)
-    return false
-
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(filtered))
-  return true
 }

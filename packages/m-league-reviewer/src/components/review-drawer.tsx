@@ -235,9 +235,8 @@ export function ReviewDrawer({ open, onOpenChange, reviewId, date, onDeleted, on
   return (
     <>
       <Drawer open={open} onOpenChange={onOpenChange} direction="right">
-        <DrawerContent className="border-border top-0 right-0 left-auto mt-0 h-screen border-l data-[vaul-drawer-direction=left]:sm:max-w-full data-[vaul-drawer-direction=right]:sm:max-w-full">
+        <DrawerContent className="data-[vaul-drawer-direction=left]:w-full data-[vaul-drawer-direction=right]:w-full data-[vaul-drawer-direction=left]:sm:max-w-full data-[vaul-drawer-direction=right]:sm:max-w-full">
           <div className="flex h-full flex-col">
-            {/* 顶部文件名标签 */}
             <div className="border-border flex items-center justify-between border-b px-6 py-3">
               <span className="text-muted-foreground font-mono text-xs">review.tsx</span>
               <div className="flex items-center gap-2">
@@ -245,13 +244,10 @@ export function ReviewDrawer({ open, onOpenChange, reviewId, date, onDeleted, on
                   删除
                 </Button>
                 <DrawerClose asChild>
-                  <Button size="sm" variant="ghost">
-                    关闭
-                  </Button>
+                  <Button size="sm">关闭</Button>
                 </DrawerClose>
               </div>
             </div>
-
             <DrawerHeader className="border-border border-b">
               <div className="flex items-center justify-between">
                 <div className="flex-1">
@@ -262,10 +258,8 @@ export function ReviewDrawer({ open, onOpenChange, reviewId, date, onDeleted, on
                 </div>
               </div>
             </DrawerHeader>
-
             <div className="flex-1 overflow-y-auto py-6">
               <div className="bg-border space-y-px">
-                {/* 基本信息 */}
                 <Card>
                   <CardHeader>
                     <EditableField
@@ -289,7 +283,6 @@ export function ReviewDrawer({ open, onOpenChange, reviewId, date, onDeleted, on
                     />
                   </CardHeader>
                   <CardContent className="space-y-4">
-                    {/* 牌谱链接 */}
                     <div className="grid grid-cols-2 gap-4">
                       <div>
                         <label className="flex items-center gap-1.5 text-sm font-medium">
@@ -368,8 +361,6 @@ export function ReviewDrawer({ open, onOpenChange, reviewId, date, onDeleted, on
                         />
                       </div>
                     </div>
-
-                    {/* 日期和状态 */}
                     <div className="grid grid-cols-2 gap-4">
                       <div>
                         <label className="flex items-center gap-1.5 text-sm font-medium">
@@ -466,8 +457,6 @@ export function ReviewDrawer({ open, onOpenChange, reviewId, date, onDeleted, on
                         />
                       </div>
                     </div>
-
-                    {/* 队伍 */}
                     <div>
                       <label className="flex items-center gap-1.5 text-sm font-medium">
                         <UsersIcon className="text-primary size-4" />
@@ -502,11 +491,7 @@ export function ReviewDrawer({ open, onOpenChange, reviewId, date, onDeleted, on
                               selectedTeams.map((teamName) => {
                                 const teamColors = getTeamColorClassByName(teamName)
                                 return (
-                                  <Badge
-                                    key={teamName}
-                                    variant="outline"
-                                    className={teamColors}
-                                  >
+                                  <Badge key={teamName} variant="outline" className={teamColors}>
                                     {teamName}
                                   </Badge>
                                 )
@@ -518,8 +503,6 @@ export function ReviewDrawer({ open, onOpenChange, reviewId, date, onDeleted, on
                         )}
                       />
                     </div>
-
-                    {/* 社交网址 */}
                     <div>
                       <label className="flex items-center gap-1.5 text-sm font-medium">
                         <LinkIcon className="text-primary size-4" />
@@ -560,8 +543,6 @@ export function ReviewDrawer({ open, onOpenChange, reviewId, date, onDeleted, on
                     </div>
                   </CardContent>
                 </Card>
-
-                {/* A桌 */}
                 <ReviewTable
                   tableData={tableA}
                   tableName="A"
@@ -581,8 +562,6 @@ export function ReviewDrawer({ open, onOpenChange, reviewId, date, onDeleted, on
                   onRemoveRow={roundIndex => removeTableRow('A', roundIndex)}
                   onBlur={handleBlur}
                 />
-
-                {/* B桌 */}
                 <ReviewTable
                   tableData={tableB}
                   tableName="B"
@@ -602,9 +581,7 @@ export function ReviewDrawer({ open, onOpenChange, reviewId, date, onDeleted, on
                   onRemoveRow={roundIndex => removeTableRow('B', roundIndex)}
                   onBlur={handleBlur}
                 />
-
-                {/* 备注 */}
-                <Card className="border-0">
+                <Card className="hidden border-0">
                   <CardHeader>
                     <CardTitle>备注</CardTitle>
                   </CardHeader>
@@ -640,7 +617,6 @@ export function ReviewDrawer({ open, onOpenChange, reviewId, date, onDeleted, on
         </DrawerContent>
       </Drawer>
 
-      {/* 删除确认对话框 */}
       <AlertDialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>
         <AlertDialogContent>
           <AlertDialogHeader>
