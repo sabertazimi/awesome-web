@@ -19,18 +19,18 @@ interface HosetsuResultInputProps {
 
 /** 何切类型配置 */
 const typeConfig: Record<HosetsuType, { label: string, color: string }> = {
-  discard: { label: '放铳', color: 'bg-red-500' },
-  tile_efficiency: { label: '牌效', color: 'bg-orange-500' },
-  aggressive: { label: '强攻', color: 'bg-yellow-500' },
-  riichi: { label: '立直', color: 'bg-blue-500' },
-  dama: { label: '默听', color: 'bg-cyan-500' },
-  hand_sequence: { label: '手顺', color: 'bg-indigo-500' },
-  betaori: { label: '兜牌', color: 'bg-green-500' },
-  fold: { label: '下车', color: 'bg-teal-500' },
-  retreat: { label: '退向', color: 'bg-lime-500' },
-  refuse_tenpai: { label: '拒听', color: 'bg-emerald-500' },
-  call: { label: '鸣牌', color: 'bg-purple-500' },
-  other: { label: '其他', color: 'bg-gray-500' },
+  hand_sequence: { label: '手顺', color: 'bg-team-1' },
+  tile_efficiency: { label: '牌效', color: 'bg-team-2' },
+  riichi: { label: '立直', color: 'bg-team-3' },
+  dama: { label: '默听', color: 'bg-team-4' },
+  call: { label: '鸣牌', color: 'bg-team-5' },
+  refuse_tenpai: { label: '拒听', color: 'bg-team-6' },
+  retreat: { label: '退向', color: 'bg-team-7' },
+  betaori: { label: '兜牌', color: 'bg-team-8' },
+  fold: { label: '下车', color: 'bg-team-9' },
+  aggressive: { label: '强攻', color: 'bg-team-10' },
+  discard: { label: '放铳', color: 'bg-destructive' },
+  other: { label: '其他', color: 'bg-ring' },
 }
 
 function isHosetsuType(value: string): value is HosetsuType {
