@@ -1,12 +1,13 @@
 import type { GameSchedule } from '@/api/data'
 import type { Review } from '@/api/reviews'
-import { BookTextIcon, UsersIcon } from 'lucide-react'
+import { BookTextIcon, DatabaseIcon, UsersIcon } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router'
 import { teams } from '@/api/data'
 import { createReview, deleteReview, getReviewsByDate } from '@/api/reviews'
 import gameScheduleData from '@/assets/game-schedule.json'
 import { CalendarDayCard } from '@/components/calendar-day-card'
+import { DataManagementDialog } from '@/components/data-management-dialog'
 import { DefaultLayout } from '@/components/default-layout'
 import { NoteDialog } from '@/components/note-dialog'
 import { ReviewDialog } from '@/components/review-dialog'
@@ -45,6 +46,7 @@ export default function CalendarView() {
     date: string
   } | null>(null)
   const [noteDialogOpen, setNoteDialogOpen] = useState(false)
+  const [dataManagementDialogOpen, setDataManagementDialogOpen] = useState(false)
   const weekDays = getWeekDays(currentDate)
 
   // 当 currentDate 改变时,重新加载本周的复盘数据
@@ -171,6 +173,18 @@ export default function CalendarView() {
     setReviews(newReviews)
   }
 
+  // 数据导入后的回调
+  const handleDataImported = () => {
+    // 重新加载整个当前周的数据
+    const newReviews: Record<string, Review[]> = {}
+    const days = getWeekDays(currentDate)
+    days.forEach((day) => {
+      const dateStr = formatDate(day)
+      newReviews[dateStr] = getReviewsByDate(dateStr)
+    })
+    setReviews(newReviews)
+  }
+
   return (
     <DefaultLayout number="02" className="flex flex-col">
       <SiteHeader
@@ -186,6 +200,10 @@ export default function CalendarView() {
             <Button variant="ghost" onClick={() => setNoteDialogOpen(true)}>
               <BookTextIcon className="text-primary size-4" />
               复盘笔记
+            </Button>
+            <Button variant="ghost" onClick={() => setDataManagementDialogOpen(true)}>
+              <DatabaseIcon className="text-primary size-4" />
+              数据管理
             </Button>
           </div>
         )}
@@ -253,6 +271,11 @@ export default function CalendarView() {
         onUpdated={handleReviewUpdated}
       />
       <NoteDialog open={noteDialogOpen} onOpenChange={setNoteDialogOpen} />
+      <DataManagementDialog
+        open={dataManagementDialogOpen}
+        onOpenChange={setDataManagementDialogOpen}
+        onDataImported={handleDataImported}
+      />
     </DefaultLayout>
   )
 }
