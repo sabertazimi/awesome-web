@@ -1,4 +1,4 @@
-import type { HosetsuResult, RoundInfo, TableData } from '../api/reviews'
+import type { HosetsuResult, RoundInfo, TableData } from '@/api/reviews'
 import type { MultiSelectOption } from '@/components/ui/multi-select'
 import { format } from 'date-fns'
 import { zhCN } from 'date-fns/locale/zh-CN'

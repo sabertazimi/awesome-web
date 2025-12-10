@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { getTeamColorClass, getTeamColorClassByFullName, getTeamColorClassByName, teams } from './data'
+import { getTeamColorClass, getTeamColorClassByFullName, getTeamColorClassByName, teams } from '@/api/data'
 
 describe('getTeamColorClass', () => {
   it('应该返回队伍1的颜色类名', () => {
