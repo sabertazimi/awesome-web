@@ -64,7 +64,7 @@ export function ProjectsPortfolio() {
     },
     {
       name: 'Mortal UI',
-      description: 'UI for Mortal Mahjong AI reviewer.',
+      description: 'GUI for Mortal Mahjong AI reviewer.',
       icon: BrainCircuitIcon,
       background: (
         <img
@@ -77,7 +77,7 @@ export function ProjectsPortfolio() {
     },
     {
       name: 'Echarts Dashboard',
-      description: 'Dashboard for Echarts.',
+      description: 'Dashboard with Echarts.',
       icon: SiApacheecharts,
       background: (
         <img
