@@ -18,8 +18,6 @@ interface ReviewCardProps {
  */
 export function ReviewCard({ review, onClick, onDelete }: ReviewCardProps) {
   const statusColor = statusColors[review.status || 'not_started']
-
-  // 获取队伍信息
   const reviewTeams = review.teams?.map(teamName => teams.find(t => t.team_name === teamName)).filter(Boolean)
 
   return (
@@ -27,10 +25,7 @@ export function ReviewCard({ review, onClick, onDelete }: ReviewCardProps) {
       className={cn('group relative cursor-pointer space-y-4 border-none p-3 transition-colors', statusColor)}
       onClick={onClick}
     >
-      {/* 标题 */}
       <p className="font-mono text-sm font-medium">{review.title}</p>
-
-      {/* 链接 */}
       {(review.linkA || review.linkB) && (
         <div className="flex flex-col gap-1 text-xs">
           {review.linkA && (
@@ -65,8 +60,6 @@ export function ReviewCard({ review, onClick, onDelete }: ReviewCardProps) {
           )}
         </div>
       )}
-
-      {/* 参赛队伍 */}
       {reviewTeams && reviewTeams.length > 0 && (
         <div className="flex flex-wrap gap-1">
           {reviewTeams.map((team) => {
