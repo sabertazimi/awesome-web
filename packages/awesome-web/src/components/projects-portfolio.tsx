@@ -47,7 +47,7 @@ export function ProjectsPortfolio() {
           className={cn(projectBackgroundClassName, 'object-top')}
         />
       ),
-      href: 'https://sabertazimi.github.io/awesome-web/m-league-reviewer',
+      href: 'https://tazimi.dev/awesome-web/m-league-reviewer',
     },
     {
       name: 'React Renderer',
@@ -60,7 +60,7 @@ export function ProjectsPortfolio() {
           className={cn(projectBackgroundClassName, 'object-center')}
         />
       ),
-      href: 'https://sabertazimi.github.io/awesome-web/react-renderer',
+      href: 'https://tazimi.dev/awesome-web/react-renderer',
     },
     {
       name: 'Mortal UI',
@@ -73,7 +73,7 @@ export function ProjectsPortfolio() {
           className={cn(projectBackgroundClassName, 'object-center')}
         />
       ),
-      href: 'https://sabertazimi.github.io/awesome-web/mortal-ui',
+      href: 'https://tazimi.dev/awesome-web/mortal-ui',
     },
     {
       name: 'Echarts Dashboard',
@@ -86,7 +86,7 @@ export function ProjectsPortfolio() {
           className={cn(projectBackgroundClassName, 'object-top')}
         />
       ),
-      href: 'https://sabertazimi.github.io/awesome-web/echarts-dashboard',
+      href: 'https://tazimi.dev/awesome-web/echarts-dashboard',
     },
     {
       name: 'Vue Trello',
@@ -99,7 +99,7 @@ export function ProjectsPortfolio() {
           className={cn(projectBackgroundClassName, 'object-top')}
         />
       ),
-      href: 'https://sabertazimi.github.io/awesome-web/vue-trello',
+      href: 'https://tazimi.dev/awesome-web/vue-trello',
     },
     {
       name: 'Vue Design',
@@ -112,7 +112,7 @@ export function ProjectsPortfolio() {
           className={cn(projectBackgroundClassName, 'object-center')}
         />
       ),
-      href: 'https://sabertazimi.github.io/awesome-web/vue-design',
+      href: 'https://tazimi.dev/awesome-web/vue-design',
     },
   ]
 
