@@ -22,7 +22,18 @@ interface NoteDialogProps {
 export function NoteDialog({ open, onOpenChange }: NoteDialogProps) {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="h-screen max-w-full p-0 sm:max-w-full" showCloseButton={false}>
+      <DialogContent
+        className="h-screen max-w-full p-0 sm:max-w-full"
+        showCloseButton={false}
+        onInteractOutside={(event) => {
+          if (
+            event.detail.originalEvent.target instanceof Element
+            && event.detail.originalEvent.target.closest('.group.toast')
+          ) {
+            event.preventDefault()
+          }
+        }}
+      >
         <div className="flex h-full flex-col">
           <div className="border-border flex items-center justify-between border-b px-6 py-3">
             <span className="text-muted-foreground font-mono text-xs">note.tsx</span>

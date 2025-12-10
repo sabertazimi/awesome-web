@@ -25,6 +25,11 @@ function Toaster({ ...props }: ToasterProps) {
           '--border-radius': 'var(--radius)',
         } as React.CSSProperties
       }
+      toastOptions={{
+        classNames: {
+          toast: 'group toast group-[.toaster]:pointer-events-auto',
+        },
+      }}
       position="top-center"
       closeButton
       richColors
