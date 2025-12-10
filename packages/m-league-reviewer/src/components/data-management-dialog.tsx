@@ -1,5 +1,6 @@
 import { DatabaseIcon, DownloadIcon, InfoIcon, UploadIcon } from 'lucide-react'
 import { useRef, useState } from 'react'
+import { toast } from 'sonner'
 import { downloadDataAsJson, importAllData } from '@/api/reviews'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import {
@@ -32,9 +33,9 @@ export function DataManagementDialog({ open, onOpenChange, onDataImported }: Dat
     try {
       downloadDataAsJson()
       setError(null)
-    } catch (err) {
+    } catch (err: unknown) {
       setError('导出失败,请重试')
-      console.error('Export error:', err)
+      toast.error(`导出错误: ${err instanceof Error ? err.message : String(err)}`)
     }
   }
 
@@ -65,9 +66,9 @@ export function DataManagementDialog({ open, onOpenChange, onDataImported }: Dat
       } else {
         setError(result.error || '导入失败')
       }
-    } catch (err) {
+    } catch (err: unknown) {
       setError('读取文件失败,请确保文件格式正确')
-      console.error('Import error:', err)
+      toast.error(`导入错误: ${err instanceof Error ? err.message : String(err)}`)
     }
 
     // 重置文件输入

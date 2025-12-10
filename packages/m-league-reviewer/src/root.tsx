@@ -4,6 +4,7 @@ import { isRouteErrorResponse, Link, Links, Meta, Outlet, Scripts, ScrollRestora
 import { DefaultLayout } from '@/components/default-layout'
 import { SiteHeader } from '@/components/site-header'
 import { Button } from '@/components/ui/button'
+import { Toaster } from '@/components/ui/sonner'
 import { VoidSection } from '@/components/void-section'
 import '@/assets/base.css'
 
@@ -32,6 +33,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </head>
       <body>
         {children}
+        <Toaster />
         <ScrollRestoration />
         <Scripts />
       </body>
