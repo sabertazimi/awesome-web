@@ -2,7 +2,7 @@ import type { Editor } from '@tiptap/react'
 import type { Note } from '@/api/reviews'
 import { Placeholder } from '@tiptap/extensions'
 import { EditorContent, useEditor, useEditorState } from '@tiptap/react'
-import { BubbleMenu, FloatingMenu } from '@tiptap/react/menus'
+import { BubbleMenu } from '@tiptap/react/menus'
 import StarterKit from '@tiptap/starter-kit'
 import {
   BoldIcon,
@@ -472,35 +472,6 @@ export function NoteEditor({ open }: { open: boolean }) {
           canRedo={canRedo}
         />
       </BubbleMenu>
-      <FloatingMenu editor={editor} options={{ placement: 'top-start', offset: 8 }}>
-        <EditorToolbar
-          editor={editor}
-          isBold={isBold}
-          canBold={canBold}
-          isItalic={isItalic}
-          canItalic={canItalic}
-          isUnderline={isUnderline}
-          canUnderline={canUnderline}
-          isStrikethrough={isStrikethrough}
-          canStrikethrough={canStrikethrough}
-          isCode={isCode}
-          canCode={canCode}
-          canClearMarks={canClearMarks}
-          isParagraph={isParagraph}
-          isHeading1={isHeading1}
-          isHeading2={isHeading2}
-          isHeading3={isHeading3}
-          isHeading4={isHeading4}
-          isHeading5={isHeading5}
-          isHeading6={isHeading6}
-          isOrderedList={isOrderedList}
-          isBulletList={isBulletList}
-          isCodeBlock={isCodeBlock}
-          isBlockquote={isBlockquote}
-          canUndo={canUndo}
-          canRedo={canRedo}
-        />
-      </FloatingMenu>
     </>
   )
 }
