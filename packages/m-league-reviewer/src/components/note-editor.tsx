@@ -14,6 +14,7 @@ export function NoteEditor({ open }: { open: boolean }) {
         emptyNodeClass:
           'before:content-[attr(data-placeholder)] before:float-left before:text-muted-foreground before:h-0 before:pointer-events-none',
         placeholder: '写点什么...',
+        includeChildren: true,
       }),
     ],
     editorProps: {
