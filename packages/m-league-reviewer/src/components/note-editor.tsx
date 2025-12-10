@@ -1,3 +1,4 @@
+import type { Editor } from '@tiptap/react'
 import type { Note } from '@/api/reviews'
 import { Placeholder } from '@tiptap/extensions'
 import { EditorContent, useEditor, useEditorState } from '@tiptap/react'
@@ -32,134 +33,67 @@ import { Button } from '@/components/ui/button'
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group'
 import { cn } from '@/lib/utils'
 
-export function NoteEditor({ open }: { open: boolean }) {
-  const [note, setNote] = useState<Note | null>(null)
-  const editor = useEditor({
-    extensions: [
-      StarterKit,
-      Placeholder.configure({
-        emptyNodeClass:
-          'before:content-[attr(data-placeholder)] before:float-left before:text-muted-foreground before:h-0 before:pointer-events-none',
-        placeholder: '写点什么...',
-        includeChildren: true,
-      }),
-    ],
-    editorProps: {
-      attributes: {
-        class: cn(
-          'prose prose-sm sm:prose dark:prose-invert',
-          'mx-auto min-h-full p-8 focus:outline-none',
-          'prose-headings:text-primary prose-headings:font-semibold prose-headings:text-balance prose-headings:scroll-mt-20 prose-headings:relative',
-          'prose-headings:before:absolute prose-headings:before:right-full prose-headings:before:text-primary/40',
-          'prose-headings:before:content-["#"] prose-headings:before:opacity-0 prose-headings:hover:before:opacity-100 prose-headings:before:transition-opacity',
-          'prose-a:text-primary prose-strong:text-primary',
-          'prose-inline-code:before:content-none prose-inline-code:after:content-none',
-          'prose-inline-code:rounded-md prose-inline-code:border prose-inline-code:border-border',
-          'prose-inline-code:bg-muted prose-inline-code:px-1.5 prose-inline-code:py-0.5',
-          'prose-inline-code:font-semibold prose-inline-code:text-foreground prose-inline-code:font-mono',
-        ),
-      },
-      handleKeyDown: (_view, event) => {
-        // 处理 Ctrl+S / Cmd+S 保存
-        if ((event.ctrlKey || event.metaKey) && event.key === 's') {
-          event.preventDefault()
+interface EditorToolbarProps {
+  editor: Editor
+  isBold: boolean
+  canBold: boolean
+  isItalic: boolean
+  canItalic: boolean
+  isUnderline: boolean
+  canUnderline: boolean
+  isStrikethrough: boolean
+  canStrikethrough: boolean
+  isCode: boolean
+  canCode: boolean
+  canClearMarks: boolean
+  isParagraph: boolean
+  isHeading1: boolean
+  isHeading2: boolean
+  isHeading3: boolean
+  isHeading4: boolean
+  isHeading5: boolean
+  isHeading6: boolean
+  isOrderedList: boolean
+  isBulletList: boolean
+  isCodeBlock: boolean
+  isBlockquote: boolean
+  canUndo: boolean
+  canRedo: boolean
+}
 
-          if (note && editor) {
-            const json = editor.getJSON()
-            updateNote(note.id, json)
-          }
-
-          return true
-        }
-
-        return false
-      },
-    },
-    content: { type: 'doc', content: [] },
-    onUpdate: ({ editor }) => {
-      if (note) {
-        const json = editor.getJSON()
-        updateNote(note.id, json)
-      }
-    },
-  })
-  const {
-    isBold,
-    canBold,
-    isItalic,
-    canItalic,
-    isUnderline,
-    canUnderline,
-    isStrikethrough,
-    canStrikethrough,
-    isCode,
-    canCode,
-    canClearMarks,
-    isParagraph,
-    isHeading1,
-    isHeading2,
-    isHeading3,
-    isHeading4,
-    isHeading5,
-    isHeading6,
-    isOrderedList,
-    isBulletList,
-    isCodeBlock,
-    isBlockquote,
-    canUndo,
-    canRedo,
-  } = useEditorState({
-    editor,
-    selector: ({ editor }) => ({
-      isBold: editor.isActive('bold') ?? false,
-      canBold: editor.can().chain().toggleBold().run() ?? false,
-      isItalic: editor.isActive('italic') ?? false,
-      canItalic: editor.can().chain().toggleItalic().run() ?? false,
-      isUnderline: editor.isActive('underline') ?? false,
-      canUnderline: editor.can().chain().toggleUnderline().run() ?? false,
-      isStrikethrough: editor.isActive('strike') ?? false,
-      canStrikethrough: editor.can().chain().toggleStrike().run() ?? false,
-      isCode: editor.isActive('code') ?? false,
-      canCode: editor.can().chain().toggleCode().run() ?? false,
-      canClearMarks: editor.can().chain().unsetAllMarks().run() ?? false,
-      isParagraph: editor.isActive('paragraph') ?? false,
-      isHeading1: editor.isActive('heading', { level: 1 }) ?? false,
-      isHeading2: editor.isActive('heading', { level: 2 }) ?? false,
-      isHeading3: editor.isActive('heading', { level: 3 }) ?? false,
-      isHeading4: editor.isActive('heading', { level: 4 }) ?? false,
-      isHeading5: editor.isActive('heading', { level: 5 }) ?? false,
-      isHeading6: editor.isActive('heading', { level: 6 }) ?? false,
-      isOrderedList: editor.isActive('orderedList') ?? false,
-      isBulletList: editor.isActive('bulletList') ?? false,
-      isCodeBlock: editor.isActive('codeBlock') ?? false,
-      isBlockquote: editor.isActive('blockquote') ?? false,
-      canUndo: editor.can().chain().undo().run() ?? false,
-      canRedo: editor.can().chain().redo().run() ?? false,
-    }),
-  })
-
-  useEffect(() => {
-    if (open && editor) {
-      const notes = getNotes()
-      let currentNote: Note
-
-      if (notes.length === 0) {
-        currentNote = createNote()
-      } else {
-        currentNote = notes[0]
-      }
-
-      setNote(currentNote)
-      editor.commands.setContent(currentNote.content)
-    }
-  }, [open, editor])
-
-  if (!editor) {
-    return null
-  }
-
-  const toolbarContent = (
-    <div className="bg-background flex items-center gap-2 rounded-md border p-1 shadow-md">
+function EditorToolbar({
+  editor,
+  isBold,
+  canBold,
+  isItalic,
+  canItalic,
+  isUnderline,
+  canUnderline,
+  isStrikethrough,
+  canStrikethrough,
+  isCode,
+  canCode,
+  canClearMarks,
+  isParagraph,
+  isHeading1,
+  isHeading2,
+  isHeading3,
+  isHeading4,
+  isHeading5,
+  isHeading6,
+  isOrderedList,
+  isBulletList,
+  isCodeBlock,
+  isBlockquote,
+  canUndo,
+  canRedo,
+}: EditorToolbarProps) {
+  return (
+    <div
+      role="toolbar"
+      aria-label="Text formatting toolbar"
+      className="bg-background flex items-center gap-2 rounded-md border p-1 shadow-md"
+    >
       <ToggleGroup
         type="multiple"
         variant="outline"
@@ -379,15 +313,193 @@ export function NoteEditor({ open }: { open: boolean }) {
       </div>
     </div>
   )
+}
+
+export function NoteEditor({ open }: { open: boolean }) {
+  const [note, setNote] = useState<Note | null>(null)
+  const editor = useEditor({
+    extensions: [
+      StarterKit,
+      Placeholder.configure({
+        emptyNodeClass:
+          'before:content-[attr(data-placeholder)] before:float-left before:text-muted-foreground before:h-0 before:pointer-events-none',
+        placeholder: '写点什么...',
+        includeChildren: true,
+      }),
+    ],
+    editorProps: {
+      attributes: {
+        class: cn(
+          'prose prose-sm sm:prose dark:prose-invert',
+          'mx-auto min-h-full p-8 focus:outline-none',
+          'prose-headings:text-primary prose-headings:font-semibold prose-headings:text-balance prose-headings:scroll-mt-20 prose-headings:relative',
+          'prose-headings:before:absolute prose-headings:before:right-full prose-headings:before:text-primary/40',
+          'prose-headings:before:content-["#"] prose-headings:before:opacity-0 prose-headings:hover:before:opacity-100 prose-headings:before:transition-opacity',
+          'prose-a:text-primary prose-strong:text-primary',
+          'prose-inline-code:before:content-none prose-inline-code:after:content-none',
+          'prose-inline-code:rounded-md prose-inline-code:border prose-inline-code:border-border',
+          'prose-inline-code:bg-muted prose-inline-code:px-1.5 prose-inline-code:py-0.5',
+          'prose-inline-code:font-semibold prose-inline-code:text-foreground prose-inline-code:font-mono',
+        ),
+      },
+      handleKeyDown: (_view, event) => {
+        if ((event.ctrlKey || event.metaKey) && event.key === 's') {
+          event.preventDefault()
+
+          if (note && editor) {
+            const json = editor.getJSON()
+            updateNote(note.id, json)
+          }
+
+          return true
+        }
+
+        return false
+      },
+    },
+    content: { type: 'doc', content: [] },
+    onUpdate: ({ editor }) => {
+      if (note) {
+        const json = editor.getJSON()
+        updateNote(note.id, json)
+      }
+    },
+  })
+  const {
+    isBold,
+    canBold,
+    isItalic,
+    canItalic,
+    isUnderline,
+    canUnderline,
+    isStrikethrough,
+    canStrikethrough,
+    isCode,
+    canCode,
+    canClearMarks,
+    isParagraph,
+    isHeading1,
+    isHeading2,
+    isHeading3,
+    isHeading4,
+    isHeading5,
+    isHeading6,
+    isOrderedList,
+    isBulletList,
+    isCodeBlock,
+    isBlockquote,
+    canUndo,
+    canRedo,
+  } = useEditorState({
+    editor,
+    selector: ({ editor }) => ({
+      isBold: editor.isActive('bold') ?? false,
+      canBold: editor.can().chain().toggleBold().run() ?? false,
+      isItalic: editor.isActive('italic') ?? false,
+      canItalic: editor.can().chain().toggleItalic().run() ?? false,
+      isUnderline: editor.isActive('underline') ?? false,
+      canUnderline: editor.can().chain().toggleUnderline().run() ?? false,
+      isStrikethrough: editor.isActive('strike') ?? false,
+      canStrikethrough: editor.can().chain().toggleStrike().run() ?? false,
+      isCode: editor.isActive('code') ?? false,
+      canCode: editor.can().chain().toggleCode().run() ?? false,
+      canClearMarks: editor.can().chain().unsetAllMarks().run() ?? false,
+      isParagraph: editor.isActive('paragraph') ?? false,
+      isHeading1: editor.isActive('heading', { level: 1 }) ?? false,
+      isHeading2: editor.isActive('heading', { level: 2 }) ?? false,
+      isHeading3: editor.isActive('heading', { level: 3 }) ?? false,
+      isHeading4: editor.isActive('heading', { level: 4 }) ?? false,
+      isHeading5: editor.isActive('heading', { level: 5 }) ?? false,
+      isHeading6: editor.isActive('heading', { level: 6 }) ?? false,
+      isOrderedList: editor.isActive('orderedList') ?? false,
+      isBulletList: editor.isActive('bulletList') ?? false,
+      isCodeBlock: editor.isActive('codeBlock') ?? false,
+      isBlockquote: editor.isActive('blockquote') ?? false,
+      canUndo: editor.can().chain().undo().run() ?? false,
+      canRedo: editor.can().chain().redo().run() ?? false,
+    }),
+  })
+
+  useEffect(() => {
+    if (open && editor) {
+      const notes = getNotes()
+      let currentNote: Note
+
+      if (notes.length === 0) {
+        currentNote = createNote()
+      } else {
+        currentNote = notes[0]
+      }
+
+      setNote(currentNote)
+      editor.commands.setContent(currentNote.content)
+    }
+  }, [open, editor])
+
+  if (!editor) {
+    return null
+  }
 
   return (
     <>
       <EditorContent editor={editor} className="flex-1 overflow-auto" />
       <BubbleMenu editor={editor} options={{ placement: 'top', offset: 8, flip: true }}>
-        {toolbarContent}
+        <EditorToolbar
+          editor={editor}
+          isBold={isBold}
+          canBold={canBold}
+          isItalic={isItalic}
+          canItalic={canItalic}
+          isUnderline={isUnderline}
+          canUnderline={canUnderline}
+          isStrikethrough={isStrikethrough}
+          canStrikethrough={canStrikethrough}
+          isCode={isCode}
+          canCode={canCode}
+          canClearMarks={canClearMarks}
+          isParagraph={isParagraph}
+          isHeading1={isHeading1}
+          isHeading2={isHeading2}
+          isHeading3={isHeading3}
+          isHeading4={isHeading4}
+          isHeading5={isHeading5}
+          isHeading6={isHeading6}
+          isOrderedList={isOrderedList}
+          isBulletList={isBulletList}
+          isCodeBlock={isCodeBlock}
+          isBlockquote={isBlockquote}
+          canUndo={canUndo}
+          canRedo={canRedo}
+        />
       </BubbleMenu>
       <FloatingMenu editor={editor} options={{ placement: 'top-start', offset: 8 }}>
-        {toolbarContent}
+        <EditorToolbar
+          editor={editor}
+          isBold={isBold}
+          canBold={canBold}
+          isItalic={isItalic}
+          canItalic={canItalic}
+          isUnderline={isUnderline}
+          canUnderline={canUnderline}
+          isStrikethrough={isStrikethrough}
+          canStrikethrough={canStrikethrough}
+          isCode={isCode}
+          canCode={canCode}
+          canClearMarks={canClearMarks}
+          isParagraph={isParagraph}
+          isHeading1={isHeading1}
+          isHeading2={isHeading2}
+          isHeading3={isHeading3}
+          isHeading4={isHeading4}
+          isHeading5={isHeading5}
+          isHeading6={isHeading6}
+          isOrderedList={isOrderedList}
+          isBulletList={isBulletList}
+          isCodeBlock={isCodeBlock}
+          isBlockquote={isBlockquote}
+          canUndo={canUndo}
+          canRedo={canRedo}
+        />
       </FloatingMenu>
     </>
   )
