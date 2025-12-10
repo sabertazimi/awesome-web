@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/sabertazimi/awesome-web/compare/v2.0.0...v2.1.0) (2025-12-10)
+
+### Bug Fixes
+
+- **deps:** update dependencies (non-major) ([#870](https://github.com/sabertazimi/awesome-web/issues/870)) ([f3d83b1](https://github.com/sabertazimi/awesome-web/commit/f3d83b1804abe28ce0053a20df8111ccdd9be45b))
+- **m.league-card:** change player card background color ([#875](https://github.com/sabertazimi/awesome-web/issues/875)) ([59a7e61](https://github.com/sabertazimi/awesome-web/commit/59a7e61d7ca3a821ee886cf880adf7c74cc82548))
+- **m.league-round:** change next round logic ([#872](https://github.com/sabertazimi/awesome-web/issues/872)) ([731646c](https://github.com/sabertazimi/awesome-web/commit/731646cc2a50ae287081f4d7c733b1db99537812))
+- **m.league-table:** add copy, paste and clear shortcuts ([#874](https://github.com/sabertazimi/awesome-web/issues/874)) ([d5bfe23](https://github.com/sabertazimi/awesome-web/commit/d5bfe23f244ca3fab4713d28e15ef3a114377693))
+- **m.league-table:** adjust tab index for review table ([#879](https://github.com/sabertazimi/awesome-web/issues/879)) ([90af8d1](https://github.com/sabertazimi/awesome-web/commit/90af8d15c47cda188341e60ed0d2edb603fad14e))
+- **m.league-types:** add more hosetsu types ([#873](https://github.com/sabertazimi/awesome-web/issues/873)) ([e8ba939](https://github.com/sabertazimi/awesome-web/commit/e8ba939f01d145a4767487a8bf6a59514ca478fe))
+- **m.league:** migrate from drawer to dialog ([#878](https://github.com/sabertazimi/awesome-web/issues/878)) ([5c120cc](https://github.com/sabertazimi/awesome-web/commit/5c120cc803d149b138dee02dddc40a2c0db36c7b))
+
+### Features
+
+- **m.league-backup:** implement data backup feature ([#880](https://github.com/sabertazimi/awesome-web/issues/880)) ([98c4937](https://github.com/sabertazimi/awesome-web/commit/98c4937648014268bc6848cdcf797b56dfe92b92))
+- **m.league-editor:** implement rich text note editor ([#877](https://github.com/sabertazimi/awesome-web/issues/877)) ([08ae796](https://github.com/sabertazimi/awesome-web/commit/08ae796d3e1431df45b5a9b78054243199d7b5d3))
+- **m.league-notes:** implement review notes feature ([#876](https://github.com/sabertazimi/awesome-web/issues/876)) ([a9afcfd](https://github.com/sabertazimi/awesome-web/commit/a9afcfdf4a9c4198a8562bda4423f9b7fab06a46))
+
+### Performance Improvements
+
+- [ImgBot] optimize images ([#868](https://github.com/sabertazimi/awesome-web/issues/868)) ([c5cd126](https://github.com/sabertazimi/awesome-web/commit/c5cd126855ed1760ba0af55d0d66a3eb493e64a2))
+
 # [2.0.0](https://github.com/sabertazimi/awesome-web/compare/v1.10.0...v2.0.0) (2025-12-04)
 
 ### Bug Fixes
