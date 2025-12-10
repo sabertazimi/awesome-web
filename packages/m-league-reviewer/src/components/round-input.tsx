@@ -18,6 +18,7 @@ interface RoundInputProps {
  * 小局输入组件
  * 组合式面板，支持东/南场、小局数、本场数的快捷输入
  */
+// eslint-disable-next-line react/no-unstable-default-props -- Default value is not unstable
 export function RoundInput({ value, onChange, onClose, open, onOpenChange, existingRounds = [] }: RoundInputProps) {
   const [localValue, setLocalValue] = useState<RoundInfo>(value)
   const [error, setError] = useState<string>('')
@@ -36,11 +37,7 @@ export function RoundInput({ value, onChange, onClose, open, onOpenChange, exist
         && existing.round === round.round
         && existing.honba === round.honba
         // 排除当前正在编辑的小局
-        && !(
-          existing.field === value.field
-          && existing.round === value.round
-          && existing.honba === value.honba
-        ),
+        && !(existing.field === value.field && existing.round === value.round && existing.honba === value.honba),
     )
   }
 
@@ -90,14 +87,11 @@ export function RoundInput({ value, onChange, onClose, open, onOpenChange, exist
     <Popover open={open} onOpenChange={onOpenChange}>
       <PopoverTrigger asChild>
         <div className="flex min-h-[32px] w-full items-center">
-          <span className={cn('text-sm', !value.field && 'text-muted-foreground')}>
-            {formatRound(value) || '小局'}
-          </span>
+          <span className={cn('text-sm', !value.field && 'text-muted-foreground')}>{formatRound(value) || '小局'}</span>
         </div>
       </PopoverTrigger>
       <PopoverContent className="w-auto p-3" align="start" onClick={e => e.stopPropagation()}>
         <div className="space-y-3">
-          {/* 场风选择 */}
           <div>
             <label className="mb-1.5 block text-xs font-medium">场风</label>
             <div className="flex gap-2">
@@ -119,8 +113,6 @@ export function RoundInput({ value, onChange, onClose, open, onOpenChange, exist
               </Button>
             </div>
           </div>
-
-          {/* 小局数选择 */}
           <div>
             <label className="mb-1.5 block text-xs font-medium">小局</label>
             <div ref={roundButtonsRef} className="grid grid-cols-4 gap-2">
@@ -137,8 +129,6 @@ export function RoundInput({ value, onChange, onClose, open, onOpenChange, exist
               ))}
             </div>
           </div>
-
-          {/* 本场数选择 */}
           <div>
             <label className="mb-1.5 block text-xs font-medium">本場</label>
             <div className="grid grid-cols-5 gap-2">
@@ -155,15 +145,7 @@ export function RoundInput({ value, onChange, onClose, open, onOpenChange, exist
               ))}
             </div>
           </div>
-
-          {/* 错误提示 */}
-          {error && (
-            <div className="text-destructive bg-destructive/10 px-3 py-2 text-xs">
-              {error}
-            </div>
-          )}
-
-          {/* 确认按钮 */}
+          {error && <div className="text-destructive bg-destructive/10 px-3 py-2 text-xs">{error}</div>}
           <div className="flex justify-end gap-2 pt-2">
             <Button size="sm" variant="outline" onClick={handleCancel}>
               取消
@@ -192,9 +174,7 @@ export function RoundDisplay({ value, placeholder = '小局' }: RoundDisplayProp
 
   return (
     <div className="flex min-h-[32px] items-center">
-      <span className={cn('text-sm', !displayText && 'text-muted-foreground')}>
-        {displayText || placeholder}
-      </span>
+      <span className={cn('text-sm', !displayText && 'text-muted-foreground')}>{displayText || placeholder}</span>
     </div>
   )
 }

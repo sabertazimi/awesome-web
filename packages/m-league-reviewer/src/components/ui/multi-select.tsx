@@ -90,7 +90,8 @@ interface MultiSelectGroup {
  * Props for MultiSelect component
  */
 interface MultiSelectProps
-  extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'animationConfig'>,
+  extends
+  Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'animationConfig'>,
   VariantProps<typeof multiSelectVariants> {
   /**
    * An array of option objects or groups to be displayed in the multi-select component.
@@ -301,6 +302,7 @@ export function MultiSelect({
   options,
   onValueChange,
   variant,
+  // eslint-disable-next-line react/no-unstable-default-props -- Default value is not unstable
   defaultValue = [],
   placeholder = 'Select options',
   animation = 0,
@@ -855,10 +857,7 @@ export function MultiSelect({
                         >
                           {IconComponent && !responsiveSettings.hideIcons && (
                             <IconComponent
-                              className={cn(
-                                'mr-2 h-4 w-4',
-                                responsiveSettings.compactMode && 'mr-1 h-3 w-3',
-                              )}
+                              className={cn('mr-2 h-4 w-4', responsiveSettings.compactMode && 'mr-1 h-3 w-3')}
                             />
                           )}
                           <span className={cn(screenSize === 'mobile' && 'truncate')}>{option.label}</span>
