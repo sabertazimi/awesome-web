@@ -101,7 +101,7 @@ function EditorToolbar({
       role="toolbar"
       aria-label="Text formatting toolbar"
       className={cn(
-        'bg-background flex max-w-screen flex-wrap items-center lg:justify-center gap-2 border p-1',
+        'bg-background flex max-w-screen flex-wrap items-center gap-2 border p-1 lg:justify-center',
         className,
       )}
     >
