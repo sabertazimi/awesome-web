@@ -101,7 +101,7 @@ function EditorToolbar({
       role="toolbar"
       aria-label="Text formatting toolbar"
       className={cn(
-        'bg-background flex max-w-screen flex-wrap items-center justify-center gap-2 rounded-md border p-1 shadow-md',
+        'bg-background flex max-w-screen flex-wrap items-center justify-center gap-2 border p-1',
         className,
       )}
     >
@@ -142,81 +142,81 @@ function EditorToolbar({
           }
         }}
       >
-        <ToggleGroupItem value="bold" aria-label="Toggle bold" disabled={!canBold}>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <div className="flex size-full items-center justify-center">
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <div className="flex size-full items-center justify-center">
+              <ToggleGroupItem value="bold" aria-label="Toggle bold" disabled={!canBold}>
                 <BoldIcon className="size-4" />
-              </div>
-            </TooltipTrigger>
-            <TooltipContent>
-              <div>
-                <div>粗体</div>
-                <div className="text-muted-foreground">Ctrl+B</div>
-              </div>
-            </TooltipContent>
-          </Tooltip>
-        </ToggleGroupItem>
-        <ToggleGroupItem value="italic" aria-label="Toggle italic" disabled={!canItalic}>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <div className="flex size-full items-center justify-center">
+              </ToggleGroupItem>
+            </div>
+          </TooltipTrigger>
+          <TooltipContent>
+            <div>
+              <div>粗体</div>
+              <div className="text-muted-foreground">Ctrl+B</div>
+            </div>
+          </TooltipContent>
+        </Tooltip>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <div className="flex size-full items-center justify-center">
+              <ToggleGroupItem value="italic" aria-label="Toggle italic" disabled={!canItalic}>
                 <ItalicIcon className="size-4" />
-              </div>
-            </TooltipTrigger>
-            <TooltipContent>
-              <div>
-                <div>斜体</div>
-                <div className="text-muted-foreground">Ctrl+I</div>
-              </div>
-            </TooltipContent>
-          </Tooltip>
-        </ToggleGroupItem>
-        <ToggleGroupItem value="underline" aria-label="Toggle underline" disabled={!canUnderline}>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <div className="flex size-full items-center justify-center">
+              </ToggleGroupItem>
+            </div>
+          </TooltipTrigger>
+          <TooltipContent>
+            <div>
+              <div>斜体</div>
+              <div className="text-muted-foreground">Ctrl+I</div>
+            </div>
+          </TooltipContent>
+        </Tooltip>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <div className="flex size-full items-center justify-center">
+              <ToggleGroupItem value="underline" aria-label="Toggle underline" disabled={!canUnderline}>
                 <UnderlineIcon className="size-4" />
-              </div>
-            </TooltipTrigger>
-            <TooltipContent>
-              <div>
-                <div>下划线</div>
-                <div className="text-muted-foreground">Ctrl+U</div>
-              </div>
-            </TooltipContent>
-          </Tooltip>
-        </ToggleGroupItem>
-        <ToggleGroupItem value="strikethrough" aria-label="Toggle strikethrough" disabled={!canStrikethrough}>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <div className="flex size-full items-center justify-center">
+              </ToggleGroupItem>
+            </div>
+          </TooltipTrigger>
+          <TooltipContent>
+            <div>
+              <div>下划线</div>
+              <div className="text-muted-foreground">Ctrl+U</div>
+            </div>
+          </TooltipContent>
+        </Tooltip>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <div className="flex size-full items-center justify-center">
+              <ToggleGroupItem value="strikethrough" aria-label="Toggle strikethrough" disabled={!canStrikethrough}>
                 <StrikethroughIcon className="size-4" />
-              </div>
-            </TooltipTrigger>
-            <TooltipContent>
-              <div>
-                <div>删除线</div>
-                <div className="text-muted-foreground">Ctrl+Shift+S</div>
-              </div>
-            </TooltipContent>
-          </Tooltip>
-        </ToggleGroupItem>
-        <ToggleGroupItem value="code" aria-label="Toggle code" disabled={!canCode}>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <div className="flex size-full items-center justify-center">
+              </ToggleGroupItem>
+            </div>
+          </TooltipTrigger>
+          <TooltipContent>
+            <div>
+              <div>删除线</div>
+              <div className="text-muted-foreground">Ctrl+Shift+S</div>
+            </div>
+          </TooltipContent>
+        </Tooltip>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <div className="flex size-full items-center justify-center">
+              <ToggleGroupItem value="code" aria-label="Toggle code" disabled={!canCode}>
                 <CodeIcon className="size-4" />
-              </div>
-            </TooltipTrigger>
-            <TooltipContent>
-              <div>
-                <div>代码</div>
-                <div className="text-muted-foreground">Ctrl+E</div>
-              </div>
-            </TooltipContent>
-          </Tooltip>
-        </ToggleGroupItem>
+              </ToggleGroupItem>
+            </div>
+          </TooltipTrigger>
+          <TooltipContent>
+            <div>
+              <div>代码</div>
+              <div className="text-muted-foreground">Ctrl+E</div>
+            </div>
+          </TooltipContent>
+        </Tooltip>
       </ToggleGroup>
       <Separator orientation="vertical" className="mx-1 data-[orientation=vertical]:h-8" />
       <ToggleGroup
@@ -254,111 +254,111 @@ function EditorToolbar({
           }
         }}
       >
-        <ToggleGroupItem value="paragraph" aria-label="Paragraph">
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <div className="flex size-full items-center justify-center">
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <div className="flex size-full items-center justify-center">
+              <ToggleGroupItem value="paragraph" aria-label="Paragraph">
                 <PilcrowIcon className="size-4" />
-              </div>
-            </TooltipTrigger>
-            <TooltipContent>
-              <div>
-                <div>段落</div>
-                <div className="text-muted-foreground">Ctrl+Alt+0</div>
-              </div>
-            </TooltipContent>
-          </Tooltip>
-        </ToggleGroupItem>
-        <ToggleGroupItem value="h1" aria-label="Heading 1">
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <div className="flex size-full items-center justify-center">
+              </ToggleGroupItem>
+            </div>
+          </TooltipTrigger>
+          <TooltipContent>
+            <div>
+              <div>段落</div>
+              <div className="text-muted-foreground">Ctrl+Alt+0</div>
+            </div>
+          </TooltipContent>
+        </Tooltip>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <div className="flex size-full items-center justify-center">
+              <ToggleGroupItem value="h1" aria-label="Heading 1">
                 <Heading1Icon className="size-4" />
-              </div>
-            </TooltipTrigger>
-            <TooltipContent>
-              <div>
-                <div>标题 1</div>
-                <div className="text-muted-foreground">Ctrl+Alt+1</div>
-              </div>
-            </TooltipContent>
-          </Tooltip>
-        </ToggleGroupItem>
-        <ToggleGroupItem value="h2" aria-label="Heading 2">
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <div className="flex size-full items-center justify-center">
+              </ToggleGroupItem>
+            </div>
+          </TooltipTrigger>
+          <TooltipContent>
+            <div>
+              <div>标题 1</div>
+              <div className="text-muted-foreground">Ctrl+Alt+1</div>
+            </div>
+          </TooltipContent>
+        </Tooltip>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <div className="flex size-full items-center justify-center">
+              <ToggleGroupItem value="h2" aria-label="Heading 2">
                 <Heading2Icon className="size-4" />
-              </div>
-            </TooltipTrigger>
-            <TooltipContent>
-              <div>
-                <div>标题 2</div>
-                <div className="text-muted-foreground">Ctrl+Alt+2</div>
-              </div>
-            </TooltipContent>
-          </Tooltip>
-        </ToggleGroupItem>
-        <ToggleGroupItem value="h3" aria-label="Heading 3">
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <div className="flex size-full items-center justify-center">
+              </ToggleGroupItem>
+            </div>
+          </TooltipTrigger>
+          <TooltipContent>
+            <div>
+              <div>标题 2</div>
+              <div className="text-muted-foreground">Ctrl+Alt+2</div>
+            </div>
+          </TooltipContent>
+        </Tooltip>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <div className="flex size-full items-center justify-center">
+              <ToggleGroupItem value="h3" aria-label="Heading 3">
                 <Heading3Icon className="size-4" />
-              </div>
-            </TooltipTrigger>
-            <TooltipContent>
-              <div>
-                <div>标题 3</div>
-                <div className="text-muted-foreground">Ctrl+Alt+3</div>
-              </div>
-            </TooltipContent>
-          </Tooltip>
-        </ToggleGroupItem>
-        <ToggleGroupItem value="h4" aria-label="Heading 4">
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <div className="flex size-full items-center justify-center">
+              </ToggleGroupItem>
+            </div>
+          </TooltipTrigger>
+          <TooltipContent>
+            <div>
+              <div>标题 3</div>
+              <div className="text-muted-foreground">Ctrl+Alt+3</div>
+            </div>
+          </TooltipContent>
+        </Tooltip>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <div className="flex size-full items-center justify-center">
+              <ToggleGroupItem value="h4" aria-label="Heading 4">
                 <Heading4Icon className="size-4" />
-              </div>
-            </TooltipTrigger>
-            <TooltipContent>
-              <div>
-                <div>标题 4</div>
-                <div className="text-muted-foreground">Ctrl+Alt+4</div>
-              </div>
-            </TooltipContent>
-          </Tooltip>
-        </ToggleGroupItem>
-        <ToggleGroupItem value="h5" aria-label="Heading 5">
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <div className="flex size-full items-center justify-center">
+              </ToggleGroupItem>
+            </div>
+          </TooltipTrigger>
+          <TooltipContent>
+            <div>
+              <div>标题 4</div>
+              <div className="text-muted-foreground">Ctrl+Alt+4</div>
+            </div>
+          </TooltipContent>
+        </Tooltip>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <div className="flex size-full items-center justify-center">
+              <ToggleGroupItem value="h5" aria-label="Heading 5">
                 <Heading5Icon className="size-4" />
-              </div>
-            </TooltipTrigger>
-            <TooltipContent>
-              <div>
-                <div>标题 5</div>
-                <div className="text-muted-foreground">Ctrl+Alt+5</div>
-              </div>
-            </TooltipContent>
-          </Tooltip>
-        </ToggleGroupItem>
-        <ToggleGroupItem value="h6" aria-label="Heading 6">
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <div className="flex size-full items-center justify-center">
+              </ToggleGroupItem>
+            </div>
+          </TooltipTrigger>
+          <TooltipContent>
+            <div>
+              <div>标题 5</div>
+              <div className="text-muted-foreground">Ctrl+Alt+5</div>
+            </div>
+          </TooltipContent>
+        </Tooltip>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <div className="flex size-full items-center justify-center">
+              <ToggleGroupItem value="h6" aria-label="Heading 6">
                 <Heading6Icon className="size-4" />
-              </div>
-            </TooltipTrigger>
-            <TooltipContent>
-              <div>
-                <div>标题 6</div>
-                <div className="text-muted-foreground">Ctrl+Alt+6</div>
-              </div>
-            </TooltipContent>
-          </Tooltip>
-        </ToggleGroupItem>
+              </ToggleGroupItem>
+            </div>
+          </TooltipTrigger>
+          <TooltipContent>
+            <div>
+              <div>标题 6</div>
+              <div className="text-muted-foreground">Ctrl+Alt+6</div>
+            </div>
+          </TooltipContent>
+        </Tooltip>
       </ToggleGroup>
       <Separator orientation="vertical" className="mx-1 data-[orientation=vertical]:h-8" />
       <ToggleGroup
@@ -392,165 +392,165 @@ function EditorToolbar({
           }
         }}
       >
-        <ToggleGroupItem value="orderedList" aria-label="Ordered list">
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <div className="flex size-full items-center justify-center">
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <div className="flex size-full items-center justify-center">
+              <ToggleGroupItem value="orderedList" aria-label="Ordered list">
                 <ListOrderedIcon className="size-4" />
-              </div>
-            </TooltipTrigger>
-            <TooltipContent>
-              <div>
-                <div>有序列表</div>
-                <div className="text-muted-foreground">Ctrl+Shift+7</div>
-              </div>
-            </TooltipContent>
-          </Tooltip>
-        </ToggleGroupItem>
-        <ToggleGroupItem value="bulletList" aria-label="Bullet list">
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <div className="flex size-full items-center justify-center">
+              </ToggleGroupItem>
+            </div>
+          </TooltipTrigger>
+          <TooltipContent>
+            <div>
+              <div>有序列表</div>
+              <div className="text-muted-foreground">Ctrl+Shift+7</div>
+            </div>
+          </TooltipContent>
+        </Tooltip>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <div className="flex size-full items-center justify-center">
+              <ToggleGroupItem value="bulletList" aria-label="Bullet list">
                 <ListIcon className="size-4" />
-              </div>
-            </TooltipTrigger>
-            <TooltipContent>
-              <div>
-                <div>无序列表</div>
-                <div className="text-muted-foreground">Ctrl+Shift+8</div>
-              </div>
-            </TooltipContent>
-          </Tooltip>
-        </ToggleGroupItem>
-        <ToggleGroupItem value="codeBlock" aria-label="Code block">
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <div className="flex size-full items-center justify-center">
+              </ToggleGroupItem>
+            </div>
+          </TooltipTrigger>
+          <TooltipContent>
+            <div>
+              <div>无序列表</div>
+              <div className="text-muted-foreground">Ctrl+Shift+8</div>
+            </div>
+          </TooltipContent>
+        </Tooltip>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <div className="flex size-full items-center justify-center">
+              <ToggleGroupItem value="codeBlock" aria-label="Code block">
                 <SquareCodeIcon className="size-4" />
-              </div>
-            </TooltipTrigger>
-            <TooltipContent>
-              <div>
-                <div>代码块</div>
-                <div className="text-muted-foreground">Ctrl+Alt+C</div>
-              </div>
-            </TooltipContent>
-          </Tooltip>
-        </ToggleGroupItem>
-        <ToggleGroupItem value="blockquote" aria-label="Blockquote">
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <div className="flex size-full items-center justify-center">
+              </ToggleGroupItem>
+            </div>
+          </TooltipTrigger>
+          <TooltipContent>
+            <div>
+              <div>代码块</div>
+              <div className="text-muted-foreground">Ctrl+Alt+C</div>
+            </div>
+          </TooltipContent>
+        </Tooltip>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <div className="flex size-full items-center justify-center">
+              <ToggleGroupItem value="blockquote" aria-label="Blockquote">
                 <QuoteIcon className="size-4" />
-              </div>
-            </TooltipTrigger>
-            <TooltipContent>
-              <div>
-                <div>引用块</div>
-                <div className="text-muted-foreground">Ctrl+Shift+B</div>
-              </div>
-            </TooltipContent>
-          </Tooltip>
-        </ToggleGroupItem>
+              </ToggleGroupItem>
+            </div>
+          </TooltipTrigger>
+          <TooltipContent>
+            <div>
+              <div>引用块</div>
+              <div className="text-muted-foreground">Ctrl+Shift+B</div>
+            </div>
+          </TooltipContent>
+        </Tooltip>
       </ToggleGroup>
       <Separator orientation="vertical" className="mx-1 data-[orientation=vertical]:h-8" />
       <ToggleGroup type="multiple" value={[]} onValueChange={() => {}}>
-        <ToggleGroupItem
-          value="horizontalRule"
-          aria-label="Horizontal rule"
-          onClick={() => editor.chain().focus().setHorizontalRule().run()}
-        >
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <div className="flex size-full items-center justify-center">
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <div className="flex size-full items-center justify-center">
+              <ToggleGroupItem
+                value="horizontalRule"
+                aria-label="Horizontal rule"
+                onClick={() => editor.chain().focus().setHorizontalRule().run()}
+              >
                 <SeparatorHorizontalIcon className="size-4" />
-              </div>
-            </TooltipTrigger>
-            <TooltipContent>
-              <div>
-                <div>水平分隔线</div>
-              </div>
-            </TooltipContent>
-          </Tooltip>
-        </ToggleGroupItem>
-        <ToggleGroupItem
-          value="hardBreak"
-          aria-label="Hard break"
-          onClick={() => editor.chain().focus().setHardBreak().run()}
-        >
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <div className="flex size-full items-center justify-center">
+              </ToggleGroupItem>
+            </div>
+          </TooltipTrigger>
+          <TooltipContent>
+            <div>
+              <div>水平分隔线</div>
+            </div>
+          </TooltipContent>
+        </Tooltip>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <div className="flex size-full items-center justify-center">
+              <ToggleGroupItem
+                value="hardBreak"
+                aria-label="Hard break"
+                onClick={() => editor.chain().focus().setHardBreak().run()}
+              >
                 <WrapTextIcon className="size-4" />
-              </div>
-            </TooltipTrigger>
-            <TooltipContent>
-              <div>
-                <div>强制换行</div>
-                <div className="text-muted-foreground">Ctrl+Enter</div>
-              </div>
-            </TooltipContent>
-          </Tooltip>
-        </ToggleGroupItem>
-        <ToggleGroupItem
-          value="undo"
-          aria-label="Undo"
-          disabled={!canUndo}
-          onClick={() => editor.chain().focus().undo().run()}
-        >
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <div className="flex size-full items-center justify-center">
+              </ToggleGroupItem>
+            </div>
+          </TooltipTrigger>
+          <TooltipContent>
+            <div>
+              <div>强制换行</div>
+              <div className="text-muted-foreground">Ctrl+Enter</div>
+            </div>
+          </TooltipContent>
+        </Tooltip>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <div className="flex size-full items-center justify-center">
+              <ToggleGroupItem
+                value="undo"
+                aria-label="Undo"
+                disabled={!canUndo}
+                onClick={() => editor.chain().focus().undo().run()}
+              >
                 <UndoIcon className="size-4" />
-              </div>
-            </TooltipTrigger>
-            <TooltipContent>
-              <div>
-                <div>撤销</div>
-                <div className="text-muted-foreground">Ctrl+Z</div>
-              </div>
-            </TooltipContent>
-          </Tooltip>
-        </ToggleGroupItem>
-        <ToggleGroupItem
-          value="redo"
-          aria-label="Redo"
-          disabled={!canRedo}
-          onClick={() => editor.chain().focus().redo().run()}
-        >
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <div className="flex size-full items-center justify-center">
+              </ToggleGroupItem>
+            </div>
+          </TooltipTrigger>
+          <TooltipContent>
+            <div>
+              <div>撤销</div>
+              <div className="text-muted-foreground">Ctrl+Z</div>
+            </div>
+          </TooltipContent>
+        </Tooltip>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <div className="flex size-full items-center justify-center">
+              <ToggleGroupItem
+                value="redo"
+                aria-label="Redo"
+                disabled={!canRedo}
+                onClick={() => editor.chain().focus().redo().run()}
+              >
                 <RedoIcon className="size-4" />
-              </div>
-            </TooltipTrigger>
-            <TooltipContent>
-              <div>
-                <div>重做</div>
-                <div className="text-muted-foreground">Ctrl+Shift+Z</div>
-              </div>
-            </TooltipContent>
-          </Tooltip>
-        </ToggleGroupItem>
-        <ToggleGroupItem
-          value="clearMarks"
-          aria-label="Clear marks"
-          disabled={!canClearMarks}
-          onClick={() => editor.chain().focus().unsetAllMarks().run()}
-        >
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <div className="flex size-full items-center justify-center">
+              </ToggleGroupItem>
+            </div>
+          </TooltipTrigger>
+          <TooltipContent>
+            <div>
+              <div>重做</div>
+              <div className="text-muted-foreground">Ctrl+Shift+Z</div>
+            </div>
+          </TooltipContent>
+        </Tooltip>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <div className="flex size-full items-center justify-center">
+              <ToggleGroupItem
+                value="clearMarks"
+                aria-label="Clear marks"
+                disabled={!canClearMarks}
+                onClick={() => editor.chain().focus().unsetAllMarks().run()}
+              >
                 <XIcon className="size-4" />
-              </div>
-            </TooltipTrigger>
-            <TooltipContent>
-              <div>
-                <div>清除格式</div>
-              </div>
-            </TooltipContent>
-          </Tooltip>
-        </ToggleGroupItem>
+              </ToggleGroupItem>
+            </div>
+          </TooltipTrigger>
+          <TooltipContent>
+            <div>
+              <div>清除格式</div>
+            </div>
+          </TooltipContent>
+        </Tooltip>
       </ToggleGroup>
     </div>
   )
@@ -578,8 +578,8 @@ export function NoteEditor({ open }: { open: boolean }) {
           'prose-headings:before:content-["#"] prose-headings:before:opacity-0 prose-headings:hover:before:opacity-100 prose-headings:before:transition-opacity',
           'prose-a:text-primary prose-strong:text-primary',
           'prose-inline-code:before:content-none prose-inline-code:after:content-none',
-          'prose-inline-code:rounded-md prose-inline-code:border prose-inline-code:border-border',
-          'prose-inline-code:bg-muted prose-inline-code:px-1.5 prose-inline-code:py-0.5',
+          'prose-inline-code:border prose-inline-code:border-border prose-inline-code:bg-muted',
+          'prose-inline-code:px-1.5 prose-inline-code:py-0.5 prose-inline-code:mx-1',
           'prose-inline-code:font-semibold prose-inline-code:text-foreground prose-inline-code:font-mono',
         ),
       },
@@ -659,7 +659,7 @@ export function NoteEditor({ open }: { open: boolean }) {
 
   return (
     <>
-      <EditorToolbar editor={editor} editorState={editorState} className="rounded-none" />
+      <EditorToolbar editor={editor} editorState={editorState} />
       <EditorContent editor={editor} className="flex-1 overflow-auto" />
       <BubbleMenu editor={editor} options={{ placement: 'top', offset: 8, flip: true }} className="hidden lg:block">
         <EditorToolbar editor={editor} editorState={editorState} />
