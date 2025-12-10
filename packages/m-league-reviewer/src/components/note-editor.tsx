@@ -16,10 +16,10 @@ import {
   ItalicIcon,
   ListIcon,
   ListOrderedIcon,
-  MinusIcon,
   PilcrowIcon,
   QuoteIcon,
   RedoIcon,
+  SeparatorHorizontalIcon,
   SquareCodeIcon,
   StrikethroughIcon,
   UnderlineIcon,
@@ -30,75 +30,83 @@ import {
 import { useEffect, useState } from 'react'
 import { toast } from 'sonner'
 import { createNote, getNotes, updateNote } from '@/api/reviews'
-import { Button } from '@/components/ui/button'
+import { Separator } from '@/components/ui/separator'
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group'
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
 import { cn } from '@/lib/utils'
 
 interface EditorToolbarProps {
   editor: Editor
-  isBold: boolean
-  canBold: boolean
-  isItalic: boolean
-  canItalic: boolean
-  isUnderline: boolean
-  canUnderline: boolean
-  isStrikethrough: boolean
-  canStrikethrough: boolean
-  isCode: boolean
-  canCode: boolean
-  canClearMarks: boolean
-  isParagraph: boolean
-  isHeading1: boolean
-  isHeading2: boolean
-  isHeading3: boolean
-  isHeading4: boolean
-  isHeading5: boolean
-  isHeading6: boolean
-  isOrderedList: boolean
-  isBulletList: boolean
-  isCodeBlock: boolean
-  isBlockquote: boolean
-  canUndo: boolean
-  canRedo: boolean
+  editorState: {
+    isBold: boolean
+    canBold: boolean
+    isItalic: boolean
+    canItalic: boolean
+    isUnderline: boolean
+    canUnderline: boolean
+    isStrikethrough: boolean
+    canStrikethrough: boolean
+    isCode: boolean
+    canCode: boolean
+    canClearMarks: boolean
+    isParagraph: boolean
+    isHeading1: boolean
+    isHeading2: boolean
+    isHeading3: boolean
+    isHeading4: boolean
+    isHeading5: boolean
+    isHeading6: boolean
+    isOrderedList: boolean
+    isBulletList: boolean
+    isCodeBlock: boolean
+    isBlockquote: boolean
+    canUndo: boolean
+    canRedo: boolean
+  }
+  className?: string
 }
 
 function EditorToolbar({
   editor,
-  isBold,
-  canBold,
-  isItalic,
-  canItalic,
-  isUnderline,
-  canUnderline,
-  isStrikethrough,
-  canStrikethrough,
-  isCode,
-  canCode,
-  canClearMarks,
-  isParagraph,
-  isHeading1,
-  isHeading2,
-  isHeading3,
-  isHeading4,
-  isHeading5,
-  isHeading6,
-  isOrderedList,
-  isBulletList,
-  isCodeBlock,
-  isBlockquote,
-  canUndo,
-  canRedo,
+  editorState: {
+    isBold,
+    canBold,
+    isItalic,
+    canItalic,
+    isUnderline,
+    canUnderline,
+    isStrikethrough,
+    canStrikethrough,
+    isCode,
+    canCode,
+    canClearMarks,
+    isParagraph,
+    isHeading1,
+    isHeading2,
+    isHeading3,
+    isHeading4,
+    isHeading5,
+    isHeading6,
+    isOrderedList,
+    isBulletList,
+    isCodeBlock,
+    isBlockquote,
+    canUndo,
+    canRedo,
+  },
+  className,
 }: EditorToolbarProps) {
   return (
     <div
       role="toolbar"
       aria-label="Text formatting toolbar"
-      className="bg-background flex items-center gap-2 rounded-md border p-1 shadow-md"
+      className={cn(
+        'bg-background flex max-w-screen flex-wrap items-center justify-center gap-2 rounded-md border p-1 shadow-md',
+        className,
+      )}
     >
       <ToggleGroup
         type="multiple"
-        variant="outline"
-        spacing={0}
         value={[
           isBold ? 'bold' : '',
           isItalic ? 'italic' : '',
@@ -134,37 +142,92 @@ function EditorToolbar({
           }
         }}
       >
-        <ToggleGroupItem value="bold" aria-label="Toggle bold" disabled={!canBold} title="Ctrl+B">
-          <BoldIcon className="size-4" />
+        <ToggleGroupItem value="bold" aria-label="Toggle bold" disabled={!canBold}>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <div className="flex size-full items-center justify-center">
+                <BoldIcon className="size-4" />
+              </div>
+            </TooltipTrigger>
+            <TooltipContent>
+              <div>
+                <div>粗体</div>
+                <div className="text-muted-foreground">Ctrl+B</div>
+              </div>
+            </TooltipContent>
+          </Tooltip>
         </ToggleGroupItem>
-        <ToggleGroupItem value="italic" aria-label="Toggle italic" disabled={!canItalic} title="Ctrl+I">
-          <ItalicIcon className="size-4" />
+        <ToggleGroupItem value="italic" aria-label="Toggle italic" disabled={!canItalic}>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <div className="flex size-full items-center justify-center">
+                <ItalicIcon className="size-4" />
+              </div>
+            </TooltipTrigger>
+            <TooltipContent>
+              <div>
+                <div>斜体</div>
+                <div className="text-muted-foreground">Ctrl+I</div>
+              </div>
+            </TooltipContent>
+          </Tooltip>
         </ToggleGroupItem>
-        <ToggleGroupItem value="underline" aria-label="Toggle underline" disabled={!canUnderline} title="Ctrl+U">
-          <UnderlineIcon className="size-4" />
+        <ToggleGroupItem value="underline" aria-label="Toggle underline" disabled={!canUnderline}>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <div className="flex size-full items-center justify-center">
+                <UnderlineIcon className="size-4" />
+              </div>
+            </TooltipTrigger>
+            <TooltipContent>
+              <div>
+                <div>下划线</div>
+                <div className="text-muted-foreground">Ctrl+U</div>
+              </div>
+            </TooltipContent>
+          </Tooltip>
         </ToggleGroupItem>
-        <ToggleGroupItem
-          value="strikethrough"
-          aria-label="Toggle strikethrough"
-          disabled={!canStrikethrough}
-          title="Ctrl+Shift+S"
-        >
-          <StrikethroughIcon className="size-4" />
+        <ToggleGroupItem value="strikethrough" aria-label="Toggle strikethrough" disabled={!canStrikethrough}>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <div className="flex size-full items-center justify-center">
+                <StrikethroughIcon className="size-4" />
+              </div>
+            </TooltipTrigger>
+            <TooltipContent>
+              <div>
+                <div>删除线</div>
+                <div className="text-muted-foreground">Ctrl+Shift+S</div>
+              </div>
+            </TooltipContent>
+          </Tooltip>
         </ToggleGroupItem>
-        <ToggleGroupItem value="code" aria-label="Toggle code" disabled={!canCode} title="Ctrl+E">
-          <CodeIcon className="size-4" />
+        <ToggleGroupItem value="code" aria-label="Toggle code" disabled={!canCode}>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <div className="flex size-full items-center justify-center">
+                <CodeIcon className="size-4" />
+              </div>
+            </TooltipTrigger>
+            <TooltipContent>
+              <div>
+                <div>代码</div>
+                <div className="text-muted-foreground">Ctrl+E</div>
+              </div>
+            </TooltipContent>
+          </Tooltip>
         </ToggleGroupItem>
       </ToggleGroup>
+      <Separator orientation="vertical" className="mx-1 data-[orientation=vertical]:h-8" />
       <ToggleGroup
         type="single"
-        variant="outline"
-        spacing={0}
         value={
           isParagraph ? 'paragraph' : isHeading1 ? 'h1' : isHeading2 ? 'h2' : isHeading3 ? 'h3' : isHeading4 ? 'h4' : isHeading5 ? 'h5' : isHeading6 ? 'h6' : ''
         }
         onValueChange={(value) => {
-          if (!value)
+          if (!value) {
             return
+          }
 
           switch (value) {
             case 'paragraph':
@@ -191,32 +254,115 @@ function EditorToolbar({
           }
         }}
       >
-        <ToggleGroupItem value="paragraph" aria-label="Paragraph" title="Ctrl+Alt+0">
-          <PilcrowIcon className="size-4" />
+        <ToggleGroupItem value="paragraph" aria-label="Paragraph">
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <div className="flex size-full items-center justify-center">
+                <PilcrowIcon className="size-4" />
+              </div>
+            </TooltipTrigger>
+            <TooltipContent>
+              <div>
+                <div>段落</div>
+                <div className="text-muted-foreground">Ctrl+Alt+0</div>
+              </div>
+            </TooltipContent>
+          </Tooltip>
         </ToggleGroupItem>
-        <ToggleGroupItem value="h1" aria-label="Heading 1" title="Ctrl+Alt+1">
-          <Heading1Icon className="size-4" />
+        <ToggleGroupItem value="h1" aria-label="Heading 1">
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <div className="flex size-full items-center justify-center">
+                <Heading1Icon className="size-4" />
+              </div>
+            </TooltipTrigger>
+            <TooltipContent>
+              <div>
+                <div>标题 1</div>
+                <div className="text-muted-foreground">Ctrl+Alt+1</div>
+              </div>
+            </TooltipContent>
+          </Tooltip>
         </ToggleGroupItem>
-        <ToggleGroupItem value="h2" aria-label="Heading 2" title="Ctrl+Alt+2">
-          <Heading2Icon className="size-4" />
+        <ToggleGroupItem value="h2" aria-label="Heading 2">
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <div className="flex size-full items-center justify-center">
+                <Heading2Icon className="size-4" />
+              </div>
+            </TooltipTrigger>
+            <TooltipContent>
+              <div>
+                <div>标题 2</div>
+                <div className="text-muted-foreground">Ctrl+Alt+2</div>
+              </div>
+            </TooltipContent>
+          </Tooltip>
         </ToggleGroupItem>
-        <ToggleGroupItem value="h3" aria-label="Heading 3" title="Ctrl+Alt+3">
-          <Heading3Icon className="size-4" />
+        <ToggleGroupItem value="h3" aria-label="Heading 3">
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <div className="flex size-full items-center justify-center">
+                <Heading3Icon className="size-4" />
+              </div>
+            </TooltipTrigger>
+            <TooltipContent>
+              <div>
+                <div>标题 3</div>
+                <div className="text-muted-foreground">Ctrl+Alt+3</div>
+              </div>
+            </TooltipContent>
+          </Tooltip>
         </ToggleGroupItem>
-        <ToggleGroupItem value="h4" aria-label="Heading 4" title="Ctrl+Alt+4">
-          <Heading4Icon className="size-4" />
+        <ToggleGroupItem value="h4" aria-label="Heading 4">
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <div className="flex size-full items-center justify-center">
+                <Heading4Icon className="size-4" />
+              </div>
+            </TooltipTrigger>
+            <TooltipContent>
+              <div>
+                <div>标题 4</div>
+                <div className="text-muted-foreground">Ctrl+Alt+4</div>
+              </div>
+            </TooltipContent>
+          </Tooltip>
         </ToggleGroupItem>
-        <ToggleGroupItem value="h5" aria-label="Heading 5" title="Ctrl+Alt+5">
-          <Heading5Icon className="size-4" />
+        <ToggleGroupItem value="h5" aria-label="Heading 5">
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <div className="flex size-full items-center justify-center">
+                <Heading5Icon className="size-4" />
+              </div>
+            </TooltipTrigger>
+            <TooltipContent>
+              <div>
+                <div>标题 5</div>
+                <div className="text-muted-foreground">Ctrl+Alt+5</div>
+              </div>
+            </TooltipContent>
+          </Tooltip>
         </ToggleGroupItem>
-        <ToggleGroupItem value="h6" aria-label="Heading 6" title="Ctrl+Alt+6">
-          <Heading6Icon className="size-4" />
+        <ToggleGroupItem value="h6" aria-label="Heading 6">
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <div className="flex size-full items-center justify-center">
+                <Heading6Icon className="size-4" />
+              </div>
+            </TooltipTrigger>
+            <TooltipContent>
+              <div>
+                <div>标题 6</div>
+                <div className="text-muted-foreground">Ctrl+Alt+6</div>
+              </div>
+            </TooltipContent>
+          </Tooltip>
         </ToggleGroupItem>
       </ToggleGroup>
+      <Separator orientation="vertical" className="mx-1 data-[orientation=vertical]:h-8" />
       <ToggleGroup
         type="multiple"
-        variant="outline"
-        spacing={0}
         value={[
           isOrderedList ? 'orderedList' : '',
           isBulletList ? 'bulletList' : '',
@@ -246,72 +392,166 @@ function EditorToolbar({
           }
         }}
       >
-        <ToggleGroupItem value="orderedList" aria-label="Ordered list" title="Ctrl+Shift+7">
-          <ListOrderedIcon className="size-4" />
+        <ToggleGroupItem value="orderedList" aria-label="Ordered list">
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <div className="flex size-full items-center justify-center">
+                <ListOrderedIcon className="size-4" />
+              </div>
+            </TooltipTrigger>
+            <TooltipContent>
+              <div>
+                <div>有序列表</div>
+                <div className="text-muted-foreground">Ctrl+Shift+7</div>
+              </div>
+            </TooltipContent>
+          </Tooltip>
         </ToggleGroupItem>
-        <ToggleGroupItem value="bulletList" aria-label="Bullet list" title="Ctrl+Shift+8">
-          <ListIcon className="size-4" />
+        <ToggleGroupItem value="bulletList" aria-label="Bullet list">
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <div className="flex size-full items-center justify-center">
+                <ListIcon className="size-4" />
+              </div>
+            </TooltipTrigger>
+            <TooltipContent>
+              <div>
+                <div>无序列表</div>
+                <div className="text-muted-foreground">Ctrl+Shift+8</div>
+              </div>
+            </TooltipContent>
+          </Tooltip>
         </ToggleGroupItem>
-        <ToggleGroupItem value="codeBlock" aria-label="Code block" title="Ctrl+Alt+C">
-          <SquareCodeIcon className="size-4" />
+        <ToggleGroupItem value="codeBlock" aria-label="Code block">
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <div className="flex size-full items-center justify-center">
+                <SquareCodeIcon className="size-4" />
+              </div>
+            </TooltipTrigger>
+            <TooltipContent>
+              <div>
+                <div>代码块</div>
+                <div className="text-muted-foreground">Ctrl+Alt+C</div>
+              </div>
+            </TooltipContent>
+          </Tooltip>
         </ToggleGroupItem>
-        <ToggleGroupItem value="blockquote" aria-label="Blockquote" title="Ctrl+Shift+B">
-          <QuoteIcon className="size-4" />
+        <ToggleGroupItem value="blockquote" aria-label="Blockquote">
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <div className="flex size-full items-center justify-center">
+                <QuoteIcon className="size-4" />
+              </div>
+            </TooltipTrigger>
+            <TooltipContent>
+              <div>
+                <div>引用块</div>
+                <div className="text-muted-foreground">Ctrl+Shift+B</div>
+              </div>
+            </TooltipContent>
+          </Tooltip>
         </ToggleGroupItem>
       </ToggleGroup>
-      <div className="flex items-center">
-        <Button
-          variant="ghost"
-          size="sm"
-          className="size-8"
-          onClick={() => editor.chain().focus().setHorizontalRule().run()}
+      <Separator orientation="vertical" className="mx-1 data-[orientation=vertical]:h-8" />
+      <ToggleGroup type="multiple" value={[]} onValueChange={() => {}}>
+        <ToggleGroupItem
+          value="horizontalRule"
           aria-label="Horizontal rule"
+          onClick={() => editor.chain().focus().setHorizontalRule().run()}
         >
-          <MinusIcon className="size-4" />
-        </Button>
-        <Button
-          variant="ghost"
-          size="sm"
-          className="size-8"
-          onClick={() => editor.chain().focus().setHardBreak().run()}
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <div className="flex size-full items-center justify-center">
+                <SeparatorHorizontalIcon className="size-4" />
+              </div>
+            </TooltipTrigger>
+            <TooltipContent>
+              <div>
+                <div>水平分隔线</div>
+              </div>
+            </TooltipContent>
+          </Tooltip>
+        </ToggleGroupItem>
+        <ToggleGroupItem
+          value="hardBreak"
           aria-label="Hard break"
-          title="Ctrl+Enter"
+          onClick={() => editor.chain().focus().setHardBreak().run()}
         >
-          <WrapTextIcon className="size-4" />
-        </Button>
-        <Button
-          variant="ghost"
-          size="sm"
-          className="size-8"
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <div className="flex size-full items-center justify-center">
+                <WrapTextIcon className="size-4" />
+              </div>
+            </TooltipTrigger>
+            <TooltipContent>
+              <div>
+                <div>强制换行</div>
+                <div className="text-muted-foreground">Ctrl+Enter</div>
+              </div>
+            </TooltipContent>
+          </Tooltip>
+        </ToggleGroupItem>
+        <ToggleGroupItem
+          value="undo"
+          aria-label="Undo"
           disabled={!canUndo}
           onClick={() => editor.chain().focus().undo().run()}
-          aria-label="Undo"
-          title="Ctrl+Z"
         >
-          <UndoIcon className="size-4" />
-        </Button>
-        <Button
-          variant="ghost"
-          size="sm"
-          className="size-8"
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <div className="flex size-full items-center justify-center">
+                <UndoIcon className="size-4" />
+              </div>
+            </TooltipTrigger>
+            <TooltipContent>
+              <div>
+                <div>撤销</div>
+                <div className="text-muted-foreground">Ctrl+Z</div>
+              </div>
+            </TooltipContent>
+          </Tooltip>
+        </ToggleGroupItem>
+        <ToggleGroupItem
+          value="redo"
+          aria-label="Redo"
           disabled={!canRedo}
           onClick={() => editor.chain().focus().redo().run()}
-          aria-label="Redo"
-          title="Ctrl+Shift+Z"
         >
-          <RedoIcon className="size-4" />
-        </Button>
-        <Button
-          variant="ghost"
-          size="sm"
-          className="size-8"
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <div className="flex size-full items-center justify-center">
+                <RedoIcon className="size-4" />
+              </div>
+            </TooltipTrigger>
+            <TooltipContent>
+              <div>
+                <div>重做</div>
+                <div className="text-muted-foreground">Ctrl+Shift+Z</div>
+              </div>
+            </TooltipContent>
+          </Tooltip>
+        </ToggleGroupItem>
+        <ToggleGroupItem
+          value="clearMarks"
+          aria-label="Clear marks"
           disabled={!canClearMarks}
           onClick={() => editor.chain().focus().unsetAllMarks().run()}
-          aria-label="Clear marks"
         >
-          <XIcon className="size-4" />
-        </Button>
-      </div>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <div className="flex size-full items-center justify-center">
+                <XIcon className="size-4" />
+              </div>
+            </TooltipTrigger>
+            <TooltipContent>
+              <div>
+                <div>清除格式</div>
+              </div>
+            </TooltipContent>
+          </Tooltip>
+        </ToggleGroupItem>
+      </ToggleGroup>
     </div>
   )
 }
@@ -367,32 +607,7 @@ export function NoteEditor({ open }: { open: boolean }) {
       }
     },
   })
-  const {
-    isBold,
-    canBold,
-    isItalic,
-    canItalic,
-    isUnderline,
-    canUnderline,
-    isStrikethrough,
-    canStrikethrough,
-    isCode,
-    canCode,
-    canClearMarks,
-    isParagraph,
-    isHeading1,
-    isHeading2,
-    isHeading3,
-    isHeading4,
-    isHeading5,
-    isHeading6,
-    isOrderedList,
-    isBulletList,
-    isCodeBlock,
-    isBlockquote,
-    canUndo,
-    canRedo,
-  } = useEditorState({
+  const editorState = useEditorState({
     editor,
     selector: ({ editor }) => ({
       isBold: editor.isActive('bold') ?? false,
@@ -444,35 +659,10 @@ export function NoteEditor({ open }: { open: boolean }) {
 
   return (
     <>
+      <EditorToolbar editor={editor} editorState={editorState} className="rounded-none" />
       <EditorContent editor={editor} className="flex-1 overflow-auto" />
-      <BubbleMenu editor={editor} options={{ placement: 'top', offset: 8, flip: true }}>
-        <EditorToolbar
-          editor={editor}
-          isBold={isBold}
-          canBold={canBold}
-          isItalic={isItalic}
-          canItalic={canItalic}
-          isUnderline={isUnderline}
-          canUnderline={canUnderline}
-          isStrikethrough={isStrikethrough}
-          canStrikethrough={canStrikethrough}
-          isCode={isCode}
-          canCode={canCode}
-          canClearMarks={canClearMarks}
-          isParagraph={isParagraph}
-          isHeading1={isHeading1}
-          isHeading2={isHeading2}
-          isHeading3={isHeading3}
-          isHeading4={isHeading4}
-          isHeading5={isHeading5}
-          isHeading6={isHeading6}
-          isOrderedList={isOrderedList}
-          isBulletList={isBulletList}
-          isCodeBlock={isCodeBlock}
-          isBlockquote={isBlockquote}
-          canUndo={canUndo}
-          canRedo={canRedo}
-        />
+      <BubbleMenu editor={editor} options={{ placement: 'top', offset: 8, flip: true }} className="hidden lg:block">
+        <EditorToolbar editor={editor} editorState={editorState} />
       </BubbleMenu>
     </>
   )

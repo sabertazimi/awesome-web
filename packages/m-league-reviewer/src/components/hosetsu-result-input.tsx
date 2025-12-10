@@ -296,7 +296,7 @@ export function HosetsuResultInput({ value, onChange, onClose, onKeyDown, autoFo
               inputRef.current?.focus()
             }}
             className="h-7 gap-1 text-xs"
-            title="标记为严重 (Ctrl+B)"
+            title="Ctrl+B"
           >
             <AlertCircleIcon className="size-3" />
             严重
@@ -306,7 +306,7 @@ export function HosetsuResultInput({ value, onChange, onClose, onKeyDown, autoFo
             variant="outline"
             onClick={handleCopyButton}
             className="h-7 gap-1 text-xs"
-            title="复制 (Ctrl+C)"
+            title="Ctrl+C"
           >
             <ClipboardCopyIcon className="size-3" />
             复制
@@ -316,7 +316,7 @@ export function HosetsuResultInput({ value, onChange, onClose, onKeyDown, autoFo
             variant="outline"
             onClick={handlePasteButton}
             className="h-7 gap-1 text-xs"
-            title="粘贴 (Ctrl+V)"
+            title="Ctrl+V"
           >
             <ClipboardPasteIcon className="size-3" />
             粘贴

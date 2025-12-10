@@ -83,13 +83,12 @@ export function ReviewCard({ review, onClick, onDelete }: ReviewCardProps) {
           })}
         </div>
       )}
-
-      {/* 删除按钮 */}
       <Button
         variant="ghost"
         className="absolute top-1 right-1 size-6 opacity-0 transition-all duration-200 group-hover:opacity-100"
         onClick={onDelete}
         title="删除"
+        aria-label="删除"
       >
         <XIcon className="size-4" />
       </Button>
