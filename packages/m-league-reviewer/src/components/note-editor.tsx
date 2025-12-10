@@ -16,10 +16,10 @@ import {
   ItalicIcon,
   ListIcon,
   ListOrderedIcon,
-  MinusIcon,
   PilcrowIcon,
   QuoteIcon,
   RedoIcon,
+  SeparatorHorizontalIcon,
   SquareCodeIcon,
   StrikethroughIcon,
   UnderlineIcon,
@@ -30,75 +30,82 @@ import {
 import { useEffect, useState } from 'react'
 import { toast } from 'sonner'
 import { createNote, getNotes, updateNote } from '@/api/reviews'
-import { Button } from '@/components/ui/button'
+import { Separator } from '@/components/ui/separator'
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group'
 import { cn } from '@/lib/utils'
 
 interface EditorToolbarProps {
   editor: Editor
-  isBold: boolean
-  canBold: boolean
-  isItalic: boolean
-  canItalic: boolean
-  isUnderline: boolean
-  canUnderline: boolean
-  isStrikethrough: boolean
-  canStrikethrough: boolean
-  isCode: boolean
-  canCode: boolean
-  canClearMarks: boolean
-  isParagraph: boolean
-  isHeading1: boolean
-  isHeading2: boolean
-  isHeading3: boolean
-  isHeading4: boolean
-  isHeading5: boolean
-  isHeading6: boolean
-  isOrderedList: boolean
-  isBulletList: boolean
-  isCodeBlock: boolean
-  isBlockquote: boolean
-  canUndo: boolean
-  canRedo: boolean
+  editorState: {
+    isBold: boolean
+    canBold: boolean
+    isItalic: boolean
+    canItalic: boolean
+    isUnderline: boolean
+    canUnderline: boolean
+    isStrikethrough: boolean
+    canStrikethrough: boolean
+    isCode: boolean
+    canCode: boolean
+    canClearMarks: boolean
+    isParagraph: boolean
+    isHeading1: boolean
+    isHeading2: boolean
+    isHeading3: boolean
+    isHeading4: boolean
+    isHeading5: boolean
+    isHeading6: boolean
+    isOrderedList: boolean
+    isBulletList: boolean
+    isCodeBlock: boolean
+    isBlockquote: boolean
+    canUndo: boolean
+    canRedo: boolean
+  }
+  className?: string
 }
 
 function EditorToolbar({
   editor,
-  isBold,
-  canBold,
-  isItalic,
-  canItalic,
-  isUnderline,
-  canUnderline,
-  isStrikethrough,
-  canStrikethrough,
-  isCode,
-  canCode,
-  canClearMarks,
-  isParagraph,
-  isHeading1,
-  isHeading2,
-  isHeading3,
-  isHeading4,
-  isHeading5,
-  isHeading6,
-  isOrderedList,
-  isBulletList,
-  isCodeBlock,
-  isBlockquote,
-  canUndo,
-  canRedo,
+  editorState: {
+    isBold,
+    canBold,
+    isItalic,
+    canItalic,
+    isUnderline,
+    canUnderline,
+    isStrikethrough,
+    canStrikethrough,
+    isCode,
+    canCode,
+    canClearMarks,
+    isParagraph,
+    isHeading1,
+    isHeading2,
+    isHeading3,
+    isHeading4,
+    isHeading5,
+    isHeading6,
+    isOrderedList,
+    isBulletList,
+    isCodeBlock,
+    isBlockquote,
+    canUndo,
+    canRedo,
+  },
+  className,
 }: EditorToolbarProps) {
   return (
     <div
       role="toolbar"
       aria-label="Text formatting toolbar"
-      className="bg-background flex items-center gap-2 rounded-md border p-1 shadow-md"
+      className={cn(
+        'bg-background flex max-w-screen flex-wrap items-center justify-center gap-2 rounded-md border p-1 shadow-md',
+        className,
+      )}
     >
       <ToggleGroup
         type="multiple"
-        variant="outline"
-        spacing={0}
         value={[
           isBold ? 'bold' : '',
           isItalic ? 'italic' : '',
@@ -155,10 +162,9 @@ function EditorToolbar({
           <CodeIcon className="size-4" />
         </ToggleGroupItem>
       </ToggleGroup>
+      <Separator orientation="vertical" className="mx-1 data-[orientation=vertical]:h-8" />
       <ToggleGroup
         type="single"
-        variant="outline"
-        spacing={0}
         value={
           isParagraph ? 'paragraph' : isHeading1 ? 'h1' : isHeading2 ? 'h2' : isHeading3 ? 'h3' : isHeading4 ? 'h4' : isHeading5 ? 'h5' : isHeading6 ? 'h6' : ''
         }
@@ -213,10 +219,9 @@ function EditorToolbar({
           <Heading6Icon className="size-4" />
         </ToggleGroupItem>
       </ToggleGroup>
+      <Separator orientation="vertical" className="mx-1 data-[orientation=vertical]:h-8" />
       <ToggleGroup
         type="multiple"
-        variant="outline"
-        spacing={0}
         value={[
           isOrderedList ? 'orderedList' : '',
           isBulletList ? 'bulletList' : '',
@@ -259,59 +264,50 @@ function EditorToolbar({
           <QuoteIcon className="size-4" />
         </ToggleGroupItem>
       </ToggleGroup>
-      <div className="flex items-center">
-        <Button
-          variant="ghost"
-          size="sm"
-          className="size-8"
-          onClick={() => editor.chain().focus().setHorizontalRule().run()}
+      <Separator orientation="vertical" className="mx-1 data-[orientation=vertical]:h-8" />
+      <ToggleGroup type="multiple" value={[]} onValueChange={() => {}}>
+        <ToggleGroupItem
+          value="horizontalRule"
           aria-label="Horizontal rule"
+          onClick={() => editor.chain().focus().setHorizontalRule().run()}
         >
-          <MinusIcon className="size-4" />
-        </Button>
-        <Button
-          variant="ghost"
-          size="sm"
-          className="size-8"
-          onClick={() => editor.chain().focus().setHardBreak().run()}
+          <SeparatorHorizontalIcon className="size-4" />
+        </ToggleGroupItem>
+        <ToggleGroupItem
+          value="hardBreak"
           aria-label="Hard break"
           title="Ctrl+Enter"
+          onClick={() => editor.chain().focus().setHardBreak().run()}
         >
           <WrapTextIcon className="size-4" />
-        </Button>
-        <Button
-          variant="ghost"
-          size="sm"
-          className="size-8"
-          disabled={!canUndo}
-          onClick={() => editor.chain().focus().undo().run()}
+        </ToggleGroupItem>
+        <ToggleGroupItem
+          value="undo"
           aria-label="Undo"
+          disabled={!canUndo}
           title="Ctrl+Z"
+          onClick={() => editor.chain().focus().undo().run()}
         >
           <UndoIcon className="size-4" />
-        </Button>
-        <Button
-          variant="ghost"
-          size="sm"
-          className="size-8"
-          disabled={!canRedo}
-          onClick={() => editor.chain().focus().redo().run()}
+        </ToggleGroupItem>
+        <ToggleGroupItem
+          value="redo"
           aria-label="Redo"
+          disabled={!canRedo}
           title="Ctrl+Shift+Z"
+          onClick={() => editor.chain().focus().redo().run()}
         >
           <RedoIcon className="size-4" />
-        </Button>
-        <Button
-          variant="ghost"
-          size="sm"
-          className="size-8"
+        </ToggleGroupItem>
+        <ToggleGroupItem
+          value="clearMarks"
+          aria-label="Clear marks"
           disabled={!canClearMarks}
           onClick={() => editor.chain().focus().unsetAllMarks().run()}
-          aria-label="Clear marks"
         >
           <XIcon className="size-4" />
-        </Button>
-      </div>
+        </ToggleGroupItem>
+      </ToggleGroup>
     </div>
   )
 }
@@ -367,32 +363,7 @@ export function NoteEditor({ open }: { open: boolean }) {
       }
     },
   })
-  const {
-    isBold,
-    canBold,
-    isItalic,
-    canItalic,
-    isUnderline,
-    canUnderline,
-    isStrikethrough,
-    canStrikethrough,
-    isCode,
-    canCode,
-    canClearMarks,
-    isParagraph,
-    isHeading1,
-    isHeading2,
-    isHeading3,
-    isHeading4,
-    isHeading5,
-    isHeading6,
-    isOrderedList,
-    isBulletList,
-    isCodeBlock,
-    isBlockquote,
-    canUndo,
-    canRedo,
-  } = useEditorState({
+  const editorState = useEditorState({
     editor,
     selector: ({ editor }) => ({
       isBold: editor.isActive('bold') ?? false,
@@ -444,35 +415,10 @@ export function NoteEditor({ open }: { open: boolean }) {
 
   return (
     <>
+      <EditorToolbar editor={editor} editorState={editorState} className="rounded-none" />
       <EditorContent editor={editor} className="flex-1 overflow-auto" />
-      <BubbleMenu editor={editor} options={{ placement: 'top', offset: 8, flip: true }}>
-        <EditorToolbar
-          editor={editor}
-          isBold={isBold}
-          canBold={canBold}
-          isItalic={isItalic}
-          canItalic={canItalic}
-          isUnderline={isUnderline}
-          canUnderline={canUnderline}
-          isStrikethrough={isStrikethrough}
-          canStrikethrough={canStrikethrough}
-          isCode={isCode}
-          canCode={canCode}
-          canClearMarks={canClearMarks}
-          isParagraph={isParagraph}
-          isHeading1={isHeading1}
-          isHeading2={isHeading2}
-          isHeading3={isHeading3}
-          isHeading4={isHeading4}
-          isHeading5={isHeading5}
-          isHeading6={isHeading6}
-          isOrderedList={isOrderedList}
-          isBulletList={isBulletList}
-          isCodeBlock={isCodeBlock}
-          isBlockquote={isBlockquote}
-          canUndo={canUndo}
-          canRedo={canRedo}
-        />
+      <BubbleMenu editor={editor} options={{ placement: 'top', offset: 8, flip: true }} className="hidden lg:block">
+        <EditorToolbar editor={editor} editorState={editorState} />
       </BubbleMenu>
     </>
   )
