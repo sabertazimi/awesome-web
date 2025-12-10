@@ -101,7 +101,7 @@ function EditorToolbar({
       role="toolbar"
       aria-label="Text formatting toolbar"
       className={cn(
-        'bg-background flex max-w-screen flex-wrap items-center justify-center gap-2 border p-1',
+        'bg-background flex max-w-screen flex-wrap items-center lg:justify-center gap-2 border p-1',
         className,
       )}
     >
@@ -572,7 +572,7 @@ export function NoteEditor({ open }: { open: boolean }) {
       attributes: {
         class: cn(
           'prose prose-sm sm:prose dark:prose-invert',
-          'mx-auto min-h-full p-8 focus:outline-none',
+          'mx-auto min-h-full max-w-screen p-8 focus:outline-none sm:max-w-prose',
           'prose-headings:text-primary prose-headings:font-semibold prose-headings:text-balance prose-headings:scroll-mt-20 prose-headings:relative',
           'prose-headings:before:absolute prose-headings:before:right-full prose-headings:before:text-primary/40',
           'prose-headings:before:content-["#"] prose-headings:before:opacity-0 prose-headings:hover:before:opacity-100 prose-headings:before:transition-opacity',
