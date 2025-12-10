@@ -1,4 +1,5 @@
 import type { JSONContent } from '@tiptap/react'
+import { toast } from 'sonner'
 
 // 小局信息
 export interface RoundInfo {
@@ -87,8 +88,8 @@ function getStorageData(): StorageData {
       reviews: parsed.reviews || [],
       notes: parsed.notes || [],
     }
-  } catch (error) {
-    console.error('Failed to load storage data:', error)
+  } catch (error: unknown) {
+    toast.error(`加载存储数据失败: ${error instanceof Error ? error.message : String(error)}`)
     return { reviews: [], notes: [] }
   }
 }
@@ -97,8 +98,8 @@ function getStorageData(): StorageData {
 function saveStorageData(data: StorageData): void {
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(data))
-  } catch (error) {
-    console.error('Failed to save storage data:', error)
+  } catch (error: unknown) {
+    toast.error(`保存存储数据失败: ${error instanceof Error ? error.message : String(error)}`)
   }
 }
 

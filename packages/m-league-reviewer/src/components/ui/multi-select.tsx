@@ -2,6 +2,7 @@ import type { VariantProps } from 'class-variance-authority'
 import { cva } from 'class-variance-authority'
 import { CheckIcon, ChevronDown, WandSparkles, XCircle, XIcon } from 'lucide-react'
 import * as React from 'react'
+import { toast } from 'sonner'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import {
@@ -532,11 +533,11 @@ export function MultiSelect({
       }
     })
     if (import.meta.env.NODE_ENV === 'development' && duplicates.length > 0) {
-      const action = deduplicateOptions ? 'automatically removed' : 'detected'
-      console.warn(
-        `MultiSelect: Duplicate option values ${action}: ${duplicates.join(', ')}. `
+      const action = deduplicateOptions ? '已自动移除' : '检测到'
+      toast.warning(
+        `MultiSelect: ${action}重复的选项值: ${duplicates.join(', ')}. `
         + `${
-          deduplicateOptions ? 'Duplicates have been removed automatically.' : 'This may cause unexpected behavior. Consider setting \'deduplicateOptions={true}\' or ensure all option values are unique.'
+          deduplicateOptions ? '重复项已自动移除。' : `这可能导致意外行为。建议设置 'deduplicateOptions={true}' 或确保所有选项值唯一。`
         }`,
       )
     }
@@ -547,7 +548,7 @@ export function MultiSelect({
     (value: string): MultiSelectOption | undefined => {
       const option = getAllOptions().find(option => option.value === value)
       if (!option && import.meta.env.NODE_ENV === 'development') {
-        console.warn(`MultiSelect: Option with value "${value}" not found in options list`)
+        toast.warning(`MultiSelect: 未找到值为 "${value}" 的选项`)
       }
       return option
     },

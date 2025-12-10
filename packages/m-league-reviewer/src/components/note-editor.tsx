@@ -28,6 +28,7 @@ import {
   XIcon,
 } from 'lucide-react'
 import { useEffect, useState } from 'react'
+import { toast } from 'sonner'
 import { createNote, getNotes, updateNote } from '@/api/reviews'
 import { Button } from '@/components/ui/button'
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group'
@@ -349,6 +350,7 @@ export function NoteEditor({ open }: { open: boolean }) {
           if (note && editor) {
             const json = editor.getJSON()
             updateNote(note.id, json)
+            toast.success('笔记已保存')
           }
 
           return true

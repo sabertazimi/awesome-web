@@ -1,6 +1,7 @@
 import type { HosetsuResult, HosetsuType } from '@/api/reviews'
 import { AlertCircleIcon, CheckIcon, ClipboardCopyIcon, ClipboardPasteIcon, XIcon } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
+import { toast } from 'sonner'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -43,7 +44,9 @@ function isHosetsuType(value: string): value is HosetsuType {
  */
 function copyHosetsuResultToClipboard(value: HosetsuResult) {
   const data = JSON.stringify(value)
-  navigator.clipboard.writeText(data).catch(err => console.error('Failed to copy:', err))
+  navigator.clipboard
+    .writeText(data)
+    .catch((err: unknown) => toast.error(`复制失败: ${err instanceof Error ? err.message : String(err)}`))
 }
 
 /**
@@ -141,12 +144,12 @@ export function HosetsuResultInput({ value, onChange, onClose, onKeyDown, autoFo
           setLocalValue(parsed)
           onChange(parsed)
         } else {
-          console.warn('Failed to parse clipboard content as HosetsuResult.')
+          toast.warning('无法解析剪贴板内容为何切结果')
         }
         inputRef.current?.focus()
       })
-      .catch((err) => {
-        console.error('Failed to read clipboard:', err)
+      .catch((err: unknown) => {
+        toast.error(`读取剪贴板失败: ${err instanceof Error ? err.message : String(err)}`)
         inputRef.current?.focus()
       })
   }
@@ -417,12 +420,12 @@ export function HosetsuResultContextMenu({ value, onChange, children }: HosetsuR
         if (parsed) {
           onChange(parsed)
         } else {
-          console.warn('Context menu: Failed to parse clipboard content as HosetsuResult.')
+          toast.warning('无法解析剪贴板内容为何切结果')
         }
         setOpen(false)
       })
-      .catch((err) => {
-        console.error('Context menu: Failed to read clipboard:', err)
+      .catch((err: unknown) => {
+        toast.error(`读取剪贴板失败: ${err instanceof Error ? err.message : String(err)}`)
         setOpen(false)
       })
   }
