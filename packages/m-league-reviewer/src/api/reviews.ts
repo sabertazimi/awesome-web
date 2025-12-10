@@ -313,3 +313,54 @@ function getNextRound(current: RoundInfo): RoundInfo {
     honba: 0,
   }
 }
+
+// 导出所有数据
+export function exportAllData(): string {
+  const data = getStorageData()
+  return JSON.stringify(data, null, 2)
+}
+
+// 导入所有数据(覆盖模式)
+export function importAllData(jsonString: string): { success: boolean, error?: string } {
+  try {
+    const data = JSON.parse(jsonString) as StorageData
+
+    // 验证数据格式
+    if (!data || typeof data !== 'object') {
+      return { success: false, error: '数据格式无效' }
+    }
+
+    if (!Array.isArray(data.reviews)) {
+      return { success: false, error: '复盘数据格式无效' }
+    }
+
+    if (!Array.isArray(data.notes)) {
+      return { success: false, error: '笔记数据格式无效' }
+    }
+
+    // 覆盖保存
+    saveStorageData(data)
+
+    return { success: true }
+  } catch (error) {
+    return {
+      success: false,
+      error: error instanceof Error ? error.message : '导入失败',
+    }
+  }
+}
+
+// 下载数据为 JSON 文件
+export function downloadDataAsJson(): void {
+  const jsonString = exportAllData()
+  const timestamp = new Date().toISOString().replace(/:/g, '-').split('.')[0]
+  const filename = `m-league-backup-${timestamp}.json`
+
+  const blob = new Blob([jsonString], { type: 'application/json' })
+  const url = URL.createObjectURL(blob)
+  const link = document.createElement('a')
+  link.href = url
+  link.download = filename
+  link.click()
+  URL.revokeObjectURL(url)
+}
