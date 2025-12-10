@@ -23,7 +23,7 @@ export function NoteDialog({ open, onOpenChange }: NoteDialogProps) {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent
-        className="h-screen max-w-full p-0 sm:max-w-full"
+        className="max-w-full p-0 sm:max-w-full"
         showCloseButton={false}
         onInteractOutside={(event) => {
           if (
@@ -34,7 +34,7 @@ export function NoteDialog({ open, onOpenChange }: NoteDialogProps) {
           }
         }}
       >
-        <div className="flex h-full flex-col">
+        <div className="flex h-screen flex-col">
           <div className="border-border flex items-center justify-between border-b px-6 py-3">
             <span className="text-muted-foreground font-mono text-xs">note.tsx</span>
             <div className="flex items-center gap-2">
