@@ -1,7 +1,14 @@
 import { BookTextIcon } from 'lucide-react'
 import { NoteEditor } from '@/components/note-editor'
 import { Button } from '@/components/ui/button'
-import { Dialog, DialogClose, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog'
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/ui/dialog'
 
 interface NoteDialogProps {
   open: boolean
@@ -30,6 +37,7 @@ export function NoteDialog({ open, onOpenChange }: NoteDialogProps) {
               <BookTextIcon className="size-6" />
               复盘笔记
             </DialogTitle>
+            <DialogDescription className="sr-only">从对局复盘中提炼的文本记录</DialogDescription>
           </DialogHeader>
           <NoteEditor open={open} />
         </div>

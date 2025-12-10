@@ -4,6 +4,7 @@
 @plugin '@tailwindcss/typography';
 
 @custom-variant dark (&:is(.dark *));
+@custom-variant prose-inline-code (&.prose :where(:not(pre)>code):not(:where([class~="not-prose"], [class~="not-prose"] *)));
 
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
