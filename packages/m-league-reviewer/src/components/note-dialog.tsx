@@ -24,7 +24,7 @@ export function NoteDialog({ open, onOpenChange }: NoteDialogProps) {
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent
         className="max-w-full p-0 sm:max-w-full"
-        showCloseButton={false}
+        disableCloseButton
         onInteractOutside={(event) => {
           if (
             event.detail.originalEvent.target instanceof Element
