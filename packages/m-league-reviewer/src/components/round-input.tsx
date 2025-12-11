@@ -11,7 +11,7 @@ interface RoundInputProps {
   onClose?: () => void
   open?: boolean
   onOpenChange?: (open: boolean) => void
-  existingRounds?: RoundInfo[] // 已存在的小局列表，用于检测重复
+  existingRounds?: RoundInfo[]
 }
 
 /**
@@ -26,27 +26,25 @@ export function RoundInput({ value, onChange, onClose, open, onOpenChange, exist
 
   useEffect(() => {
     setLocalValue(value)
-    setError('') // 重置错误
+    setError('')
   }, [value])
 
-  // 检查是否与已存在的小局重复
   const isDuplicate = (round: RoundInfo): boolean => {
     return existingRounds.some(
       existing =>
         existing.field === round.field
         && existing.round === round.round
         && existing.honba === round.honba
-        // 排除当前正在编辑的小局
         && !(existing.field === value.field && existing.round === value.round && existing.honba === value.honba),
     )
   }
 
   const handleFieldChange = (field: 'east' | 'south') => {
-    setLocalValue({ ...localValue, field })
+    setLocalValue({ ...localValue, field, round: 1, honba: 0 })
   }
 
   const handleRoundChange = (round: number) => {
-    setLocalValue({ ...localValue, round })
+    setLocalValue({ ...localValue, round, honba: 0 })
   }
 
   const handleHonbaChange = (honba: number) => {
@@ -54,17 +52,15 @@ export function RoundInput({ value, onChange, onClose, open, onOpenChange, exist
   }
 
   const handleConfirm = () => {
-    // 检查是否重复
     if (isDuplicate(localValue)) {
       setError('该小局已存在，请选择其他小局')
       return
     }
 
-    // 先关闭弹窗
     if (onOpenChange) {
       onOpenChange(false)
     }
-    // 延迟保存数据，避免重新打开
+
     setTimeout(() => {
       onChange(localValue)
       if (onClose) {
@@ -74,10 +70,12 @@ export function RoundInput({ value, onChange, onClose, open, onOpenChange, exist
   }
 
   const handleCancel = () => {
-    setLocalValue(value) // 恢复原值
+    setLocalValue(value)
+
     if (onOpenChange) {
       onOpenChange(false)
     }
+
     if (onClose) {
       onClose()
     }
