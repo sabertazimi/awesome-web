@@ -70,6 +70,12 @@ export function ReviewDialog({ open, onOpenChange, reviewId, date, onDeleted, on
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false)
   const [editingField, setEditingField] = useState<string | null>(null)
 
+  // Only allow safe URL schemes for socialUrl
+  function isSafeUrl(url: string) {
+    // Accept http, https only (case-insensitive)
+    return /^https?:\/\//i.test(url.trim())
+  }
+
   // 自动保存函数
   const autoSave = () => {
     if (!reviewId || !title.trim())
@@ -308,7 +314,7 @@ export function ReviewDialog({ open, onOpenChange, reviewId, date, onDeleted, on
                           )}
                           displayComponent={(
                             <p className="min-h-[32px] truncate leading-8">
-                              {linkA ? (
+                              {isSafeUrl(linkA) ? (
                                 <a
                                   href={linkA}
                                   target="_blank"
@@ -319,7 +325,7 @@ export function ReviewDialog({ open, onOpenChange, reviewId, date, onDeleted, on
                                   {linkA}
                                 </a>
                               ) : (
-                                <span className="text-muted-foreground"></span>
+                                <span className="text-muted-foreground">{linkA}</span>
                               )}
                             </p>
                           )}
@@ -346,7 +352,7 @@ export function ReviewDialog({ open, onOpenChange, reviewId, date, onDeleted, on
                           )}
                           displayComponent={(
                             <p className="min-h-[32px] truncate leading-8">
-                              {linkB ? (
+                              {isSafeUrl(linkB) ? (
                                 <a
                                   href={linkB}
                                   target="_blank"
@@ -357,7 +363,7 @@ export function ReviewDialog({ open, onOpenChange, reviewId, date, onDeleted, on
                                   {linkB}
                                 </a>
                               ) : (
-                                <span className="text-muted-foreground"></span>
+                                <span className="text-muted-foreground">{linkB}</span>
                               )}
                             </p>
                           )}
@@ -528,7 +534,7 @@ export function ReviewDialog({ open, onOpenChange, reviewId, date, onDeleted, on
                           )}
                           displayComponent={(
                             <p className="min-h-[32px] leading-8">
-                              {socialUrl ? (
+                              {isSafeUrl(socialUrl) ? (
                                 <a
                                   href={socialUrl}
                                   target="_blank"
@@ -539,7 +545,7 @@ export function ReviewDialog({ open, onOpenChange, reviewId, date, onDeleted, on
                                   {socialUrl}
                                 </a>
                               ) : (
-                                <span className="text-muted-foreground"></span>
+                                <span className="text-muted-foreground">{socialUrl}</span>
                               )}
                             </p>
                           )}

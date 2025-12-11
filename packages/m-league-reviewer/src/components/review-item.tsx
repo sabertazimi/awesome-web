@@ -1,7 +1,3 @@
-export function ReviewItem({ children}: { children: React.ReactNode }) {
-  return (
-    <div>
-      {children}
-    </div>
-  )
+export function ReviewItem({ children }: { children: React.ReactNode }) {
+  return <div>{children}</div>
 }
