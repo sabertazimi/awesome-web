@@ -70,10 +70,17 @@ export function ReviewDialog({ open, onOpenChange, reviewId, date, onDeleted, on
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false)
   const [editingField, setEditingField] = useState<string | null>(null)
 
-  // Only allow safe URL schemes for socialUrl
-  function isSafeUrl(url: string) {
-    // Accept http, https only (case-insensitive)
-    return /^https?:\/\//i.test(url.trim())
+  // Basic sanitizer: allow only http/https schemes, return empty string otherwise.
+  function sanitizeUrl(url: string): string {
+    try {
+      const parsed = new URL(url, window.location.origin)
+      if (parsed.protocol === 'http:' || parsed.protocol === 'https:') {
+        return url
+      }
+    } catch {
+      // If URL constructor fails, treat as unsafe.
+    }
+    return ''
   }
 
   // 自动保存函数
@@ -314,9 +321,9 @@ export function ReviewDialog({ open, onOpenChange, reviewId, date, onDeleted, on
                           )}
                           displayComponent={(
                             <p className="min-h-[32px] truncate leading-8">
-                              {isSafeUrl(linkA) ? (
+                              {sanitizeUrl(linkA) ? (
                                 <a
-                                  href={linkA}
+                                  href={sanitizeUrl(linkA)}
                                   target="_blank"
                                   rel="noopener noreferrer"
                                   className="text-primary hover:underline"
@@ -352,9 +359,9 @@ export function ReviewDialog({ open, onOpenChange, reviewId, date, onDeleted, on
                           )}
                           displayComponent={(
                             <p className="min-h-[32px] truncate leading-8">
-                              {isSafeUrl(linkB) ? (
+                              {sanitizeUrl(linkB) ? (
                                 <a
-                                  href={linkB}
+                                  href={sanitizeUrl(linkB)}
                                   target="_blank"
                                   rel="noopener noreferrer"
                                   className="text-primary hover:underline"
@@ -534,9 +541,9 @@ export function ReviewDialog({ open, onOpenChange, reviewId, date, onDeleted, on
                           )}
                           displayComponent={(
                             <p className="min-h-[32px] leading-8">
-                              {isSafeUrl(socialUrl) ? (
+                              {sanitizeUrl(socialUrl) ? (
                                 <a
-                                  href={socialUrl}
+                                  href={sanitizeUrl(socialUrl)}
                                   target="_blank"
                                   rel="noopener noreferrer"
                                   className="text-primary hover:underline"
