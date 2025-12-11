@@ -23,6 +23,29 @@ export interface GameSchedule {
   teamIds: number[] // Team IDs sorted by id
 }
 
+export type ReviewStatus = 'not_started' | 'in_progress' | 'completed'
+
+export const statusConfig: Record<
+  ReviewStatus,
+  { label: string, variant: 'secondary' | 'default' | 'outline', className: string }
+> = {
+  not_started: {
+    label: '未开始',
+    variant: 'secondary',
+    className: 'bg-muted text-muted-foreground',
+  },
+  in_progress: {
+    label: '进行中',
+    variant: 'default',
+    className: 'bg-destructive text-destructive-foreground',
+  },
+  completed: {
+    label: '已完成',
+    variant: 'outline',
+    className: 'bg-primary text-primary-foreground',
+  },
+}
+
 export const teams: Team[] = [
   { id: 1, team_name: 'JETS', team_full_name: 'EARTH JETS', team_code: 'T011' },
   { id: 2, team_name: 'ドリブンズ', team_full_name: '赤坂ドリブンズ', team_code: 'T001' },
