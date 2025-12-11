@@ -5,7 +5,7 @@ import { zhCN } from 'date-fns/locale/zh-CN'
 import DOMPurify from 'dompurify'
 import { CalendarIcon, LinkIcon, LoaderIcon, UsersIcon } from 'lucide-react'
 import { useEffect, useState } from 'react'
-import { getTeamColorClassByName, teams } from '@/api/data'
+import { getTeamColorClassByName, statusConfig, teams } from '@/api/data'
 import {
   createDefaultRoundInfo,
   createEmptyHosetsuResult,
@@ -230,12 +230,6 @@ export function ReviewDialog({ open, onOpenChange, reviewId, date, onDeleted, on
     }
   }
 
-  const statusConfig = {
-    not_started: { label: '未开始', variant: 'secondary' as const },
-    in_progress: { label: '进行中', variant: 'default' as const },
-    completed: { label: '已完成', variant: 'outline' as const },
-  }
-
   return (
     <>
       <Dialog open={open} onOpenChange={onOpenChange}>
@@ -447,14 +441,7 @@ export function ReviewDialog({ open, onOpenChange, reviewId, date, onDeleted, on
                             </Select>
                           )}
                           displayComponent={(
-                            <Badge
-                              variant={statusConfig[status].variant}
-                              className={cn(
-                                statusConfig[status].variant === 'default' && 'bg-destructive text-primary-foreground',
-                                statusConfig[status].variant === 'secondary' && 'bg-muted text-muted-foreground',
-                                statusConfig[status].variant === 'outline' && 'bg-primary text-primary-foreground',
-                              )}
-                            >
+                            <Badge variant={statusConfig[status].variant} className={statusConfig[status].className}>
                               {statusConfig[status].label}
                             </Badge>
                           )}

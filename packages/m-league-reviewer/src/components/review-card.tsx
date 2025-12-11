@@ -1,7 +1,6 @@
 import type { Review } from '@/api/reviews'
 import { ExternalLinkIcon, XIcon } from 'lucide-react'
-import { getTeamColorClassByName, teams } from '@/api/data'
-import { statusColors } from '@/api/reviews'
+import { getTeamColorClassByName, statusConfig, teams } from '@/api/data'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
@@ -17,8 +16,8 @@ interface ReviewCardProps {
  * 用于在日历视图中显示单个复盘项
  */
 export function ReviewCard({ review, onClick, onDelete }: ReviewCardProps) {
-  const statusColor = statusColors[review.status || 'not_started']
-  const reviewTeams = review.teams?.map(teamName => teams.find(t => t.team_name === teamName)).filter(Boolean)
+  const statusColor = statusConfig[review.status || 'not_started'].className
+  const reviewTeams = review.teams?.map(teamName => teams.find(t => t.team_name === teamName)).filter(team => team !== undefined)
 
   return (
     <div
@@ -63,14 +62,10 @@ export function ReviewCard({ review, onClick, onDelete }: ReviewCardProps) {
       {reviewTeams && reviewTeams.length > 0 && (
         <div className="flex flex-wrap gap-1">
           {reviewTeams.map((team) => {
-            const teamColors = getTeamColorClassByName(team!.team_name)
+            const teamColors = getTeamColorClassByName(team.team_name)
             return (
-              <Badge
-                key={team!.id}
-                variant="outline"
-                className={cn('h-5 px-1.5 text-[10px] font-medium', teamColors)}
-              >
-                {team!.team_name}
+              <Badge key={team.id} variant="outline" className={cn('h-5 px-1.5 text-[10px] font-medium', teamColors)}>
+                {team.team_name}
               </Badge>
             )
           })}

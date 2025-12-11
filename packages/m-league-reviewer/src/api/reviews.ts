@@ -53,13 +53,6 @@ export interface Review {
   createdAt: string
 }
 
-// 状态颜色配置
-export const statusColors = {
-  not_started: 'bg-muted text-muted-foreground',
-  in_progress: 'bg-destructive text-destructive-foreground',
-  completed: 'bg-primary text-primary-foreground',
-}
-
 // 复盘笔记
 export interface Note {
   id: string
