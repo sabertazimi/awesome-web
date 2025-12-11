@@ -2,6 +2,7 @@ import type { HosetsuResult, RoundInfo, TableData } from '@/api/reviews'
 import type { MultiSelectOption } from '@/components/ui/multi-select'
 import { format } from 'date-fns'
 import { zhCN } from 'date-fns/locale/zh-CN'
+import DOMPurify from 'dompurify'
 import { CalendarIcon, LinkIcon, LoaderIcon, UsersIcon } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { getTeamColorClassByName, teams } from '@/api/data'
@@ -69,19 +70,6 @@ export function ReviewDialog({ open, onOpenChange, reviewId, date, onDeleted, on
   const [content, setContent] = useState('')
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false)
   const [editingField, setEditingField] = useState<string | null>(null)
-
-  // Basic sanitizer: allow only http/https schemes, return empty string otherwise.
-  function sanitizeUrl(url: string): string {
-    try {
-      const parsed = new URL(url, window.location.origin)
-      if (parsed.protocol === 'http:' || parsed.protocol === 'https:') {
-        return url
-      }
-    } catch {
-      // If URL constructor fails, treat as unsafe.
-    }
-    return ''
-  }
 
   // 自动保存函数
   const autoSave = () => {
@@ -313,7 +301,7 @@ export function ReviewDialog({ open, onOpenChange, reviewId, date, onDeleted, on
                           editComponent={(
                             <Input
                               value={linkA}
-                              onChange={e => setLinkA(e.target.value)}
+                              onChange={e => setLinkA(DOMPurify.sanitize(e.target.value))}
                               onBlur={handleBlur}
                               autoFocus
                               className="-mx-3 -my-2 h-8"
@@ -321,9 +309,9 @@ export function ReviewDialog({ open, onOpenChange, reviewId, date, onDeleted, on
                           )}
                           displayComponent={(
                             <p className="min-h-[32px] truncate leading-8">
-                              {sanitizeUrl(linkA) ? (
+                              {linkA ? (
                                 <a
-                                  href={sanitizeUrl(linkA)}
+                                  href={linkA}
                                   target="_blank"
                                   rel="noopener noreferrer"
                                   className="text-primary hover:underline"
@@ -351,7 +339,7 @@ export function ReviewDialog({ open, onOpenChange, reviewId, date, onDeleted, on
                           editComponent={(
                             <Input
                               value={linkB}
-                              onChange={e => setLinkB(e.target.value)}
+                              onChange={e => setLinkB(DOMPurify.sanitize(e.target.value))}
                               onBlur={handleBlur}
                               autoFocus
                               className="-mx-3 -my-2 h-8"
@@ -359,9 +347,9 @@ export function ReviewDialog({ open, onOpenChange, reviewId, date, onDeleted, on
                           )}
                           displayComponent={(
                             <p className="min-h-[32px] truncate leading-8">
-                              {sanitizeUrl(linkB) ? (
+                              {linkB ? (
                                 <a
-                                  href={sanitizeUrl(linkB)}
+                                  href={linkB}
                                   target="_blank"
                                   rel="noopener noreferrer"
                                   className="text-primary hover:underline"
@@ -533,7 +521,7 @@ export function ReviewDialog({ open, onOpenChange, reviewId, date, onDeleted, on
                           editComponent={(
                             <Input
                               value={socialUrl}
-                              onChange={e => setSocialUrl(e.target.value)}
+                              onChange={e => setSocialUrl(DOMPurify.sanitize(e.target.value))}
                               onBlur={handleBlur}
                               autoFocus
                               className="-mx-3 -my-2 h-8"
@@ -541,9 +529,9 @@ export function ReviewDialog({ open, onOpenChange, reviewId, date, onDeleted, on
                           )}
                           displayComponent={(
                             <p className="min-h-[32px] leading-8">
-                              {sanitizeUrl(socialUrl) ? (
+                              {socialUrl ? (
                                 <a
-                                  href={sanitizeUrl(socialUrl)}
+                                  href={socialUrl}
                                   target="_blank"
                                   rel="noopener noreferrer"
                                   className="text-primary hover:underline"
