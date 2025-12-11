@@ -2,6 +2,7 @@ import type { HosetsuResult, RoundInfo, TableData } from '@/api/reviews'
 import type { MultiSelectOption } from '@/components/ui/multi-select'
 import { format } from 'date-fns'
 import { zhCN } from 'date-fns/locale/zh-CN'
+import DOMPurify from 'dompurify'
 import { CalendarIcon, LinkIcon, LoaderIcon, UsersIcon } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { getTeamColorClassByName, teams } from '@/api/data'
@@ -13,6 +14,9 @@ import {
   updateReview,
 } from '@/api/reviews'
 import { EditableField } from '@/components/editable-field'
+import { ReviewItem } from '@/components/review-item'
+import { ReviewLabel } from '@/components/review-label'
+import { ReviewRow } from '@/components/review-row'
 import { ReviewTable } from '@/components/review-table'
 import {
   AlertDialog,
@@ -283,12 +287,12 @@ export function ReviewDialog({ open, onOpenChange, reviewId, date, onDeleted, on
                     />
                   </CardHeader>
                   <CardContent className="space-y-4">
-                    <div className="grid grid-cols-2 gap-4">
-                      <div>
-                        <label className="flex items-center gap-1.5 text-sm font-medium">
+                    <ReviewRow>
+                      <ReviewItem>
+                        <ReviewLabel>
                           <LinkIcon className="text-primary size-4" />
                           牌谱A
-                        </label>
+                        </ReviewLabel>
                         <EditableField
                           isEditing={editingField === 'linkA'}
                           onEdit={() => setEditingField('linkA')}
@@ -297,7 +301,7 @@ export function ReviewDialog({ open, onOpenChange, reviewId, date, onDeleted, on
                           editComponent={(
                             <Input
                               value={linkA}
-                              onChange={e => setLinkA(e.target.value)}
+                              onChange={e => setLinkA(DOMPurify.sanitize(e.target.value))}
                               onBlur={handleBlur}
                               autoFocus
                               className="-mx-3 -my-2 h-8"
@@ -316,17 +320,17 @@ export function ReviewDialog({ open, onOpenChange, reviewId, date, onDeleted, on
                                   {linkA}
                                 </a>
                               ) : (
-                                <span className="text-muted-foreground"></span>
+                                <span className="text-muted-foreground">{linkA}</span>
                               )}
                             </p>
                           )}
                         />
-                      </div>
-                      <div>
-                        <label className="flex items-center gap-1.5 text-sm font-medium">
+                      </ReviewItem>
+                      <ReviewItem>
+                        <ReviewLabel>
                           <LinkIcon className="text-primary size-4" />
                           牌谱B
-                        </label>
+                        </ReviewLabel>
                         <EditableField
                           isEditing={editingField === 'linkB'}
                           onEdit={() => setEditingField('linkB')}
@@ -335,7 +339,7 @@ export function ReviewDialog({ open, onOpenChange, reviewId, date, onDeleted, on
                           editComponent={(
                             <Input
                               value={linkB}
-                              onChange={e => setLinkB(e.target.value)}
+                              onChange={e => setLinkB(DOMPurify.sanitize(e.target.value))}
                               onBlur={handleBlur}
                               autoFocus
                               className="-mx-3 -my-2 h-8"
@@ -354,19 +358,19 @@ export function ReviewDialog({ open, onOpenChange, reviewId, date, onDeleted, on
                                   {linkB}
                                 </a>
                               ) : (
-                                <span className="text-muted-foreground"></span>
+                                <span className="text-muted-foreground">{linkB}</span>
                               )}
                             </p>
                           )}
                         />
-                      </div>
-                    </div>
-                    <div className="grid grid-cols-2 gap-4">
-                      <div>
-                        <label className="flex items-center gap-1.5 text-sm font-medium">
+                      </ReviewItem>
+                    </ReviewRow>
+                    <ReviewRow>
+                      <ReviewItem>
+                        <ReviewLabel>
                           <CalendarIcon className="text-primary size-4" />
                           日期
-                        </label>
+                        </ReviewLabel>
                         <Popover
                           open={editingField === 'date'}
                           onOpenChange={(open) => {
@@ -404,12 +408,12 @@ export function ReviewDialog({ open, onOpenChange, reviewId, date, onDeleted, on
                             />
                           </PopoverContent>
                         </Popover>
-                      </div>
-                      <div>
-                        <label className="flex items-center gap-1.5 text-sm font-medium">
+                      </ReviewItem>
+                      <ReviewItem>
+                        <ReviewLabel>
                           <LoaderIcon className="text-primary size-4" />
                           状态
-                        </label>
+                        </ReviewLabel>
                         <EditableField
                           isEditing={editingField === 'status'}
                           onEdit={() => setEditingField('status')}
@@ -455,92 +459,94 @@ export function ReviewDialog({ open, onOpenChange, reviewId, date, onDeleted, on
                             </Badge>
                           )}
                         />
-                      </div>
-                    </div>
-                    <div>
-                      <label className="flex items-center gap-1.5 text-sm font-medium">
-                        <UsersIcon className="text-primary size-4" />
-                        队伍
-                      </label>
-                      <EditableField
-                        isEditing={editingField === 'teams'}
-                        onEdit={() => setEditingField('teams')}
-                        className="mt-1"
-                        cursorType="pointer"
-                        editComponent={(
-                          <div className="-mx-3 -my-2" data-team-multi-select>
-                            <MultiSelect
-                              options={teamOptions}
-                              onValueChange={(teams) => {
-                                setSelectedTeams(teams)
-                              }}
-                              defaultValue={selectedTeams}
-                              maxCount={10}
-                              closeOnSelect={false}
-                              onClose={() => {
-                                setEditingField(null)
-                                autoSave()
-                              }}
+                      </ReviewItem>
+                    </ReviewRow>
+                    <ReviewRow>
+                      <ReviewItem>
+                        <ReviewLabel>
+                          <UsersIcon className="text-primary size-4" />
+                          队伍
+                        </ReviewLabel>
+                        <EditableField
+                          isEditing={editingField === 'teams'}
+                          onEdit={() => setEditingField('teams')}
+                          className="mt-1"
+                          cursorType="pointer"
+                          editComponent={(
+                            <div className="-mx-3 -my-2" data-team-multi-select>
+                              <MultiSelect
+                                options={teamOptions}
+                                onValueChange={(teams) => {
+                                  setSelectedTeams(teams)
+                                }}
+                                defaultValue={selectedTeams}
+                                maxCount={10}
+                                closeOnSelect={false}
+                                onClose={() => {
+                                  setEditingField(null)
+                                  autoSave()
+                                }}
+                                onBlur={handleBlur}
+                              />
+                            </div>
+                          )}
+                          displayComponent={(
+                            <div className="flex min-h-[32px] flex-wrap items-center gap-2">
+                              {selectedTeams.length > 0 ? (
+                                selectedTeams.map((teamName) => {
+                                  const teamColors = getTeamColorClassByName(teamName)
+                                  return (
+                                    <Badge key={teamName} variant="outline" className={teamColors}>
+                                      {teamName}
+                                    </Badge>
+                                  )
+                                })
+                              ) : (
+                                <span className="text-muted-foreground"></span>
+                              )}
+                            </div>
+                          )}
+                        />
+                      </ReviewItem>
+                      <ReviewItem>
+                        <ReviewLabel>
+                          <LinkIcon className="text-primary size-4" />
+                          网址
+                        </ReviewLabel>
+                        <EditableField
+                          isEditing={editingField === 'socialUrl'}
+                          onEdit={() => setEditingField('socialUrl')}
+                          onBlur={handleBlur}
+                          className="mt-1"
+                          editComponent={(
+                            <Input
+                              value={socialUrl}
+                              onChange={e => setSocialUrl(DOMPurify.sanitize(e.target.value))}
                               onBlur={handleBlur}
+                              autoFocus
+                              className="-mx-3 -my-2 h-8"
                             />
-                          </div>
-                        )}
-                        displayComponent={(
-                          <div className="flex min-h-[32px] flex-wrap items-center gap-2">
-                            {selectedTeams.length > 0 ? (
-                              selectedTeams.map((teamName) => {
-                                const teamColors = getTeamColorClassByName(teamName)
-                                return (
-                                  <Badge key={teamName} variant="outline" className={teamColors}>
-                                    {teamName}
-                                  </Badge>
-                                )
-                              })
-                            ) : (
-                              <span className="text-muted-foreground"></span>
-                            )}
-                          </div>
-                        )}
-                      />
-                    </div>
-                    <div>
-                      <label className="flex items-center gap-1.5 text-sm font-medium">
-                        <LinkIcon className="text-primary size-4" />
-                        网址
-                      </label>
-                      <EditableField
-                        isEditing={editingField === 'socialUrl'}
-                        onEdit={() => setEditingField('socialUrl')}
-                        onBlur={handleBlur}
-                        className="mt-1"
-                        editComponent={(
-                          <Input
-                            value={socialUrl}
-                            onChange={e => setSocialUrl(e.target.value)}
-                            onBlur={handleBlur}
-                            autoFocus
-                            className="-mx-3 -my-2 h-8"
-                          />
-                        )}
-                        displayComponent={(
-                          <p className="min-h-[32px] leading-8">
-                            {socialUrl ? (
-                              <a
-                                href={socialUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="text-primary hover:underline"
-                                onClick={e => e.stopPropagation()}
-                              >
-                                {socialUrl}
-                              </a>
-                            ) : (
-                              <span className="text-muted-foreground"></span>
-                            )}
-                          </p>
-                        )}
-                      />
-                    </div>
+                          )}
+                          displayComponent={(
+                            <p className="min-h-[32px] leading-8">
+                              {socialUrl ? (
+                                <a
+                                  href={socialUrl}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="text-primary hover:underline"
+                                  onClick={e => e.stopPropagation()}
+                                >
+                                  {socialUrl}
+                                </a>
+                              ) : (
+                                <span className="text-muted-foreground">{socialUrl}</span>
+                              )}
+                            </p>
+                          )}
+                        />
+                      </ReviewItem>
+                    </ReviewRow>
                   </CardContent>
                 </Card>
                 <ReviewTable
