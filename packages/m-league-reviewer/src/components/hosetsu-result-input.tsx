@@ -69,8 +69,8 @@ function parseHosetsuResult(text: string): HosetsuResult | null {
         isSignificant: parsed.isSignificant || false,
       }
     }
-  } catch {
-  }
+  } catch {}
+
   return null
 }
 
@@ -129,6 +129,18 @@ export function HosetsuResultInput({ value, onChange, onClose, onKeyDown, autoFo
     inputRef.current?.focus()
   }
 
+  const handleCutButton = () => {
+    copyHosetsuResultToClipboard(localValue)
+    const newValue: HosetsuResult = {
+      description: '',
+      type: 'other',
+      isSignificant: false,
+    }
+    setLocalValue(newValue)
+    onChange(newValue)
+    inputRef.current?.focus()
+  }
+
   const handlePasteButton = () => {
     navigator.clipboard
       .readText()
@@ -148,18 +160,6 @@ export function HosetsuResultInput({ value, onChange, onClose, onKeyDown, autoFo
       })
   }
 
-  const handleCutButton = () => {
-    copyHosetsuResultToClipboard(localValue)
-    const newValue: HosetsuResult = {
-      description: '',
-      type: 'other',
-      isSignificant: false,
-    }
-    setLocalValue(newValue)
-    onChange(newValue)
-    inputRef.current?.focus()
-  }
-
   const handleCopyShortcut = (e: React.ClipboardEvent<HTMLInputElement>) => {
     const selection = window.getSelection()
     if (selection && selection.toString()) {
@@ -168,17 +168,6 @@ export function HosetsuResultInput({ value, onChange, onClose, onKeyDown, autoFo
 
     e.preventDefault()
     copyHosetsuResultToClipboard(localValue)
-  }
-
-  const handlePasteShortcut = (e: React.ClipboardEvent<HTMLInputElement>) => {
-    const text = e.clipboardData.getData('text')
-    const parsed = parseHosetsuResult(text)
-
-    if (parsed) {
-      e.preventDefault()
-      setLocalValue(parsed)
-      onChange(parsed)
-    }
   }
 
   const handleCutShortcut = (e: React.ClipboardEvent<HTMLInputElement>) => {
@@ -196,6 +185,17 @@ export function HosetsuResultInput({ value, onChange, onClose, onKeyDown, autoFo
     }
     setLocalValue(newValue)
     onChange(newValue)
+  }
+
+  const handlePasteShortcut = (e: React.ClipboardEvent<HTMLInputElement>) => {
+    const text = e.clipboardData.getData('text')
+    const parsed = parseHosetsuResult(text)
+
+    if (parsed) {
+      e.preventDefault()
+      setLocalValue(parsed)
+      onChange(parsed)
+    }
   }
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -319,33 +319,15 @@ export function HosetsuResultInput({ value, onChange, onClose, onKeyDown, autoFo
             <AlertCircleIcon className="size-3" />
             严重
           </Button>
-          <Button
-            size="sm"
-            variant="outline"
-            onClick={handleCopyButton}
-            className="h-7 gap-1 text-xs"
-            title="Ctrl+C"
-          >
+          <Button size="sm" variant="outline" onClick={handleCopyButton} className="h-7 gap-1 text-xs" title="Ctrl+C">
             <ClipboardCopyIcon className="size-3" />
             复制
           </Button>
-          <Button
-            size="sm"
-            variant="outline"
-            onClick={handleCutButton}
-            className="h-7 gap-1 text-xs"
-            title="Ctrl+X"
-          >
+          <Button size="sm" variant="outline" onClick={handleCutButton} className="h-7 gap-1 text-xs" title="Ctrl+X">
             <ScissorsIcon className="size-3" />
             剪切
           </Button>
-          <Button
-            size="sm"
-            variant="outline"
-            onClick={handlePasteButton}
-            className="h-7 gap-1 text-xs"
-            title="Ctrl+V"
-          >
+          <Button size="sm" variant="outline" onClick={handlePasteButton} className="h-7 gap-1 text-xs" title="Ctrl+V">
             <ClipboardPasteIcon className="size-3" />
             粘贴
           </Button>
