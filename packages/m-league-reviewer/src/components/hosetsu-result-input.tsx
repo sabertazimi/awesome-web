@@ -39,6 +39,12 @@ function isHosetsuType(value: string): value is HosetsuType {
   return Object.keys(typeConfig).includes(value)
 }
 
+const DEFAULT_HOSETSU_RESULT: HosetsuResult = {
+  description: '',
+  type: 'other',
+  isSignificant: false,
+}
+
 /**
  * 复制 HosetsuResult 到剪贴板
  */
@@ -114,14 +120,15 @@ export function HosetsuResultInput({ value, onChange, onClose, onKeyDown, autoFo
   const handleClear = (e: React.MouseEvent) => {
     e.preventDefault()
     e.stopPropagation()
-    const newValue: HosetsuResult = {
-      description: '',
-      type: 'other',
-      isSignificant: false,
-    }
-    setLocalValue(newValue)
-    onChange(newValue)
+    setLocalValue(DEFAULT_HOSETSU_RESULT)
+    onChange(DEFAULT_HOSETSU_RESULT)
     setTimeout(() => inputRef.current?.focus(), 0)
+  }
+
+  const performCut = () => {
+    copyHosetsuResultToClipboard(localValue)
+    setLocalValue(DEFAULT_HOSETSU_RESULT)
+    onChange(DEFAULT_HOSETSU_RESULT)
   }
 
   const handleCopyButton = () => {
@@ -130,14 +137,7 @@ export function HosetsuResultInput({ value, onChange, onClose, onKeyDown, autoFo
   }
 
   const handleCutButton = () => {
-    copyHosetsuResultToClipboard(localValue)
-    const newValue: HosetsuResult = {
-      description: '',
-      type: 'other',
-      isSignificant: false,
-    }
-    setLocalValue(newValue)
-    onChange(newValue)
+    performCut()
     inputRef.current?.focus()
   }
 
@@ -177,14 +177,7 @@ export function HosetsuResultInput({ value, onChange, onClose, onKeyDown, autoFo
     }
 
     e.preventDefault()
-    copyHosetsuResultToClipboard(localValue)
-    const newValue: HosetsuResult = {
-      description: '',
-      type: 'other',
-      isSignificant: false,
-    }
-    setLocalValue(newValue)
-    onChange(newValue)
+    performCut()
   }
 
   const handlePasteShortcut = (e: React.ClipboardEvent<HTMLInputElement>) => {
@@ -429,12 +422,7 @@ export function HosetsuResultContextMenu({ value, onChange, children }: HosetsuR
   const handleCut = (e: React.MouseEvent) => {
     e.stopPropagation()
     copyHosetsuResultToClipboard(value)
-    const newValue: HosetsuResult = {
-      description: '',
-      type: 'other',
-      isSignificant: false,
-    }
-    onChange(newValue)
+    onChange(DEFAULT_HOSETSU_RESULT)
     setOpen(false)
   }
 
@@ -459,12 +447,7 @@ export function HosetsuResultContextMenu({ value, onChange, children }: HosetsuR
 
   const handleClear = (e: React.MouseEvent) => {
     e.stopPropagation()
-    const newValue: HosetsuResult = {
-      description: '',
-      type: 'other',
-      isSignificant: false,
-    }
-    onChange(newValue)
+    onChange(DEFAULT_HOSETSU_RESULT)
     setOpen(false)
   }
 
