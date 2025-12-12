@@ -223,8 +223,9 @@ export function deleteNote(id: string): boolean {
   return true
 }
 
-function numberToJapanese(num: number): string {
+export function numberToKanji(num: number): string {
   const map: Record<number, string> = {
+    0: '零',
     1: '一',
     2: '二',
     3: '三',
@@ -235,13 +236,14 @@ function numberToJapanese(num: number): string {
     8: '八',
     9: '九',
   }
+
   return map[num] || num.toString()
 }
 
 export function formatRound(roundInfo: RoundInfo): string {
   const fieldText = roundInfo.field === 'east' ? '東' : '南'
-  const roundText = numberToJapanese(roundInfo.round)
-  const honbaText = roundInfo.honba > 0 ? `${numberToJapanese(roundInfo.honba)}本場` : ''
+  const roundText = numberToKanji(roundInfo.round)
+  const honbaText = roundInfo.honba > 0 ? `${numberToKanji(roundInfo.honba)}本場` : ''
   return `${fieldText}${roundText}${honbaText}`
 }
 
