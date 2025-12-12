@@ -117,11 +117,6 @@ export function HosetsuResultInput({ value, onChange, onClose, onKeyDown, autoFo
     onChange(newValue)
   }
 
-  const performClear = () => {
-    setLocalValue(DEFAULT_HOSETSU_RESULT)
-    onChange(DEFAULT_HOSETSU_RESULT)
-  }
-
   const performCopy = () => {
     copyHosetsuResultToClipboard(localValue)
   }
@@ -147,11 +142,9 @@ export function HosetsuResultInput({ value, onChange, onClose, onKeyDown, autoFo
     }
   }
 
-  const handleClear = (e: React.MouseEvent) => {
-    e.preventDefault()
-    e.stopPropagation()
-    performClear()
-    setTimeout(() => inputRef.current?.focus(), 0)
+  const performClear = () => {
+    setLocalValue(DEFAULT_HOSETSU_RESULT)
+    onChange(DEFAULT_HOSETSU_RESULT)
   }
 
   const handleCopyButton = () => {
@@ -164,9 +157,8 @@ export function HosetsuResultInput({ value, onChange, onClose, onKeyDown, autoFo
     inputRef.current?.focus()
   }
 
-  const handlePasteButton = async () => {
-    await performPaste()
-    inputRef.current?.focus()
+  const handlePasteButton = () => {
+    void performPaste().then(() => inputRef.current?.focus())
   }
 
   const handleCopyShortcut = (e: React.ClipboardEvent<HTMLInputElement>) => {
@@ -198,6 +190,13 @@ export function HosetsuResultInput({ value, onChange, onClose, onKeyDown, autoFo
       setLocalValue(parsed)
       onChange(parsed)
     }
+  }
+
+  const handleClear = (e: React.MouseEvent) => {
+    e.preventDefault()
+    e.stopPropagation()
+    performClear()
+    setTimeout(() => inputRef.current?.focus(), 0)
   }
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -461,10 +460,9 @@ export function HosetsuResultContextMenu({ value, onChange, children }: HosetsuR
     setOpen(false)
   }
 
-  const handlePaste = async (e: React.MouseEvent) => {
+  const handlePaste = (e: React.MouseEvent) => {
     e.stopPropagation()
-    await performPaste()
-    setOpen(false)
+    void performPaste().then(() => setOpen(false))
   }
 
   const handleClear = (e: React.MouseEvent) => {
