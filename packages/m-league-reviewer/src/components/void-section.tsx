@@ -65,7 +65,7 @@ export function VoidSection({
           </div>
         )}
         {title && (
-          <div className={cn('mb-6 flex items-center justify-center gap-4 sm:justify-normal')}>
+          <div className={cn('mb-6 flex items-center justify-center gap-4 sm:justify-start')}>
             {titleImage && <img src={titleImage} alt={titleImageAlt || title} className="h-16 w-16 object-contain" />}
             <h2 className="text-foreground font-mono text-2xl font-bold">{title}</h2>
           </div>
