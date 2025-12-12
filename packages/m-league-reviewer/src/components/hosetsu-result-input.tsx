@@ -40,11 +40,11 @@ function isHosetsuType(value: string): value is HosetsuType {
 }
 
 /** 默认何切结果值 */
-const DEFAULT_HOSETSU_RESULT: HosetsuResult = {
+const DEFAULT_HOSETSU_RESULT = {
   description: '',
   type: 'other',
   isSignificant: false,
-}
+} as const
 
 /**
  * 复制 HosetsuResult 到剪贴板
