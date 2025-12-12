@@ -50,7 +50,7 @@ export function PlayerCard({ player, teamId }: PlayerCardProps) {
           <h3 className="text-primary-foreground mt-3 font-mono text-xl font-bold">{player.pro_name}</h3>
         </div>
       </CardHeader>
-      <CardContent className="space-y-2 pt-4">
+      <CardContent className="space-y-4 pt-4 sm:space-y-2">
         <div className="text-sm">
           <p className="text-muted-foreground">生年月日</p>
           <p className="font-medium">{player.birth}</p>
