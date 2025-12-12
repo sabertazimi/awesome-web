@@ -1,6 +1,6 @@
 import type { RoundInfo } from '@/api/reviews'
 import { useEffect, useRef, useState } from 'react'
-import { formatRound } from '@/api/reviews'
+import { formatRound, numberToKanji } from '@/api/reviews'
 import { Button } from '@/components/ui/button'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import { cn } from '@/lib/utils'
@@ -122,7 +122,7 @@ export function RoundInput({ value, onChange, onClose, open, onOpenChange, exist
                   onClick={() => handleRoundChange(num)}
                   className="w-12"
                 >
-                  {num}
+                  {numberToKanji(num)}
                 </Button>
               ))}
             </div>
