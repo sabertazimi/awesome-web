@@ -1,6 +1,7 @@
 import type { RoundInfo } from '@/api/reviews'
 import { useEffect, useRef, useState } from 'react'
 import { formatRound, numberToKanji } from '@/api/reviews'
+import { RoundLabel } from '@/components/round-label'
 import { Button } from '@/components/ui/button'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import { cn } from '@/lib/utils'
@@ -91,13 +92,13 @@ export function RoundInput({ value, onChange, onClose, open, onOpenChange, exist
       <PopoverContent className="w-auto p-3" align="start" onClick={e => e.stopPropagation()}>
         <div className="space-y-3">
           <div>
-            <label className="mb-1.5 block text-xs font-medium">场风</label>
+            <RoundLabel>场风</RoundLabel>
             <div className="flex gap-2">
               <Button
                 size="sm"
                 variant={localValue.field === 'east' ? 'default' : 'outline'}
                 onClick={() => handleFieldChange('east')}
-                className="w-16"
+                className="flex-1"
               >
                 東
               </Button>
@@ -105,22 +106,22 @@ export function RoundInput({ value, onChange, onClose, open, onOpenChange, exist
                 size="sm"
                 variant={localValue.field === 'south' ? 'default' : 'outline'}
                 onClick={() => handleFieldChange('south')}
-                className="w-16"
+                className="flex-1"
               >
                 南
               </Button>
             </div>
           </div>
           <div>
-            <label className="mb-1.5 block text-xs font-medium">小局</label>
-            <div ref={roundButtonsRef} className="grid grid-cols-4 gap-2">
+            <RoundLabel>小局</RoundLabel>
+            <div ref={roundButtonsRef} className="flex gap-2">
               {[1, 2, 3, 4].map(num => (
                 <Button
                   key={num}
                   size="sm"
                   variant={localValue.round === num ? 'default' : 'outline'}
                   onClick={() => handleRoundChange(num)}
-                  className="w-12"
+                  className="flex-1"
                 >
                   {numberToKanji(num)}
                 </Button>
@@ -128,7 +129,7 @@ export function RoundInput({ value, onChange, onClose, open, onOpenChange, exist
             </div>
           </div>
           <div>
-            <label className="mb-1.5 block text-xs font-medium">本場</label>
+            <RoundLabel>本場</RoundLabel>
             <div className="grid grid-cols-5 gap-2">
               {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map(num => (
                 <Button
@@ -136,7 +137,7 @@ export function RoundInput({ value, onChange, onClose, open, onOpenChange, exist
                   size="sm"
                   variant={localValue.honba === num ? 'default' : 'outline'}
                   onClick={() => handleHonbaChange(num)}
-                  className="w-12"
+                  className="w-10"
                 >
                   {num}
                 </Button>
