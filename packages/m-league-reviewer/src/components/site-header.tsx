@@ -20,7 +20,7 @@ export function SiteHeader({ title, link, className, children }: SiteHeaderProps
         {children ? (
           <div className="justify-self-center sm:justify-self-end">{children}</div>
         ) : (
-          <div className="sr-only justify-self-center sm:justify-self-end">No content</div>
+          <div className="sr-only">No content</div>
         )}
       </header>
     </VoidSection>
