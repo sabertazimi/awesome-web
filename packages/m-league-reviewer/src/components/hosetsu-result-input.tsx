@@ -117,12 +117,13 @@ export function HosetsuResultInput({ value, onChange, onClose, onKeyDown, autoFo
     onChange(newValue)
   }
 
-  const handleClear = (e: React.MouseEvent) => {
-    e.preventDefault()
-    e.stopPropagation()
+  const performClear = () => {
     setLocalValue(DEFAULT_HOSETSU_RESULT)
     onChange(DEFAULT_HOSETSU_RESULT)
-    setTimeout(() => inputRef.current?.focus(), 0)
+  }
+
+  const performCopy = () => {
+    copyHosetsuResultToClipboard(localValue)
   }
 
   const performCut = () => {
@@ -131,8 +132,30 @@ export function HosetsuResultInput({ value, onChange, onClose, onKeyDown, autoFo
     onChange(DEFAULT_HOSETSU_RESULT)
   }
 
+  const performPaste = async () => {
+    try {
+      const text = await navigator.clipboard.readText()
+      const parsed = parseHosetsuResult(text)
+      if (parsed) {
+        setLocalValue(parsed)
+        onChange(parsed)
+      } else {
+        toast.warning('无法解析剪贴板内容为何切结果')
+      }
+    } catch (err: unknown) {
+      toast.error(`读取剪贴板失败: ${err instanceof Error ? err.message : String(err)}`)
+    }
+  }
+
+  const handleClear = (e: React.MouseEvent) => {
+    e.preventDefault()
+    e.stopPropagation()
+    performClear()
+    setTimeout(() => inputRef.current?.focus(), 0)
+  }
+
   const handleCopyButton = () => {
-    copyHosetsuResultToClipboard(localValue)
+    performCopy()
     inputRef.current?.focus()
   }
 
@@ -141,23 +164,9 @@ export function HosetsuResultInput({ value, onChange, onClose, onKeyDown, autoFo
     inputRef.current?.focus()
   }
 
-  const handlePasteButton = () => {
-    navigator.clipboard
-      .readText()
-      .then((text) => {
-        const parsed = parseHosetsuResult(text)
-        if (parsed) {
-          setLocalValue(parsed)
-          onChange(parsed)
-        } else {
-          toast.warning('无法解析剪贴板内容为何切结果')
-        }
-        inputRef.current?.focus()
-      })
-      .catch((err: unknown) => {
-        toast.error(`读取剪贴板失败: ${err instanceof Error ? err.message : String(err)}`)
-        inputRef.current?.focus()
-      })
+  const handlePasteButton = async () => {
+    await performPaste()
+    inputRef.current?.focus()
   }
 
   const handleCopyShortcut = (e: React.ClipboardEvent<HTMLInputElement>) => {
@@ -167,7 +176,7 @@ export function HosetsuResultInput({ value, onChange, onClose, onKeyDown, autoFo
     }
 
     e.preventDefault()
-    copyHosetsuResultToClipboard(localValue)
+    performCopy()
   }
 
   const handleCutShortcut = (e: React.ClipboardEvent<HTMLInputElement>) => {
@@ -413,41 +422,54 @@ export function HosetsuResultContextMenu({ value, onChange, children }: HosetsuR
     setOpen(false)
   }
 
+  const performCopy = () => {
+    copyHosetsuResultToClipboard(value)
+  }
+
+  const performCut = () => {
+    copyHosetsuResultToClipboard(value)
+    onChange(DEFAULT_HOSETSU_RESULT)
+  }
+
+  const performPaste = async () => {
+    try {
+      const text = await navigator.clipboard.readText()
+      const parsed = parseHosetsuResult(text)
+      if (parsed) {
+        onChange(parsed)
+      } else {
+        toast.warning('无法解析剪贴板内容为何切结果')
+      }
+    } catch (err: unknown) {
+      toast.error(`读取剪贴板失败: ${err instanceof Error ? err.message : String(err)}`)
+    }
+  }
+
+  const performClear = () => {
+    onChange(DEFAULT_HOSETSU_RESULT)
+  }
+
   const handleCopy = (e: React.MouseEvent) => {
     e.stopPropagation()
-    copyHosetsuResultToClipboard(value)
+    performCopy()
     setOpen(false)
   }
 
   const handleCut = (e: React.MouseEvent) => {
     e.stopPropagation()
-    copyHosetsuResultToClipboard(value)
-    onChange(DEFAULT_HOSETSU_RESULT)
+    performCut()
     setOpen(false)
   }
 
-  const handlePaste = (e: React.MouseEvent) => {
+  const handlePaste = async (e: React.MouseEvent) => {
     e.stopPropagation()
-    navigator.clipboard
-      .readText()
-      .then((text) => {
-        const parsed = parseHosetsuResult(text)
-        if (parsed) {
-          onChange(parsed)
-        } else {
-          toast.warning('无法解析剪贴板内容为何切结果')
-        }
-        setOpen(false)
-      })
-      .catch((err: unknown) => {
-        toast.error(`读取剪贴板失败: ${err instanceof Error ? err.message : String(err)}`)
-        setOpen(false)
-      })
+    await performPaste()
+    setOpen(false)
   }
 
   const handleClear = (e: React.MouseEvent) => {
     e.stopPropagation()
-    onChange(DEFAULT_HOSETSU_RESULT)
+    performClear()
     setOpen(false)
   }
 
