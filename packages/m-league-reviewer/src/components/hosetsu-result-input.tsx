@@ -1,5 +1,5 @@
 import type { HosetsuResult, HosetsuType } from '@/api/reviews'
-import { AlertCircleIcon, CheckIcon, ClipboardCopyIcon, ClipboardPasteIcon, XIcon } from 'lucide-react'
+import { AlertCircleIcon, CheckIcon, ClipboardCopyIcon, ClipboardPasteIcon, ScissorsIcon, XIcon } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 import { toast } from 'sonner'
 import { Badge } from '@/components/ui/badge'
@@ -154,6 +154,20 @@ export function HosetsuResultInput({ value, onChange, onClose, onKeyDown, autoFo
       })
   }
 
+  // 按钮触发的剪切
+  const handleCutButton = () => {
+    copyHosetsuResultToClipboard(localValue)
+    // 重置所有字段到默认值
+    const newValue: HosetsuResult = {
+      description: '',
+      type: 'other',
+      isSignificant: false,
+    }
+    setLocalValue(newValue)
+    onChange(newValue)
+    inputRef.current?.focus()
+  }
+
   // 键盘快捷键触发的复制
   const handleCopy = (e: React.ClipboardEvent<HTMLInputElement>) => {
     // 如果有选中文本，让浏览器处理默认的文本复制
@@ -181,6 +195,27 @@ export function HosetsuResultInput({ value, onChange, onClose, onKeyDown, autoFo
     // 否则让浏览器处理默认的文本粘贴
   }
 
+  // 键盘快捷键触发的剪切
+  const handleCut = (e: React.ClipboardEvent<HTMLInputElement>) => {
+    // 如果有选中文本，让浏览器处理默认的文本剪切
+    const selection = window.getSelection()
+    if (selection && selection.toString()) {
+      return
+    }
+
+    // 否则剪切完整的 HosetsuResult 对象
+    e.preventDefault()
+    copyHosetsuResultToClipboard(localValue)
+    // 重置所有字段到默认值
+    const newValue: HosetsuResult = {
+      description: '',
+      type: 'other',
+      isSignificant: false,
+    }
+    setLocalValue(newValue)
+    onChange(newValue)
+  }
+
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       e.preventDefault()
@@ -206,6 +241,7 @@ export function HosetsuResultInput({ value, onChange, onClose, onKeyDown, autoFo
         onChange={e => handleDescriptionChange(e.target.value)}
         onKeyDown={handleKeyDown}
         onCopy={handleCopy}
+        onCut={handleCut}
         onPaste={handlePaste}
         onBlur={(e) => {
           // 如果没有 relatedTarget，说明点击了真正的空白区域
@@ -314,6 +350,16 @@ export function HosetsuResultInput({ value, onChange, onClose, onKeyDown, autoFo
           <Button
             size="sm"
             variant="outline"
+            onClick={handleCutButton}
+            className="h-7 gap-1 text-xs"
+            title="Ctrl+X"
+          >
+            <ScissorsIcon className="size-3" />
+            剪切
+          </Button>
+          <Button
+            size="sm"
+            variant="outline"
             onClick={handlePasteButton}
             className="h-7 gap-1 text-xs"
             title="Ctrl+V"
@@ -332,6 +378,11 @@ export function HosetsuResultInput({ value, onChange, onClose, onKeyDown, autoFo
             <Kbd>⌘</Kbd>
             <Kbd>C</Kbd>
             <span>复制</span>
+          </KbdGroup>
+          <KbdGroup>
+            <Kbd>⌘</Kbd>
+            <Kbd>X</Kbd>
+            <span>剪切</span>
           </KbdGroup>
           <KbdGroup>
             <Kbd>⌘</Kbd>
@@ -408,6 +459,19 @@ export function HosetsuResultContextMenu({ value, onChange, children }: HosetsuR
   const handleCopy = (e: React.MouseEvent) => {
     e.stopPropagation()
     copyHosetsuResultToClipboard(value)
+    setOpen(false)
+  }
+
+  const handleCut = (e: React.MouseEvent) => {
+    e.stopPropagation()
+    copyHosetsuResultToClipboard(value)
+    // 重置所有字段到默认值
+    const newValue: HosetsuResult = {
+      description: '',
+      type: 'other',
+      isSignificant: false,
+    }
+    onChange(newValue)
     setOpen(false)
   }
 
@@ -494,6 +558,15 @@ export function HosetsuResultContextMenu({ value, onChange, children }: HosetsuR
           >
             <ClipboardCopyIcon className="size-3" />
             <span>复制</span>
+          </Button>
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={e => handleCut(e)}
+            className="h-auto w-full justify-start gap-2 px-2 py-1.5 text-xs font-normal"
+          >
+            <ScissorsIcon className="size-3" />
+            <span>剪切</span>
           </Button>
           <Button
             variant="ghost"
