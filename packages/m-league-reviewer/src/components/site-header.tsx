@@ -11,16 +11,16 @@ interface SiteHeaderProps {
 export function SiteHeader({ title, link, className, children }: SiteHeaderProps) {
   return (
     <VoidSection number="00" enableFlickeringGrid>
-      <header className={cn('grid grid-cols-1 items-center gap-4 md:grid-cols-[1fr_auto_1fr]', className)}>
-        <div className="justify-self-start">{link}</div>
-        <h1 className="text-foreground flex items-center gap-4 font-mono text-4xl font-bold">
+      <header className={cn('grid grid-cols-1 items-center gap-4 lg:grid-cols-[1fr_auto_1fr]', className)}>
+        <div className="justify-self-center sm:justify-self-start">{link}</div>
+        <h1 className="text-foreground flex items-center gap-4 justify-self-center font-mono text-4xl font-bold">
           <img src={`${import.meta.env.BASE_URL}logo.svg`} alt="M.League" className="h-10 w-auto" />
           {title}
         </h1>
         {children ? (
-          <div className="md:justify-self-end">{children}</div>
+          <div className="justify-self-center sm:justify-self-end">{children}</div>
         ) : (
-          <div className="sr-only md:justify-self-end">No content</div>
+          <div className="sr-only justify-self-center sm:justify-self-end">No content</div>
         )}
       </header>
     </VoidSection>
