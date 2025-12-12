@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0](https://github.com/sabertazimi/awesome-web/compare/v2.1.0...v2.2.0) (2025-12-12)
+
+### Bug Fixes
+
+- **m.league-editor:** add tooltip to toolbar ([#883](https://github.com/sabertazimi/awesome-web/issues/883)) ([3471063](https://github.com/sabertazimi/awesome-web/commit/34710631c03d804bce24702d51a2cb7953a3d383))
+- **m.league-editor:** adjust width and height layouts ([#885](https://github.com/sabertazimi/awesome-web/issues/885)) ([fe3ef8d](https://github.com/sabertazimi/awesome-web/commit/fe3ef8d6944f2c9a80fcd472791dd875a17757bd))
+- **m.league-editor:** remove border radius of editor toolbar ([#884](https://github.com/sabertazimi/awesome-web/issues/884)) ([1e2c701](https://github.com/sabertazimi/awesome-web/commit/1e2c70171fba11ee56f9fb43ab0d535195bda54d))
+- **m.league-hosetsu:** implement hosetsu type input cut feature ([#894](https://github.com/sabertazimi/awesome-web/issues/894)) ([c15c0e6](https://github.com/sabertazimi/awesome-web/commit/c15c0e6e108250aa0f5d11fce7d76ab2d522f8d9))
+- **m.league-review:** adjust review dialog mobile layout ([#886](https://github.com/sabertazimi/awesome-web/issues/886)) ([d846f70](https://github.com/sabertazimi/awesome-web/commit/d846f7058a0e23eca5149507f93b60a2fb6848e1))
+- **m.league-review:** enable review dialog scrollbar ([#887](https://github.com/sabertazimi/awesome-web/issues/887)) ([675158d](https://github.com/sabertazimi/awesome-web/commit/675158d046d8b8ce802423b09b851978eb6c11e2))
+- **m.league-review:** reset local value ([#888](https://github.com/sabertazimi/awesome-web/issues/888)) ([ab6cd96](https://github.com/sabertazimi/awesome-web/commit/ab6cd9637c12690d38a4bfd89684c53babbfed9c))
+- **m.league-round:** adjust layout for round input buttons ([#893](https://github.com/sabertazimi/awesome-web/issues/893)) ([ea4a08b](https://github.com/sabertazimi/awesome-web/commit/ea4a08b1852a184e2b19bffc784883c24a876419))
+- **m.league-round:** chnage round input text ([#892](https://github.com/sabertazimi/awesome-web/issues/892)) ([9c20a45](https://github.com/sabertazimi/awesome-web/commit/9c20a45201136b0e0d50cab8028828ce0249478f))
+- **m.league-selection:** change selection text color ([#891](https://github.com/sabertazimi/awesome-web/issues/891)) ([2f57099](https://github.com/sabertazimi/awesome-web/commit/2f57099c3b4d70d418f697c7f38db36b2a4a77f6))
+- **m.league-status:** update status colors ([#889](https://github.com/sabertazimi/awesome-web/issues/889)) ([c1e6842](https://github.com/sabertazimi/awesome-web/commit/c1e684254b4469b9453a68976ee273d209eaba11))
+- **m.league-toast:** add toaster component ([#882](https://github.com/sabertazimi/awesome-web/issues/882)) ([b737aeb](https://github.com/sabertazimi/awesome-web/commit/b737aeb899875cdece2d48951269795883388f51))
+
+### Features
+
+- **m.league-editor:** implement bubble and floating menu for note editor ([#881](https://github.com/sabertazimi/awesome-web/issues/881)) ([9d0ea2e](https://github.com/sabertazimi/awesome-web/commit/9d0ea2e4f6469a2e53587eb1013e6e8e5350235a))
+
 # [2.1.0](https://github.com/sabertazimi/awesome-web/compare/v2.0.0...v2.1.0) (2025-12-10)
 
 ### Bug Fixes
