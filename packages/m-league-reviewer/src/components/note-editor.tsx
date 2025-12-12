@@ -589,8 +589,9 @@ export function NoteEditor({ open }: { open: boolean }) {
 
           if (note && editor) {
             const json = editor.getJSON()
-            updateNote(note.id, json)
-            toast.success('笔记已保存')
+            updateNote(note.id, json).then(() => {
+              toast.success('笔记已保存')
+            })
           }
 
           return true
@@ -638,19 +639,23 @@ export function NoteEditor({ open }: { open: boolean }) {
   })
 
   useEffect(() => {
-    if (open && editor) {
-      const notes = getNotes()
-      let currentNote: Note
+    const loadNote = async () => {
+      if (open && editor) {
+        const notes = await getNotes()
+        let currentNote: Note
 
-      if (notes.length === 0) {
-        currentNote = createNote()
-      } else {
-        currentNote = notes[0]
+        if (notes.length === 0) {
+          currentNote = await createNote()
+        } else {
+          currentNote = notes[0]
+        }
+
+        setNote(currentNote)
+        editor.commands.setContent(currentNote.content)
       }
-
-      setNote(currentNote)
-      editor.commands.setContent(currentNote.content)
     }
+
+    loadNote()
   }, [open, editor])
 
   if (!editor) {

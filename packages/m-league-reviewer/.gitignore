@@ -30,3 +30,8 @@ dist-ssr
 src/api/data.js
 scripts/*.js
 data/*.json
+
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local

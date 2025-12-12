@@ -51,13 +51,22 @@ export default function CalendarView() {
 
   // 当 currentDate 改变时,重新加载本周的复盘数据
   useEffect(() => {
-    const newReviews: Record<string, Review[]> = {}
-    const days = getWeekDays(currentDate)
-    days.forEach((day) => {
-      const dateStr = formatDate(day)
-      newReviews[dateStr] = getReviewsByDate(dateStr)
-    })
-    setReviews(newReviews)
+    const loadReviews = async () => {
+      const newReviews: Record<string, Review[]> = {}
+      const days = getWeekDays(currentDate)
+
+      // 并行加载所有日期的复盘数据
+      await Promise.all(
+        days.map(async (day) => {
+          const dateStr = formatDate(day)
+          newReviews[dateStr] = await getReviewsByDate(dateStr)
+        }),
+      )
+
+      setReviews(newReviews)
+    }
+
+    void loadReviews()
   }, [currentDate])
 
   // 切换到上一周
@@ -103,7 +112,7 @@ export default function CalendarView() {
   }
 
   // 保存新复盘
-  const saveNewReview = (date: string, title: string) => {
+  const saveNewReview = async (date: string, title: string) => {
     if (!title.trim())
       return
 
@@ -113,7 +122,7 @@ export default function CalendarView() {
       .map(teamId => teams.find(t => t.id === teamId)?.team_name)
       .filter((name): name is string => name !== undefined) : []
 
-    const newReview = createReview(date, title.trim(), '', teamNames)
+    const newReview = await createReview(date, title.trim(), '', teamNames)
     setReviews(prev => ({
       ...prev,
       [date]: [...(prev[date] || []), newReview],
@@ -129,9 +138,9 @@ export default function CalendarView() {
   }
 
   // 确认删除复盘
-  const confirmDeleteReview = () => {
+  const confirmDeleteReview = async () => {
     if (deleteTarget) {
-      deleteReview(deleteTarget.id)
+      await deleteReview(deleteTarget.id)
       setReviews(prev => ({
         ...prev,
         [deleteTarget.date]: (prev[deleteTarget.date] || []).filter(r => r.id !== deleteTarget.id),
@@ -158,7 +167,7 @@ export default function CalendarView() {
   }
 
   // 复盘被更新后的回调
-  const handleReviewUpdated = () => {
+  const handleReviewUpdated = async () => {
     if (!selectedReview) {
       return
     }
@@ -166,22 +175,30 @@ export default function CalendarView() {
     // 重新加载整个当前周的数据，以处理日期变更的情况
     const newReviews: Record<string, Review[]> = {}
     const days = getWeekDays(currentDate)
-    days.forEach((day) => {
-      const dateStr = formatDate(day)
-      newReviews[dateStr] = getReviewsByDate(dateStr)
-    })
+
+    await Promise.all(
+      days.map(async (day) => {
+        const dateStr = formatDate(day)
+        newReviews[dateStr] = await getReviewsByDate(dateStr)
+      }),
+    )
+
     setReviews(newReviews)
   }
 
   // 数据导入后的回调
-  const handleDataImported = () => {
+  const handleDataImported = async () => {
     // 重新加载整个当前周的数据
     const newReviews: Record<string, Review[]> = {}
     const days = getWeekDays(currentDate)
-    days.forEach((day) => {
-      const dateStr = formatDate(day)
-      newReviews[dateStr] = getReviewsByDate(dateStr)
-    })
+
+    await Promise.all(
+      days.map(async (day) => {
+        const dateStr = formatDate(day)
+        newReviews[dateStr] = await getReviewsByDate(dateStr)
+      }),
+    )
+
     setReviews(newReviews)
   }
 
@@ -235,7 +252,7 @@ export default function CalendarView() {
                   }}
                   onStartAddReview={() => startAddReview(dateStr)}
                   onCancelAddReview={cancelAddReview}
-                  onSaveReview={title => saveNewReview(dateStr, title)}
+                  onSaveReview={title => void saveNewReview(dateStr, title)}
                   onTitleChange={setNewReviewTitle}
                   className={cn(
                     'border-border',
@@ -256,7 +273,7 @@ export default function CalendarView() {
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel>取消</AlertDialogCancel>
-            <AlertDialogAction variant="destructive" onClick={confirmDeleteReview}>
+            <AlertDialogAction variant="destructive" onClick={() => void confirmDeleteReview()}>
               删除
             </AlertDialogAction>
           </AlertDialogFooter>
@@ -268,13 +285,13 @@ export default function CalendarView() {
         reviewId={selectedReview?.id || null}
         date={selectedReview?.date || null}
         onDeleted={handleReviewDeleted}
-        onUpdated={handleReviewUpdated}
+        onUpdated={() => void handleReviewUpdated()}
       />
       <NoteDialog open={noteDialogOpen} onOpenChange={setNoteDialogOpen} />
       <DataManagementDialog
         open={dataManagementDialogOpen}
         onOpenChange={setDataManagementDialogOpen}
-        onDataImported={handleDataImported}
+        onDataImported={() => void handleDataImported()}
       />
     </DefaultLayout>
   )

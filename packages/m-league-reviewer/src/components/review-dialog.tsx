@@ -72,11 +72,11 @@ export function ReviewDialog({ open, onOpenChange, reviewId, date, onDeleted, on
   const [editingField, setEditingField] = useState<string | null>(null)
 
   // 自动保存函数
-  const autoSave = () => {
+  const autoSave = async () => {
     if (!reviewId || !title.trim())
       return
 
-    updateReview(reviewId, {
+    await updateReview(reviewId, {
       title: title.trim(),
       linkA,
       linkB,
@@ -112,22 +112,26 @@ export function ReviewDialog({ open, onOpenChange, reviewId, date, onDeleted, on
   }))
 
   useEffect(() => {
-    if (open && reviewId) {
-      const review = getReviewById(reviewId)
-      if (review) {
-        setTitle(review.title)
-        setLinkA(review.linkA || '')
-        setLinkB(review.linkB || '')
-        setSelectedTeams(review.teams || [])
-        setReviewDate(review.date ? new Date(review.date) : undefined)
-        setStatus(review.status || 'not_started')
-        setSocialUrl(review.socialUrl || '')
-        setTableA(review.tableA || [])
-        setTableB(review.tableB || [])
-        setContent(review.content || '')
-        setEditingField(null)
+    const loadReview = async () => {
+      if (open && reviewId) {
+        const review = await getReviewById(reviewId)
+        if (review) {
+          setTitle(review.title)
+          setLinkA(review.linkA || '')
+          setLinkB(review.linkB || '')
+          setSelectedTeams(review.teams || [])
+          setReviewDate(review.date ? new Date(review.date) : undefined)
+          setStatus(review.status || 'not_started')
+          setSocialUrl(review.socialUrl || '')
+          setTableA(review.tableA || [])
+          setTableB(review.tableB || [])
+          setContent(review.content || '')
+          setEditingField(null)
+        }
       }
     }
+
+    loadReview()
   }, [open, reviewId])
 
   // 当编辑队伍字段时,自动触发 MultiSelect 打开
@@ -143,10 +147,10 @@ export function ReviewDialog({ open, onOpenChange, reviewId, date, onDeleted, on
     }
   }, [editingField])
 
-  const confirmDelete = () => {
+  const confirmDelete = async () => {
     if (!reviewId)
       return
-    deleteReview(reviewId)
+    await deleteReview(reviewId)
     setDeleteDialogOpen(false)
     onOpenChange(false)
     onDeleted?.()

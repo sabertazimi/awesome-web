@@ -1,5 +1,8 @@
 import type { JSONContent } from '@tiptap/react'
+import type { Tables } from './data'
 import { toast } from 'sonner'
+import { getCurrentUser } from './auth'
+import { supabase } from './db'
 
 // 小局信息
 export interface RoundInfo {
@@ -68,9 +71,9 @@ interface StorageData {
 }
 
 const STORAGE_KEY = 'm-league-data'
+const MIGRATION_KEY = 'm-league-migrated'
 
-// 从 localStorage 获取所有数据
-function getStorageData(): StorageData {
+function getLocalStorageData(): StorageData {
   try {
     const data = localStorage.getItem(STORAGE_KEY)
     if (!data) {
@@ -86,9 +89,7 @@ function getStorageData(): StorageData {
     return { reviews: [], notes: [] }
   }
 }
-
-// 保存所有数据到 localStorage
-function saveStorageData(data: StorageData): void {
+function saveLocalStorageData(data: StorageData): void {
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(data))
   } catch (error: unknown) {
@@ -96,41 +97,268 @@ function saveStorageData(data: StorageData): void {
   }
 }
 
-// 保存复盘数据
-function saveReviews(reviews: Review[]): void {
-  const data = getStorageData()
+function saveLocalReviews(reviews: Review[]): void {
+  const data = getLocalStorageData()
   data.reviews = reviews
-  saveStorageData(data)
+  saveLocalStorageData(data)
 }
 
-// 保存笔记数据
-function saveNotes(notes: Note[]): void {
-  const data = getStorageData()
+function saveLocalNotes(notes: Note[]): void {
+  const data = getLocalStorageData()
   data.notes = notes
-  saveStorageData(data)
+  saveLocalStorageData(data)
 }
 
-// 从 localStorage 获取所有复盘数据
-export function getReviews(): Review[] {
-  const { reviews } = getStorageData()
-  return reviews
+function clearLocalStorageData(): void {
+  localStorage.removeItem(STORAGE_KEY)
 }
 
-// 根据日期获取复盘列表
-export function getReviewsByDate(date: string): Review[] {
-  const reviews = getReviews()
+function isMigrated(): boolean {
+  return localStorage.getItem(MIGRATION_KEY) === 'true'
+}
+
+function markAsMigrated(): void {
+  localStorage.setItem(MIGRATION_KEY, 'true')
+}
+
+async function getSupabaseReviews(): Promise<Review[]> {
+  try {
+    const user = await getCurrentUser()
+    if (!user)
+      return []
+
+    const { data, error } = await supabase
+      .from('reviews')
+      .select('*')
+      .eq('user_id', user.id)
+      .order('created_at', { ascending: false })
+
+    if (error)
+      throw error
+
+    // 将数据库字段映射到应用层字段
+    return (data || []).map((row: Tables<'reviews'>) => ({
+      id: row.id,
+      date: row.date,
+      title: row.title,
+      linkA: row.linka || '',
+      linkB: row.linkb || '',
+      teams: row.teams || [],
+      status: (row.status || 'not_started') as 'not_started' | 'in_progress' | 'completed',
+      socialUrl: row.socialurl || '',
+      tableA: (row.tablea as unknown as TableData[]) || [],
+      tableB: (row.tableb as unknown as TableData[]) || [],
+      content: row.content || '',
+      createdAt: row.created_at || new Date().toISOString(),
+    }))
+  } catch (error) {
+    console.error('从 Supabase 获取复盘失败:', error)
+    toast.error('加载云端数据失败')
+    return []
+  }
+}
+
+async function getSupabaseNotes(): Promise<Note[]> {
+  try {
+    const user = await getCurrentUser()
+    if (!user)
+      return []
+
+    const { data, error } = await supabase
+      .from('notes')
+      .select('*')
+      .eq('user_id', user.id)
+      .order('created_at', { ascending: false })
+
+    if (error)
+      throw error
+
+    // 将数据库字段映射到应用层字段
+    return (data || []).map((row: Tables<'notes'>) => ({
+      id: row.id,
+      content: (row.content as JSONContent) || { type: 'doc', content: [] },
+      createdAt: row.created_at || new Date().toISOString(),
+      updatedAt: row.updated_at || new Date().toISOString(),
+    }))
+  } catch (error) {
+    console.error('从 Supabase 获取笔记失败:', error)
+    toast.error('加载云端笔记失败')
+    return []
+  }
+}
+
+async function saveSupabaseReview(review: Review): Promise<boolean> {
+  try {
+    const user = await getCurrentUser()
+    if (!user)
+      return false
+
+    const { error } = await supabase
+      .from('reviews')
+      .upsert({
+        id: review.id,
+        user_id: user.id,
+        date: review.date,
+        title: review.title,
+        linka: review.linkA,
+        linkb: review.linkB,
+        teams: review.teams,
+        status: review.status,
+        socialurl: review.socialUrl,
+        tablea: review.tableA,
+        tableb: review.tableB,
+        content: review.content,
+        created_at: review.createdAt,
+      })
+
+    if (error)
+      throw error
+
+    return true
+  } catch (error) {
+    console.error('保存复盘到 Supabase 失败:', error)
+    toast.error('保存到云端失败')
+    return false
+  }
+}
+
+async function saveSupabaseNote(note: Note): Promise<boolean> {
+  try {
+    const user = await getCurrentUser()
+    if (!user)
+      return false
+
+    const { error } = await supabase
+      .from('notes')
+      .upsert({
+        id: note.id,
+        user_id: user.id,
+        content: note.content,
+        created_at: note.createdAt,
+        updated_at: note.updatedAt,
+      })
+
+    if (error)
+      throw error
+
+    return true
+  } catch (error) {
+    console.error('保存笔记到 Supabase 失败:', error)
+    toast.error('保存笔记到云端失败')
+    return false
+  }
+}
+
+async function deleteSupabaseReview(id: string): Promise<boolean> {
+  try {
+    const user = await getCurrentUser()
+    if (!user)
+      return false
+
+    const { error } = await supabase
+      .from('reviews')
+      .delete()
+      .eq('id', id)
+      .eq('user_id', user.id)
+
+    if (error)
+      throw error
+
+    return true
+  } catch (error) {
+    console.error('从 Supabase 删除复盘失败:', error)
+    toast.error('从云端删除失败')
+    return false
+  }
+}
+
+async function deleteSupabaseNote(id: string): Promise<boolean> {
+  try {
+    const user = await getCurrentUser()
+    if (!user)
+      return false
+
+    const { error } = await supabase
+      .from('notes')
+      .delete()
+      .eq('id', id)
+      .eq('user_id', user.id)
+
+    if (error)
+      throw error
+
+    return true
+  } catch (error) {
+    console.error('从 Supabase 删除笔记失败:', error)
+    toast.error('从云端删除笔记失败')
+    return false
+  }
+}
+
+export async function migrateLocalDataToSupabase(): Promise<void> {
+  try {
+    const user = await getCurrentUser()
+    if (!user) {
+      return
+    }
+
+    if (isMigrated()) {
+      return
+    }
+
+    const localData = getLocalStorageData()
+    const { reviews, notes } = localData
+
+    if (reviews.length === 0 && notes.length === 0) {
+      markAsMigrated()
+      return
+    }
+
+    let reviewSuccess = 0
+    for (const review of reviews) {
+      const success = await saveSupabaseReview(review)
+      if (success)
+        reviewSuccess++
+    }
+
+    let noteSuccess = 0
+    for (const note of notes) {
+      const success = await saveSupabaseNote(note)
+      if (success)
+        noteSuccess++
+    }
+
+    markAsMigrated()
+    clearLocalStorageData()
+
+    toast.success(`数据迁移完成: ${reviewSuccess} 个复盘, ${noteSuccess} 个笔记`)
+  } catch (error) {
+    console.error('数据迁移失败:', error)
+    toast.error('数据迁移失败,请稍后重试')
+  }
+}
+
+export async function getReviews(): Promise<Review[]> {
+  const user = await getCurrentUser()
+  if (user) {
+    return getSupabaseReviews()
+  } else {
+    const { reviews } = getLocalStorageData()
+    return reviews
+  }
+}
+
+export async function getReviewsByDate(date: string): Promise<Review[]> {
+  const reviews = await getReviews()
   return reviews.filter(review => review.date === date)
 }
 
-// 根据 ID 获取单个复盘
-export function getReviewById(id: string): Review | undefined {
-  const reviews = getReviews()
+export async function getReviewById(id: string): Promise<Review | undefined> {
+  const reviews = await getReviews()
   return reviews.find(review => review.id === id)
 }
 
-// 创建新复盘
-export function createReview(date: string, title: string, content: string = '', teams: string[] = []): Review {
-  const reviews = getReviews()
+export async function createReview(date: string, title: string, content: string = '', teams: string[] = []): Promise<Review> {
   const newReview: Review = {
     id: `review-${Date.now()}-${Math.random().toString(36).slice(2, 11)}`,
     date,
@@ -145,40 +373,70 @@ export function createReview(date: string, title: string, content: string = '', 
     content,
     createdAt: new Date().toISOString(),
   }
-  reviews.push(newReview)
-  saveReviews(reviews)
+
+  const user = await getCurrentUser()
+  if (user) {
+    await saveSupabaseReview(newReview)
+  } else {
+    const { reviews } = getLocalStorageData()
+    reviews.push(newReview)
+    saveLocalReviews(reviews)
+  }
+
   return newReview
 }
 
-// 更新复盘
-export function updateReview(id: string, updates: Partial<Omit<Review, 'id' | 'createdAt'>>): Review | null {
-  const reviews = getReviews()
-  const index = reviews.findIndex(review => review.id === id)
-  if (index === -1)
-    return null
+export async function updateReview(id: string, updates: Partial<Omit<Review, 'id' | 'createdAt'>>): Promise<Review | null> {
+  const user = await getCurrentUser()
 
-  reviews[index] = { ...reviews[index], ...updates }
-  saveReviews(reviews)
-  return reviews[index]
+  if (user) {
+    const reviews = await getSupabaseReviews()
+    const index = reviews.findIndex(review => review.id === id)
+    if (index === -1)
+      return null
+
+    const updatedReview = { ...reviews[index], ...updates }
+    await saveSupabaseReview(updatedReview)
+    return updatedReview
+  } else {
+    const { reviews } = getLocalStorageData()
+    const index = reviews.findIndex(review => review.id === id)
+    if (index === -1)
+      return null
+
+    reviews[index] = { ...reviews[index], ...updates }
+    saveLocalReviews(reviews)
+    return reviews[index]
+  }
 }
 
-// 删除复盘
-export function deleteReview(id: string): boolean {
-  const reviews = getReviews()
-  const filtered = reviews.filter(review => review.id !== id)
-  if (filtered.length === reviews.length)
-    return false
+export async function deleteReview(id: string): Promise<boolean> {
+  const user = await getCurrentUser()
 
-  saveReviews(filtered)
-  return true
+  if (user) {
+    return deleteSupabaseReview(id)
+  } else {
+    const { reviews } = getLocalStorageData()
+    const filtered = reviews.filter(review => review.id !== id)
+    if (filtered.length === reviews.length)
+      return false
+
+    saveLocalReviews(filtered)
+    return true
+  }
 }
 
-export function getNotes(): Note[] {
-  const { notes } = getStorageData()
-  return notes
+export async function getNotes(): Promise<Note[]> {
+  const user = await getCurrentUser()
+  if (user) {
+    return getSupabaseNotes()
+  } else {
+    const { notes } = getLocalStorageData()
+    return notes
+  }
 }
 
-export function createNote(content: JSONContent | null = null): Note {
+export async function createNote(content: JSONContent | null = null): Promise<Note> {
   const note: Note = {
     id: `note-${Date.now()}-${Math.random().toString(36).slice(2, 11)}`,
     content: content || { type: 'doc', content: [] },
@@ -186,41 +444,64 @@ export function createNote(content: JSONContent | null = null): Note {
     updatedAt: new Date().toISOString(),
   }
 
-  const notes = getNotes()
-  notes.push(note)
-  saveNotes(notes)
+  const user = await getCurrentUser()
+  if (user) {
+    await saveSupabaseNote(note)
+  } else {
+    const { notes } = getLocalStorageData()
+    notes.push(note)
+    saveLocalNotes(notes)
+  }
 
   return note
 }
 
-export function updateNote(id: string, content: JSONContent): Note | null {
-  const notes = getNotes()
-  const index = notes.findIndex(n => n.id === id)
+export async function updateNote(id: string, content: JSONContent): Promise<Note | null> {
+  const user = await getCurrentUser()
 
-  if (index === -1) {
-    return null
+  if (user) {
+    const notes = await getSupabaseNotes()
+    const index = notes.findIndex(n => n.id === id)
+    if (index === -1)
+      return null
+
+    const updatedNote = {
+      ...notes[index],
+      content,
+      updatedAt: new Date().toISOString(),
+    }
+    await saveSupabaseNote(updatedNote)
+    return updatedNote
+  } else {
+    const { notes } = getLocalStorageData()
+    const index = notes.findIndex(n => n.id === id)
+    if (index === -1)
+      return null
+
+    notes[index] = {
+      ...notes[index],
+      content,
+      updatedAt: new Date().toISOString(),
+    }
+    saveLocalNotes(notes)
+    return notes[index]
   }
-
-  notes[index] = {
-    ...notes[index],
-    content,
-    updatedAt: new Date().toISOString(),
-  }
-
-  saveNotes(notes)
-  return notes[index]
 }
 
-export function deleteNote(id: string): boolean {
-  const notes = getNotes()
-  const filtered = notes.filter(n => n.id !== id)
+export async function deleteNote(id: string): Promise<boolean> {
+  const user = await getCurrentUser()
 
-  if (filtered.length === notes.length) {
-    return false
+  if (user) {
+    return deleteSupabaseNote(id)
+  } else {
+    const { notes } = getLocalStorageData()
+    const filtered = notes.filter(n => n.id !== id)
+    if (filtered.length === notes.length)
+      return false
+
+    saveLocalNotes(filtered)
+    return true
   }
-
-  saveNotes(filtered)
-  return true
 }
 
 function numberToJapanese(num: number): string {
@@ -270,10 +551,9 @@ export function createDefaultRoundInfo(existingRounds: RoundInfo[] = []): RoundI
 
 // 获取下一个小局
 function getNextRound(current: RoundInfo): RoundInfo {
-  const MAX_HONBA = 9 // 本场数上限
-  const MAX_ROUND = 4 // 小局数上限
+  const MAX_HONBA = 9
+  const MAX_ROUND = 4
 
-  // 如果本场数未达到上限,直接+1
   if (current.honba < MAX_HONBA) {
     return {
       field: current.field,
@@ -282,7 +562,6 @@ function getNextRound(current: RoundInfo): RoundInfo {
     }
   }
 
-  // 本场数已达上限,进入下一局
   if (current.round < MAX_ROUND) {
     return {
       field: current.field,
@@ -291,7 +570,6 @@ function getNextRound(current: RoundInfo): RoundInfo {
     }
   }
 
-  // 小局数也达上限,切换场风
   if (current.field === 'east') {
     return {
       field: 'south',
@@ -300,7 +578,6 @@ function getNextRound(current: RoundInfo): RoundInfo {
     }
   }
 
-  // 南四已满,回到东一
   return {
     field: 'east',
     round: 1,
@@ -308,18 +585,25 @@ function getNextRound(current: RoundInfo): RoundInfo {
   }
 }
 
-// 导出所有数据
-export function exportAllData(): string {
-  const data = getStorageData()
+export async function exportAllData(): Promise<string> {
+  const user = await getCurrentUser()
+  let data: StorageData
+
+  if (user) {
+    const reviews = await getSupabaseReviews()
+    const notes = await getSupabaseNotes()
+    data = { reviews, notes }
+  } else {
+    data = getLocalStorageData()
+  }
+
   return JSON.stringify(data, null, 2)
 }
 
-// 导入所有数据(覆盖模式)
-export function importAllData(jsonString: string): { success: boolean, error?: string } {
+export async function importAllData(jsonString: string): Promise<{ success: boolean, error?: string }> {
   try {
     const data = JSON.parse(jsonString) as StorageData
 
-    // 验证数据格式
     if (!data || typeof data !== 'object') {
       return { success: false, error: '数据格式无效' }
     }
@@ -332,8 +616,30 @@ export function importAllData(jsonString: string): { success: boolean, error?: s
       return { success: false, error: '笔记数据格式无效' }
     }
 
-    // 覆盖保存
-    saveStorageData(data)
+    const user = await getCurrentUser()
+
+    if (user) {
+      const existingReviews = await getSupabaseReviews()
+      const existingNotes = await getSupabaseNotes()
+
+      for (const review of existingReviews) {
+        await deleteSupabaseReview(review.id)
+      }
+
+      for (const note of existingNotes) {
+        await deleteSupabaseNote(note.id)
+      }
+
+      for (const review of data.reviews) {
+        await saveSupabaseReview(review)
+      }
+
+      for (const note of data.notes) {
+        await saveSupabaseNote(note)
+      }
+    } else {
+      saveLocalStorageData(data)
+    }
 
     return { success: true }
   } catch (error) {
@@ -344,9 +650,8 @@ export function importAllData(jsonString: string): { success: boolean, error?: s
   }
 }
 
-// 下载数据为 JSON 文件
-export function downloadDataAsJson(): void {
-  const jsonString = exportAllData()
+export async function downloadDataAsJson(): Promise<void> {
+  const jsonString = await exportAllData()
   const timestamp = new Date().toISOString().replace(/:/g, '-').split('.')[0]
   const filename = `m-league-backup-${timestamp}.json`
 

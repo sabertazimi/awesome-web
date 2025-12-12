@@ -29,9 +29,9 @@ export function DataManagementDialog({ open, onOpenChange, onDataImported }: Dat
   const [error, setError] = useState<string | null>(null)
 
   // 处理导出
-  const handleExport = () => {
+  const handleExport = async () => {
     try {
-      downloadDataAsJson()
+      await downloadDataAsJson()
       setError(null)
     } catch (err: unknown) {
       setError('导出失败,请重试')
@@ -55,7 +55,7 @@ export function DataManagementDialog({ open, onOpenChange, onDataImported }: Dat
 
     try {
       const text = await selectedFile.text()
-      const result = importAllData(text)
+      const result = await importAllData(text)
 
       if (result.success) {
         setError(null)
