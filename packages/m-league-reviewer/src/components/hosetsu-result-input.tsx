@@ -1,5 +1,5 @@
 import type { HosetsuResult, HosetsuType } from '@/api/reviews'
-import { AlertCircleIcon, CheckIcon, ClipboardCopyIcon, ClipboardPasteIcon, XIcon } from 'lucide-react'
+import { AlertCircleIcon, CheckIcon, ClipboardCopyIcon, ClipboardPasteIcon, ScissorsIcon, XIcon } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 import { toast } from 'sonner'
 import { Badge } from '@/components/ui/badge'
@@ -39,6 +39,12 @@ function isHosetsuType(value: string): value is HosetsuType {
   return Object.keys(typeConfig).includes(value)
 }
 
+const DEFAULT_HOSETSU_RESULT: HosetsuResult = {
+  description: '',
+  type: 'other',
+  isSignificant: false,
+}
+
 /**
  * 复制 HosetsuResult 到剪贴板
  */
@@ -57,7 +63,6 @@ function parseHosetsuResult(text: string): HosetsuResult | null {
   try {
     const parsed = JSON.parse(text) as HosetsuResult
 
-    // 验证是否为有效的 HosetsuResult
     if (
       typeof parsed === 'object'
       && parsed !== null
@@ -70,9 +75,8 @@ function parseHosetsuResult(text: string): HosetsuResult | null {
         isSignificant: parsed.isSignificant || false,
       }
     }
-  } catch {
-    // 解析失败
-  }
+  } catch {}
+
   return null
 }
 
@@ -113,72 +117,86 @@ export function HosetsuResultInput({ value, onChange, onClose, onKeyDown, autoFo
     onChange(newValue)
   }
 
-  const handleClear = (e: React.MouseEvent) => {
-    e.preventDefault()
-    e.stopPropagation()
-    // 重置所有字段到默认值
-    const newValue: HosetsuResult = {
-      description: '',
-      type: 'other',
-      isSignificant: false,
-    }
-    setLocalValue(newValue)
-    onChange(newValue)
-    // 延迟聚焦，确保状态更新完成
-    setTimeout(() => inputRef.current?.focus(), 0)
+  const performCopy = () => {
+    copyHosetsuResultToClipboard(localValue)
   }
 
-  // 按钮触发的复制
-  const handleCopyButton = () => {
+  const performCut = () => {
     copyHosetsuResultToClipboard(localValue)
+    setLocalValue(DEFAULT_HOSETSU_RESULT)
+    onChange(DEFAULT_HOSETSU_RESULT)
+  }
+
+  const performPaste = async () => {
+    try {
+      const text = await navigator.clipboard.readText()
+      const parsed = parseHosetsuResult(text)
+      if (parsed) {
+        setLocalValue(parsed)
+        onChange(parsed)
+      } else {
+        toast.warning('无法解析剪贴板内容为何切结果')
+      }
+    } catch (err: unknown) {
+      toast.error(`读取剪贴板失败: ${err instanceof Error ? err.message : String(err)}`)
+    }
+  }
+
+  const performClear = () => {
+    setLocalValue(DEFAULT_HOSETSU_RESULT)
+    onChange(DEFAULT_HOSETSU_RESULT)
+  }
+
+  const handleCopyButton = () => {
+    performCopy()
     inputRef.current?.focus()
   }
 
-  // 按钮触发的粘贴
-  const handlePasteButton = () => {
-    navigator.clipboard
-      .readText()
-      .then((text) => {
-        const parsed = parseHosetsuResult(text)
-        if (parsed) {
-          setLocalValue(parsed)
-          onChange(parsed)
-        } else {
-          toast.warning('无法解析剪贴板内容为何切结果')
-        }
-        inputRef.current?.focus()
-      })
-      .catch((err: unknown) => {
-        toast.error(`读取剪贴板失败: ${err instanceof Error ? err.message : String(err)}`)
-        inputRef.current?.focus()
-      })
+  const handleCutButton = () => {
+    performCut()
+    inputRef.current?.focus()
   }
 
-  // 键盘快捷键触发的复制
-  const handleCopy = (e: React.ClipboardEvent<HTMLInputElement>) => {
-    // 如果有选中文本，让浏览器处理默认的文本复制
+  const handlePasteButton = () => {
+    void performPaste().then(() => inputRef.current?.focus())
+  }
+
+  const handleCopyShortcut = (e: React.ClipboardEvent<HTMLInputElement>) => {
     const selection = window.getSelection()
     if (selection && selection.toString()) {
       return
     }
 
-    // 否则复制完整的 HosetsuResult 对象
     e.preventDefault()
-    copyHosetsuResultToClipboard(localValue)
+    performCopy()
   }
 
-  // 键盘快捷键触发的粘贴
-  const handlePaste = (e: React.ClipboardEvent<HTMLInputElement>) => {
+  const handleCutShortcut = (e: React.ClipboardEvent<HTMLInputElement>) => {
+    const selection = window.getSelection()
+    if (selection && selection.toString()) {
+      return
+    }
+
+    e.preventDefault()
+    performCut()
+  }
+
+  const handlePasteShortcut = (e: React.ClipboardEvent<HTMLInputElement>) => {
     const text = e.clipboardData.getData('text')
     const parsed = parseHosetsuResult(text)
 
-    // 如果成功解析了 HosetsuResult，应用并阻止默认粘贴行为
     if (parsed) {
       e.preventDefault()
       setLocalValue(parsed)
       onChange(parsed)
     }
-    // 否则让浏览器处理默认的文本粘贴
+  }
+
+  const handleClear = (e: React.MouseEvent) => {
+    e.preventDefault()
+    e.stopPropagation()
+    performClear()
+    setTimeout(() => inputRef.current?.focus(), 0)
   }
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -205,8 +223,9 @@ export function HosetsuResultInput({ value, onChange, onClose, onKeyDown, autoFo
         value={localValue.description}
         onChange={e => handleDescriptionChange(e.target.value)}
         onKeyDown={handleKeyDown}
-        onCopy={handleCopy}
-        onPaste={handlePaste}
+        onCopy={handleCopyShortcut}
+        onCut={handleCutShortcut}
+        onPaste={handlePasteShortcut}
         onBlur={(e) => {
           // 如果没有 relatedTarget，说明点击了真正的空白区域
           const relatedTarget = e.relatedTarget
@@ -301,23 +320,15 @@ export function HosetsuResultInput({ value, onChange, onClose, onKeyDown, autoFo
             <AlertCircleIcon className="size-3" />
             严重
           </Button>
-          <Button
-            size="sm"
-            variant="outline"
-            onClick={handleCopyButton}
-            className="h-7 gap-1 text-xs"
-            title="Ctrl+C"
-          >
+          <Button size="sm" variant="outline" onClick={handleCopyButton} className="h-7 gap-1 text-xs" title="Ctrl+C">
             <ClipboardCopyIcon className="size-3" />
             复制
           </Button>
-          <Button
-            size="sm"
-            variant="outline"
-            onClick={handlePasteButton}
-            className="h-7 gap-1 text-xs"
-            title="Ctrl+V"
-          >
+          <Button size="sm" variant="outline" onClick={handleCutButton} className="h-7 gap-1 text-xs" title="Ctrl+X">
+            <ScissorsIcon className="size-3" />
+            剪切
+          </Button>
+          <Button size="sm" variant="outline" onClick={handlePasteButton} className="h-7 gap-1 text-xs" title="Ctrl+V">
             <ClipboardPasteIcon className="size-3" />
             粘贴
           </Button>
@@ -332,6 +343,11 @@ export function HosetsuResultInput({ value, onChange, onClose, onKeyDown, autoFo
             <Kbd>⌘</Kbd>
             <Kbd>C</Kbd>
             <span>复制</span>
+          </KbdGroup>
+          <KbdGroup>
+            <Kbd>⌘</Kbd>
+            <Kbd>X</Kbd>
+            <span>剪切</span>
           </KbdGroup>
           <KbdGroup>
             <Kbd>⌘</Kbd>
@@ -405,39 +421,53 @@ export function HosetsuResultContextMenu({ value, onChange, children }: HosetsuR
     setOpen(false)
   }
 
+  const performCopy = () => {
+    copyHosetsuResultToClipboard(value)
+  }
+
+  const performCut = () => {
+    copyHosetsuResultToClipboard(value)
+    onChange(DEFAULT_HOSETSU_RESULT)
+  }
+
+  const performPaste = async () => {
+    try {
+      const text = await navigator.clipboard.readText()
+      const parsed = parseHosetsuResult(text)
+      if (parsed) {
+        onChange(parsed)
+      } else {
+        toast.warning('无法解析剪贴板内容为何切结果')
+      }
+    } catch (err: unknown) {
+      toast.error(`读取剪贴板失败: ${err instanceof Error ? err.message : String(err)}`)
+    }
+  }
+
+  const performClear = () => {
+    onChange(DEFAULT_HOSETSU_RESULT)
+  }
+
   const handleCopy = (e: React.MouseEvent) => {
     e.stopPropagation()
-    copyHosetsuResultToClipboard(value)
+    performCopy()
+    setOpen(false)
+  }
+
+  const handleCut = (e: React.MouseEvent) => {
+    e.stopPropagation()
+    performCut()
     setOpen(false)
   }
 
   const handlePaste = (e: React.MouseEvent) => {
     e.stopPropagation()
-    navigator.clipboard
-      .readText()
-      .then((text) => {
-        const parsed = parseHosetsuResult(text)
-        if (parsed) {
-          onChange(parsed)
-        } else {
-          toast.warning('无法解析剪贴板内容为何切结果')
-        }
-        setOpen(false)
-      })
-      .catch((err: unknown) => {
-        toast.error(`读取剪贴板失败: ${err instanceof Error ? err.message : String(err)}`)
-        setOpen(false)
-      })
+    void performPaste().then(() => setOpen(false))
   }
 
   const handleClear = (e: React.MouseEvent) => {
     e.stopPropagation()
-    const newValue: HosetsuResult = {
-      description: '',
-      type: 'other',
-      isSignificant: false,
-    }
-    onChange(newValue)
+    performClear()
     setOpen(false)
   }
 
@@ -494,6 +524,15 @@ export function HosetsuResultContextMenu({ value, onChange, children }: HosetsuR
           >
             <ClipboardCopyIcon className="size-3" />
             <span>复制</span>
+          </Button>
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={e => handleCut(e)}
+            className="h-auto w-full justify-start gap-2 px-2 py-1.5 text-xs font-normal"
+          >
+            <ScissorsIcon className="size-3" />
+            <span>剪切</span>
           </Button>
           <Button
             variant="ghost"
