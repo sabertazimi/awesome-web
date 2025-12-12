@@ -57,7 +57,6 @@ function parseHosetsuResult(text: string): HosetsuResult | null {
   try {
     const parsed = JSON.parse(text) as HosetsuResult
 
-    // 验证是否为有效的 HosetsuResult
     if (
       typeof parsed === 'object'
       && parsed !== null
@@ -71,7 +70,6 @@ function parseHosetsuResult(text: string): HosetsuResult | null {
       }
     }
   } catch {
-    // 解析失败
   }
   return null
 }
@@ -116,7 +114,6 @@ export function HosetsuResultInput({ value, onChange, onClose, onKeyDown, autoFo
   const handleClear = (e: React.MouseEvent) => {
     e.preventDefault()
     e.stopPropagation()
-    // 重置所有字段到默认值
     const newValue: HosetsuResult = {
       description: '',
       type: 'other',
@@ -124,17 +121,14 @@ export function HosetsuResultInput({ value, onChange, onClose, onKeyDown, autoFo
     }
     setLocalValue(newValue)
     onChange(newValue)
-    // 延迟聚焦，确保状态更新完成
     setTimeout(() => inputRef.current?.focus(), 0)
   }
 
-  // 按钮触发的复制
   const handleCopyButton = () => {
     copyHosetsuResultToClipboard(localValue)
     inputRef.current?.focus()
   }
 
-  // 按钮触发的粘贴
   const handlePasteButton = () => {
     navigator.clipboard
       .readText()
@@ -154,10 +148,8 @@ export function HosetsuResultInput({ value, onChange, onClose, onKeyDown, autoFo
       })
   }
 
-  // 按钮触发的剪切
   const handleCutButton = () => {
     copyHosetsuResultToClipboard(localValue)
-    // 重置所有字段到默认值
     const newValue: HosetsuResult = {
       description: '',
       type: 'other',
@@ -168,45 +160,35 @@ export function HosetsuResultInput({ value, onChange, onClose, onKeyDown, autoFo
     inputRef.current?.focus()
   }
 
-  // 键盘快捷键触发的复制
-  const handleCopy = (e: React.ClipboardEvent<HTMLInputElement>) => {
-    // 如果有选中文本，让浏览器处理默认的文本复制
+  const handleCopyShortcut = (e: React.ClipboardEvent<HTMLInputElement>) => {
     const selection = window.getSelection()
     if (selection && selection.toString()) {
       return
     }
 
-    // 否则复制完整的 HosetsuResult 对象
     e.preventDefault()
     copyHosetsuResultToClipboard(localValue)
   }
 
-  // 键盘快捷键触发的粘贴
-  const handlePaste = (e: React.ClipboardEvent<HTMLInputElement>) => {
+  const handlePasteShortcut = (e: React.ClipboardEvent<HTMLInputElement>) => {
     const text = e.clipboardData.getData('text')
     const parsed = parseHosetsuResult(text)
 
-    // 如果成功解析了 HosetsuResult，应用并阻止默认粘贴行为
     if (parsed) {
       e.preventDefault()
       setLocalValue(parsed)
       onChange(parsed)
     }
-    // 否则让浏览器处理默认的文本粘贴
   }
 
-  // 键盘快捷键触发的剪切
-  const handleCut = (e: React.ClipboardEvent<HTMLInputElement>) => {
-    // 如果有选中文本，让浏览器处理默认的文本剪切
+  const handleCutShortcut = (e: React.ClipboardEvent<HTMLInputElement>) => {
     const selection = window.getSelection()
     if (selection && selection.toString()) {
       return
     }
 
-    // 否则剪切完整的 HosetsuResult 对象
     e.preventDefault()
     copyHosetsuResultToClipboard(localValue)
-    // 重置所有字段到默认值
     const newValue: HosetsuResult = {
       description: '',
       type: 'other',
@@ -240,9 +222,9 @@ export function HosetsuResultInput({ value, onChange, onClose, onKeyDown, autoFo
         value={localValue.description}
         onChange={e => handleDescriptionChange(e.target.value)}
         onKeyDown={handleKeyDown}
-        onCopy={handleCopy}
-        onCut={handleCut}
-        onPaste={handlePaste}
+        onCopy={handleCopyShortcut}
+        onCut={handleCutShortcut}
+        onPaste={handlePasteShortcut}
         onBlur={(e) => {
           // 如果没有 relatedTarget，说明点击了真正的空白区域
           const relatedTarget = e.relatedTarget
@@ -465,7 +447,6 @@ export function HosetsuResultContextMenu({ value, onChange, children }: HosetsuR
   const handleCut = (e: React.MouseEvent) => {
     e.stopPropagation()
     copyHosetsuResultToClipboard(value)
-    // 重置所有字段到默认值
     const newValue: HosetsuResult = {
       description: '',
       type: 'other',
