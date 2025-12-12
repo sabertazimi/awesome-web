@@ -6,7 +6,7 @@ import { Link } from 'react-router'
 import { teams } from '@/api/data'
 import { createReview, deleteReview, getReviewsByDate } from '@/api/reviews'
 import gameScheduleData from '@/assets/game-schedule.json'
-import { CalendarDayCard } from '@/components/calendar-day-card'
+import { CalendarCard } from '@/components/calendar-card'
 import { DataManagementDialog } from '@/components/data-management-dialog'
 import { DefaultLayout } from '@/components/default-layout'
 import { NoteDialog } from '@/components/note-dialog'
@@ -220,7 +220,7 @@ export default function CalendarView() {
               const isToday = formatDate(new Date()) === dateStr
 
               return (
-                <CalendarDayCard
+                <CalendarCard
                   key={dateStr}
                   day={day}
                   reviews={dayReviews}

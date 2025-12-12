@@ -7,7 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { formatDate, getDateDisplay, getWeekdayText } from '@/lib/date-utils'
 import { cn } from '@/lib/utils'
 
-interface CalendarDayCardProps {
+interface CalendarCardProps {
   day: Date
   reviews: Review[]
   isToday: boolean
@@ -27,7 +27,7 @@ interface CalendarDayCardProps {
  * 日历日期卡片组件
  * 显示单个日期的复盘列表和添加复盘功能
  */
-export function CalendarDayCard({
+export function CalendarCard({
   day,
   reviews,
   isToday,
@@ -41,7 +41,7 @@ export function CalendarDayCard({
   onSaveReview,
   onTitleChange,
   className,
-}: CalendarDayCardProps) {
+}: CalendarCardProps) {
   const dateStr = formatDate(day)
 
   return (
@@ -52,9 +52,7 @@ export function CalendarDayCard({
           <div className={cn('text-2xl font-bold', isToday && 'text-primary')}>{getDateDisplay(day)}</div>
         </div>
       </CardHeader>
-
       <CardContent className="space-y-2">
-        {/* 复盘列表 */}
         {reviews.map(review => (
           <ReviewCard
             key={review.id}
@@ -63,8 +61,6 @@ export function CalendarDayCard({
             onDelete={e => onReviewDelete(e, review.id)}
           />
         ))}
-
-        {/* 添加新复盘 */}
         {isAddingReview ? (
           <div className="border-border bg-accent flex flex-col items-center justify-center gap-2 space-y-2 border p-3">
             <Select value={newReviewTitle} onValueChange={onTitleChange}>
