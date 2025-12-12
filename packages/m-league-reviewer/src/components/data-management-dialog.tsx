@@ -96,7 +96,7 @@ export function DataManagementDialog({ open, onOpenChange, onDataImported }: Dat
       <Dialog open={open} onOpenChange={onOpenChange}>
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
-            <DialogTitle className="flex items-center gap-2">
+            <DialogTitle className="flex items-center justify-center gap-2 sm:justify-normal">
               <DatabaseIcon className="size-5" />
               数据管理
             </DialogTitle>

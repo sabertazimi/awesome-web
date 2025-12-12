@@ -44,7 +44,7 @@ export function NoteDialog({ open, onOpenChange }: NoteDialogProps) {
             </div>
           </div>
           <DialogHeader className="border-border border-b px-6 py-4">
-            <DialogTitle className="text-foreground flex items-center gap-2 font-mono text-2xl font-bold">
+            <DialogTitle className="flex items-center justify-center gap-2 font-mono text-2xl font-bold sm:justify-normal">
               <BookTextIcon className="size-6" />
               复盘笔记
             </DialogTitle>

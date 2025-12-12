@@ -249,7 +249,7 @@ export function ReviewDialog({ open, onOpenChange, reviewId, date, onDeleted, on
             <DialogHeader className="border-border border-b px-6 py-4">
               <div className="flex items-center justify-between">
                 <div className="flex-1">
-                  <DialogDescription className="text-muted-foreground font-mono text-sm">比赛复盘</DialogDescription>
+                  <DialogDescription className="font-mono">比赛复盘</DialogDescription>
                   <DialogTitle className="text-foreground mt-1 font-mono text-2xl font-bold">
                     {title || '复盘详情'}
                   </DialogTitle>
