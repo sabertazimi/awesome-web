@@ -9,6 +9,7 @@ import { Kbd, KbdGroup } from '@/components/ui/kbd'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Separator } from '@/components/ui/separator'
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
 import { cn } from '@/lib/utils'
 
 interface HosetsuResultInputProps {
@@ -198,9 +199,6 @@ export function HosetsuResultInput({ value, onChange, onClose, onKeyDown, autoFo
     } else if (e.key === 'b' && e.ctrlKey) {
       e.preventDefault()
       handleSignificantToggle()
-    } else if (e.key === 's' && e.ctrlKey) {
-      e.preventDefault()
-      onClose?.()
     }
   }
 
@@ -249,20 +247,25 @@ export function HosetsuResultInput({ value, onChange, onClose, onKeyDown, autoFo
         placeholder="何切描述..."
       />
       {localValue.description && (
-        <Button
-          type="button"
-          size="icon"
-          variant="ghost"
-          onMouseDown={handleClear}
-          className="absolute top-1/2 right-1 size-6 -translate-y-1/2"
-          title="清空输入"
-          aria-label="清空输入"
-          tabIndex={-1}
-        >
-          <XIcon className="size-4" />
-        </Button>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button
+              type="button"
+              size="icon"
+              variant="ghost"
+              onMouseDown={handleClear}
+              className="absolute top-1/2 right-1 size-6 -translate-y-1/2"
+              aria-label="清空输入"
+              tabIndex={-1}
+            >
+              <XIcon className="size-4" />
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent>
+            <p>清空输入</p>
+          </TooltipContent>
+        </Tooltip>
       )}
-
       <div className="hosetsu-toolbar border-border bg-popover absolute top-full left-0 z-50 mt-1 flex flex-col gap-2 border p-2 shadow-md">
         <div className="flex items-center gap-2">
           <Select
@@ -295,56 +298,60 @@ export function HosetsuResultInput({ value, onChange, onClose, onKeyDown, autoFo
               ))}
             </SelectContent>
           </Select>
-          <Button
-            size="sm"
-            variant={localValue.isSignificant ? 'default' : 'outline'}
-            onClick={() => {
-              handleSignificantToggle()
-              inputRef.current?.focus()
-            }}
-            className="h-7 gap-1 text-xs"
-            title="Ctrl+B"
-          >
-            <AlertCircleIcon className="size-3" />
-            严重
-          </Button>
-          <Button size="sm" variant="outline" onClick={handleCopyButton} className="h-7 gap-1 text-xs" title="Ctrl+C">
-            <ClipboardCopyIcon className="size-3" />
-            复制
-          </Button>
-          <Button size="sm" variant="outline" onClick={handleCutButton} className="h-7 gap-1 text-xs" title="Ctrl+X">
-            <ScissorsIcon className="size-3" />
-            剪切
-          </Button>
-          <Button size="sm" variant="outline" onClick={handlePasteButton} className="h-7 gap-1 text-xs" title="Ctrl+V">
-            <ClipboardPasteIcon className="size-3" />
-            粘贴
-          </Button>
-        </div>
-        <div className="text-muted-foreground flex flex-wrap gap-x-3 gap-y-1 text-xs">
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Button
+                size="sm"
+                variant={localValue.isSignificant ? 'default' : 'outline'}
+                onClick={() => {
+                  handleSignificantToggle()
+                  inputRef.current?.focus()
+                }}
+                className="h-7 gap-1 text-xs"
+              >
+                <AlertCircleIcon className="size-3" />
+                严重
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>Ctrl+B</p>
+            </TooltipContent>
+          </Tooltip>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Button size="sm" variant="outline" onClick={handleCopyButton} className="h-7 gap-1 text-xs">
+                <ClipboardCopyIcon className="size-3" />
+                复制
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>Ctrl+C</p>
+            </TooltipContent>
+          </Tooltip>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Button size="sm" variant="outline" onClick={handleCutButton} className="h-7 gap-1 text-xs">
+                <ScissorsIcon className="size-3" />
+                剪切
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>Ctrl+X</p>
+            </TooltipContent>
+          </Tooltip>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Button size="sm" variant="outline" onClick={handlePasteButton} className="h-7 gap-1 text-xs">
+                <ClipboardPasteIcon className="size-3" />
+                粘贴
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>Ctrl+V</p>
+            </TooltipContent>
+          </Tooltip>
           <KbdGroup>
-            <Kbd>⌘</Kbd>
-            <Kbd>B</Kbd>
-            <span>严重</span>
-          </KbdGroup>
-          <KbdGroup>
-            <Kbd>⌘</Kbd>
-            <Kbd>C</Kbd>
-            <span>复制</span>
-          </KbdGroup>
-          <KbdGroup>
-            <Kbd>⌘</Kbd>
-            <Kbd>X</Kbd>
-            <span>剪切</span>
-          </KbdGroup>
-          <KbdGroup>
-            <Kbd>⌘</Kbd>
-            <Kbd>V</Kbd>
-            <span>粘贴</span>
-          </KbdGroup>
-          <KbdGroup>
-            <Kbd>⌘</Kbd>
-            <Kbd>S</Kbd>
+            <Kbd>⏎</Kbd>
             <span>确认</span>
           </KbdGroup>
         </div>
