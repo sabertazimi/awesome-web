@@ -1,5 +1,6 @@
 import { PlusIcon } from 'lucide-react'
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
+import { useShallow } from 'zustand/react/shallow'
 import { teams } from '@/api/data'
 import gameScheduleData from '@/assets/game-schedule.json'
 import { ReviewCard } from '@/components/review-card'
@@ -28,20 +29,21 @@ export function CalendarCard({
   className,
 }: CalendarCardProps) {
   const dateStr = formatDate(day)
-  // Use selector to only subscribe to reviews for this specific date
-  const reviews = useReviewsStore(state => state.getReviewsByDate(dateStr))
+  // Use useShallow hook for shallow comparison to prevent unnecessary re-renders
+  // Only re-render when the filtered array content changes, not the reference
+  const reviews = useReviewsStore(
+    useShallow(state => state.reviews.filter(review => review.date === dateStr)),
+  )
   const createReview = useReviewsStore(state => state.createReview)
   const [isAddingReview, setIsAddingReview] = useState(false)
   const [newReviewTitle, setNewReviewTitle] = useState('')
 
   // 获取当天可用的默认标题选项
-  const getAvailableTitles = (): string[] => {
+  const availableTitles = useMemo(() => {
     const defaultTitles = ['第一半庄', '第二半庄']
     const existingTitles = reviews.map(r => r.title)
     return defaultTitles.filter(title => !existingTitles.includes(title))
-  }
-
-  const availableTitles = getAvailableTitles()
+  }, [reviews])
 
   // 开始添加新复盘
   const startAddReview = () => {
