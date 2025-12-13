@@ -121,7 +121,13 @@ pnpm test                 # Run unit tests across all packages
 
 ## Pre-PR Validation
 
-✓ `pnpm install` ✓ `pnpm lint` ✓ `pnpm test` ✓ `pnpm build` ✓ Both locales work (if applicable) ✓ No security issues ✓ Conventional Commits style
+- ✓ `pnpm install`.
+- ✓ `pnpm lint`.
+- ✓ `pnpm test`.
+- ✓ `pnpm build`.
+- ✓ Both locales work (if applicable).
+- ✓ No security issues.
+- ✓ Conventional commits style.
 
 ## Quick Reference
 
