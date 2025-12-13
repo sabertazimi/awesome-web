@@ -13,6 +13,8 @@ import { WeekNavigation } from '@/components/week-navigation'
 import { formatDate, getWeekDays } from '@/lib/date-utils'
 import { cn } from '@/lib/utils'
 
+const THURSDAY = 2
+
 export default function CalendarView() {
   const [currentDate, setCurrentDate] = useState(() => new Date())
   const [reviewDialogOpen, setReviewDialogOpen] = useState(false)
@@ -21,26 +23,22 @@ export default function CalendarView() {
   const [dataManagementDialogOpen, setDataManagementDialogOpen] = useState(false)
   const weekDays = getWeekDays(currentDate)
 
-  // 切换到上一周
   const goToPreviousWeek = () => {
     const newDate = new Date(currentDate)
     newDate.setDate(newDate.getDate() - 7)
     setCurrentDate(newDate)
   }
 
-  // 切换到下一周
   const goToNextWeek = () => {
     const newDate = new Date(currentDate)
     newDate.setDate(newDate.getDate() + 7)
     setCurrentDate(newDate)
   }
 
-  // 切换到本周
   const goToCurrentWeek = () => {
     setCurrentDate(new Date())
   }
 
-  // 打开复盘抽屉
   const openReviewDialog = (reviewId: string) => {
     setSelectedReview(reviewId)
     setReviewDialogOpen(true)
@@ -74,7 +72,7 @@ export default function CalendarView() {
       <VoidSection number="01" fileName="calendar.tsx" className="flex flex-1" contentClassName="p-0 sm:pt-0">
         <div className="grid h-full grid-cols-1 grid-rows-4 md:grid-cols-2 md:grid-rows-2">
           {weekDays
-            .filter((_, index) => index !== 2) // 跳过周三
+            .filter((_, index) => index !== THURSDAY)
             .map((day, renderedIndex) => {
               const dateStr = formatDate(day)
               const isToday = formatDate(new Date()) === dateStr
@@ -96,16 +94,9 @@ export default function CalendarView() {
             })}
         </div>
       </VoidSection>
-      <ReviewDialog
-        open={reviewDialogOpen}
-        onOpenChange={setReviewDialogOpen}
-        reviewId={selectedReview}
-      />
+      <ReviewDialog open={reviewDialogOpen} onOpenChange={setReviewDialogOpen} reviewId={selectedReview} />
       <NoteDialog open={noteDialogOpen} onOpenChange={setNoteDialogOpen} />
-      <DataManagementDialog
-        open={dataManagementDialogOpen}
-        onOpenChange={setDataManagementDialogOpen}
-      />
+      <DataManagementDialog open={dataManagementDialogOpen} onOpenChange={setDataManagementDialogOpen} />
     </DefaultLayout>
   )
 }

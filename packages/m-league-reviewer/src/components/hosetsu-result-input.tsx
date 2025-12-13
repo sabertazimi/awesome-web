@@ -1,4 +1,4 @@
-import type { HosetsuResult, HosetsuType } from '@/api/reviews'
+import type { HosetsuResult, HosetsuType } from '@/api/data'
 import { AlertCircleIcon, CheckIcon, ClipboardCopyIcon, ClipboardPasteIcon, ScissorsIcon, XIcon } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 import { toast } from 'sonner'
@@ -19,7 +19,6 @@ interface HosetsuResultInputProps {
   autoFocus?: boolean
 }
 
-/** 何切类型配置 */
 const typeConfig: Record<HosetsuType, { label: string, color: string }> = {
   hand_sequence: { label: '手顺', color: 'bg-team-1' },
   tile_efficiency: { label: '牌效', color: 'bg-team-2' },
@@ -45,9 +44,6 @@ const DEFAULT_HOSETSU_RESULT: HosetsuResult = {
   isSignificant: false,
 }
 
-/**
- * 复制 HosetsuResult 到剪贴板
- */
 function copyHosetsuResultToClipboard(value: HosetsuResult) {
   const data = JSON.stringify(value)
   navigator.clipboard
@@ -55,10 +51,6 @@ function copyHosetsuResultToClipboard(value: HosetsuResult) {
     .catch((err: unknown) => toast.error(`复制失败: ${err instanceof Error ? err.message : String(err)}`))
 }
 
-/**
- * 从文本解析并验证 HosetsuResult
- * @returns 解析成功返回 HosetsuResult，失败返回 null
- */
 function parseHosetsuResult(text: string): HosetsuResult | null {
   try {
     const parsed = JSON.parse(text) as HosetsuResult
@@ -80,10 +72,6 @@ function parseHosetsuResult(text: string): HosetsuResult | null {
   return null
 }
 
-/**
- * 何切结果输入组件
- * 支持右键菜单和工具栏
- */
 export function HosetsuResultInput({ value, onChange, onClose, onKeyDown, autoFocus }: HosetsuResultInputProps) {
   const normalizedValue: HosetsuResult = {
     ...value,
@@ -370,12 +358,7 @@ interface HosetsuResultDisplayProps {
   placeholder?: string
 }
 
-/**
- * 何切结果显示组件
- * 根据 isSignificant 显示不同样式
- */
 export function HosetsuResultDisplay({ value, placeholder = '' }: HosetsuResultDisplayProps) {
-  // 安全获取配置，如果 type 不存在则使用 'other'
   const type = value.type || 'other'
   const config = typeConfig[type]
 
@@ -401,9 +384,6 @@ interface HosetsuResultContextMenuProps {
   children: React.ReactNode
 }
 
-/**
- * 何切结果右键菜单组件
- */
 export function HosetsuResultContextMenu({ value, onChange, children }: HosetsuResultContextMenuProps) {
   const [open, setOpen] = useState(false)
 

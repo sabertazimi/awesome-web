@@ -18,34 +18,19 @@ interface CalendarCardProps {
   className?: string
 }
 
-/**
- * 日历日期卡片组件
- * 显示单个日期的复盘列表和添加复盘功能
- */
-export function CalendarCard({
-  day,
-  isToday,
-  onReviewClick,
-  className,
-}: CalendarCardProps) {
+export function CalendarCard({ day, isToday, onReviewClick, className }: CalendarCardProps) {
   const dateStr = formatDate(day)
-  // Use useShallow hook for shallow comparison to prevent unnecessary re-renders
-  // Only re-render when the filtered array content changes, not the reference
-  const reviews = useReviewsStore(
-    useShallow(state => state.reviews.filter(review => review.date === dateStr)),
-  )
+  const reviews = useReviewsStore(useShallow(state => state.reviews.filter(review => review.date === dateStr)))
   const createReview = useReviewsStore(state => state.createReview)
   const [isAddingReview, setIsAddingReview] = useState(false)
   const [newReviewTitle, setNewReviewTitle] = useState('')
 
-  // 获取当天可用的默认标题选项
   const availableTitles = useMemo(() => {
     const defaultTitles = ['第一半庄', '第二半庄']
     const existingTitles = reviews.map(r => r.title)
     return defaultTitles.filter(title => !existingTitles.includes(title))
   }, [reviews])
 
-  // 开始添加新复盘
   const startAddReview = () => {
     if (availableTitles.length === 0)
       return
@@ -54,18 +39,16 @@ export function CalendarCard({
     setNewReviewTitle(availableTitles[0])
   }
 
-  // 取消添加
   const cancelAddReview = () => {
     setIsAddingReview(false)
     setNewReviewTitle('')
   }
 
-  // 保存新复盘
   const saveNewReview = (title: string) => {
-    if (!title.trim())
+    if (!title.trim()) {
       return
+    }
 
-    // 根据日期自动设置参赛队伍
     const gameSchedules = gameScheduleData as Array<{ date: string, teamIds: number[] }>
     const schedule = gameSchedules.find(s => s.date === dateStr)
     const teamNames = schedule ? schedule.teamIds
@@ -87,11 +70,7 @@ export function CalendarCard({
       </CardHeader>
       <CardContent className="space-y-2">
         {reviews.map(review => (
-          <ReviewCard
-            key={review.id}
-            review={review}
-            onClick={() => onReviewClick(review.id)}
-          />
+          <ReviewCard key={review.id} review={review} onClick={() => onReviewClick(review.id)} />
         ))}
         {isAddingReview ? (
           <div className="border-border bg-accent flex flex-col items-center justify-center gap-2 space-y-2 border p-3">

@@ -30,7 +30,6 @@ export function DataManagementDialog({ open, onOpenChange }: DataManagementDialo
   const [selectedFile, setSelectedFile] = useState<File | null>(null)
   const [error, setError] = useState<string | null>(null)
 
-  // 处理导出
   const handleExport = () => {
     try {
       const data = {
@@ -55,7 +54,6 @@ export function DataManagementDialog({ open, onOpenChange }: DataManagementDialo
     }
   }
 
-  // 处理文件选择
   const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0]
     if (file) {
@@ -64,7 +62,6 @@ export function DataManagementDialog({ open, onOpenChange }: DataManagementDialo
     }
   }
 
-  // 确认导入
   const handleConfirmImport = async () => {
     if (!selectedFile)
       return
@@ -73,7 +70,6 @@ export function DataManagementDialog({ open, onOpenChange }: DataManagementDialo
       const text = await selectedFile.text()
       const data = JSON.parse(text) as unknown
 
-      // 验证数据格式
       if (!data || typeof data !== 'object') {
         setError('数据格式无效')
         return
@@ -91,7 +87,6 @@ export function DataManagementDialog({ open, onOpenChange }: DataManagementDialo
         return
       }
 
-      // 导入数据 (store 内部会进行验证)
       reviewsStore.importData(parsedData.reviews)
       notesStore.importData(parsedData.notes)
 
@@ -105,13 +100,11 @@ export function DataManagementDialog({ open, onOpenChange }: DataManagementDialo
       toast.error(`导入错误: ${err instanceof Error ? err.message : String(err)}`)
     }
 
-    // 重置文件输入
     if (fileInputRef.current) {
       fileInputRef.current.value = ''
     }
   }
 
-  // 取消导入
   const handleCancelImport = () => {
     setImportConfirmOpen(false)
     setSelectedFile(null)
@@ -120,7 +113,6 @@ export function DataManagementDialog({ open, onOpenChange }: DataManagementDialo
     }
   }
 
-  // 触发文件选择
   const handleImportClick = () => {
     fileInputRef.current?.click()
   }
@@ -166,7 +158,6 @@ export function DataManagementDialog({ open, onOpenChange }: DataManagementDialo
           </div>
         </DialogContent>
       </Dialog>
-
       <AlertDialog open={importConfirmOpen} onOpenChange={setImportConfirmOpen}>
         <AlertDialogContent>
           <AlertDialogHeader>

@@ -1,4 +1,4 @@
-import type { Review } from '@/api/reviews'
+import type { Review } from '@/api/data'
 import { ExternalLinkIcon, XIcon } from 'lucide-react'
 import { useState } from 'react'
 import { getTeamColorClassByName, statusConfig, teams } from '@/api/data'
@@ -22,15 +22,13 @@ interface ReviewCardProps {
   onClick: () => void
 }
 
-/**
- * 复盘卡片组件
- * 用于在日历视图中显示单个复盘项
- */
 export function ReviewCard({ review, onClick }: ReviewCardProps) {
   const deleteReview = useReviewsStore(state => state.deleteReview)
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false)
   const statusColor = statusConfig[review.status || 'not_started'].className
-  const reviewTeams = review.teams?.map(teamName => teams.find(t => t.team_name === teamName)).filter(team => team !== undefined)
+  const reviewTeams = review.teams
+    ?.map(teamName => teams.find(t => t.team_name === teamName))
+    .filter(team => team !== undefined)
 
   const handleDelete = (e: React.MouseEvent) => {
     e.stopPropagation()

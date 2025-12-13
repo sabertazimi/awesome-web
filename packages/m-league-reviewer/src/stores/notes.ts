@@ -1,11 +1,10 @@
 import type { JSONContent } from '@tiptap/react'
-import type { Note } from '@/api/reviews'
+import type { Note } from '@/api/data'
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 
 interface NotesState {
   notes: Note[]
-  // Actions
   createNote: (content?: JSONContent | null) => Note
   updateNote: (id: string, content: JSONContent) => Note | null
   deleteNote: (id: string) => boolean
@@ -14,10 +13,10 @@ interface NotesState {
   exportData: () => Note[]
 }
 
-// Validate if an unknown object is a valid Note
 function isValidNote(obj: unknown): obj is Note {
-  if (!obj || typeof obj !== 'object')
+  if (!obj || typeof obj !== 'object') {
     return false
+  }
 
   const note = obj as Record<string, unknown>
 
@@ -34,7 +33,6 @@ export const useNotesStore = create<NotesState>()(
   persist(
     (set, get) => ({
       notes: [],
-
       createNote: (content = null) => {
         const note: Note = {
           id: `note-${Date.now()}-${Math.random().toString(36).slice(2, 11)}`,
@@ -49,7 +47,6 @@ export const useNotesStore = create<NotesState>()(
 
         return note
       },
-
       updateNote: (id, content) => {
         let updatedNote: Note | null = null
 
@@ -72,7 +69,6 @@ export const useNotesStore = create<NotesState>()(
 
         return updatedNote
       },
-
       deleteNote: (id) => {
         let deleted = false
 
@@ -84,16 +80,13 @@ export const useNotesStore = create<NotesState>()(
 
         return deleted
       },
-
       getNotes: () => {
         return get().notes
       },
-
       importData: (notes) => {
         const validNotes = notes.filter(isValidNote)
         set({ notes: validNotes })
       },
-
       exportData: () => {
         return get().notes
       },

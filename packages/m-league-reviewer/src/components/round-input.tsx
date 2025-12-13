@@ -1,6 +1,6 @@
-import type { RoundInfo } from '@/api/reviews'
+import type { RoundInfo } from '@/api/data'
 import { useEffect, useRef, useState } from 'react'
-import { formatRound, numberToKanji } from '@/api/reviews'
+import { formatRound, numberToKanji } from '@/api/utils'
 import { RoundLabel } from '@/components/round-label'
 import { Button } from '@/components/ui/button'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'

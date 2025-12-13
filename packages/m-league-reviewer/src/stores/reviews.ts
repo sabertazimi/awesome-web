@@ -1,10 +1,9 @@
-import type { Review } from '@/api/reviews'
+import type { Review } from '@/api/data'
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 
 interface ReviewsState {
   reviews: Review[]
-  // Actions
   createReview: (date: string, title: string, content?: string, teams?: string[]) => Review
   updateReview: (id: string, updates: Partial<Omit<Review, 'id' | 'createdAt'>>) => Review | null
   deleteReview: (id: string) => boolean
@@ -14,10 +13,10 @@ interface ReviewsState {
   exportData: () => Review[]
 }
 
-// Validate if an unknown object is a valid Review
 function isValidReview(obj: unknown): obj is Review {
-  if (!obj || typeof obj !== 'object')
+  if (!obj || typeof obj !== 'object') {
     return false
+  }
 
   const review = obj as Record<string, unknown>
 
@@ -42,7 +41,6 @@ export const useReviewsStore = create<ReviewsState>()(
   persist(
     (set, get) => ({
       reviews: [],
-
       createReview: (date, title, content = '', teams = []) => {
         const newReview: Review = {
           id: `review-${Date.now()}-${Math.random().toString(36).slice(2, 11)}`,
@@ -65,7 +63,6 @@ export const useReviewsStore = create<ReviewsState>()(
 
         return newReview
       },
-
       updateReview: (id, updates) => {
         let updatedReview: Review | null = null
 
@@ -84,7 +81,6 @@ export const useReviewsStore = create<ReviewsState>()(
 
         return updatedReview
       },
-
       deleteReview: (id) => {
         let deleted = false
 
@@ -96,20 +92,16 @@ export const useReviewsStore = create<ReviewsState>()(
 
         return deleted
       },
-
       getReviewById: (id) => {
         return get().reviews.find(review => review.id === id)
       },
-
       getReviewsByDate: (date) => {
         return get().reviews.filter(review => review.date === date)
       },
-
       importData: (reviews) => {
         const validReviews = reviews.filter(isValidReview)
         set({ reviews: validReviews })
       },
-
       exportData: () => {
         return get().reviews
       },
