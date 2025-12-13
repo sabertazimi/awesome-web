@@ -1,4 +1,4 @@
-import type { HosetsuResult, RoundInfo, TableData } from '@/api/reviews'
+import type { HosetsuResult, RoundInfo, TableData } from '@/api/data'
 import type { MultiSelectOption } from '@/components/ui/multi-select'
 import { format } from 'date-fns'
 import { zhCN } from 'date-fns/locale/zh-CN'
@@ -6,13 +6,7 @@ import DOMPurify from 'dompurify'
 import { CalendarIcon, LinkIcon, LoaderIcon, UsersIcon } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { getTeamColorClassByName, statusConfig, teams } from '@/api/data'
-import {
-  createDefaultRoundInfo,
-  createEmptyHosetsuResult,
-  deleteReview,
-  getReviewById,
-  updateReview,
-} from '@/api/reviews'
+import { createDefaultRoundInfo, createEmptyHosetsuResult } from '@/api/utils'
 import { EditableField } from '@/components/editable-field'
 import { ReviewItem } from '@/components/review-item'
 import { ReviewLabel } from '@/components/review-label'
@@ -47,17 +41,16 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Textarea } from '@/components/ui/textarea'
 import useDebounce from '@/hooks/useDebounce'
 import { cn } from '@/lib/utils'
+import { useReviewsStore } from '@/stores/reviews'
 
 interface ReviewDialogProps {
   open: boolean
   onOpenChange: (open: boolean) => void
   reviewId: string | null
-  date: string | null
-  onDeleted?: () => void
-  onUpdated?: () => void
 }
 
-export function ReviewDialog({ open, onOpenChange, reviewId, date, onDeleted, onUpdated }: ReviewDialogProps) {
+export function ReviewDialog({ open, onOpenChange, reviewId }: ReviewDialogProps) {
+  const { getReviewById, updateReview, deleteReview } = useReviewsStore()
   const [title, setTitle] = useState('')
   const [linkA, setLinkA] = useState('')
   const [linkB, setLinkB] = useState('')
@@ -71,7 +64,6 @@ export function ReviewDialog({ open, onOpenChange, reviewId, date, onDeleted, on
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false)
   const [editingField, setEditingField] = useState<string | null>(null)
 
-  // 自动保存函数
   const autoSave = () => {
     if (!reviewId || !title.trim())
       return
@@ -81,19 +73,15 @@ export function ReviewDialog({ open, onOpenChange, reviewId, date, onDeleted, on
       linkA,
       linkB,
       teams: selectedTeams,
-      date: reviewDate ? format(reviewDate, 'yyyy-MM-dd') : date || '',
+      date: reviewDate ? format(reviewDate, 'yyyy-MM-dd') : '',
       status,
       socialUrl,
       tableA,
       tableB,
       content: content.trim(),
     })
-
-    // 通知父组件数据已更新
-    onUpdated?.()
   }
 
-  // 防抖自动保存
   useDebounce(
     () => {
       if (!reviewId || !title.trim())
@@ -104,7 +92,6 @@ export function ReviewDialog({ open, onOpenChange, reviewId, date, onDeleted, on
     [title, linkA, linkB, selectedTeams, reviewDate, status, socialUrl, tableA, tableB, content],
   )
 
-  // 队伍选项 - 带颜色和样式
   const teamOptions: MultiSelectOption[] = teams.map(team => ({
     label: team.team_name,
     value: team.team_name,
@@ -128,7 +115,7 @@ export function ReviewDialog({ open, onOpenChange, reviewId, date, onDeleted, on
         setEditingField(null)
       }
     }
-  }, [open, reviewId])
+  }, [open, reviewId, getReviewById])
 
   // 当编辑队伍字段时,自动触发 MultiSelect 打开
   useEffect(() => {
@@ -149,16 +136,13 @@ export function ReviewDialog({ open, onOpenChange, reviewId, date, onDeleted, on
     deleteReview(reviewId)
     setDeleteDialogOpen(false)
     onOpenChange(false)
-    onDeleted?.()
   }
 
-  // 处理字段失焦时自动保存
   const handleBlur = () => {
     setEditingField(null)
     autoSave()
   }
 
-  // 表格操作函数
   const addTableRow = (table: 'A' | 'B') => {
     const currentTable = table === 'A' ? tableA : tableB
     const setTable = table === 'A' ? setTableA : setTableB
@@ -167,7 +151,6 @@ export function ReviewDialog({ open, onOpenChange, reviewId, date, onDeleted, on
       setTable([{ players: ['', '', '', ''], rounds: [] }])
     } else {
       const newTable = [...currentTable]
-      // 获取已存在的小局列表，用于生成不重复的默认小局
       const existingRounds = newTable[0].rounds.map(r => r.round)
       newTable[0].rounds.push({
         round: createDefaultRoundInfo(existingRounds),
@@ -385,7 +368,11 @@ export function ReviewDialog({ open, onOpenChange, reviewId, date, onDeleted, on
                             >
                               <div className="flex min-h-[32px] items-center">
                                 <span>
-                                  {reviewDate ? format(reviewDate, 'yyyy-MM-dd') : date || <span className="text-muted-foreground">选择日期</span>}
+                                  {reviewDate ? (
+                                    format(reviewDate, 'yyyy-MM-dd')
+                                  ) : (
+                                    <span className="text-muted-foreground">选择日期</span>
+                                  )}
                                 </span>
                               </div>
                             </div>
@@ -609,7 +596,6 @@ export function ReviewDialog({ open, onOpenChange, reviewId, date, onDeleted, on
           </div>
         </DialogContent>
       </Dialog>
-
       <AlertDialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>
         <AlertDialogContent>
           <AlertDialogHeader>

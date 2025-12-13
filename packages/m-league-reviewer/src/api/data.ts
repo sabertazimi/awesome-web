@@ -1,3 +1,4 @@
+import type { JSONContent } from '@tiptap/react'
 import { cva } from 'class-variance-authority'
 
 export interface Team {
@@ -464,3 +465,79 @@ export const pros: Pro[] = [
     pro_year: 2009,
   },
 ]
+
+export interface RoundInfo {
+  /** 东场/南场 */
+  field: 'east' | 'south'
+  /** 小局数 (1-4) */
+  round: number
+  /** 本场数 (0, 1, 2, 3...) */
+  honba: number
+}
+
+export type HosetsuType
+  = | 'hand_sequence' // 手顺
+    | 'tile_efficiency' // 牌效
+    | 'riichi' // 立直
+    | 'dama' // 默听
+    | 'call' // 鸣牌
+    | 'refuse_tenpai' // 拒听
+    | 'retreat' // 退向
+    | 'betaori' // 兜牌
+    | 'fold' // 下车
+    | 'aggressive' // 强攻
+    | 'discard' // 放铳
+    | 'other' // 其他
+
+export interface HosetsuResult {
+  /** 基本的文字复盘描述 */
+  description: string
+  /** 何切类型 */
+  type: HosetsuType
+  /** 是否为严重分歧（加粗显示） */
+  isSignificant: boolean
+}
+
+export interface TableData {
+  /** 4个选手名称 */
+  players: string[]
+  rounds: {
+    /** 小局信息 */
+    round: RoundInfo
+    /** 4个选手的何切结果 */
+    results: HosetsuResult[]
+  }[]
+}
+
+export interface Review {
+  id: string
+  /** 日期 (格式: YYYY-MM-DD) */
+  date: string
+  /** 标题 */
+  title: string
+  /** 牌谱A链接 */
+  linkA: string
+  /** 牌谱B链接 */
+  linkB: string
+  /** 参赛队伍 */
+  teams: string[]
+  /** 状态 */
+  status: 'not_started' | 'in_progress' | 'completed'
+  /** 社交网址 */
+  socialUrl: string
+  /** A桌数据 */
+  tableA: TableData[]
+  /** B桌数据 */
+  tableB: TableData[]
+  /** 备注内容 */
+  content: string
+  createdAt: string
+}
+
+export interface Note {
+  id: string
+  /** Tiptap JSON content */
+  content: JSONContent
+  createdAt: string
+  updatedAt: string
+}

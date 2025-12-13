@@ -16,11 +16,6 @@ interface VoidSectionProps {
   children: React.ReactNode
 }
 
-/**
- * VoidSection 组件
- * 模仿 voidzero.dev 的设计风格
- * 布局结构：左侧区域（编号） | 中间区域（内容 container） | 右侧区域（文件名）
- */
 export function VoidSection({
   number,
   fileName,

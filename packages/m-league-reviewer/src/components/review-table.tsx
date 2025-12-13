@@ -1,4 +1,4 @@
-import type { HosetsuResult, RoundInfo, TableData } from '@/api/reviews'
+import type { HosetsuResult, RoundInfo, TableData } from '@/api/data'
 import { PlusIcon, Trash2Icon } from 'lucide-react'
 import { useCallback, useRef } from 'react'
 import { getTeamColorClass } from '@/api/data'
@@ -24,11 +24,6 @@ interface ReviewTableProps {
   onBlur: () => void
 }
 
-/**
- * 复盘表格组件
- * 用于显示和编辑 A桌/B桌 的比赛数据
- * 支持键盘导航：Tab、方向键、Enter/Space 进入编辑、Escape 取消编辑
- */
 export function ReviewTable({
   tableData,
   tableName,
@@ -46,20 +41,17 @@ export function ReviewTable({
   const playerOptions = getPlayerOptions()
   const tableRef = useRef<HTMLTableElement>(null)
 
-  // 获取所有可聚焦的单元格
   const getFocusableCells = useCallback((): HTMLElement[] => {
     if (!tableRef.current)
       return []
     return Array.from(tableRef.current.querySelectorAll<HTMLElement>('[data-cell-id]'))
   }, [])
 
-  // 聚焦到指定的单元格
   const focusCell = useCallback((cellId: string) => {
     const cell = tableRef.current?.querySelector(`[data-cell-id="${cellId}"]`) as HTMLElement
     cell?.focus()
   }, [])
 
-  // 处理方向键导航
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent, currentCellId: string) => {
       const cells = getFocusableCells()
@@ -68,50 +60,42 @@ export function ReviewTable({
         return
 
       let targetIndex = currentIndex
-      const columnsPerRow = 5 // 每行有5列（1个局数列 + 4个选手列）
+      const columnsPerRow = 5
 
       switch (e.key) {
         case 'ArrowUp':
           e.preventDefault()
-          // 向上移动一行（跳过 5 个单元格）
           targetIndex = currentIndex - columnsPerRow
           break
         case 'ArrowDown':
           e.preventDefault()
-          // 向下移动一行（跳过 5 个单元格）
           targetIndex = currentIndex + columnsPerRow
           break
         case 'ArrowLeft':
           e.preventDefault()
-          // 向左移动一个单元格
           targetIndex = currentIndex - 1
           break
         case 'ArrowRight':
           e.preventDefault()
-          // 向右移动一个单元格
           targetIndex = currentIndex + 1
           break
         case 'Enter':
         case ' ':
           e.preventDefault()
-          // 进入编辑模式
           onEditField(currentCellId)
           return
         case 'Escape':
           e.preventDefault()
-          // 取消编辑
           onEditField(null)
           focusCell(currentCellId)
           return
       }
 
-      // Shift+Tab 向左移动
       if (e.key === 'Tab' && e.shiftKey) {
         e.preventDefault()
         targetIndex = currentIndex - 1
       }
 
-      // 确保目标索引在有效范围内
       if (targetIndex >= 0 && targetIndex < cells.length) {
         const targetCell = cells[targetIndex]
         if (targetCell)
@@ -121,16 +105,13 @@ export function ReviewTable({
     [getFocusableCells, onEditField, focusCell],
   )
 
-  // 处理输入框的键盘事件
   const handleInputKeyDown = useCallback(
     (e: React.KeyboardEvent<HTMLInputElement>, currentCellId: string) => {
       if (e.key === 'Enter') {
         e.preventDefault()
         onBlur()
-        // Enter 确认后移动到下一个单元格
         const cells = getFocusableCells()
         const currentIndex = cells.findIndex(cell => cell.getAttribute('data-cell-id') === currentCellId)
-
         const targetIndex = currentIndex + 1
 
         if (targetIndex >= 0 && targetIndex < cells.length) {
@@ -216,8 +197,6 @@ export function ReviewTable({
               })}
               <TableCell className="w-12"></TableCell>
             </TableRow>
-
-            {/* 后续行: 局数和结果 */}
             {data.rounds.map((round, roundIndex) => (
               <TableRow key={`${round.round.field}-${round.round.round}-${round.round.honba}`}>
                 <TableCell
@@ -307,8 +286,6 @@ export function ReviewTable({
                 </TableCell>
               </TableRow>
             ))}
-
-            {/* 添加局数行 */}
             <TableRow className="hover:bg-accent group border-none transition-all">
               <TableCell colSpan={6} className="h-8 border-none p-0">
                 <div
@@ -329,8 +306,6 @@ export function ReviewTable({
                 </div>
               </TableCell>
             </TableRow>
-
-            {/* 占位行：防止下拉菜单被遮挡 */}
             <TableRow className="pointer-events-none border-none opacity-0" aria-hidden="true">
               <TableCell className="h-12 border-none p-0" />
               <TableCell className="h-12 border-none p-0" />

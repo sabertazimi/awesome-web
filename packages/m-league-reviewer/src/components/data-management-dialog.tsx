@@ -1,7 +1,6 @@
 import { DatabaseIcon, DownloadIcon, InfoIcon, UploadIcon } from 'lucide-react'
 import { useRef, useState } from 'react'
 import { toast } from 'sonner'
-import { downloadDataAsJson, importAllData } from '@/api/reviews'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import {
   AlertDialog,
@@ -15,23 +14,39 @@ import {
 } from '@/components/ui/alert-dialog'
 import { Button } from '@/components/ui/button'
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog'
+import { useNotesStore } from '@/stores/notes'
+import { useReviewsStore } from '@/stores/reviews'
 
 interface DataManagementDialogProps {
   open: boolean
   onOpenChange: (open: boolean) => void
-  onDataImported?: () => void
 }
 
-export function DataManagementDialog({ open, onOpenChange, onDataImported }: DataManagementDialogProps) {
+export function DataManagementDialog({ open, onOpenChange }: DataManagementDialogProps) {
+  const reviewsStore = useReviewsStore()
+  const notesStore = useNotesStore()
   const fileInputRef = useRef<HTMLInputElement>(null)
   const [importConfirmOpen, setImportConfirmOpen] = useState(false)
   const [selectedFile, setSelectedFile] = useState<File | null>(null)
   const [error, setError] = useState<string | null>(null)
 
-  // 处理导出
   const handleExport = () => {
     try {
-      downloadDataAsJson()
+      const data = {
+        reviews: reviewsStore.exportData(),
+        notes: notesStore.exportData(),
+      }
+      const jsonString = JSON.stringify(data, null, 2)
+      const timestamp = new Date().toISOString().replace(/:/g, '-').split('.')[0]
+      const filename = `m-league-backup-${timestamp}.json`
+
+      const blob = new Blob([jsonString], { type: 'application/json' })
+      const url = URL.createObjectURL(blob)
+      const link = document.createElement('a')
+      link.href = url
+      link.download = filename
+      link.click()
+      URL.revokeObjectURL(url)
       setError(null)
     } catch (err: unknown) {
       setError('导出失败,请重试')
@@ -39,7 +54,6 @@ export function DataManagementDialog({ open, onOpenChange, onDataImported }: Dat
     }
   }
 
-  // 处理文件选择
   const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0]
     if (file) {
@@ -48,36 +62,49 @@ export function DataManagementDialog({ open, onOpenChange, onDataImported }: Dat
     }
   }
 
-  // 确认导入
   const handleConfirmImport = async () => {
     if (!selectedFile)
       return
 
     try {
       const text = await selectedFile.text()
-      const result = importAllData(text)
+      const data = JSON.parse(text) as unknown
 
-      if (result.success) {
-        setError(null)
-        setImportConfirmOpen(false)
-        setSelectedFile(null)
-        onOpenChange(false)
-        onDataImported?.()
-      } else {
-        setError(result.error || '导入失败')
+      if (!data || typeof data !== 'object') {
+        setError('数据格式无效')
+        return
       }
+
+      const parsedData = data as Record<string, unknown>
+
+      if (!Array.isArray(parsedData.reviews)) {
+        setError('复盘数据格式无效: reviews 必须是数组')
+        return
+      }
+
+      if (!Array.isArray(parsedData.notes)) {
+        setError('笔记数据格式无效: notes 必须是数组')
+        return
+      }
+
+      reviewsStore.importData(parsedData.reviews)
+      notesStore.importData(parsedData.notes)
+
+      setError(null)
+      setImportConfirmOpen(false)
+      setSelectedFile(null)
+      onOpenChange(false)
+      toast.success('数据导入成功')
     } catch (err: unknown) {
       setError('读取文件失败,请确保文件格式正确')
       toast.error(`导入错误: ${err instanceof Error ? err.message : String(err)}`)
     }
 
-    // 重置文件输入
     if (fileInputRef.current) {
       fileInputRef.current.value = ''
     }
   }
 
-  // 取消导入
   const handleCancelImport = () => {
     setImportConfirmOpen(false)
     setSelectedFile(null)
@@ -86,7 +113,6 @@ export function DataManagementDialog({ open, onOpenChange, onDataImported }: Dat
     }
   }
 
-  // 触发文件选择
   const handleImportClick = () => {
     fileInputRef.current?.click()
   }
@@ -132,7 +158,6 @@ export function DataManagementDialog({ open, onOpenChange, onDataImported }: Dat
           </div>
         </DialogContent>
       </Dialog>
-
       <AlertDialog open={importConfirmOpen} onOpenChange={setImportConfirmOpen}>
         <AlertDialogContent>
           <AlertDialogHeader>
