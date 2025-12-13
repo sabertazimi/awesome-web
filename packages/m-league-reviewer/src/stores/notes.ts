@@ -82,14 +82,21 @@ export const useNotesStore = create<NotesState>()(
       },
     }),
     {
-      name: 'm-league-data',
-      partialize: state => ({ notes: state.notes }),
-      merge: (persistedState, currentState) => {
-        const persisted = persistedState as { notes?: Note[] }
-        return {
-          ...currentState,
-          notes: persisted.notes || currentState.notes,
+      name: 'm-league-notes',
+      migrate: (persistedState: unknown) => {
+        // Migration: check if old format exists and migrate
+        const oldData = localStorage.getItem('m-league-data')
+        if (oldData) {
+          try {
+            const parsed = JSON.parse(oldData) as { notes?: Note[] }
+            if (parsed.notes && Array.isArray(parsed.notes)) {
+              return { notes: parsed.notes }
+            }
+          } catch {
+            // Ignore migration errors
+          }
         }
+        return persistedState as { notes: Note[] }
       },
     },
   ),

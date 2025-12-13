@@ -90,14 +90,21 @@ export const useReviewsStore = create<ReviewsState>()(
       },
     }),
     {
-      name: 'm-league-data',
-      partialize: state => ({ reviews: state.reviews }),
-      merge: (persistedState, currentState) => {
-        const persisted = persistedState as { reviews?: Review[] }
-        return {
-          ...currentState,
-          reviews: persisted.reviews || currentState.reviews,
+      name: 'm-league-reviews',
+      migrate: (persistedState: unknown) => {
+        // Migration: check if old format exists and migrate
+        const oldData = localStorage.getItem('m-league-data')
+        if (oldData) {
+          try {
+            const parsed = JSON.parse(oldData) as { reviews?: Review[] }
+            if (parsed.reviews && Array.isArray(parsed.reviews)) {
+              return { reviews: parsed.reviews }
+            }
+          } catch {
+            // Ignore migration errors
+          }
         }
+        return persistedState as { reviews: Review[] }
       },
     },
   ),
