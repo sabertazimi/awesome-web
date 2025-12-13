@@ -10,8 +10,24 @@ interface NotesState {
   updateNote: (id: string, content: JSONContent) => Note | null
   deleteNote: (id: string) => boolean
   getNotes: () => Note[]
-  importData: (notes: Note[]) => void
+  importData: (notes: unknown[]) => void
   exportData: () => Note[]
+}
+
+// Validate if an unknown object is a valid Note
+function isValidNote(obj: unknown): obj is Note {
+  if (!obj || typeof obj !== 'object')
+    return false
+
+  const note = obj as Record<string, unknown>
+
+  return (
+    typeof note.id === 'string'
+    && typeof note.createdAt === 'string'
+    && typeof note.updatedAt === 'string'
+    && note.content !== null
+    && typeof note.content === 'object'
+  )
 }
 
 export const useNotesStore = create<NotesState>()(
@@ -74,7 +90,8 @@ export const useNotesStore = create<NotesState>()(
       },
 
       importData: (notes) => {
-        set({ notes })
+        const validNotes = notes.filter(isValidNote)
+        set({ notes: validNotes })
       },
 
       exportData: () => {
@@ -83,21 +100,6 @@ export const useNotesStore = create<NotesState>()(
     }),
     {
       name: 'm-league-notes',
-      migrate: (persistedState: unknown) => {
-        // Migration: check if old format exists and migrate
-        const oldData = localStorage.getItem('m-league-data')
-        if (oldData) {
-          try {
-            const parsed = JSON.parse(oldData) as { notes?: Note[] }
-            if (parsed.notes && Array.isArray(parsed.notes)) {
-              return { notes: parsed.notes }
-            }
-          } catch {
-            // Ignore migration errors
-          }
-        }
-        return persistedState as { notes: Note[] }
-      },
     },
   ),
 )

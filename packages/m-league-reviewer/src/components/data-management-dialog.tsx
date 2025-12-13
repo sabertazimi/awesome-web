@@ -71,7 +71,7 @@ export function DataManagementDialog({ open, onOpenChange }: DataManagementDialo
 
     try {
       const text = await selectedFile.text()
-      const data = JSON.parse(text) as { reviews: unknown[], notes: unknown[] }
+      const data = JSON.parse(text) as unknown
 
       // 验证数据格式
       if (!data || typeof data !== 'object') {
@@ -79,19 +79,21 @@ export function DataManagementDialog({ open, onOpenChange }: DataManagementDialo
         return
       }
 
-      if (!Array.isArray(data.reviews)) {
-        setError('复盘数据格式无效')
+      const parsedData = data as Record<string, unknown>
+
+      if (!Array.isArray(parsedData.reviews)) {
+        setError('复盘数据格式无效: reviews 必须是数组')
         return
       }
 
-      if (!Array.isArray(data.notes)) {
-        setError('笔记数据格式无效')
+      if (!Array.isArray(parsedData.notes)) {
+        setError('笔记数据格式无效: notes 必须是数组')
         return
       }
 
-      // 导入数据
-      reviewsStore.importData(data.reviews as never)
-      notesStore.importData(data.notes as never)
+      // 导入数据 (store 内部会进行验证)
+      reviewsStore.importData(parsedData.reviews)
+      notesStore.importData(parsedData.notes)
 
       setError(null)
       setImportConfirmOpen(false)

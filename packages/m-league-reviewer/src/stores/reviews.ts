@@ -10,8 +10,32 @@ interface ReviewsState {
   deleteReview: (id: string) => boolean
   getReviewById: (id: string) => Review | undefined
   getReviewsByDate: (date: string) => Review[]
-  importData: (reviews: Review[]) => void
+  importData: (reviews: unknown[]) => void
   exportData: () => Review[]
+}
+
+// Validate if an unknown object is a valid Review
+function isValidReview(obj: unknown): obj is Review {
+  if (!obj || typeof obj !== 'object')
+    return false
+
+  const review = obj as Record<string, unknown>
+
+  return (
+    typeof review.id === 'string'
+    && typeof review.date === 'string'
+    && typeof review.title === 'string'
+    && typeof review.createdAt === 'string'
+    && typeof review.status === 'string'
+    && ['not_started', 'in_progress', 'completed'].includes(review.status)
+    && (typeof review.linkA === 'string' || review.linkA === undefined)
+    && (typeof review.linkB === 'string' || review.linkB === undefined)
+    && (typeof review.socialUrl === 'string' || review.socialUrl === undefined)
+    && (typeof review.content === 'string' || review.content === undefined)
+    && (Array.isArray(review.teams) || review.teams === undefined)
+    && (Array.isArray(review.tableA) || review.tableA === undefined)
+    && (Array.isArray(review.tableB) || review.tableB === undefined)
+  )
 }
 
 export const useReviewsStore = create<ReviewsState>()(
@@ -82,7 +106,8 @@ export const useReviewsStore = create<ReviewsState>()(
       },
 
       importData: (reviews) => {
-        set({ reviews })
+        const validReviews = reviews.filter(isValidReview)
+        set({ reviews: validReviews })
       },
 
       exportData: () => {
@@ -91,21 +116,6 @@ export const useReviewsStore = create<ReviewsState>()(
     }),
     {
       name: 'm-league-reviews',
-      migrate: (persistedState: unknown) => {
-        // Migration: check if old format exists and migrate
-        const oldData = localStorage.getItem('m-league-data')
-        if (oldData) {
-          try {
-            const parsed = JSON.parse(oldData) as { reviews?: Review[] }
-            if (parsed.reviews && Array.isArray(parsed.reviews)) {
-              return { reviews: parsed.reviews }
-            }
-          } catch {
-            // Ignore migration errors
-          }
-        }
-        return persistedState as { reviews: Review[] }
-      },
     },
   ),
 )
