@@ -557,7 +557,10 @@ function EditorToolbar({
 }
 
 export function NoteEditor({ open }: { open: boolean }) {
-  const { createNote, updateNote, getNotes } = useNotesStore()
+  // Extract notes array using selector for stable reference
+  const notes = useNotesStore(state => state.notes)
+  const createNote = useNotesStore(state => state.createNote)
+  const updateNote = useNotesStore(state => state.updateNote)
   const [note, setNote] = useState<Note | null>(null)
   const editor = useEditor({
     extensions: [
@@ -640,19 +643,18 @@ export function NoteEditor({ open }: { open: boolean }) {
 
   useEffect(() => {
     if (open && editor) {
-      const allNotes = getNotes()
       let currentNote: Note
 
-      if (allNotes.length === 0) {
+      if (notes.length === 0) {
         currentNote = createNote()
       } else {
-        currentNote = allNotes[0]
+        currentNote = notes[0]
       }
 
       setNote(currentNote)
       editor.commands.setContent(currentNote.content)
     }
-  }, [open, editor, getNotes, createNote])
+  }, [open, editor, notes, createNote])
 
   if (!editor) {
     return null

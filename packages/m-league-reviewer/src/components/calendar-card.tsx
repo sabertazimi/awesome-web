@@ -28,8 +28,9 @@ export function CalendarCard({
   className,
 }: CalendarCardProps) {
   const dateStr = formatDate(day)
-  const { getReviewsByDate, createReview } = useReviewsStore()
-  const reviews = getReviewsByDate(dateStr)
+  // Use selector to only subscribe to reviews for this specific date
+  const reviews = useReviewsStore(state => state.getReviewsByDate(dateStr))
+  const createReview = useReviewsStore(state => state.createReview)
   const [isAddingReview, setIsAddingReview] = useState(false)
   const [newReviewTitle, setNewReviewTitle] = useState('')
 
