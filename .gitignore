@@ -80,3 +80,8 @@ yarn-error.log
 
 # IDE files
 .vscode/
+
+
+# Agent files
+.claude/*.local.json
+.claude/*.local.md
