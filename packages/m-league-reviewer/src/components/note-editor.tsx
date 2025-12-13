@@ -29,11 +29,11 @@ import {
 } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { toast } from 'sonner'
-import { createNote, getNotes, updateNote } from '@/api/reviews'
 import { Separator } from '@/components/ui/separator'
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
 import { cn } from '@/lib/utils'
+import { useNotesStore } from '@/stores/notes'
 
 interface EditorToolbarProps {
   editor: Editor
@@ -557,6 +557,7 @@ function EditorToolbar({
 }
 
 export function NoteEditor({ open }: { open: boolean }) {
+  const { createNote, updateNote, getNotes } = useNotesStore()
   const [note, setNote] = useState<Note | null>(null)
   const editor = useEditor({
     extensions: [
@@ -639,19 +640,19 @@ export function NoteEditor({ open }: { open: boolean }) {
 
   useEffect(() => {
     if (open && editor) {
-      const notes = getNotes()
+      const allNotes = getNotes()
       let currentNote: Note
 
-      if (notes.length === 0) {
+      if (allNotes.length === 0) {
         currentNote = createNote()
       } else {
-        currentNote = notes[0]
+        currentNote = allNotes[0]
       }
 
       setNote(currentNote)
       editor.commands.setContent(currentNote.content)
     }
-  }, [open, editor])
+  }, [open, editor, getNotes, createNote])
 
   if (!editor) {
     return null
