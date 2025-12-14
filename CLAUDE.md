@@ -7,7 +7,7 @@ It uses a Lerna-based architecture with pnpm workspaces for managing multiple pa
 
 **Web development prototype monorepo** with React, Vue, and experimental projects:
 
-- **Type**: Monorepo | **Size**: ~9 packages, ~150+ components, ~50+ libs
+- **Type**: Monorepo | **Size**: ~8 packages, ~150+ components, ~50+ libs
 - **Languages**: TypeScript (90%), Vue (5%), JavaScript (5%)
 - **Stack**: React Router, Vite, Vue, TypeScript, Tailwind CSS, Shadcn UI, Zustand, React Router
 - **Testing**: Vitest (unit), Playwright (E2E: Chrome/Firefox/Safari)
