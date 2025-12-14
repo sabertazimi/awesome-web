@@ -57,7 +57,7 @@ This is a **pnpm workspace** monorepo with the following packages:
 - `mortal-ui` - GUI for Mortal Mahjong AI reviewer
 - `vue-design` - Vue built-in reactive system demo
 - `vue-trello` - Trello clone with drag-and-drop
-- `echarts-dashboard` - Dashboard with Echarts
+- `echarts-dashboard` - Dashboard with ECharts
 
 **Other**:
 
