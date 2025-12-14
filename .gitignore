@@ -83,5 +83,5 @@ yarn-error.log
 
 
 # Agent files
-.claude/*.local.json
-.claude/*.local.md
+**/.claude/*.local.json
+**/.claude/*.local.md

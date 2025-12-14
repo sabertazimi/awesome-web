@@ -30,7 +30,3 @@ dist-ssr
 src/api/data.js
 scripts/*.js
 data/*.json
-
-# Agent files
-.claude/*.local.json
-.claude/*.local.md
