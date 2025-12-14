@@ -1,4 +1,4 @@
-# AGENTS.md
+# CLAUDE.md
 
 ## Repository Overview
 
@@ -9,7 +9,7 @@ It uses a Lerna-based architecture with pnpm workspaces for managing multiple pa
 
 - **Type**: Monorepo | **Size**: ~8 packages, ~150+ components, ~50+ libs
 - **Languages**: TypeScript (90%), Vue (5%), JavaScript (5%)
-- **Stack**: React Router, Vite, Vue 3, TypeScript, Tailwind CSS, Shadcn UI, Zustand, React Router
+- **Stack**: React Router, Vite, Vue, TypeScript, Tailwind CSS, Shadcn UI, Zustand
 - **Testing**: Vitest (unit), Playwright (E2E: Chrome/Firefox/Safari)
 - **Package Manager**: **pnpm only** (never npm/yarn) | **Node**: LTS
 
@@ -34,11 +34,12 @@ pnpm test                 # Run unit tests across all packages
 
 **Key Directories**:
 
-- `packages/` - Individual projects (m-league-reviewer, mortal-ui, vue-trello, etc.)
+- `packages/` - Individual projects (awesome-web, m-league-reviewer, mortal-ui, vue-trello, etc.)
+- `packages/awesome-web/` - Main portfolio website (React Router + Shadcn)
 - `packages/m-league-reviewer/` - Mahjong league review system (React Router + Shadcn)
-- `packages/mortal-ui/` - Vue 3 component library for mahjong games
-- `packages/vue-trello/` - Vue 3 Trello clone with drag-and-drop
-- `packages/vue-design/` - Vue 3 design system showcase
+- `packages/mortal-ui/` - Vue component library for mahjong games
+- `packages/vue-trello/` - Vue Trello clone with drag-and-drop
+- `packages/vue-design/` - Vue design system showcase
 - `packages/react-renderer/` - Custom React reconciler implementation
 - `packages/vue-challenges/` - Vue.js coding challenges and solutions
 - `packages/echarts-dashboard/` - ECharts dashboard prototypes
@@ -68,9 +69,9 @@ pnpm test                 # Run unit tests across all packages
 
 **Shadcn UI Components**: Use `pnpm dlx shadcn@latest add [component]` in package directory. Components auto-install to `src/components/ui/`. Never modify these files directly.
 
-**State Management**: Zustand stores in `src/stores/` (m-league-reviewer), Vue 3 Composition API with Pinia in `src/store/` (vue-trello).
+**State Management**: Zustand stores in `src/stores/` (m-league-reviewer), Vue Composition API with Pinia in `src/store/` (vue-trello).
 
-**Routing**: React Router v7 (m-league-reviewer), Vue Router 4 (vue-trello), React Router v6 (react-renderer).
+**Routing**: React Router (awesome-web, m-league-reviewer), Vue Router (vue-trello).
 
 **Styling**: Tailwind CSS with custom design tokens. Use `class-variance-authority` + `clsx` + `tailwind-merge` for conditional styling.
 
@@ -137,6 +138,7 @@ pnpm test                 # Run unit tests across all packages
 
 **Package Entry Points**:
 
+- awesome-web: `packages/awesome-web/src/root.tsx`
 - m-league-reviewer: `packages/m-league-reviewer/src/root.tsx`
 - mortal-ui: `packages/mortal-ui/src/main.ts`
 - vue-trello: `packages/vue-trello/src/main.ts`
@@ -144,6 +146,7 @@ pnpm test                 # Run unit tests across all packages
 
 **Dev Servers**:
 
+- awesome-web: localhost:5173 (default)
 - mortal-ui: localhost:5173
 - react-renderer: localhost:3000
 - vue-design: localhost:5173
