@@ -37,7 +37,8 @@ pnpm run fetch:game-schedule
 ## Architecture Overview
 
 ### Technology Stack
-- **React Router** - Full-stack React framework with SSR support
+
+- **React Router (Framework Mode)** - Routing with SSR support
 - **TypeScript** - Type safety throughout the application
 - **Vite** - Build tool and dev server
 - **Tailwind CSS** - Styling framework
@@ -66,7 +67,7 @@ pnpm run fetch:game-schedule
 
 ### Project Structure
 
-```
+```plaintext
 src/
 ├── api/          # Data fetching and external API integration
 ├── components/   # React components
