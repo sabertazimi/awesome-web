@@ -74,12 +74,16 @@ export function ReviewTable({
   const playerOptions = getPlayerOptions()
   const tableRef = useRef<HTMLTableElement>(null)
   const [selectedCells, setSelectedCells] = useState<Set<string>>(() => new Set())
+
   const [isSelecting, setIsSelecting] = useState(false)
   const selectionStartRef = useRef<CellCoord | null>(null)
   const longPressTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const isLongPressRef = useRef(false)
   const LongPressThreshold = 300
   const LeftButton = 0
+
+  const [isDragging, setIsDragging] = useState(false)
+  const dragStartCoordRef = useRef<CellCoord | null>(null)
 
   const getFocusableCells = useCallback((): HTMLElement[] => {
     if (!tableRef.current)
@@ -128,6 +132,71 @@ export function ReviewTable({
       return a.coord.playerIndex - b.coord.playerIndex
     })
   }, [selectedCells, data.rounds])
+
+  const getCellCoordFromPoint = useCallback(
+    (x: number, y: number): CellCoord | null => {
+      if (!tableRef.current) {
+        return null
+      }
+
+      const cells = tableRef.current.querySelectorAll<HTMLElement>(`[data-cell-id^="${tableName}-result-"]`)
+
+      for (const cell of cells) {
+        const rect = cell.getBoundingClientRect()
+
+        if (x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom) {
+          const cellId = cell.getAttribute('data-cell-id')
+
+          if (cellId) {
+            return getCellCoord(cellId)
+          }
+        }
+      }
+
+      // 如果鼠标不在任何单元格内，找最近的边界单元格
+      let nearestCoord: CellCoord | null = null
+      let minDistance = Infinity
+
+      for (const cell of cells) {
+        const rect = cell.getBoundingClientRect()
+        const cellId = cell.getAttribute('data-cell-id')
+
+        if (!cellId) {
+          continue
+        }
+
+        const coord = getCellCoord(cellId)
+
+        if (!coord) {
+          continue
+        }
+
+        // 计算到单元格中心的距离
+        const centerX = (rect.left + rect.right) / 2
+        const centerY = (rect.top + rect.bottom) / 2
+        const distance = Math.sqrt((x - centerX) ** 2 + (y - centerY) ** 2)
+
+        if (distance < minDistance) {
+          minDistance = distance
+          nearestCoord = coord
+        }
+      }
+
+      return nearestCoord
+    },
+    [tableName],
+  )
+
+  const handleCellClick = useCallback(
+    (_e: React.MouseEvent, fieldId: string) => {
+      if (selectedCells.size > 0) {
+        clearSelection()
+      }
+
+      onEditField(fieldId)
+    },
+    [selectedCells, clearSelection, onEditField],
+  )
 
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent, currentCellId: string) => {
@@ -234,6 +303,20 @@ export function ReviewTable({
     [LongPressThreshold],
   )
 
+  const handleCellMouseUp = useCallback(
+    (e: React.MouseEvent, _fieldId: string) => {
+      clearLongPressTimer()
+
+      if (isLongPressRef.current) {
+        setIsSelecting(false)
+        isLongPressRef.current = false
+        e.preventDefault()
+        e.stopPropagation()
+      }
+    },
+    [clearLongPressTimer],
+  )
+
   const handleCellMouseEnter = useCallback(
     (fieldId: string) => {
       if (!isSelecting || !selectionStartRef.current) {
@@ -252,42 +335,57 @@ export function ReviewTable({
     [isSelecting, tableName],
   )
 
-  const handleCellMouseUp = useCallback(
-    (e: React.MouseEvent, _fieldId: string) => {
-      clearLongPressTimer()
-
-      if (isLongPressRef.current) {
-        setIsSelecting(false)
-        isLongPressRef.current = false
-        e.preventDefault()
-        e.stopPropagation()
-      }
-    },
-    [clearLongPressTimer],
-  )
-
   const handleCellMouseLeave = useCallback(() => {
     if (!isSelecting) {
       clearLongPressTimer()
     }
   }, [isSelecting, clearLongPressTimer])
 
-  const handleCellClick = useCallback(
-    (_e: React.MouseEvent, fieldId: string) => {
-      if (selectedCells.size > 0) {
-        // 点击已选中的单元格，不进入编辑模式
-        if (selectedCells.has(fieldId)) {
-          return
-        }
+  const handleEdgeDragStart = useCallback(() => {
+    if (!editingField) {
+      return
+    }
 
-        // 点击未选中的单元格，清除选择
-        clearSelection()
+    const coord = getCellCoord(editingField)
+
+    if (!coord) {
+      return
+    }
+
+    dragStartCoordRef.current = coord
+    setIsDragging(true)
+    onEditField(null)
+  }, [editingField, onEditField])
+
+  useEffect(() => {
+    if (!isDragging) {
+      return
+    }
+
+    const handleEdgeDragMove = (e: MouseEvent) => {
+      const currentCoord = getCellCoordFromPoint(e.clientX, e.clientY)
+
+      if (!currentCoord || !dragStartCoordRef.current) {
+        return
       }
 
-      onEditField(fieldId)
-    },
-    [selectedCells, clearSelection, onEditField],
-  )
+      const cells = getCellsInRect(dragStartCoordRef.current, currentCoord, tableName)
+      setSelectedCells(new Set(cells))
+    }
+
+    const handleEdgeDragEnd = () => {
+      setIsDragging(false)
+      dragStartCoordRef.current = null
+    }
+
+    document.addEventListener('mousemove', handleEdgeDragMove)
+    document.addEventListener('mouseup', handleEdgeDragEnd)
+
+    return () => {
+      document.removeEventListener('mousemove', handleEdgeDragMove)
+      document.removeEventListener('mouseup', handleEdgeDragEnd)
+    }
+  }, [isDragging, getCellCoordFromPoint, tableName])
 
   useEffect(() => {
     const handleGlobalMouseUp = () => {
@@ -494,7 +592,6 @@ export function ReviewTable({
       <CardContent>
         <Table ref={tableRef}>
           <TableBody>
-            {/* 第一行: 选手名称 */}
             <TableRow className="bg-accent">
               <TableCell className="w-24 font-semibold">小局</TableCell>
               {[0, 1, 2, 3].map((playerIndex) => {
@@ -604,11 +701,11 @@ export function ReviewTable({
                         isSelected && 'bg-primary/20 ring-primary ring-2 ring-inset',
                       )}
                       onClick={e => handleCellClick(e, fieldId)}
+                      onKeyDown={e => !isEditing && handleKeyDown(e, fieldId)}
                       onMouseDown={e => handleCellMouseDown(e, fieldId)}
                       onMouseUp={e => handleCellMouseUp(e, fieldId)}
                       onMouseEnter={() => handleCellMouseEnter(fieldId)}
                       onMouseLeave={handleCellMouseLeave}
-                      onKeyDown={e => !isEditing && handleKeyDown(e, fieldId)}
                     >
                       {isEditing ? (
                         <HosetsuResultInput
@@ -621,11 +718,13 @@ export function ReviewTable({
                           }}
                           onKeyDown={e => handleInputKeyDown(e as React.KeyboardEvent<HTMLInputElement>, fieldId)}
                           autoFocus
+                          onEdgeDragStart={handleEdgeDragStart}
                         />
                       ) : (
                         <HosetsuResultContextMenu
                           value={result}
                           onChange={value => onUpdateResult(roundIndex, playerIndex, value)}
+                          disabled={isSelected}
                         >
                           <HosetsuResultDisplay value={result} />
                         </HosetsuResultContextMenu>

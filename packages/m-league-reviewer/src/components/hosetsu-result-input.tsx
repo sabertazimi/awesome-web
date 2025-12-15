@@ -19,21 +19,32 @@ import { Separator } from '@/components/ui/separator'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
 import { cn } from '@/lib/utils'
 
+type DragDirection = 'top' | 'right' | 'bottom' | 'left' | 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right'
+
 interface HosetsuResultInputProps {
   value: HosetsuResult
   onChange: (value: HosetsuResult) => void
   onClose?: () => void
   onKeyDown?: (e: React.KeyboardEvent) => void
   autoFocus?: boolean
+  onEdgeDragStart?: (direction: DragDirection) => void
 }
 
-export function HosetsuResultInput({ value, onChange, onClose, onKeyDown, autoFocus }: HosetsuResultInputProps) {
+export function HosetsuResultInput({
+  value,
+  onChange,
+  onClose,
+  onKeyDown,
+  autoFocus,
+  onEdgeDragStart,
+}: HosetsuResultInputProps) {
   const normalizedValue: HosetsuResult = {
     ...value,
     type: value.type || 'other',
   }
   const [localValue, setLocalValue] = useState<HosetsuResult>(normalizedValue)
   const inputRef = useRef<HTMLInputElement>(null)
+  const containerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     setLocalValue({
@@ -160,7 +171,75 @@ export function HosetsuResultInput({ value, onChange, onClose, onKeyDown, autoFo
   }
 
   return (
-    <div className="relative">
+    <div ref={containerRef} className={cn('relative', onEdgeDragStart && 'ring-primary rounded-sm ring-2 ring-inset')}>
+      {onEdgeDragStart && (
+        <>
+          <div
+            className="absolute top-0 right-0 left-0 z-10 h-1.5 cursor-ns-resize"
+            onMouseDown={(e) => {
+              e.preventDefault()
+              e.stopPropagation()
+              onEdgeDragStart('top')
+            }}
+          />
+          <div
+            className="absolute right-0 bottom-0 left-0 z-10 h-1.5 cursor-ns-resize"
+            onMouseDown={(e) => {
+              e.preventDefault()
+              e.stopPropagation()
+              onEdgeDragStart('bottom')
+            }}
+          />
+          <div
+            className="absolute top-0 bottom-0 left-0 z-10 w-1.5 cursor-ew-resize"
+            onMouseDown={(e) => {
+              e.preventDefault()
+              e.stopPropagation()
+              onEdgeDragStart('left')
+            }}
+          />
+          <div
+            className="absolute top-0 right-0 bottom-0 z-10 w-1.5 cursor-ew-resize"
+            onMouseDown={(e) => {
+              e.preventDefault()
+              e.stopPropagation()
+              onEdgeDragStart('right')
+            }}
+          />
+          <div
+            className="absolute top-0 left-0 z-20 size-1.5 cursor-nwse-resize"
+            onMouseDown={(e) => {
+              e.preventDefault()
+              e.stopPropagation()
+              onEdgeDragStart('top-left')
+            }}
+          />
+          <div
+            className="absolute top-0 right-0 z-20 size-1.5 cursor-nesw-resize"
+            onMouseDown={(e) => {
+              e.preventDefault()
+              e.stopPropagation()
+              onEdgeDragStart('top-right')
+            }}
+          />
+          <div
+            className="absolute bottom-0 left-0 z-20 size-1.5 cursor-nesw-resize"
+            onMouseDown={(e) => {
+              e.preventDefault()
+              e.stopPropagation()
+              onEdgeDragStart('bottom-left')
+            }}
+          />
+          <div
+            className="absolute right-0 bottom-0 z-20 size-1.5 cursor-nwse-resize"
+            onMouseDown={(e) => {
+              e.preventDefault()
+              e.stopPropagation()
+              onEdgeDragStart('bottom-right')
+            }}
+          />
+        </>
+      )}
       <Input
         ref={inputRef}
         value={localValue.description}
@@ -308,6 +387,9 @@ export function HosetsuResultInput({ value, onChange, onClose, onKeyDown, autoFo
             </TooltipContent>
           </Tooltip>
           <KbdGroup>
+            <Kbd>⌘</Kbd>
+            <Kbd>S</Kbd>
+            /
             <Kbd>⏎</Kbd>
             <span>确认</span>
           </KbdGroup>
@@ -346,9 +428,10 @@ interface HosetsuResultContextMenuProps {
   value: HosetsuResult
   onChange: (value: HosetsuResult) => void
   children: React.ReactNode
+  disabled?: boolean
 }
 
-export function HosetsuResultContextMenu({ value, onChange, children }: HosetsuResultContextMenuProps) {
+export function HosetsuResultContextMenu({ value, onChange, children, disabled }: HosetsuResultContextMenuProps) {
   const [open, setOpen] = useState(false)
 
   const handleTypeChange = (type: string, e: React.MouseEvent) => {
@@ -421,7 +504,9 @@ export function HosetsuResultContextMenu({ value, onChange, children }: HosetsuR
         <div
           onContextMenu={(e) => {
             e.preventDefault()
-            setOpen(true)
+            if (!disabled) {
+              setOpen(true)
+            }
           }}
         >
           {children}
