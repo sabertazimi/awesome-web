@@ -110,3 +110,7 @@ src/
 - Client build: `./build/client/`
 - Server build: `./build/server/`
 - Final output: `../../dist/m-league-reviewer/` (after post-build script)
+
+## Constraints
+
+- DO NOT add Claude co-authorship footer to commits

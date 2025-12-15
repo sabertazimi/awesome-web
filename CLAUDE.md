@@ -166,3 +166,7 @@ The repository uses GitHub Actions with the following workflow:
 - `feat(m.league-state): implement state management for league`
 - `fix(mortal-layout): adjust layout for mortal battle`
 - `chore(deps): update dependencies for security patch`
+
+## Constraints
+
+- DO NOT add Claude co-authorship footer to commits
