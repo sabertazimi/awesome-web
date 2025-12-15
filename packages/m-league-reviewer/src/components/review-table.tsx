@@ -610,8 +610,6 @@ export function ReviewTable({
                     aria-label={`选手 ${playerIndex + 1}: ${playerName || '未选择'}`}
                     className={cn(
                       'focus-visible:ring-primary cursor-pointer transition-all focus-visible:ring-2 focus-visible:outline-none focus-visible:ring-inset',
-                      !isEditing && playerName && 'hover:shadow-md',
-                      !isEditing && !playerName && 'hover:bg-muted hover:shadow-md',
                       teamColors,
                     )}
                     onClick={() => !isEditing && onEditField(fieldId)}
@@ -656,7 +654,6 @@ export function ReviewTable({
                   aria-label={`局数: ${roundIndex + 1}`}
                   className={cn(
                     'focus-visible:ring-primary cursor-pointer transition-all focus-visible:ring-2 focus-visible:outline-none focus-visible:ring-inset',
-                    editingField !== `${tableName}-round-${roundIndex}` && 'hover:bg-accent hover:shadow-md',
                   )}
                   onClick={() => {
                     if (editingField !== `${tableName}-round-${roundIndex}`) {
@@ -696,7 +693,6 @@ export function ReviewTable({
                       aria-label={`第 ${roundIndex + 1} 局，选手 ${playerIndex + 1} 结果`}
                       className={cn(
                         'focus-visible:ring-primary cursor-text p-0 transition-all focus-visible:ring-2 focus-visible:outline-none focus-visible:ring-inset',
-                        !isEditing && !isSelected && 'hover:bg-accent hover:shadow-md',
                         isSelected && 'ring-primary ring-2 ring-inset',
                         isEditing && 'ring-primary ring-2 ring-inset',
                       )}

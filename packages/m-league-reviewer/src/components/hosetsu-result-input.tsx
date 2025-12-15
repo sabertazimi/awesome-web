@@ -160,10 +160,10 @@ export function HosetsuResultInput({
     } else if (e.key === 'Escape') {
       e.preventDefault()
       onClose?.()
-    } else if (e.key === 'b' && e.ctrlKey) {
+    } else if ((e.ctrlKey || e.metaKey) && e.key === 'b') {
       e.preventDefault()
       handleSignificantToggle()
-    } else if (e.key === 's' && e.ctrlKey) {
+    } else if ((e.ctrlKey || e.metaKey) && e.key === 's') {
       e.preventDefault()
       onClose?.()
     }

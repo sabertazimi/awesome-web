@@ -6,6 +6,7 @@ import { SiteHeader } from '@/components/site-header'
 import { Button } from '@/components/ui/button'
 import { Toaster } from '@/components/ui/sonner'
 import { VoidSection } from '@/components/void-section'
+import { useGlobalKeyboard } from '@/hooks/use-global-keyboard'
 import '@/assets/base.css'
 
 export const links: Route.LinksFunction = () => [
@@ -42,6 +43,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
+  useGlobalKeyboard()
+
   return <Outlet />
 }
 
