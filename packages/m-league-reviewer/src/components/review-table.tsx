@@ -717,8 +717,8 @@ export function ReviewTable({
                             setTimeout(() => focusCell(fieldId), 0)
                           }}
                           onKeyDown={e => handleInputKeyDown(e as React.KeyboardEvent<HTMLInputElement>, fieldId)}
-                          autoFocus
                           onEdgeDragStart={handleEdgeDragStart}
+                          autoFocus
                         />
                       ) : (
                         <HosetsuResultContextMenu
