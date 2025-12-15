@@ -659,7 +659,6 @@ export function ReviewTable({
                     editingField !== `${tableName}-round-${roundIndex}` && 'hover:bg-accent hover:shadow-md',
                   )}
                   onClick={() => {
-                    // 只在点击单元格本身时打开，不在点击 Popover 时打开
                     if (editingField !== `${tableName}-round-${roundIndex}`) {
                       onEditField(`${tableName}-round-${roundIndex}`)
                     }
@@ -696,9 +695,10 @@ export function ReviewTable({
                       role="button"
                       aria-label={`第 ${roundIndex + 1} 局，选手 ${playerIndex + 1} 结果`}
                       className={cn(
-                        'focus-visible:ring-primary cursor-text transition-all focus-visible:ring-2 focus-visible:outline-none focus-visible:ring-inset',
+                        'focus-visible:ring-primary cursor-text p-0 transition-all focus-visible:ring-2 focus-visible:outline-none focus-visible:ring-inset',
                         !isEditing && !isSelected && 'hover:bg-accent hover:shadow-md',
-                        isSelected && 'bg-primary/20 ring-primary ring-2 ring-inset',
+                        isSelected && 'ring-primary ring-2 ring-inset',
+                        isEditing && 'ring-primary ring-2 ring-inset',
                       )}
                       onClick={e => handleCellClick(e, fieldId)}
                       onKeyDown={e => !isEditing && handleKeyDown(e, fieldId)}
@@ -732,9 +732,9 @@ export function ReviewTable({
                     </TableCell>
                   )
                 })}
-                <TableCell align="center">
+                <TableCell align="center" className="p-0">
                   <Button
-                    size="sm"
+                    size="icon-lg"
                     variant="ghost"
                     onClick={() => onRemoveRow(roundIndex)}
                     aria-label={`删除第 ${roundIndex + 1} 局`}
