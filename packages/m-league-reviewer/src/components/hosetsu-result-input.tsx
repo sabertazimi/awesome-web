@@ -19,15 +19,25 @@ import { Separator } from '@/components/ui/separator'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
 import { cn } from '@/lib/utils'
 
+type DragDirection = 'top' | 'right' | 'bottom' | 'left' | 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right'
+
 interface HosetsuResultInputProps {
   value: HosetsuResult
   onChange: (value: HosetsuResult) => void
   onClose?: () => void
   onKeyDown?: (e: React.KeyboardEvent) => void
+  onEdgeDragStart?: (direction: DragDirection) => void
   autoFocus?: boolean
 }
 
-export function HosetsuResultInput({ value, onChange, onClose, onKeyDown, autoFocus }: HosetsuResultInputProps) {
+export function HosetsuResultInput({
+  value,
+  onChange,
+  onClose,
+  onKeyDown,
+  onEdgeDragStart,
+  autoFocus,
+}: HosetsuResultInputProps) {
   const normalizedValue: HosetsuResult = {
     ...value,
     type: value.type || 'other',
@@ -161,6 +171,70 @@ export function HosetsuResultInput({ value, onChange, onClose, onKeyDown, autoFo
 
   return (
     <div className="relative">
+      <div
+        className="absolute top-0 right-0 left-0 z-10 h-1.5 -translate-y-3 cursor-ns-resize"
+        onMouseDown={(e) => {
+          e.preventDefault()
+          e.stopPropagation()
+          onEdgeDragStart?.('top')
+        }}
+      />
+      <div
+        className="absolute right-0 bottom-0 left-0 z-10 h-1.5 translate-y-3 cursor-ns-resize"
+        onMouseDown={(e) => {
+          e.preventDefault()
+          e.stopPropagation()
+          onEdgeDragStart?.('bottom')
+        }}
+      />
+      <div
+        className="absolute top-0 bottom-0 left-0 z-10 w-1.5 -translate-x-1.5 cursor-ew-resize"
+        onMouseDown={(e) => {
+          e.preventDefault()
+          e.stopPropagation()
+          onEdgeDragStart?.('left')
+        }}
+      />
+      <div
+        className="absolute top-0 right-0 bottom-0 z-10 w-1.5 translate-x-1.5 cursor-ew-resize"
+        onMouseDown={(e) => {
+          e.preventDefault()
+          e.stopPropagation()
+          onEdgeDragStart?.('right')
+        }}
+      />
+      <div
+        className="absolute top-0 left-0 z-20 size-1.5 -translate-x-1.5 -translate-y-1.5 cursor-nwse-resize"
+        onMouseDown={(e) => {
+          e.preventDefault()
+          e.stopPropagation()
+          onEdgeDragStart?.('top-left')
+        }}
+      />
+      <div
+        className="absolute top-0 right-0 z-20 size-1.5 translate-x-1.5 -translate-y-1.5 cursor-nesw-resize"
+        onMouseDown={(e) => {
+          e.preventDefault()
+          e.stopPropagation()
+          onEdgeDragStart?.('top-right')
+        }}
+      />
+      <div
+        className="absolute bottom-0 left-0 z-20 size-1.5 -translate-x-1.5 translate-y-1.5 cursor-nesw-resize"
+        onMouseDown={(e) => {
+          e.preventDefault()
+          e.stopPropagation()
+          onEdgeDragStart?.('bottom-left')
+        }}
+      />
+      <div
+        className="absolute right-0 bottom-0 z-20 size-1.5 translate-x-1.5 translate-y-1.5 cursor-nwse-resize"
+        onMouseDown={(e) => {
+          e.preventDefault()
+          e.stopPropagation()
+          onEdgeDragStart?.('bottom-right')
+        }}
+      />
       <Input
         ref={inputRef}
         value={localValue.description}
@@ -200,7 +274,10 @@ export function HosetsuResultInput({ value, onChange, onClose, onKeyDown, autoFo
           onClose?.()
         }}
         autoFocus={autoFocus}
-        className={cn('h-8 pr-8', localValue.isSignificant && 'text-primary font-bold')}
+        className={cn(
+          'h-8 border-none pr-8 shadow-none focus-visible:ring-0',
+          localValue.isSignificant && 'text-primary font-bold',
+        )}
         placeholder="何切描述..."
       />
       {localValue.description && (
@@ -211,7 +288,7 @@ export function HosetsuResultInput({ value, onChange, onClose, onKeyDown, autoFo
               size="icon"
               variant="ghost"
               onMouseDown={handleClear}
-              className="absolute top-1/2 right-1 size-6 -translate-y-1/2"
+              className="absolute top-1/2 right-2 size-6 -translate-y-1/2"
               aria-label="清空输入"
               tabIndex={-1}
             >
@@ -308,6 +385,9 @@ export function HosetsuResultInput({ value, onChange, onClose, onKeyDown, autoFo
             </TooltipContent>
           </Tooltip>
           <KbdGroup>
+            <Kbd>⌘</Kbd>
+            <Kbd>S</Kbd>
+            /
             <Kbd>⏎</Kbd>
             <span>确认</span>
           </KbdGroup>
@@ -327,7 +407,7 @@ export function HosetsuResultDisplay({ value, placeholder = '' }: HosetsuResultD
   const config = HosetsuTypes[type]
 
   return (
-    <div className="flex min-h-[32px] items-center gap-2">
+    <div className="flex min-h-[32px] items-center gap-2 p-2">
       {value.description ? (
         <>
           {type !== 'other' && config && (
@@ -346,9 +426,10 @@ interface HosetsuResultContextMenuProps {
   value: HosetsuResult
   onChange: (value: HosetsuResult) => void
   children: React.ReactNode
+  disabled?: boolean
 }
 
-export function HosetsuResultContextMenu({ value, onChange, children }: HosetsuResultContextMenuProps) {
+export function HosetsuResultContextMenu({ value, onChange, children, disabled }: HosetsuResultContextMenuProps) {
   const [open, setOpen] = useState(false)
 
   const handleTypeChange = (type: string, e: React.MouseEvent) => {
@@ -421,7 +502,9 @@ export function HosetsuResultContextMenu({ value, onChange, children }: HosetsuR
         <div
           onContextMenu={(e) => {
             e.preventDefault()
-            setOpen(true)
+            if (!disabled) {
+              setOpen(true)
+            }
           }}
         >
           {children}

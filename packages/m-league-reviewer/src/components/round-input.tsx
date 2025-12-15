@@ -15,10 +15,6 @@ interface RoundInputProps {
   existingRounds?: RoundInfo[]
 }
 
-/**
- * 小局输入组件
- * 组合式面板，支持东/南场、小局数、本场数的快捷输入
- */
 // eslint-disable-next-line react/no-unstable-default-props -- Default value is not unstable
 export function RoundInput({ value, onChange, onClose, open, onOpenChange, existingRounds = [] }: RoundInputProps) {
   const [localValue, setLocalValue] = useState<RoundInfo>(value)
@@ -156,24 +152,5 @@ export function RoundInput({ value, onChange, onClose, open, onOpenChange, exist
         </div>
       </PopoverContent>
     </Popover>
-  )
-}
-
-interface RoundDisplayProps {
-  value: RoundInfo
-  placeholder?: string
-}
-
-/**
- * 小局显示组件
- * 显示格式化后的小局信息
- */
-export function RoundDisplay({ value, placeholder = '小局' }: RoundDisplayProps) {
-  const displayText = formatRound(value)
-
-  return (
-    <div className="flex min-h-[32px] items-center">
-      <span className={cn('text-sm', !displayText && 'text-muted-foreground')}>{displayText || placeholder}</span>
-    </div>
   )
 }

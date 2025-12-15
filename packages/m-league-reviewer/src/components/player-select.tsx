@@ -62,15 +62,12 @@ export function PlayerSelect({
       open={open}
       onOpenChange={onOpenChange}
     >
-      <SelectTrigger className="h-8" iconClassName="text-background">
+      <SelectTrigger className="w-full" iconClassName="text-background">
         <SelectValue placeholder={placeholder} />
       </SelectTrigger>
       <SelectContent>
         {showClearOption && value && (
-          <SelectItem
-            value="__clear__"
-            className="data-highlighted:ring-primary data-highlighted:ring-2 data-highlighted:ring-inset"
-          >
+          <SelectItem value="__clear__" className="data-highlighted:ring-primary data-highlighted:ring-2">
             <div className="ml-1 flex items-center gap-3">
               <Trash2Icon className="text-destructive size-4" />
               <span>清除选手</span>
@@ -106,7 +103,7 @@ export function PlayerDisplay({ playerName, playerOptions, placeholder = 'プロ
   const player = playerOptions.find(p => p.value === playerName)
 
   return (
-    <div className="flex min-h-[32px] items-center gap-2">
+    <div className="flex h-9 items-center gap-2">
       {playerName && player ? (
         <>
           <Avatar>
