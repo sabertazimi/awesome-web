@@ -2,6 +2,13 @@ import type { HosetsuResult, HosetsuType } from '@/api/data'
 import { AlertCircleIcon, CheckIcon, ClipboardCopyIcon, ClipboardPasteIcon, ScissorsIcon, XIcon } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 import { toast } from 'sonner'
+import {
+  copyHosetsuResultToClipboard,
+  DefualtHosetsuResult,
+  HosetsuTypes,
+  isHosetsuType,
+  parseHosetsuResult,
+} from '@/api/utils'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -18,59 +25,6 @@ interface HosetsuResultInputProps {
   onClose?: () => void
   onKeyDown?: (e: React.KeyboardEvent) => void
   autoFocus?: boolean
-}
-
-const typeConfig: Record<HosetsuType, { label: string, color: string }> = {
-  hand_sequence: { label: '手顺', color: 'bg-team-1' },
-  tile_efficiency: { label: '牌效', color: 'bg-team-2' },
-  riichi: { label: '立直', color: 'bg-team-3' },
-  dama: { label: '默听', color: 'bg-team-4' },
-  call: { label: '鸣牌', color: 'bg-team-5' },
-  refuse_tenpai: { label: '拒听', color: 'bg-team-6' },
-  retreat: { label: '退向', color: 'bg-team-7' },
-  betaori: { label: '兜牌', color: 'bg-team-8' },
-  fold: { label: '下车', color: 'bg-team-9' },
-  aggressive: { label: '强攻', color: 'bg-team-10' },
-  discard: { label: '放铳', color: 'bg-destructive' },
-  other: { label: '其他', color: 'bg-ring' },
-}
-
-function isHosetsuType(value: string): value is HosetsuType {
-  return Object.keys(typeConfig).includes(value)
-}
-
-const DEFAULT_HOSETSU_RESULT: HosetsuResult = {
-  description: '',
-  type: 'other',
-  isSignificant: false,
-}
-
-function copyHosetsuResultToClipboard(value: HosetsuResult) {
-  const data = JSON.stringify(value)
-  navigator.clipboard
-    .writeText(data)
-    .catch((err: unknown) => toast.error(`复制失败: ${err instanceof Error ? err.message : String(err)}`))
-}
-
-function parseHosetsuResult(text: string): HosetsuResult | null {
-  try {
-    const parsed = JSON.parse(text) as HosetsuResult
-
-    if (
-      typeof parsed === 'object'
-      && parsed !== null
-      && 'description' in parsed
-      && (parsed.type === undefined || isHosetsuType(parsed.type))
-    ) {
-      return {
-        description: parsed.description || '',
-        type: parsed.type || 'other',
-        isSignificant: parsed.isSignificant || false,
-      }
-    }
-  } catch {}
-
-  return null
 }
 
 export function HosetsuResultInput({ value, onChange, onClose, onKeyDown, autoFocus }: HosetsuResultInputProps) {
@@ -112,8 +66,8 @@ export function HosetsuResultInput({ value, onChange, onClose, onKeyDown, autoFo
 
   const performCut = () => {
     copyHosetsuResultToClipboard(localValue)
-    setLocalValue(DEFAULT_HOSETSU_RESULT)
-    onChange(DEFAULT_HOSETSU_RESULT)
+    setLocalValue(DefualtHosetsuResult)
+    onChange(DefualtHosetsuResult)
   }
 
   const performPaste = async () => {
@@ -132,8 +86,8 @@ export function HosetsuResultInput({ value, onChange, onClose, onKeyDown, autoFo
   }
 
   const performClear = () => {
-    setLocalValue(DEFAULT_HOSETSU_RESULT)
-    onChange(DEFAULT_HOSETSU_RESULT)
+    setLocalValue(DefualtHosetsuResult)
+    onChange(DefualtHosetsuResult)
   }
 
   const handleCopyButton = () => {
@@ -199,6 +153,9 @@ export function HosetsuResultInput({ value, onChange, onClose, onKeyDown, autoFo
     } else if (e.key === 'b' && e.ctrlKey) {
       e.preventDefault()
       handleSignificantToggle()
+    } else if (e.key === 's' && e.ctrlKey) {
+      e.preventDefault()
+      onClose?.()
     }
   }
 
@@ -291,7 +248,7 @@ export function HosetsuResultInput({ value, onChange, onClose, onKeyDown, autoFo
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
-              {Object.entries(typeConfig).map(([key, config]) => (
+              {Object.entries(HosetsuTypes).map(([key, config]) => (
                 <SelectItem key={key} value={key} className="text-xs">
                   <Badge className={cn(config.color, 'border-transparent text-white')}>{config.label}</Badge>
                 </SelectItem>
@@ -367,7 +324,7 @@ interface HosetsuResultDisplayProps {
 
 export function HosetsuResultDisplay({ value, placeholder = '' }: HosetsuResultDisplayProps) {
   const type = value.type || 'other'
-  const config = typeConfig[type]
+  const config = HosetsuTypes[type]
 
   return (
     <div className="flex min-h-[32px] items-center gap-2">
@@ -414,7 +371,7 @@ export function HosetsuResultContextMenu({ value, onChange, children }: HosetsuR
 
   const performCut = () => {
     copyHosetsuResultToClipboard(value)
-    onChange(DEFAULT_HOSETSU_RESULT)
+    onChange(DefualtHosetsuResult)
   }
 
   const performPaste = async () => {
@@ -432,7 +389,7 @@ export function HosetsuResultContextMenu({ value, onChange, children }: HosetsuR
   }
 
   const performClear = () => {
-    onChange(DEFAULT_HOSETSU_RESULT)
+    onChange(DefualtHosetsuResult)
   }
 
   const handleCopy = (e: React.MouseEvent) => {
@@ -473,7 +430,7 @@ export function HosetsuResultContextMenu({ value, onChange, children }: HosetsuR
       <PopoverContent className="w-48 p-2" align="start" onClick={e => e.stopPropagation()}>
         <div className="space-y-1">
           <div className="text-muted-foreground mb-2 text-xs font-medium">何切类型</div>
-          {Object.entries(typeConfig).map(([key, config]) => (
+          {Object.entries(HosetsuTypes).map(([key, config]) => (
             <Button
               key={key}
               variant="ghost"

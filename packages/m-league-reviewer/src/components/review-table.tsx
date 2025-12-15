@@ -1,7 +1,9 @@
 import type { HosetsuResult, RoundInfo, TableData } from '@/api/data'
 import { PlusIcon, Trash2Icon } from 'lucide-react'
-import { useCallback, useRef } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
+import { toast } from 'sonner'
 import { getTeamColorClass } from '@/api/data'
+import { DefualtHosetsuResult, parseHosetsuResult } from '@/api/utils'
 import { HosetsuResultContextMenu, HosetsuResultDisplay, HosetsuResultInput } from '@/components/hosetsu-result-input'
 import { getPlayerOptions, PlayerDisplay, PlayerSelect } from '@/components/player-select'
 import { RoundInput } from '@/components/round-input'
@@ -24,6 +26,37 @@ interface ReviewTableProps {
   onBlur: () => void
 }
 
+interface CellCoord {
+  roundIndex: number
+  playerIndex: number
+}
+
+function getCellCoord(cellId: string): CellCoord | null {
+  const match = cellId.match(/result-(\d+)-(\d+)$/)
+  if (match) {
+    return {
+      roundIndex: Number.parseInt(match[1], 10),
+      playerIndex: Number.parseInt(match[2], 10),
+    }
+  }
+  return null
+}
+
+function getCellsInRect(start: CellCoord, end: CellCoord, tableName: string): string[] {
+  const minRow = Math.min(start.roundIndex, end.roundIndex)
+  const maxRow = Math.max(start.roundIndex, end.roundIndex)
+  const minCol = Math.min(start.playerIndex, end.playerIndex)
+  const maxCol = Math.max(start.playerIndex, end.playerIndex)
+
+  const cells: string[] = []
+  for (let row = minRow; row <= maxRow; row++) {
+    for (let col = minCol; col <= maxCol; col++) {
+      cells.push(`${tableName}-result-${row}-${col}`)
+    }
+  }
+  return cells
+}
+
 export function ReviewTable({
   tableData,
   tableName,
@@ -40,6 +73,13 @@ export function ReviewTable({
   const data = tableData.length > 0 ? tableData[0] : { players: ['', '', '', ''], rounds: [] }
   const playerOptions = getPlayerOptions()
   const tableRef = useRef<HTMLTableElement>(null)
+  const [selectedCells, setSelectedCells] = useState<Set<string>>(() => new Set())
+  const [isSelecting, setIsSelecting] = useState(false)
+  const selectionStartRef = useRef<CellCoord | null>(null)
+  const longPressTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const isLongPressRef = useRef(false)
+  const LongPressThreshold = 300
+  const LeftButton = 0
 
   const getFocusableCells = useCallback((): HTMLElement[] => {
     if (!tableRef.current)
@@ -52,12 +92,51 @@ export function ReviewTable({
     cell?.focus()
   }, [])
 
+  const clearLongPressTimer = useCallback(() => {
+    if (longPressTimerRef.current) {
+      clearTimeout(longPressTimerRef.current)
+      longPressTimerRef.current = null
+    }
+  }, [])
+
+  const clearSelection = useCallback(() => {
+    setSelectedCells(new Set())
+    setIsSelecting(false)
+    selectionStartRef.current = null
+    isLongPressRef.current = false
+  }, [])
+
+  const getSelectedResults = useCallback((): { coord: CellCoord, result: HosetsuResult }[] => {
+    const results: { coord: CellCoord, result: HosetsuResult }[] = []
+
+    for (const cellId of selectedCells) {
+      const coord = getCellCoord(cellId)
+
+      if (coord && data.rounds[coord.roundIndex]) {
+        results.push({
+          coord,
+          result: data.rounds[coord.roundIndex].results[coord.playerIndex],
+        })
+      }
+    }
+
+    return results.sort((a, b) => {
+      if (a.coord.roundIndex !== b.coord.roundIndex) {
+        return a.coord.roundIndex - b.coord.roundIndex
+      }
+
+      return a.coord.playerIndex - b.coord.playerIndex
+    })
+  }, [selectedCells, data.rounds])
+
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent, currentCellId: string) => {
       const cells = getFocusableCells()
       const currentIndex = cells.findIndex(cell => cell.getAttribute('data-cell-id') === currentCellId)
-      if (currentIndex === -1)
+
+      if (currentIndex === -1) {
         return
+      }
 
       let targetIndex = currentIndex
       const columnsPerRow = 5
@@ -98,8 +177,10 @@ export function ReviewTable({
 
       if (targetIndex >= 0 && targetIndex < cells.length) {
         const targetCell = cells[targetIndex]
-        if (targetCell)
+
+        if (targetCell) {
           targetCell.focus()
+        }
       }
     },
     [getFocusableCells, onEditField, focusCell],
@@ -129,6 +210,267 @@ export function ReviewTable({
     },
     [onBlur, onEditField, getFocusableCells, focusCell],
   )
+
+  const handleCellMouseDown = useCallback(
+    (e: React.MouseEvent, fieldId: string) => {
+      if (e.button !== LeftButton) {
+        return
+      }
+
+      const coord = getCellCoord(fieldId)
+
+      if (!coord) {
+        return
+      }
+
+      isLongPressRef.current = false
+      longPressTimerRef.current = setTimeout(() => {
+        isLongPressRef.current = true
+        setIsSelecting(true)
+        selectionStartRef.current = coord
+        setSelectedCells(new Set([fieldId]))
+      }, LongPressThreshold)
+    },
+    [LongPressThreshold],
+  )
+
+  const handleCellMouseEnter = useCallback(
+    (fieldId: string) => {
+      if (!isSelecting || !selectionStartRef.current) {
+        return
+      }
+
+      const coord = getCellCoord(fieldId)
+
+      if (!coord) {
+        return
+      }
+
+      const cells = getCellsInRect(selectionStartRef.current, coord, tableName)
+      setSelectedCells(new Set(cells))
+    },
+    [isSelecting, tableName],
+  )
+
+  const handleCellMouseUp = useCallback(
+    (e: React.MouseEvent, _fieldId: string) => {
+      clearLongPressTimer()
+
+      if (isLongPressRef.current) {
+        setIsSelecting(false)
+        isLongPressRef.current = false
+        e.preventDefault()
+        e.stopPropagation()
+      }
+    },
+    [clearLongPressTimer],
+  )
+
+  const handleCellMouseLeave = useCallback(() => {
+    if (!isSelecting) {
+      clearLongPressTimer()
+    }
+  }, [isSelecting, clearLongPressTimer])
+
+  const handleCellClick = useCallback(
+    (_e: React.MouseEvent, fieldId: string) => {
+      if (selectedCells.size > 0) {
+        // 点击已选中的单元格，不进入编辑模式
+        if (selectedCells.has(fieldId)) {
+          return
+        }
+
+        // 点击未选中的单元格，清除选择
+        clearSelection()
+      }
+
+      onEditField(fieldId)
+    },
+    [selectedCells, clearSelection, onEditField],
+  )
+
+  useEffect(() => {
+    const handleGlobalMouseUp = () => {
+      clearLongPressTimer()
+
+      if (isSelecting) {
+        setIsSelecting(false)
+        isLongPressRef.current = false
+      }
+    }
+
+    document.addEventListener('mouseup', handleGlobalMouseUp)
+    return () => {
+      document.removeEventListener('mouseup', handleGlobalMouseUp)
+    }
+  }, [isSelecting, clearLongPressTimer])
+
+  useEffect(() => {
+    if (selectedCells.size === 0) {
+      return
+    }
+
+    const handleGlobalClick = (e: MouseEvent) => {
+      if (tableRef.current && !tableRef.current.contains(e.target as Node)) {
+        clearSelection()
+      }
+    }
+
+    document.addEventListener('click', handleGlobalClick)
+    return () => {
+      document.removeEventListener('click', handleGlobalClick)
+    }
+  }, [selectedCells.size, clearSelection])
+
+  const handleBatchCopy = useCallback(() => {
+    const results = getSelectedResults()
+    if (results.length === 0) {
+      return
+    }
+
+    const dataToClipboard = results.map(r => r.result)
+    const text = JSON.stringify(dataToClipboard)
+    navigator.clipboard
+      .writeText(text)
+      .then(() => toast.success(`已复制 ${results.length} 个单元格`))
+      .catch((err: unknown) => toast.error(`复制失败: ${err instanceof Error ? err.message : String(err)}`))
+  }, [getSelectedResults])
+
+  const handleBatchCut = useCallback(() => {
+    const results = getSelectedResults()
+    if (results.length === 0) {
+      return
+    }
+
+    const dataToClipboard = results.map(r => r.result)
+    const text = JSON.stringify(dataToClipboard)
+    navigator.clipboard
+      .writeText(text)
+      .then(() => {
+        for (const { coord } of results) {
+          onUpdateResult(coord.roundIndex, coord.playerIndex, DefualtHosetsuResult)
+        }
+
+        onBlur()
+        toast.success(`已剪切 ${results.length} 个单元格`)
+      })
+      .catch((err: unknown) => toast.error(`剪切失败: ${err instanceof Error ? err.message : String(err)}`))
+  }, [getSelectedResults, onUpdateResult, onBlur])
+
+  const handleBatchPaste = useCallback(async () => {
+    const results = getSelectedResults()
+
+    if (results.length === 0) {
+      return
+    }
+
+    try {
+      const text = await navigator.clipboard.readText()
+      let parsedArray: HosetsuResult[] | null = null
+
+      try {
+        const parsed = JSON.parse(text) as unknown
+
+        if (Array.isArray(parsed)) {
+          parsedArray = parsed
+            .map((item) => {
+              if (typeof item === 'object' && item !== null && 'description' in item) {
+                return {
+                  description: (item as HosetsuResult).description || '',
+                  type: (item as HosetsuResult).type || 'other',
+                  isSignificant: (item as HosetsuResult).isSignificant || false,
+                } as HosetsuResult
+              }
+
+              return null
+            })
+            .filter((item): item is HosetsuResult => item !== null)
+        }
+      } catch {}
+
+      const parsedSingle = parseHosetsuResult(text)
+
+      if (parsedArray && parsedArray.length > 0) {
+        const count = Math.min(parsedArray.length, results.length)
+
+        for (let i = 0; i < count; i++) {
+          const { coord } = results[i]
+          onUpdateResult(coord.roundIndex, coord.playerIndex, parsedArray[i])
+        }
+
+        onBlur()
+        toast.success(`已粘贴 ${count} 个单元格`)
+      } else if (parsedSingle) {
+        for (const { coord } of results) {
+          onUpdateResult(coord.roundIndex, coord.playerIndex, parsedSingle)
+        }
+
+        onBlur()
+        toast.success(`已粘贴到 ${results.length} 个单元格`)
+      } else {
+        toast.warning('无法解析剪贴板内容')
+      }
+    } catch (err: unknown) {
+      toast.error(`粘贴失败: ${err instanceof Error ? err.message : String(err)}`)
+    }
+  }, [getSelectedResults, onUpdateResult, onBlur])
+
+  const handleBatchToggleSignificant = useCallback(() => {
+    const results = getSelectedResults()
+
+    if (results.length === 0) {
+      return
+    }
+
+    const allSignificant = results.every(r => r.result.isSignificant)
+    const newValue = !allSignificant
+
+    for (const { coord, result } of results) {
+      onUpdateResult(coord.roundIndex, coord.playerIndex, {
+        ...result,
+        isSignificant: newValue,
+      })
+    }
+
+    onBlur()
+    toast.success(`已${newValue ? '标记' : '取消标记'}为严重: ${results.length} 个单元格`)
+  }, [getSelectedResults, onUpdateResult, onBlur])
+
+  useEffect(() => {
+    const handleGlobalKeyDown = (e: KeyboardEvent) => {
+      if (selectedCells.size === 0) {
+        return
+      }
+
+      if (!e.ctrlKey && !e.metaKey) {
+        return
+      }
+
+      switch (e.key.toLowerCase()) {
+        case 'c':
+          e.preventDefault()
+          handleBatchCopy()
+          break
+        case 'x':
+          e.preventDefault()
+          handleBatchCut()
+          break
+        case 'v':
+          e.preventDefault()
+          void handleBatchPaste()
+          break
+        case 'b':
+          e.preventDefault()
+          handleBatchToggleSignificant()
+          break
+      }
+    }
+
+    document.addEventListener('keydown', handleGlobalKeyDown)
+    return () => {
+      document.removeEventListener('keydown', handleGlobalKeyDown)
+    }
+  }, [selectedCells, clearSelection, handleBatchCopy, handleBatchCut, handleBatchPaste, handleBatchToggleSignificant])
 
   return (
     <Card>
@@ -236,6 +578,7 @@ export function ReviewTable({
                 {[0, 1, 2, 3].map((playerIndex) => {
                   const fieldId = `${tableName}-result-${roundIndex}-${playerIndex}`
                   const isEditing = editingField === fieldId
+                  const isSelected = selectedCells.has(fieldId)
                   const result = round.results[playerIndex]
                   return (
                     <TableCell
@@ -246,9 +589,14 @@ export function ReviewTable({
                       aria-label={`第 ${roundIndex + 1} 局，选手 ${playerIndex + 1} 结果`}
                       className={cn(
                         'focus-visible:ring-primary cursor-text transition-all focus-visible:ring-2 focus-visible:outline-none focus-visible:ring-inset',
-                        !isEditing && 'hover:bg-accent hover:shadow-md',
+                        !isEditing && !isSelected && 'hover:bg-accent hover:shadow-md',
+                        isSelected && 'bg-primary/20 ring-primary ring-2 ring-inset',
                       )}
-                      onClick={() => onEditField(fieldId)}
+                      onClick={e => handleCellClick(e, fieldId)}
+                      onMouseDown={e => handleCellMouseDown(e, fieldId)}
+                      onMouseUp={e => handleCellMouseUp(e, fieldId)}
+                      onMouseEnter={() => handleCellMouseEnter(fieldId)}
+                      onMouseLeave={handleCellMouseLeave}
                       onKeyDown={e => !isEditing && handleKeyDown(e, fieldId)}
                     >
                       {isEditing ? (
