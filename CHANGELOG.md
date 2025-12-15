@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0](https://github.com/sabertazimi/awesome-web/compare/v2.2.0...v2.3.0) (2025-12-15)
+
+### Bug Fixes
+
+- **m.league-hosetsu:** change shortcuts text to tooltips ([#900](https://github.com/sabertazimi/awesome-web/issues/900)) ([a0888ed](https://github.com/sabertazimi/awesome-web/commit/a0888ed10c7d331ce9de55f1e90b42fa86c8eb82))
+- **m.league-layout:** adjust alignment for dialog and section header ([#896](https://github.com/sabertazimi/awesome-web/issues/896)) ([ac4f45e](https://github.com/sabertazimi/awesome-web/commit/ac4f45ea9ebd46e8179de4144a846d3258b6e223))
+- **m.league-layout:** adjust site header layout ([#897](https://github.com/sabertazimi/awesome-web/issues/897)) ([758d175](https://github.com/sabertazimi/awesome-web/commit/758d175680cda0a04b18f6a9da245eee1fb30f5e))
+
+### Features
+
+- **m.league-review:** add drag selection from input edges ([#910](https://github.com/sabertazimi/awesome-web/issues/910)) ([c78c7cc](https://github.com/sabertazimi/awesome-web/commit/c78c7ccdd1a655552734b94267f8699f8ed16dbb))
+- **m.league-review:** add multi-select and batch operations to table ([#909](https://github.com/sabertazimi/awesome-web/issues/909)) ([acd73f3](https://github.com/sabertazimi/awesome-web/commit/acd73f3264beeb3b8d96d887a86f8235c411fecb))
+- **m.league-state:** refactor state management with zustand ([#899](https://github.com/sabertazimi/awesome-web/issues/899)) ([3229cff](https://github.com/sabertazimi/awesome-web/commit/3229cff891cdceec3cf5d53db6e5d4a8d15a0d37))
+
 # [2.2.0](https://github.com/sabertazimi/awesome-web/compare/v2.1.0...v2.2.0) (2025-12-12)
 
 ### Bug Fixes
