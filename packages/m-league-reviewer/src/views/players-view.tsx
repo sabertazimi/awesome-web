@@ -11,7 +11,7 @@ export default function PlayersView() {
   // 按队伍分组队员
   const teamGroups = teams.map(team => ({
     team,
-    members: pros.filter(pro => pro.team_id === team.id),
+    members: pros.filter(pro => pro.teamId === team.id),
   }))
 
   return (
@@ -31,10 +31,10 @@ export default function PlayersView() {
         <VoidSection
           key={team.id}
           number={(index + 1).toString().padStart(2, '0')}
-          fileName={`${team.team_name}.json`}
-          title={team.team_name}
+          fileName={`${team.teamName}.json`}
+          title={team.teamName}
           titleImage={`${import.meta.env.BASE_URL}teams/${team.id}.png`}
-          titleImageAlt={team.team_name}
+          titleImageAlt={team.teamName}
         >
           <div className="-mx-8 grid grid-cols-1 gap-px sm:grid-cols-2 lg:grid-cols-4">
             {members.map(pro => (

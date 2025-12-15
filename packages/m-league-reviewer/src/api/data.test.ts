@@ -66,7 +66,7 @@ describe('getTeamColorClassByName', () => {
 
   it('应该对所有队伍名称返回正确的类名', () => {
     teams.forEach((team) => {
-      const result = getTeamColorClassByName(team.team_name)
+      const result = getTeamColorClassByName(team.teamName)
       expect(result).toContain(`bg-team-${team.id}`)
       expect(result).toContain(`border-team-${team.id}`)
     })
@@ -97,7 +97,7 @@ describe('getTeamColorClassByFullName', () => {
 
   it('应该对所有队伍全称返回正确的类名', () => {
     teams.forEach((team) => {
-      const result = getTeamColorClassByFullName(team.team_full_name)
+      const result = getTeamColorClassByFullName(team.teamFullName)
       expect(result).toContain(`bg-team-${team.id}`)
       expect(result).toContain(`border-team-${team.id}`)
     })
@@ -118,8 +118,8 @@ describe('颜色类名一致性', () => {
   it('通过ID、名称和全称获取的类名应该一致', () => {
     teams.forEach((team) => {
       const byId = getTeamColorClass(team.id)
-      const byName = getTeamColorClassByName(team.team_name)
-      const byFullName = getTeamColorClassByFullName(team.team_full_name)
+      const byName = getTeamColorClassByName(team.teamName)
+      const byFullName = getTeamColorClassByFullName(team.teamFullName)
 
       expect(byId).toBe(byName)
       expect(byId).toBe(byFullName)
