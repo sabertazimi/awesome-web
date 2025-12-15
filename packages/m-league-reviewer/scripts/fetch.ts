@@ -5,7 +5,7 @@ import config from './config.js'
 import password from './password.js'
 import { req, sleep } from './utils.js'
 
-const GAME_DATA_REG = /UMP_PLAYER\.init\(true, true, '(.+)', autoplay\);/
+const GameDataRegex = /UMP_PLAYER\.init\(true, true, '(.+)', autoplay\);/
 
 // create directory for data storage
 if (!existsSync(config.dataPath)) {
@@ -34,7 +34,7 @@ for (const season of config.seasonList) {
             referer: 'https://m-league.jp/',
           },
         })
-        const regMatches = gameInfo.data.match(GAME_DATA_REG)
+        const regMatches = gameInfo.data.match(GameDataRegex)
         if (regMatches) {
           writeFile(path.resolve(config.dataPath, `${gameId}.json`), regMatches[1], { encoding: 'utf-8' }, () => {
             console.log(`fetch information about ${gameId} finished.`)

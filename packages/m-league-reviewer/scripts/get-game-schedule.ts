@@ -49,7 +49,7 @@ export default function getGameSchedule(seasonPage: HTMLElement, year: number): 
     const teamIds: number[] = []
 
     for (const teamName of teamNames) {
-      const team = teams.find(t => t.team_full_name === teamName)
+      const team = teams.find(t => t.teamFullName === teamName)
 
       if (team) {
         teamIds.push(team.id)

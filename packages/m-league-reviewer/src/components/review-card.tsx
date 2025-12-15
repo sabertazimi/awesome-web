@@ -27,7 +27,7 @@ export function ReviewCard({ review, onClick }: ReviewCardProps) {
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false)
   const statusColor = statusConfig[review.status || 'not_started'].className
   const reviewTeams = review.teams
-    ?.map(teamName => teams.find(t => t.team_name === teamName))
+    ?.map(teamName => teams.find(t => t.teamName === teamName))
     .filter(team => team !== undefined)
 
   const handleDelete = (e: React.MouseEvent) => {
@@ -84,10 +84,10 @@ export function ReviewCard({ review, onClick }: ReviewCardProps) {
         {reviewTeams && reviewTeams.length > 0 && (
           <div className="flex flex-wrap gap-1">
             {reviewTeams.map((team) => {
-              const teamColors = getTeamColorClassByName(team.team_name)
+              const teamColors = getTeamColorClassByName(team.teamName)
               return (
                 <Badge key={team.id} variant="outline" className={cn('h-5 px-1.5 text-[10px] font-medium', teamColors)}>
-                  {team.team_name}
+                  {team.teamName}
                 </Badge>
               )
             })}

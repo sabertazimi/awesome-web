@@ -93,9 +93,9 @@ export function ReviewDialog({ open, onOpenChange, reviewId }: ReviewDialogProps
   )
 
   const teamOptions: MultiSelectOption[] = teams.map(team => ({
-    label: team.team_name,
-    value: team.team_name,
-    className: getTeamColorClassByName(team.team_name),
+    label: team.teamName,
+    value: team.teamName,
+    className: getTeamColorClassByName(team.teamName),
   }))
 
   useEffect(() => {

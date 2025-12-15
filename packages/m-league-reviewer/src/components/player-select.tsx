@@ -10,24 +10,22 @@ export interface PlayerOption {
   avatarUrl: string
 }
 
-// 生成选手选项列表
 export function getPlayerOptions(filterByTeams?: string[]): PlayerOption[] {
   let filteredPros = pros
 
-  // 如果提供了队伍过滤，只显示这些队伍的选手
   if (filterByTeams && filterByTeams.length > 0) {
     const teamIds = filterByTeams
-      .map(teamName => teams.find(t => t.team_name === teamName)?.id)
+      .map(teamName => teams.find(t => t.teamName === teamName)?.id)
       .filter((id): id is number => id !== undefined)
 
-    filteredPros = pros.filter(pro => teamIds.includes(pro.team_id))
+    filteredPros = pros.filter(pro => teamIds.includes(pro.teamId))
   }
 
   return filteredPros.map((pro) => {
     return {
-      label: pro.pro_name,
-      value: pro.pro_name,
-      teamId: pro.team_id,
+      label: pro.proName,
+      value: pro.proName,
+      teamId: pro.teamId,
       avatarUrl: `${import.meta.env.BASE_URL}avatars/${pro.id}.png`,
     }
   })
@@ -43,10 +41,6 @@ interface PlayerSelectProps {
   filterByTeams?: string[]
 }
 
-/**
- * 选手选择器组件
- * 带头像和队伍颜色的选手选择下拉框
- */
 export function PlayerSelect({
   value,
   onChange,
@@ -108,10 +102,6 @@ interface PlayerDisplayProps {
   placeholder?: string
 }
 
-/**
- * 选手显示组件
- * 显示选手头像和名称
- */
 export function PlayerDisplay({ playerName, playerOptions, placeholder = 'プロ' }: PlayerDisplayProps) {
   const player = playerOptions.find(p => p.value === playerName)
 

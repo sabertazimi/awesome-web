@@ -44,10 +44,10 @@ export function PlayerCard({ player, teamId }: PlayerCardProps) {
       <CardHeader className={cn('py-4', teamColors)}>
         <div className="flex flex-col items-center">
           <Avatar className="size-24 border-4 border-white/20 shadow-lg">
-            <AvatarImage src={`${import.meta.env.BASE_URL}avatars/${player.id}.png`} alt={player.pro_name} />
-            <AvatarFallback>{player.pro_name.slice(0, 2)}</AvatarFallback>
+            <AvatarImage src={`${import.meta.env.BASE_URL}avatars/${player.id}.png`} alt={player.proName} />
+            <AvatarFallback>{player.proName.slice(0, 2)}</AvatarFallback>
           </Avatar>
-          <h3 className="text-primary-foreground mt-3 font-mono text-xl font-bold">{player.pro_name}</h3>
+          <h3 className="text-primary-foreground mt-3 font-mono text-xl font-bold">{player.proName}</h3>
         </div>
       </CardHeader>
       <CardContent className="space-y-4 pt-4 sm:space-y-2">
@@ -57,7 +57,7 @@ export function PlayerCard({ player, teamId }: PlayerCardProps) {
         </div>
         <div className="text-sm">
           <p className="text-muted-foreground">出身地</p>
-          <p className="font-medium">{player.birth_place}</p>
+          <p className="font-medium">{player.birthPlace}</p>
         </div>
         <div className="text-sm">
           <p className="text-muted-foreground">所属団体</p>
@@ -66,7 +66,7 @@ export function PlayerCard({ player, teamId }: PlayerCardProps) {
         <div className="text-sm">
           <p className="text-muted-foreground">プロ入会</p>
           <p className="font-medium">
-            {player.pro_year}
+            {player.proYear}
             年
           </p>
         </div>

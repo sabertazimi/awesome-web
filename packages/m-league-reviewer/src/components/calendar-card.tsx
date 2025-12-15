@@ -52,7 +52,7 @@ export function CalendarCard({ day, isToday, onReviewClick, className }: Calenda
     const gameSchedules = gameScheduleData as Array<{ date: string, teamIds: number[] }>
     const schedule = gameSchedules.find(s => s.date === dateStr)
     const teamNames = schedule ? schedule.teamIds
-      .map(teamId => teams.find(t => t.id === teamId)?.team_name)
+      .map(teamId => teams.find(t => t.id === teamId)?.teamName)
       .filter((name): name is string => name !== undefined) : []
 
     createReview(dateStr, title.trim(), '', teamNames)
