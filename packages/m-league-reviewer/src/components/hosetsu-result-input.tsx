@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import { toast } from 'sonner'
 import {
   copyHosetsuResultToClipboard,
-  DefualtHosetsuResult,
+  DefaultHosetsuResult,
   HosetsuTypes,
   isHosetsuType,
   parseHosetsuResult,
@@ -66,8 +66,8 @@ export function HosetsuResultInput({ value, onChange, onClose, onKeyDown, autoFo
 
   const performCut = () => {
     copyHosetsuResultToClipboard(localValue)
-    setLocalValue(DefualtHosetsuResult)
-    onChange(DefualtHosetsuResult)
+    setLocalValue(DefaultHosetsuResult)
+    onChange(DefaultHosetsuResult)
   }
 
   const performPaste = async () => {
@@ -86,8 +86,8 @@ export function HosetsuResultInput({ value, onChange, onClose, onKeyDown, autoFo
   }
 
   const performClear = () => {
-    setLocalValue(DefualtHosetsuResult)
-    onChange(DefualtHosetsuResult)
+    setLocalValue(DefaultHosetsuResult)
+    onChange(DefaultHosetsuResult)
   }
 
   const handleCopyButton = () => {
@@ -371,7 +371,7 @@ export function HosetsuResultContextMenu({ value, onChange, children }: HosetsuR
 
   const performCut = () => {
     copyHosetsuResultToClipboard(value)
-    onChange(DefualtHosetsuResult)
+    onChange(DefaultHosetsuResult)
   }
 
   const performPaste = async () => {
@@ -389,7 +389,7 @@ export function HosetsuResultContextMenu({ value, onChange, children }: HosetsuR
   }
 
   const performClear = () => {
-    onChange(DefualtHosetsuResult)
+    onChange(DefaultHosetsuResult)
   }
 
   const handleCopy = (e: React.MouseEvent) => {

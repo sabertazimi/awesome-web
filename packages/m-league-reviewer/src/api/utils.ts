@@ -73,7 +73,7 @@ export function createDefaultRoundInfo(existingRounds: RoundInfo[] = []): RoundI
   return getNextRound(lastRound)
 }
 
-export const DefualtHosetsuResult: HosetsuResult = {
+export const DefaultHosetsuResult: HosetsuResult = {
   description: '',
   type: 'other',
   isSignificant: false,
@@ -95,7 +95,7 @@ export const HosetsuTypes: Record<HosetsuType, { label: string, color: string }>
 }
 
 export function createEmptyHosetsuResult(): HosetsuResult {
-  return { ...DefualtHosetsuResult }
+  return { ...DefaultHosetsuResult }
 }
 
 export function isHosetsuType(value: string): value is HosetsuType {
@@ -109,22 +109,29 @@ export function copyHosetsuResultToClipboard(value: HosetsuResult) {
     .catch((err: unknown) => toast.error(`复制失败: ${err instanceof Error ? err.message : String(err)}`))
 }
 
+export function normalizeHosetsuResult(value: unknown): HosetsuResult | null {
+  if (typeof value !== 'object' || value === null || !('description' in value)) {
+    return null
+  }
+
+  const candidate = value as HosetsuResult
+  const type = candidate.type
+
+  if (type !== undefined && !isHosetsuType(type)) {
+    return null
+  }
+
+  return {
+    description: candidate.description || '',
+    type: type || 'other',
+    isSignificant: candidate.isSignificant || false,
+  }
+}
+
 export function parseHosetsuResult(text: string): HosetsuResult | null {
   try {
-    const parsed = JSON.parse(text) as HosetsuResult
-
-    if (
-      typeof parsed === 'object'
-      && parsed !== null
-      && 'description' in parsed
-      && (parsed.type === undefined || isHosetsuType(parsed.type))
-    ) {
-      return {
-        description: parsed.description || '',
-        type: parsed.type || 'other',
-        isSignificant: parsed.isSignificant || false,
-      }
-    }
+    const parsed = JSON.parse(text) as unknown
+    return normalizeHosetsuResult(parsed)
   } catch {}
 
   return null

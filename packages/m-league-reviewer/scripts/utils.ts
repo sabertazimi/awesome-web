@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-/** The frequency of requests is about RequestInterval/SeasonList.length (ms). */
+/** The frequency of requests is about RequestInterval/seasonList.length (ms). */
 const RequestInterval = 500
 
 // set timeout as 30s for every request

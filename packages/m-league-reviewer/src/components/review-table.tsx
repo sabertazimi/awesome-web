@@ -3,7 +3,7 @@ import { PlusIcon, Trash2Icon } from 'lucide-react'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { toast } from 'sonner'
 import { getTeamColorClass } from '@/api/data'
-import { DefualtHosetsuResult, parseHosetsuResult } from '@/api/utils'
+import { DefaultHosetsuResult, normalizeHosetsuResult, parseHosetsuResult } from '@/api/utils'
 import { HosetsuResultContextMenu, HosetsuResultDisplay, HosetsuResultInput } from '@/components/hosetsu-result-input'
 import { getPlayerOptions, PlayerDisplay, PlayerSelect } from '@/components/player-select'
 import { RoundInput } from '@/components/round-input'
@@ -348,7 +348,7 @@ export function ReviewTable({
       .writeText(text)
       .then(() => {
         for (const { coord } of results) {
-          onUpdateResult(coord.roundIndex, coord.playerIndex, DefualtHosetsuResult)
+          onUpdateResult(coord.roundIndex, coord.playerIndex, DefaultHosetsuResult)
         }
 
         onBlur()
@@ -373,17 +373,7 @@ export function ReviewTable({
 
         if (Array.isArray(parsed)) {
           parsedArray = parsed
-            .map((item) => {
-              if (typeof item === 'object' && item !== null && 'description' in item) {
-                return {
-                  description: (item as HosetsuResult).description || '',
-                  type: (item as HosetsuResult).type || 'other',
-                  isSignificant: (item as HosetsuResult).isSignificant || false,
-                } as HosetsuResult
-              }
-
-              return null
-            })
+            .map(item => normalizeHosetsuResult(item))
             .filter((item): item is HosetsuResult => item !== null)
         }
       } catch {}
@@ -436,9 +426,30 @@ export function ReviewTable({
     toast.success(`已${newValue ? '标记' : '取消标记'}为严重: ${results.length} 个单元格`)
   }, [getSelectedResults, onUpdateResult, onBlur])
 
+  const handleBatchClear = useCallback(() => {
+    const results = getSelectedResults()
+
+    if (results.length === 0) {
+      return
+    }
+
+    for (const { coord } of results) {
+      onUpdateResult(coord.roundIndex, coord.playerIndex, DefaultHosetsuResult)
+    }
+
+    onBlur()
+    toast.success(`已清空 ${results.length} 个单元格`)
+  }, [getSelectedResults, onUpdateResult, onBlur])
+
   useEffect(() => {
     const handleGlobalKeyDown = (e: KeyboardEvent) => {
       if (selectedCells.size === 0) {
+        return
+      }
+
+      if (e.key === 'Backspace' || e.key === 'Delete') {
+        e.preventDefault()
+        handleBatchClear()
         return
       }
 
@@ -470,7 +481,7 @@ export function ReviewTable({
     return () => {
       document.removeEventListener('keydown', handleGlobalKeyDown)
     }
-  }, [selectedCells, clearSelection, handleBatchCopy, handleBatchCut, handleBatchPaste, handleBatchToggleSignificant])
+  }, [selectedCells, handleBatchCopy, handleBatchCut, handleBatchPaste, handleBatchToggleSignificant, handleBatchClear])
 
   return (
     <Card>
