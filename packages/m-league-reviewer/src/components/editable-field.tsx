@@ -1,40 +1,46 @@
-import type { ReactNode } from 'react'
+import type { ReactNode, RefObject } from 'react'
 import { cn } from '@/lib/utils'
 
 interface EditableFieldProps {
+  ref?: RefObject<HTMLDivElement | null>
   isEditing: boolean
   onEdit: () => void
-  onBlur?: () => void
   editComponent: ReactNode
   displayComponent: ReactNode
   className?: string
   cursorType?: 'text' | 'pointer'
 }
 
-/**
- * 可编辑字段组件
- * 统一处理字段的编辑/显示状态切换和样式
- */
 export function EditableField({
+  ref,
   isEditing,
   onEdit,
-  onBlur,
   editComponent,
   displayComponent,
   className,
   cursorType = 'text',
 }: EditableFieldProps) {
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (!isEditing && (e.key === 'Enter' || e.key === ' ')) {
+      e.preventDefault()
+      onEdit()
+    }
+  }
+
   return (
     <div
+      ref={ref}
+      tabIndex={isEditing ? -1 : 0}
+      role="button"
       className={cn(
         'px-3 py-2 transition-all',
         cursorType === 'text' && 'cursor-text',
         cursorType === 'pointer' && 'cursor-pointer',
-        !isEditing && 'hover:bg-accent hover:shadow-md',
+        !isEditing && 'hover:bg-accent',
         className,
       )}
       onClick={() => !isEditing && onEdit()}
-      onBlur={onBlur}
+      onKeyDown={handleKeyDown}
     >
       {isEditing ? editComponent : displayComponent}
     </div>

@@ -25,24 +25,15 @@ interface HosetsuResultInputProps {
   value: HosetsuResult
   onChange: (value: HosetsuResult) => void
   onClose?: () => void
-  onKeyDown?: (e: React.KeyboardEvent) => void
   onEdgeDragStart?: (direction: DragDirection) => void
   autoFocus?: boolean
 }
 
-export function HosetsuResultInput({
-  value,
-  onChange,
-  onClose,
-  onKeyDown,
-  onEdgeDragStart,
-  autoFocus,
-}: HosetsuResultInputProps) {
-  const normalizedValue: HosetsuResult = {
+export function HosetsuResultInput({ value, onChange, onClose, onEdgeDragStart, autoFocus }: HosetsuResultInputProps) {
+  const [localValue, setLocalValue] = useState<HosetsuResult>({
     ...value,
     type: value.type || 'other',
-  }
-  const [localValue, setLocalValue] = useState<HosetsuResult>(normalizedValue)
+  })
   const inputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
@@ -153,19 +144,12 @@ export function HosetsuResultInput({
   }
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
-      e.preventDefault()
-      onClose?.()
-      onKeyDown?.(e)
-    } else if (e.key === 'Escape') {
+    if (e.key === 'Enter' || e.key === 'Escape' || ((e.ctrlKey || e.metaKey) && e.key === 's')) {
       e.preventDefault()
       onClose?.()
     } else if ((e.ctrlKey || e.metaKey) && e.key === 'b') {
       e.preventDefault()
       handleSignificantToggle()
-    } else if ((e.ctrlKey || e.metaKey) && e.key === 's') {
-      e.preventDefault()
-      onClose?.()
     }
   }
 
