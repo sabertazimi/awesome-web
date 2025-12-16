@@ -255,31 +255,6 @@ export function ReviewTable({
     [getFocusableCells, onEditField, focusCell],
   )
 
-  const handleInputKeyDown = useCallback(
-    (e: React.KeyboardEvent<HTMLInputElement>, currentCellId: string) => {
-      if (e.key === 'Enter') {
-        e.preventDefault()
-        onBlur()
-        const cells = getFocusableCells()
-        const currentIndex = cells.findIndex(cell => cell.getAttribute('data-cell-id') === currentCellId)
-        const targetIndex = currentIndex + 1
-
-        if (targetIndex >= 0 && targetIndex < cells.length) {
-          setTimeout(() => {
-            const nextCell = cells[targetIndex]
-            if (nextCell)
-              nextCell.focus()
-          }, 0)
-        }
-      } else if (e.key === 'Escape') {
-        e.preventDefault()
-        onEditField(null)
-        focusCell(currentCellId)
-      }
-    },
-    [onBlur, onEditField, getFocusableCells, focusCell],
-  )
-
   const handleCellMouseDown = useCallback(
     (e: React.MouseEvent, fieldId: string) => {
       if (e.button !== LeftButton) {
@@ -712,7 +687,6 @@ export function ReviewTable({
                             onBlur()
                             setTimeout(() => focusCell(fieldId), 0)
                           }}
-                          onKeyDown={e => handleInputKeyDown(e as React.KeyboardEvent<HTMLInputElement>, fieldId)}
                           onEdgeDragStart={handleEdgeDragStart}
                           autoFocus
                         />

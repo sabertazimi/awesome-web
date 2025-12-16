@@ -4,7 +4,7 @@ import { format } from 'date-fns'
 import { zhCN } from 'date-fns/locale/zh-CN'
 import DOMPurify from 'dompurify'
 import { CalendarIcon, LinkIcon, LoaderIcon, UsersIcon } from 'lucide-react'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { getTeamColorClassByName, statusConfig, teams } from '@/api/data'
 import { createDefaultRoundInfo, createEmptyHosetsuResult } from '@/api/utils'
 import { EditableField } from '@/components/editable-field'
@@ -64,9 +64,31 @@ export function ReviewDialog({ open, onOpenChange, reviewId }: ReviewDialogProps
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false)
   const [editingField, setEditingField] = useState<string | null>(null)
 
+  const titleFieldRef = useRef<HTMLDivElement>(null)
+  const linkAFieldRef = useRef<HTMLDivElement>(null)
+  const linkBFieldRef = useRef<HTMLDivElement>(null)
+  const socialUrlFieldRef = useRef<HTMLDivElement>(null)
+  const contentFieldRef = useRef<HTMLDivElement>(null)
+
+  const fieldRefMap: Record<string, React.RefObject<HTMLDivElement | null>> = {
+    title: titleFieldRef,
+    linkA: linkAFieldRef,
+    linkB: linkBFieldRef,
+    socialUrl: socialUrlFieldRef,
+    content: contentFieldRef,
+  }
+
+  const focusField = (field: string) => {
+    const ref = fieldRefMap[field]
+    if (ref?.current) {
+      ref.current.focus()
+    }
+  }
+
   const autoSave = () => {
-    if (!reviewId || !title.trim())
+    if (!reviewId || !title.trim()) {
       return
+    }
 
     updateReview(reviewId, {
       title: title.trim(),
@@ -141,6 +163,15 @@ export function ReviewDialog({ open, onOpenChange, reviewId }: ReviewDialogProps
   const handleBlur = () => {
     setEditingField(null)
     autoSave()
+  }
+
+  const handleInputKeyDown = (e: React.KeyboardEvent, field: string) => {
+    if (e.key === 'Enter' || e.key === 'Escape' || ((e.ctrlKey || e.metaKey) && e.key === 's')) {
+      e.preventDefault()
+      setEditingField(null)
+      autoSave()
+      setTimeout(() => focusField(field), 0)
+    }
   }
 
   const addTableRow = (table: 'A' | 'B') => {
@@ -244,15 +275,16 @@ export function ReviewDialog({ open, onOpenChange, reviewId }: ReviewDialogProps
                 <Card>
                   <CardHeader>
                     <EditableField
+                      ref={titleFieldRef}
                       isEditing={editingField === 'title'}
                       onEdit={() => setEditingField('title')}
-                      onBlur={handleBlur}
                       className="-mx-3 -my-2"
                       editComponent={(
                         <Input
                           value={title}
                           onChange={e => setTitle(e.target.value)}
                           onBlur={handleBlur}
+                          onKeyDown={e => handleInputKeyDown(e, 'title')}
                           autoFocus
                           placeholder="输入标题..."
                           className="text-lg font-semibold"
@@ -271,15 +303,16 @@ export function ReviewDialog({ open, onOpenChange, reviewId }: ReviewDialogProps
                           牌谱A
                         </ReviewLabel>
                         <EditableField
+                          ref={linkAFieldRef}
                           isEditing={editingField === 'linkA'}
                           onEdit={() => setEditingField('linkA')}
-                          onBlur={handleBlur}
                           className="mt-1"
                           editComponent={(
                             <Input
                               value={linkA}
                               onChange={e => setLinkA(DOMPurify.sanitize(e.target.value))}
                               onBlur={handleBlur}
+                              onKeyDown={e => handleInputKeyDown(e, 'linkA')}
                               autoFocus
                               className="-mx-3 -my-2 h-8"
                             />
@@ -309,15 +342,16 @@ export function ReviewDialog({ open, onOpenChange, reviewId }: ReviewDialogProps
                           牌谱B
                         </ReviewLabel>
                         <EditableField
+                          ref={linkBFieldRef}
                           isEditing={editingField === 'linkB'}
                           onEdit={() => setEditingField('linkB')}
-                          onBlur={handleBlur}
                           className="mt-1"
                           editComponent={(
                             <Input
                               value={linkB}
                               onChange={e => setLinkB(DOMPurify.sanitize(e.target.value))}
                               onBlur={handleBlur}
+                              onKeyDown={e => handleInputKeyDown(e, 'linkB')}
                               autoFocus
                               className="-mx-3 -my-2 h-8"
                             />
@@ -363,7 +397,7 @@ export function ReviewDialog({ open, onOpenChange, reviewId }: ReviewDialogProps
                             <div
                               className={cn(
                                 'mt-1 cursor-pointer px-3 py-2 transition-all',
-                                editingField !== 'date' && 'hover:bg-accent hover:shadow-md',
+                                editingField !== 'date' && 'hover:bg-accent',
                               )}
                             >
                               <div className="flex min-h-[32px] items-center">
@@ -488,15 +522,16 @@ export function ReviewDialog({ open, onOpenChange, reviewId }: ReviewDialogProps
                           网址
                         </ReviewLabel>
                         <EditableField
+                          ref={socialUrlFieldRef}
                           isEditing={editingField === 'socialUrl'}
                           onEdit={() => setEditingField('socialUrl')}
-                          onBlur={handleBlur}
                           className="mt-1"
                           editComponent={(
                             <Input
                               value={socialUrl}
                               onChange={e => setSocialUrl(DOMPurify.sanitize(e.target.value))}
                               onBlur={handleBlur}
+                              onKeyDown={e => handleInputKeyDown(e, 'socialUrl')}
                               autoFocus
                               className="-mx-3 -my-2 h-8"
                             />
@@ -567,14 +602,15 @@ export function ReviewDialog({ open, onOpenChange, reviewId }: ReviewDialogProps
                   </CardHeader>
                   <CardContent>
                     <EditableField
+                      ref={contentFieldRef}
                       isEditing={editingField === 'content'}
                       onEdit={() => setEditingField('content')}
-                      onBlur={handleBlur}
                       editComponent={(
                         <Textarea
                           value={content}
                           onChange={e => setContent(e.target.value)}
                           onBlur={handleBlur}
+                          onKeyDown={e => handleInputKeyDown(e, 'content')}
                           autoFocus
                           className="-mx-3 -my-2 min-h-[200px] resize-y"
                         />
