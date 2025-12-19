@@ -92,16 +92,13 @@ class UIState {
         const position = TileUtils.getRelativePosition(heroId, actor)
         const handTiles = tehai.map(tile => TileUtils.get(tile))
         TileUtils.sort(handTiles)
-        // eslint-disable-next-line security/detect-object-injection -- position is always 0-3.
         this.hands[position] = { tehai: handTiles, tsumo: '', claimed: [] }
-        // eslint-disable-next-line security/detect-object-injection -- position is always 0-3.
         this.discards[position] = { tiles: [] }
       }
 
       const normalizedScores: number[] = []
 
       for (let i = 0; i < 4; i++) {
-        // eslint-disable-next-line security/detect-object-injection -- scores is always 4 elements.
         normalizedScores[i] = scores[(i + heroId) % 4] ?? 0
       }
 

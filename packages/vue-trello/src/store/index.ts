@@ -15,8 +15,9 @@ const key: InjectionKey<AppStore> = Symbol('state')
 
 const board: BoardType
   // eslint-disable-next-line ts/strict-boolean-expressions -- return default board if null.
-  = JSON.parse(localStorage.getItem('@sabertazimi/vue-trello-board') as string) as BoardType
-    || getDefaultBoard()
+  = (JSON.parse(
+    localStorage.getItem('@sabertazimi/vue-trello-board') as string,
+  ) as BoardType) || getDefaultBoard()
 
 function saveStatePlugin(store: AppStore) {
   store.subscribe((_, state) => {
@@ -44,7 +45,6 @@ const store = createStore<State>({
       state,
       { columnIndex, name }: { columnIndex: number, name: string },
     ) {
-      // eslint-disable-next-line security/detect-object-injection -- columnIndex is safe.
       const tasks = state.board.columns[columnIndex].tasks
       tasks.push({ id: nanoid(), name, description: '' })
     },
@@ -58,14 +58,12 @@ const store = createStore<State>({
     ) {
       // eslint-disable-next-line ts/strict-boolean-expressions -- `task` may be null.
       if (task)
-        // eslint-disable-next-line security/detect-object-injection -- key is safe.
         task[key] = value
     },
     deleteTask(
       state,
       { columnIndex, taskId }: { columnIndex: number, taskId: string },
     ) {
-      // eslint-disable-next-line security/detect-object-injection -- columnIndex is safe.
       const tasks = state.board.columns[columnIndex].tasks
       tasks.splice(
         tasks.findIndex(task => task.id === taskId),
@@ -86,9 +84,7 @@ const store = createStore<State>({
         toTaskIndex?: number
       },
     ) {
-      // eslint-disable-next-line security/detect-object-injection -- columnIndex is safe.
       const fromTasks = state.board.columns[fromColumnIndex].tasks
-      // eslint-disable-next-line security/detect-object-injection -- columnIndex is safe.
       const toTasks = state.board.columns[toColumnIndex].tasks
       const taskToMove = fromTasks.splice(fromTaskIndex, 1)[0]
       toTasks.splice(toTaskIndex ?? toTasks.length, 0, taskToMove)
