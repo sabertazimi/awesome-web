@@ -1,5 +1,5 @@
 import { BookTextIcon, DatabaseIcon, UsersIcon } from 'lucide-react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router'
 import { CalendarCard } from '@/components/calendar-card'
 import { DataManagementDialog } from '@/components/data-management-dialog'
@@ -21,7 +21,12 @@ export default function CalendarView() {
   const [selectedReview, setSelectedReview] = useState<string | null>(null)
   const [noteDialogOpen, setNoteDialogOpen] = useState(false)
   const [dataManagementDialogOpen, setDataManagementDialogOpen] = useState(false)
+  const [isMounted, setIsMounted] = useState(false)
   const weekDays = getWeekDays(currentDate)
+
+  useEffect(() => {
+    setIsMounted(true)
+  }, [])
 
   const goToPreviousWeek = () => {
     const newDate = new Date(currentDate)
@@ -81,7 +86,7 @@ export default function CalendarView() {
                 <CalendarCard
                   key={dateStr}
                   day={day}
-                  isToday={isToday}
+                  isToday={isMounted && isToday}
                   onReviewClick={openReviewDialog}
                   className={cn(
                     'border-border',
