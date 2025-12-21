@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.4.0](https://github.com/sabertazimi/awesome-web/compare/v2.3.0...v2.4.0) (2025-12-21)
+
+### Bug Fixes
+
+- **deps:** update dependencies (non-major) ([#914](https://github.com/sabertazimi/awesome-web/issues/914)) ([5cf2bd4](https://github.com/sabertazimi/awesome-web/commit/5cf2bd48ed243f1e590a320bd8af730bebe629ed))
+
 # [2.3.0](https://github.com/sabertazimi/awesome-web/compare/v2.2.0...v2.3.0) (2025-12-15)
 
 **Note:** Version bump only for package @awesome-web/awesome-web

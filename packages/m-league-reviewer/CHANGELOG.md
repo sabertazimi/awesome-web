@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.4.0](https://github.com/sabertazimi/awesome-web/compare/v2.3.0...v2.4.0) (2025-12-21)
+
+### Bug Fixes
+
+- **deps:** update dependencies (non-major) ([#914](https://github.com/sabertazimi/awesome-web/issues/914)) ([5cf2bd4](https://github.com/sabertazimi/awesome-web/commit/5cf2bd48ed243f1e590a320bd8af730bebe629ed))
+- **m.league-review:** fix hydration mismatch in calendar view by delaying isToday check ([#913](https://github.com/sabertazimi/awesome-web/issues/913)) ([01efb38](https://github.com/sabertazimi/awesome-web/commit/01efb3845435036380fb9fb6fe453897105fd46c))
+- **m.league-review:** remove hover styles and standardize keyboard shortcuts ([#911](https://github.com/sabertazimi/awesome-web/issues/911)) ([fc29c32](https://github.com/sabertazimi/awesome-web/commit/fc29c32af8108bc1eab417be5384bb5210ea5660))
+- **m.league-review:** standardize keyboard shortcuts and focus management ([#912](https://github.com/sabertazimi/awesome-web/issues/912)) ([c274dcc](https://github.com/sabertazimi/awesome-web/commit/c274dccc4ae071d3642aeae664095455cf61bd41))
+
+### Features
+
+- **m-league-motion:** add motion animations to major views ([#918](https://github.com/sabertazimi/awesome-web/issues/918)) ([fee6080](https://github.com/sabertazimi/awesome-web/commit/fee608096d02d63ad9780956e0953cc48192b95d))
+
 # [2.3.0](https://github.com/sabertazimi/awesome-web/compare/v2.2.0...v2.3.0) (2025-12-15)
 
 ### Bug Fixes
