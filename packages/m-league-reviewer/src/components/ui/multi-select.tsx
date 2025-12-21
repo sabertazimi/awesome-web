@@ -804,7 +804,7 @@ export function MultiSelect({
               getAllOptions().length
             } options selected. ${placeholder}`}
             className={cn(
-              'flex h-auto min-h-10 items-center justify-between border bg-inherit p-1 hover:bg-inherit [&_svg]:pointer-events-auto',
+              'flex h-auto min-h-10 items-center justify-between rounded-md border bg-inherit p-1 hover:bg-inherit [&_svg]:pointer-events-auto',
               autoSize ? 'w-auto' : 'w-full',
               responsiveSettings.compactMode && 'min-h-8 text-sm',
               screenSize === 'mobile' && 'min-h-12 text-base',
@@ -877,7 +877,7 @@ export function MultiSelect({
                               }
                             }}
                             aria-label={`Remove ${option.label} from selection`}
-                            className="-m-0.5 ml-2 h-4 w-4 cursor-pointer p-0.5 hover:bg-white/20 focus:ring-1 focus:ring-white/50 focus:outline-none"
+                            className="-m-0.5 ml-2 h-4 w-4 cursor-pointer rounded-sm p-0.5 hover:bg-white/20 focus:ring-1 focus:ring-white/50 focus:outline-none"
                           >
                             <XCircle className={cn('h-3 w-3', responsiveSettings.compactMode && 'h-2.5 w-2.5')} />
                           </div>
@@ -927,9 +927,9 @@ export function MultiSelect({
                       }
                     }}
                     aria-label={`Clear all ${selectedValues.length} selected options`}
-                    className="text-muted-foreground hover:text-foreground focus:ring-ring mx-2 flex h-4 w-4 cursor-pointer items-center justify-center focus:ring-2 focus:ring-offset-1 focus:outline-none"
+                    className="text-muted-foreground hover:text-foreground focus:ring-ring mx-2 flex h-4 w-4 cursor-pointer items-center justify-center rounded-sm focus:ring-2 focus:ring-offset-1 focus:outline-none"
                   >
-                    <XIcon className="h-4 w-4" />
+                    <XIcon className="size-4" />
                   </div>
                   <Separator orientation="vertical" className="flex h-full min-h-6" />
                   <ChevronDown className="text-muted-foreground mx-2 h-4 cursor-pointer" aria-hidden="true" />
@@ -999,16 +999,16 @@ export function MultiSelect({
                     role="option"
                     aria-selected={selectedValues.length === getAllOptions().filter(opt => !opt.disabled).length}
                     aria-label={`Select all ${getAllOptions().length} options`}
-                    className="cursor-pointer"
+                    className="cursor-pointer rounded-xs"
                   >
                     <div
                       className={cn(
-                        'border-primary mr-2 flex h-4 w-4 items-center justify-center border',
+                        'border-primary mr-2 flex h-4 w-4 items-center justify-center rounded-sm border',
                         selectedValues.length === getAllOptions().filter(opt => !opt.disabled).length ? 'bg-primary text-primary-foreground' : 'opacity-50 [&_svg]:invisible',
                       )}
                       aria-hidden="true"
                     >
-                      <CheckIcon className="h-4 w-4" />
+                      <CheckIcon className="size-4" />
                     </div>
                     <span>
                       (Select All
@@ -1035,7 +1035,7 @@ export function MultiSelect({
                             isSelected ? ', selected' : ', not selected'
                           }${option.disabled ? ', disabled' : ''}`}
                           className={cn(
-                            'cursor-pointer',
+                            'cursor-pointer rounded-xs',
                             option.disabled && 'cursor-not-allowed opacity-50',
                             option.className,
                           )}
@@ -1043,13 +1043,13 @@ export function MultiSelect({
                         >
                           <div
                             className={cn(
-                              'mr-2 flex h-4 w-4 items-center justify-center border',
+                              'mr-2 flex h-4 w-4 items-center justify-center rounded-sm border',
                               option.className ? 'border-primary-foreground' : 'border-primary',
                               isSelected ? 'bg-primary text-primary-foreground' : 'opacity-50 [&_svg]:invisible',
                             )}
                             aria-hidden="true"
                           >
-                            <CheckIcon className="h-4 w-4" />
+                            <CheckIcon className="size-4" />
                           </div>
                           {option.icon && (
                             <option.icon className="text-muted-foreground mr-2 h-4 w-4" aria-hidden="true" />
@@ -1076,7 +1076,7 @@ export function MultiSelect({
                           isSelected ? ', selected' : ', not selected'
                         }${option.disabled ? ', disabled' : ''}`}
                         className={cn(
-                          'cursor-pointer',
+                          'cursor-pointer rounded-xs',
                           option.disabled && 'cursor-not-allowed opacity-50',
                           option.className,
                         )}
@@ -1084,13 +1084,13 @@ export function MultiSelect({
                       >
                         <div
                           className={cn(
-                            'mr-2 flex h-4 w-4 items-center justify-center border',
+                            'mr-2 flex h-4 w-4 items-center justify-center rounded-sm border',
                             option.className ? 'border-primary-foreground' : 'border-primary',
                             isSelected ? 'text-primary-foreground' : 'opacity-50 [&_svg]:invisible',
                           )}
                           aria-hidden="true"
                         >
-                          <CheckIcon className="h-4 w-4" />
+                          <CheckIcon className="size-4" />
                         </div>
                         {option.icon && (
                           <option.icon className="text-muted-foreground mr-2 h-4 w-4" aria-hidden="true" />

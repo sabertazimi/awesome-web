@@ -55,7 +55,7 @@ export function VoidSection({
         )}
       >
         {number && (
-          <div className="border-border absolute top-0 left-0 flex size-[50px] items-center justify-center border-r border-b border-l sm:-translate-x-full sm:border-r-0">
+          <div className="border-border absolute top-0 left-0 flex size-[50px] items-center justify-center border-r border-b border-l sm:-translate-x-full sm:border-r-0 xl:rounded-bl-md">
             <span className="text-primary font-mono text-lg font-semibold">{number}</span>
           </div>
         )}

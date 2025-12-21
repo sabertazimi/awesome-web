@@ -63,7 +63,7 @@ export function PlayerCard({ player, teamId, index = 0 }: PlayerCardProps) {
     >
       <Card
         className={cn(
-          'overflow-hidden pt-0 transition-all duration-200 hover:-translate-y-2 hover:shadow-xl',
+          'overflow-hidden pt-0 transition-all duration-200 hover:-translate-y-2 hover:shadow-xl rounded-xs',
           teamCardBackgroundColor,
         )}
       >

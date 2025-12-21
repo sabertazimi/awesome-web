@@ -557,7 +557,7 @@ export function ReviewTable({
   }, [selectedCells, handleBatchCopy, handleBatchCut, handleBatchPaste, handleBatchToggleSignificant, handleBatchClear])
 
   return (
-    <Card>
+    <Card className="rounded-xs">
       <CardHeader>
         <CardTitle>
           {tableName}
@@ -715,7 +715,7 @@ export function ReviewTable({
               </TableRow>
             ))}
             <TableRow className="hover:bg-accent group border-none transition-all">
-              <TableCell colSpan={6} className="h-8 border-none p-0">
+              <TableCell colSpan={6} className="h-11 border-none p-0">
                 <div
                   className="flex size-full cursor-pointer items-center justify-center opacity-0 transition-all duration-200 group-hover:opacity-100"
                   onClick={onAddRow}

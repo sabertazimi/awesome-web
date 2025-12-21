@@ -247,7 +247,7 @@ export function ReviewDialog({ open, onOpenChange, reviewId }: ReviewDialogProps
   return (
     <>
       <Dialog open={open} onOpenChange={onOpenChange}>
-        <DialogContent className="max-w-full p-0 sm:max-w-full" disableCloseButton>
+        <DialogContent className="max-w-full rounded-xs p-0 sm:max-w-full" disableCloseButton>
           <div className="flex h-screen flex-col">
             <div className="border-border flex items-center justify-between border-b px-6 py-3">
               <span className="text-muted-foreground font-mono text-xs">review.tsx</span>
@@ -272,7 +272,7 @@ export function ReviewDialog({ open, onOpenChange, reviewId }: ReviewDialogProps
             </DialogHeader>
             <div className="flex-1 overflow-y-auto py-6">
               <div className="bg-border space-y-px">
-                <Card>
+                <Card className="rounded-xs">
                   <CardHeader>
                     <EditableField
                       ref={titleFieldRef}
@@ -396,7 +396,7 @@ export function ReviewDialog({ open, onOpenChange, reviewId }: ReviewDialogProps
                           <PopoverTrigger asChild>
                             <div
                               className={cn(
-                                'mt-1 cursor-pointer px-3 py-2 transition-all',
+                                'mt-1 cursor-pointer px-3 py-2 transition-all rounded-md',
                                 editingField !== 'date' && 'hover:bg-accent',
                               )}
                             >
@@ -596,7 +596,7 @@ export function ReviewDialog({ open, onOpenChange, reviewId }: ReviewDialogProps
                   onRemoveRow={roundIndex => removeTableRow('B', roundIndex)}
                   onBlur={handleBlur}
                 />
-                <Card className="hidden border-0">
+                <Card className="hidden rounded-xs border-0">
                   <CardHeader>
                     <CardTitle>备注</CardTitle>
                   </CardHeader>
