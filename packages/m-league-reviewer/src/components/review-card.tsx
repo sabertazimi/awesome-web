@@ -74,7 +74,7 @@ export function ReviewCard({ review, onClick }: ReviewCardProps) {
         animate="animate"
         exit="exit"
         className={cn(
-          'group relative origin-top cursor-pointer space-y-4 border-none p-3 transition-colors',
+          'group relative origin-top cursor-pointer space-y-4 rounded-md border-none p-3 transition-colors',
           statusColor,
         )}
         onClick={onClick}

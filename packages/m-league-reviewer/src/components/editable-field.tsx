@@ -33,7 +33,7 @@ export function EditableField({
       tabIndex={isEditing ? -1 : 0}
       role="button"
       className={cn(
-        'px-3 py-2 transition-all',
+        'px-3 py-2 transition-all rounded-md',
         cursorType === 'text' && 'cursor-text',
         cursorType === 'pointer' && 'cursor-pointer',
         !isEditing && 'hover:bg-accent',

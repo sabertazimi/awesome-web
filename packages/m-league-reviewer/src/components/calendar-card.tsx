@@ -91,7 +91,7 @@ export function CalendarCard({ day, isToday, onReviewClick, className }: Calenda
   }
 
   return (
-    <Card key={dateStr} className={cn('min-h-96', isToday && 'ring-primary ring-2 ring-inset', className)}>
+    <Card key={dateStr} className={cn('min-h-96 rounded-xs', isToday && 'ring-primary ring-2 ring-inset', className)}>
       <CardHeader className="pb-3">
         <div className="text-center">
           <div className="text-muted-foreground text-sm">{getWeekdayText(day)}</div>
@@ -114,7 +114,7 @@ export function CalendarCard({ day, isToday, onReviewClick, className }: Calenda
                 initial="initial"
                 animate="animate"
                 exit="exit"
-                className="border-border bg-accent flex origin-top flex-col items-center justify-center gap-2 space-y-2 border p-3"
+                className="border-border bg-accent flex origin-top flex-col items-center justify-center gap-2 space-y-2 rounded-md border p-3"
               >
                 <Select value={newReviewTitle} onValueChange={setNewReviewTitle}>
                   <SelectTrigger>

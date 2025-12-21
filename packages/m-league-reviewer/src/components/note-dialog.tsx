@@ -23,7 +23,7 @@ export function NoteDialog({ open, onOpenChange }: NoteDialogProps) {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent
-        className="max-w-full p-0 sm:max-w-full"
+        className="max-w-full rounded-xs p-0 sm:max-w-full"
         disableCloseButton
         onInteractOutside={(event) => {
           if (

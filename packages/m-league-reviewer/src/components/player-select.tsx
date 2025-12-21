@@ -2,6 +2,7 @@ import { Trash2Icon } from 'lucide-react'
 import { getTeamColorClass, pros, teams } from '@/api/data'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import { cn } from '@/lib/utils'
 
 export interface PlayerOption {
   label: string
@@ -67,7 +68,7 @@ export function PlayerSelect({
       </SelectTrigger>
       <SelectContent>
         {showClearOption && value && (
-          <SelectItem value="__clear__" className="data-highlighted:ring-primary data-highlighted:ring-2">
+          <SelectItem value="__clear__" className="data-highlighted:ring-primary rounded-xs data-highlighted:ring-2">
             <div className="ml-1 flex items-center gap-3">
               <Trash2Icon className="text-destructive size-4" />
               <span>清除选手</span>
@@ -77,7 +78,7 @@ export function PlayerSelect({
         {playerOptions.map((opt) => {
           const teamColors = getTeamColorClass(opt.teamId)
           return (
-            <SelectItem key={opt.value} value={opt.value} className={teamColors}>
+            <SelectItem key={opt.value} value={opt.value} className={cn('rounded-xs', teamColors)}>
               <div className="flex items-center gap-2">
                 <Avatar>
                   <AvatarImage src={opt.avatarUrl} alt={opt.label} />
