@@ -1,4 +1,6 @@
+import type { Variants } from 'motion/react'
 import { PlusIcon } from 'lucide-react'
+import { AnimatePresence, LayoutGroup, motion } from 'motion/react'
 import { useMemo, useState } from 'react'
 import { useShallow } from 'zustand/react/shallow'
 import { teams } from '@/api/data'
@@ -16,6 +18,34 @@ interface CalendarCardProps {
   isToday: boolean
   onReviewClick: (reviewId: string) => void
   className?: string
+}
+
+const addReviewVariants: Variants = {
+  initial: {
+    opacity: 0,
+    scaleX: 0,
+    scaleY: 0.3,
+  },
+  animate: {
+    opacity: 1,
+    scaleX: 1,
+    scaleY: 1,
+    transition: {
+      opacity: { duration: 0.15 },
+      scaleX: { duration: 0.15, ease: 'easeOut' },
+      scaleY: { duration: 0.2, delay: 0.1, ease: 'easeOut' },
+    },
+  },
+  exit: {
+    opacity: 0,
+    scaleY: 0.3,
+    scaleX: 0,
+    transition: {
+      opacity: { duration: 0.12 },
+      scaleY: { duration: 0.1, ease: 'easeIn' },
+      scaleX: { duration: 0.12, delay: 0.08, ease: 'easeIn' },
+    },
+  },
 }
 
 export function CalendarCard({ day, isToday, onReviewClick, className }: CalendarCardProps) {
@@ -69,38 +99,60 @@ export function CalendarCard({ day, isToday, onReviewClick, className }: Calenda
         </div>
       </CardHeader>
       <CardContent className="space-y-2">
-        {reviews.map(review => (
-          <ReviewCard key={review.id} review={review} onClick={() => onReviewClick(review.id)} />
-        ))}
-        {isAddingReview ? (
-          <div className="border-border bg-accent flex flex-col items-center justify-center gap-2 space-y-2 border p-3">
-            <Select value={newReviewTitle} onValueChange={setNewReviewTitle}>
-              <SelectTrigger>
-                <SelectValue placeholder="选择复盘类型..." />
-              </SelectTrigger>
-              <SelectContent>
-                {availableTitles.map(title => (
-                  <SelectItem key={title} value={title}>
-                    {title}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-            <div className="flex gap-2">
-              <Button size="sm" className="flex-1" onClick={() => saveNewReview(newReviewTitle)}>
-                保存
-              </Button>
-              <Button size="sm" variant="outline" className="flex-1" onClick={cancelAddReview}>
-                取消
-              </Button>
-            </div>
-          </div>
-        ) : (
-          <Button className="w-full" onClick={startAddReview} disabled={availableTitles.length === 0}>
-            <PlusIcon className="size-4" />
-            {availableTitles.length === 0 ? '已达上限' : '添加复盘'}
-          </Button>
-        )}
+        <LayoutGroup>
+          <AnimatePresence>
+            {reviews.map(review => (
+              <ReviewCard key={review.id} review={review} onClick={() => onReviewClick(review.id)} />
+            ))}
+          </AnimatePresence>
+          <AnimatePresence mode="wait">
+            {isAddingReview ? (
+              <motion.div
+                key="add-form"
+                layout
+                variants={addReviewVariants}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+                className="border-border bg-accent flex origin-top flex-col items-center justify-center gap-2 space-y-2 border p-3"
+              >
+                <Select value={newReviewTitle} onValueChange={setNewReviewTitle}>
+                  <SelectTrigger>
+                    <SelectValue placeholder="选择复盘类型..." />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {availableTitles.map(title => (
+                      <SelectItem key={title} value={title}>
+                        {title}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+                <div className="flex gap-2">
+                  <Button size="sm" className="flex-1" onClick={() => saveNewReview(newReviewTitle)}>
+                    保存
+                  </Button>
+                  <Button size="sm" variant="outline" className="flex-1" onClick={cancelAddReview}>
+                    取消
+                  </Button>
+                </div>
+              </motion.div>
+            ) : (
+              <motion.div
+                key="add-button"
+                layout
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0, transition: { duration: 0.1 } }}
+              >
+                <Button className="w-full" onClick={startAddReview} disabled={availableTitles.length === 0}>
+                  <PlusIcon className="size-4" />
+                  {availableTitles.length === 0 ? '已达上限' : '添加复盘'}
+                </Button>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </LayoutGroup>
       </CardContent>
     </Card>
   )

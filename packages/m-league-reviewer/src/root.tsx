@@ -1,5 +1,6 @@
 import type { Route } from './+types/root'
 import { ArrowLeftIcon } from 'lucide-react'
+import { MotionConfig } from 'motion/react'
 import { isRouteErrorResponse, Link, Links, Meta, Outlet, Scripts, ScrollRestoration } from 'react-router'
 import { DefaultLayout } from '@/components/default-layout'
 import { SiteHeader } from '@/components/site-header'
@@ -33,7 +34,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        {children}
+        <MotionConfig reducedMotion="user">{children}</MotionConfig>
         <Toaster />
         <ScrollRestoration />
         <Scripts />
