@@ -1,5 +1,7 @@
+import type { Variants } from 'motion/react'
 import type { Review } from '@/api/data'
 import { ExternalLinkIcon, XIcon } from 'lucide-react'
+import { motion } from 'motion/react'
 import { useState } from 'react'
 import { getTeamColorClassByName, statusConfig, teams } from '@/api/data'
 import {
@@ -22,6 +24,29 @@ interface ReviewCardProps {
   onClick: () => void
 }
 
+const reviewCardVariants: Variants = {
+  initial: {
+    opacity: 0,
+    scaleY: 0.3,
+  },
+  animate: {
+    opacity: 1,
+    scaleY: 1,
+    transition: {
+      opacity: { duration: 0.15 },
+      scaleY: { duration: 0.2, ease: 'easeOut' },
+    },
+  },
+  exit: {
+    opacity: 0,
+    scaleY: 0.3,
+    transition: {
+      opacity: { duration: 0.12 },
+      scaleY: { duration: 0.1, ease: 'easeIn' },
+    },
+  },
+}
+
 export function ReviewCard({ review, onClick }: ReviewCardProps) {
   const deleteReview = useReviewsStore(state => state.deleteReview)
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false)
@@ -42,8 +67,16 @@ export function ReviewCard({ review, onClick }: ReviewCardProps) {
 
   return (
     <>
-      <div
-        className={cn('group relative cursor-pointer space-y-4 border-none p-3 transition-colors', statusColor)}
+      <motion.div
+        layout
+        variants={reviewCardVariants}
+        initial="initial"
+        animate="animate"
+        exit="exit"
+        className={cn(
+          'group relative origin-top cursor-pointer space-y-4 border-none p-3 transition-colors',
+          statusColor,
+        )}
         onClick={onClick}
       >
         <p className="font-mono text-sm font-medium">{review.title}</p>
@@ -102,7 +135,7 @@ export function ReviewCard({ review, onClick }: ReviewCardProps) {
         >
           <XIcon className="size-4" />
         </Button>
-      </div>
+      </motion.div>
       <AlertDialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>
         <AlertDialogContent>
           <AlertDialogHeader>
