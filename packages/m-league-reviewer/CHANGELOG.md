@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.5.0](https://github.com/sabertazimi/awesome-web/compare/v2.4.0...v2.5.0) (2025-12-23)
+
+### Bug Fixes
+
+- **m.league-editor:** add rounded corners to note editor toolbar ([#920](https://github.com/sabertazimi/awesome-web/issues/920)) ([9b94891](https://github.com/sabertazimi/awesome-web/commit/9b94891a119f8ab726d08e1498640b0cd51fbb17))
+
+### Features
+
+- **build:** add Vercel deployment support with centralized post-buil… ([#921](https://github.com/sabertazimi/awesome-web/issues/921)) ([1a2bbe5](https://github.com/sabertazimi/awesome-web/commit/1a2bbe5dfbe0c36d18ad2c2d24343a332fe5e61f))
+- **m.league-ui:** add consistent border radius styling across UI components ([#919](https://github.com/sabertazimi/awesome-web/issues/919)) ([b700bc8](https://github.com/sabertazimi/awesome-web/commit/b700bc8fd7d3468ad80f1a3fdc039218adc7354c))
+
 # [2.4.0](https://github.com/sabertazimi/awesome-web/compare/v2.3.0...v2.4.0) (2025-12-21)
 
 ### Bug Fixes

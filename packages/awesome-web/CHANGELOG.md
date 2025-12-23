@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.5.0](https://github.com/sabertazimi/awesome-web/compare/v2.4.0...v2.5.0) (2025-12-23)
+
+### Features
+
+- **build:** add Vercel deployment support with centralized post-buil… ([#921](https://github.com/sabertazimi/awesome-web/issues/921)) ([1a2bbe5](https://github.com/sabertazimi/awesome-web/commit/1a2bbe5dfbe0c36d18ad2c2d24343a332fe5e61f))
+
+### Performance Improvements
+
+- [ImgBot] optimize images ([#923](https://github.com/sabertazimi/awesome-web/issues/923)) ([b5a6a56](https://github.com/sabertazimi/awesome-web/commit/b5a6a56d9543b897a669f8a4f9a23cf2af5bdfd8))
+
 # [2.4.0](https://github.com/sabertazimi/awesome-web/compare/v2.3.0...v2.4.0) (2025-12-21)
 
 ### Bug Fixes
