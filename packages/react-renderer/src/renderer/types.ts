@@ -1,9 +1,9 @@
 import type { HTMLProps } from 'react'
 import type {
+  HostConfig as _HostConfig,
   Fiber,
   OpaqueHandle,
   OpaqueRoot,
-  HostConfig as _HostConfig,
 } from 'react-reconciler'
 
 type Type = string
@@ -41,9 +41,22 @@ type HostConfig = _HostConfig<
 >
 
 export type {
+  _ChildSet,
   Container,
-  Fiber, HostConfig, HostContext, HydratableInstance, Instance, NoTimeout, OpaqueHandle,
-  OpaqueRoot, PropKey, Props, PublicInstance, SuspenseInstance, TextInstance, TimeoutHandle, Type, UpdatePayload,
-  _ChildSet
+  Fiber,
+  HostConfig,
+  HostContext,
+  HydratableInstance,
+  Instance,
+  NoTimeout,
+  OpaqueHandle,
+  OpaqueRoot,
+  PropKey,
+  Props,
+  PublicInstance,
+  SuspenseInstance,
+  TextInstance,
+  TimeoutHandle,
+  Type,
+  UpdatePayload,
 }
-

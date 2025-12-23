@@ -1,11 +1,11 @@
 import type { ReactElement } from 'react'
-import Reconciler from './reconciler'
-import type { Container, OpaqueRoot } from './types'
+import type { Container, OpaqueRoot } from '@/renderer/types'
+import Reconciler from '@/renderer/reconciler'
 
 const Renderer = {
   createRoot(
     container: Container | null,
-    callback?: Function,
+    callback?: (root: OpaqueRoot) => void,
   ): OpaqueRoot {
     let root: OpaqueRoot | null = null
 
@@ -18,15 +18,12 @@ const Renderer = {
         null,
         '',
         (error: Error) => {
-          // eslint-disable-next-line no-console -- Output error message
           console.error(error)
         },
         (error: Error) => {
-          // eslint-disable-next-line no-console -- Output error message
           console.error(error)
         },
         (error: Error) => {
-          // eslint-disable-next-line no-console -- Output error message
           console.error(error)
         },
         () => {

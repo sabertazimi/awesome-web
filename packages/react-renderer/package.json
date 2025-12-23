@@ -1,5 +1,6 @@
 {
   "name": "@awesome-web/react-renderer",
+  "type": "module",
   "version": "2.4.0",
   "private": true,
   "homepage": "https://tazimi.dev/awesome-web/react-renderer",
@@ -7,67 +8,46 @@
     "node": ">=14.0.0"
   },
   "scripts": {
-    "build": "react-scripts build",
-    "build:profile": "react-scripts build --profile",
-    "start": "react-scripts start",
-    "start:https": "HTTPS=true react-scripts start",
-    "test": "react-scripts test --coverage",
-    "test:debug": "react-scripts --inspect-brk test --runInBand --no-cache",
-    "test:node": "react-scripts test --env=node"
+    "start": "pnpm dev",
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "eslint . && stylelint ./src/**/*.css",
+    "lint:fix": "eslint . --fix && stylelint ./src/**/*.css --fix",
+    "preview": "vite preview",
+    "test": "vitest run --coverage"
   },
   "dependencies": {
+    "@radix-ui/react-slot": "^1.2.4",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.562.0",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
-    "react-reconciler": "^0.33.0"
+    "react-reconciler": "^0.33.0",
+    "tailwind-merge": "^3.4.0"
   },
   "devDependencies": {
-    "@sabertazimi/react-scripts": "^5.21.5",
+    "@dg-scripts/eslint-config": "^6.0.0",
+    "@dg-scripts/stylelint-config": "^6.0.0",
+    "@tailwindcss/vite": "^4.1.18",
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.1",
     "@testing-library/user-event": "^14.6.1",
-    "@types/jest": "^30.0.0",
     "@types/node": "^24.10.4",
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
     "@types/react-reconciler": "^0.32.3",
-    "typescript": "^5.9.3"
-  },
-  "stylelint": {
-    "extends": [
-      "stylelint-config-bod"
-    ],
-    "plugins": [
-      "stylelint-prettier"
-    ],
-    "rules": {
-      "prettier/prettier": true
-    }
-  },
-  "prettier": {
-    "arrowParens": "avoid",
-    "printWidth": 80,
-    "semi": false,
-    "singleQuote": true,
-    "tabWidth": 2,
-    "trailingComma": "es5"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "jest": {
-    "collectCoverageFrom": [
-      "src/**/App.tsx",
-      "!<rootDir>/node_modules/"
-    ]
+    "@vitejs/plugin-react": "^5.1.1",
+    "@vitest/coverage-v8": "^4.0.16",
+    "eslint": "^9.39.2",
+    "jsdom": "^27.3.0",
+    "stylelint": "^16.26.1",
+    "tailwindcss": "^4.1.18",
+    "tw-animate-css": "^1.4.0",
+    "typescript": "^5.9.3",
+    "vite": "^7.2.4",
+    "vite-tsconfig-paths": "^6.0.3",
+    "vitest": "^4.0.16"
   }
 }
