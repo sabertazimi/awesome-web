@@ -6,8 +6,7 @@
   "packageManager": "pnpm@10.26.1",
   "scripts": {
     "dev": "react-router dev",
-    "build": "react-router build && pnpm build:post",
-    "build:post": "mv ./build/client/awesome-web/m-league-reviewer ../../dist/m-league-reviewer && cp -fr ./build/client/* ../../dist/m-league-reviewer",
+    "build": "react-router build",
     "start": "react-router-serve ./build/server/index.js",
     "lint": "eslint . && pnpm lint:typecheck",
     "lint:typecheck": "react-router typegen && tsc",

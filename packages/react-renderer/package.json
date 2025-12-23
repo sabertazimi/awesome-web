@@ -7,8 +7,7 @@
     "node": ">=14.0.0"
   },
   "scripts": {
-    "build": "react-scripts build && pnpm build:post",
-    "build:post": "mkdirp ../../dist/react-renderer && cp -fr ./build/* ../../dist/react-renderer",
+    "build": "react-scripts build",
     "build:profile": "react-scripts build --profile",
     "start": "react-scripts start",
     "start:https": "HTTPS=true react-scripts start",

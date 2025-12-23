@@ -33,8 +33,7 @@
     "web development"
   ],
   "scripts": {
-    "build": "pnpm build:prepare && pnpm -r run build",
-    "build:prepare": "rimraf ./dist && mkdirp ./dist",
+    "build": "pnpm -r run build && node scripts/post-build.js",
     "lint": "pnpm -r run lint",
     "lint:fix": "pnpm -r run lint:fix",
     "release": "lerna version --force-publish --sign-git-commit --sign-git-tag",
@@ -52,10 +51,8 @@
     "@types/node": "^24.10.4",
     "eslint": "^9.39.2",
     "lerna": "^9.0.3",
-    "mkdirp": "^3.0.1",
     "prettier": "^3.7.4",
     "prettier-plugin-tailwindcss": "^0.7.2",
-    "rimraf": "^6.1.2",
     "stylelint": "^16.26.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.3"

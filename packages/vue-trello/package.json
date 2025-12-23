@@ -4,8 +4,7 @@
   "private": true,
   "license": "MIT",
   "scripts": {
-    "build": "vue-tsc --noEmit && vite build && pnpm build:post",
-    "build:post": "mkdirp ../../dist/vue-trello && cp -fr ./dist/* ../../dist/vue-trello",
+    "build": "vue-tsc --noEmit && vite build",
     "dev": "vite",
     "lint": "pnpm lint:style && pnpm lint:type-check",
     "lint:style": "eslint ./src && stylelint ./src/**/*.{css,vue}",

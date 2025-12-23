@@ -7,8 +7,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "react-router dev",
-    "build": "react-router build && pnpm build:post",
-    "build:post": "mv ./build/client/awesome-web/index.html ../../dist/index.html && rimraf ./build/client/awesome-web && cp -fr ./build/client/* ../../dist/",
+    "build": "react-router build",
     "start": "react-router-serve ./build/server/index.js",
     "lint": "eslint . && pnpm lint:typecheck",
     "lint:typecheck": "react-router typegen && tsc"

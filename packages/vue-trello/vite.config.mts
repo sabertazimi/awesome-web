@@ -1,15 +1,24 @@
 import path from 'node:path'
-import { defineConfig } from 'vite'
+import process from 'node:process'
 import vue from '@vitejs/plugin-vue'
+import { defineConfig } from 'vite'
 
-const isEnvProduction = process.env.NODE_ENV === 'production'
+const isVercel = Boolean(process.env.VERCEL)
 
-export default defineConfig({
-  base: isEnvProduction ? '/awesome-web/vue-trello/' : '/',
+function getBase(mode: string) {
+  if (mode !== 'production') {
+    return '/'
+  }
+
+  return isVercel ? '/vue-trello/' : '/awesome-web/vue-trello/'
+}
+
+export default defineConfig(({ mode }) => ({
+  base: getBase(mode),
   plugins: [vue()],
   resolve: {
     alias: {
       src: path.resolve(__dirname, './src'),
     },
   },
-})
+}))
