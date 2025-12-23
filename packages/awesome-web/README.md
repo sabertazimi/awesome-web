@@ -7,19 +7,19 @@
 [![Jest Coverage](https://img.shields.io/codecov/c/github/sabertazimi/awesome-web?logo=codecov&style=for-the-badge)](https://codecov.io/gh/sabertazimi/awesome-web)
 [![CI](https://img.shields.io/github/actions/workflow/status/sabertazimi/awesome-web/ci.yml?branch=main&style=for-the-badge&logo=github)](https://github.com/sabertazimi/awesome-web/actions/workflows/ci.yml)
 
-A brand new repository for web development prototypes.
+Repository for web development prototypes.
 
 ## React Collection
 
-- [M.League Reviewer](https://web.tazimi.dev/m-league-reviewer): Reviewer for M.League daily games.
-- [React Renderer](https://web.tazimi.dev/react-renderer).
+- [M.League Reviewer](https://web.tazimi.dev/m-league-reviewer/): Reviewer for M.League daily games.
+- [React Renderer](https://web.tazimi.dev/react-renderer/): Custom renderer for React components.
 
 ## Vue Collection
 
-- [Mortal UI](https://web.tazimi.dev/mortal-ui): GUI for Mortal Mahjong AI reviewer.
-- [Echarts Dashboard](https://web.tazimi.dev/echarts-dashboard): Echarts dashboard.
-- [Vue Trello](https://web.tazimi.dev/vue-trello).
-- [Vue Design](https://web.tazimi.dev/vue-design).
+- [Mortal UI](https://web.tazimi.dev/mortal-ui/): GUI for Mortal Mahjong AI reviewer.
+- [Echarts Dashboard](https://web.tazimi.dev/echarts-dashboard/): Dashboard with Echarts.
+- [Vue Trello](https://web.tazimi.dev/vue-trello/): Trello clone with Vue.
+- [Vue Design](https://web.tazimi.dev/vue-design/): Vue built-in reactive system.
 
 ## License
 

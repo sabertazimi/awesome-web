@@ -11,15 +11,15 @@ Repository for web development prototypes.
 
 ## React Collection
 
-- [M.League Reviewer](https://web.tazimi.dev/m-league-reviewer): Reviewer for M.League daily games.
-- [React Renderer](https://web.tazimi.dev/react-renderer): Custom renderer for React components.
+- [M.League Reviewer](https://web.tazimi.dev/m-league-reviewer/): Reviewer for M.League daily games.
+- [React Renderer](https://web.tazimi.dev/react-renderer/): Custom renderer for React components.
 
 ## Vue Collection
 
-- [Mortal UI](https://web.tazimi.dev/mortal-ui): GUI for Mortal Mahjong AI reviewer.
-- [Echarts Dashboard](https://web.tazimi.dev/echarts-dashboard): Dashboard with Echarts.
-- [Vue Trello](https://web.tazimi.dev/vue-trello): Trello clone with Vue.
-- [Vue Design](https://web.tazimi.dev/vue-design): Vue built-in reactive system.
+- [Mortal UI](https://web.tazimi.dev/mortal-ui/): GUI for Mortal Mahjong AI reviewer.
+- [Echarts Dashboard](https://web.tazimi.dev/echarts-dashboard/): Dashboard with Echarts.
+- [Vue Trello](https://web.tazimi.dev/vue-trello/): Trello clone with Vue.
+- [Vue Design](https://web.tazimi.dev/vue-design/): Vue built-in reactive system.
 
 ## License
 
