@@ -251,7 +251,7 @@ function processPackage(config) {
       }
     }
   } else {
-    // Handle Vite and React Scripts projects (simple copy)
+    // Handle Vite projects (simple copy)
     copyDirSync(buildDir, destDir)
     console.log(
       `  ✅ Copied ${config.buildDir}/ to ${config.destDir || config.name}/`,
