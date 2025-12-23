@@ -221,9 +221,9 @@ function processPackage(config) {
         console.log(`  ✅ Copied index.html to dist/`)
 
         // Copy remaining client files to dist root, excluding the normalizeSubDir
-        const excludePaths = new Set([
-          path.join(buildDir, getFirstPathSegment(config.normalizeSubDir)),
-        ])
+        const excludePaths = config.normalizeSubDir
+          ? new Set([path.join(buildDir, getFirstPathSegment(config.normalizeSubDir))])
+          : new Set()
         copyDirSync(buildDir, DistDir, excludePaths)
         console.log(`  ✅ Copied remaining client files to dist/`)
       } else {
