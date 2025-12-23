@@ -1,11 +1,22 @@
-import path from 'path';
-import { defineConfig } from 'vite';
+import path from 'node:path'
+import process from 'node:process'
+import { defineConfig } from 'vite'
 
-export default defineConfig(({mode}) => ({
-  base: mode === 'production' ? '/awesome-web/vue-design/' : '/',
+const isVercel = Boolean(process.env.VERCEL)
+
+function getBase(mode: string) {
+  if (mode !== 'production') {
+    return '/'
+  }
+
+  return isVercel ? '/vue-design/' : '/awesome-web/vue-design/'
+}
+
+export default defineConfig(({ mode }) => ({
+  base: getBase(mode),
   resolve: {
     alias: {
       src: path.resolve(__dirname, './src'),
     },
   },
-}));
+}))
