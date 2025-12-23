@@ -41,8 +41,8 @@
     "dev:awesome-web": "pnpm --filter @awesome-web/awesome-web dev",
     "dev:m-league-reviewer": "pnpm --filter m-league-reviewer dev",
     "dev:mortal-ui": "pnpm --filter mortal-ui dev",
+    "dev:echarts-dashboard": "pnpm --filter echarts-dashboard dev",
     "dev:react-renderer": "pnpm --filter @awesome-web/react-renderer dev",
-    "dev:vue-basis": "pnpm --filter @awesome-web/vue-basis serve",
     "dev:vue-design": "pnpm --filter @awesome-web/vue-design dev",
     "dev:vue-trello": "pnpm --filter @awesome-web/vue-trello dev",
     "test": "pnpm -r run test"
