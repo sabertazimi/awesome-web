@@ -1,3 +1,5 @@
-const eslintConfigBod = require('eslint-config-bod')
+import { defineConfig } from '@dg-scripts/eslint-config'
 
-module.exports = [...eslintConfigBod]
+export default defineConfig({
+  typescript: true,
+})

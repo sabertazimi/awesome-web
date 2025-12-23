@@ -11,7 +11,7 @@ import type {
   TextInstance,
   TimeoutHandle,
   Type,
-} from './types'
+} from '@/renderer/types'
 import {
   isAttribute,
   isChildren,
@@ -19,7 +19,7 @@ import {
   isListener,
   isSVGContext,
   isSVGType,
-} from './utils'
+} from '@/renderer/utils'
 
 /**
  * Creates a host context object for the renderer.
@@ -34,16 +34,15 @@ const hostConfig: HostConfig = {
   createInstance(
     type: Type,
     props: Props,
-    rootContainer: Container,
+    _rootContainer: Container,
     hostContext: HostContext,
-    internalHandle: OpaqueHandle,
+    _internalHandle: OpaqueHandle,
   ): Instance {
     let element: Instance
 
     if (isSVGType(type) || isSVGContext(hostContext)) {
       element = document.createElementNS('http://www.w3.org/2000/svg', type)
-    }
-    else {
+    } else {
       element = document.createElement(type)
     }
 
@@ -52,17 +51,14 @@ const hostConfig: HostConfig = {
 
       if (isClass(propName)) {
         element.setAttribute('class', propValue)
-      }
-      else if (isChildren(propName)) {
+      } else if (isChildren(propName)) {
         if (typeof propValue === 'string' || typeof propValue === 'number') {
           element.textContent = propValue.toString()
         }
-      }
-      else if (isListener(propName)) {
+      } else if (isListener(propName)) {
         const eventType = propName.toLowerCase().slice(2)
         element.addEventListener(eventType, propValue)
-      }
-      else if (isAttribute(propName)) {
+      } else if (isAttribute(propName)) {
         if (propValue !== null && typeof propValue !== 'undefined') {
           element.setAttribute(propName, propValue)
         }
@@ -73,9 +69,9 @@ const hostConfig: HostConfig = {
   },
   createTextInstance(
     text: string,
-    rootContainer: Container,
-    hostContext: HostContext,
-    internalHandle: OpaqueHandle,
+    _rootContainer: Container,
+    _hostContext: HostContext,
+    _internalHandle: OpaqueHandle,
   ): TextInstance {
     const textElement = document.createTextNode(text)
     return textElement
@@ -110,20 +106,20 @@ const hostConfig: HostConfig = {
     }
   },
   finalizeInitialChildren(
-    instance: Instance,
-    type: Type,
-    props: Props,
-    rootContainer: Container,
-    hostContext: HostContext,
+    _instance: Instance,
+    _type: Type,
+    _props: Props,
+    _rootContainer: Container,
+    _hostContext: HostContext,
   ): boolean {
     return false
   },
   commitUpdate(
     instance: Instance,
-    type: Type,
-    prevProps: Props,
+    _type: Type,
+    _prevProps: Props,
     nextProps: Props,
-    internalHandle: OpaqueHandle,
+    _internalHandle: OpaqueHandle,
   ): void {
     Object.keys(nextProps).forEach((propName: string) => {
       const propValue = nextProps[propName as PropKey]
@@ -131,8 +127,7 @@ const hostConfig: HostConfig = {
         if (typeof propValue === 'string' || typeof propValue === 'number') {
           instance.textContent = propValue.toString()
         }
-      }
-      else if (isAttribute(propName)) {
+      } else if (isAttribute(propName)) {
         if (propValue !== null && typeof propValue !== 'undefined') {
           instance.setAttribute(propName, propValue)
         }
@@ -141,12 +136,12 @@ const hostConfig: HostConfig = {
   },
   commitTextUpdate(
     textInstance: TextInstance,
-    oldText: string,
+    _oldText: string,
     newText: string,
   ): void {
     textInstance.textContent = newText
   },
-  shouldSetTextContent(type: Type, props: Props): boolean {
+  shouldSetTextContent(_type: Type, props: Props): boolean {
     return (
       typeof props.children === 'string' || typeof props.children === 'number'
     )
@@ -162,18 +157,18 @@ const hostConfig: HostConfig = {
   getChildHostContext(
     parentHostContext: HostContext,
     type: Type,
-    rootContainer: Container,
+    _rootContainer: Container,
   ): HostContext {
     return isSVGType(type) ? createHostContext(true) : parentHostContext
   },
   getPublicInstance(instance: Instance | TextInstance): PublicInstance {
     return instance
   },
-  prepareForCommit(containerInfo: Container): Record<string, any> | null {
+  prepareForCommit(_containerInfo: Container): Record<string, any> | null {
     return null
   },
-  resetAfterCommit(containerInfo: Container): void {},
-  preparePortalMount(containerInfo: Container): void {},
+  resetAfterCommit(_containerInfo: Container): void {},
+  preparePortalMount(_containerInfo: Container): void {},
   scheduleTimeout(
     fn: (...args: unknown[]) => unknown,
     delay?: number,
@@ -188,22 +183,22 @@ const hostConfig: HostConfig = {
   supportsHydration: false,
   supportsMutation: true,
   supportsPersistence: false,
-  getInstanceFromNode(node: any): Fiber | null | undefined {
+  getInstanceFromNode(_node: any): Fiber | null | undefined {
     return null
   },
   beforeActiveInstanceBlur(): void {},
   afterActiveInstanceBlur(): void {},
-  prepareScopeUpdate(scopeInstance: any, instance: any): void {},
-  getInstanceFromScope(scopeInstance: any): Element | null {
+  prepareScopeUpdate(_scopeInstance: any, _instance: any): void {},
+  getInstanceFromScope(_scopeInstance: any): Element | null {
     return null
   },
-  detachDeletedInstance(node: Element): void {},
+  detachDeletedInstance(_node: Element): void {},
 
   // New required methods for react-reconciler 0.32.0
   getCurrentUpdatePriority(): number {
     return 16 // DefaultEventPriority
   },
-  setCurrentUpdatePriority(newPriority: number): void {},
+  setCurrentUpdatePriority(_newPriority: number): void {},
   resolveUpdatePriority(): number {
     return 16 // DefaultEventPriority
   },
@@ -219,25 +214,25 @@ const hostConfig: HostConfig = {
     Provider: null as any,
     Consumer: null as any,
   } as any,
-  requestPostPaintCallback(callback: (time: number) => void): void {
+  requestPostPaintCallback(_callback: (time: number) => void): void {
     // No-op for basic implementation
   },
-  maySuspendCommit(type: Type, props: Props): boolean {
+  maySuspendCommit(_type: Type, _props: Props): boolean {
     return false
   },
-  preloadInstance(type: Type, props: Props): boolean {
+  preloadInstance(_type: Type, _props: Props): boolean {
     return true
   },
   startSuspendingCommit(): void {},
-  suspendInstance(type: Type, props: Props): void {},
+  suspendInstance(_type: Type, _props: Props): void {},
   waitForCommitToBeReady(): null {
     return null
   },
   supportsMicrotasks: false,
-  scheduleMicrotask(fn: () => unknown): void {
+  scheduleMicrotask(_fn: () => unknown): void {
     // No-op implementation
   },
-  resetFormInstance(instance: Instance): void {},
+  resetFormInstance(_instance: Instance): void {},
   trackSchedulerEvent(): void {},
   resolveEventType(): null {
     return null

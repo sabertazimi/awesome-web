@@ -1,11 +1,7 @@
 import { useCallback, useState } from 'react'
-import Logo from './logo.svg'
-import './App.css'
+import { Button } from '@/components/ui/button'
+import Logo from '@/logo.svg'
 
-/**
- * The main component of the application.
- * @returns {JSX.Element} The rendered App component.
- */
 function App() {
   const [count, setCount] = useState<number>(0)
   const inc = useCallback(() => {
@@ -16,17 +12,22 @@ function App() {
   }, [])
 
   return (
-    <div className="app">
-      <header className="app-header">
-        <Logo className="app-logo" title="logo" />
+    <div>
+      <header className="flex flex-col items-center justify-center min-h-screen bg-background text-[calc(10px+2vmin)]">
+        <img
+          src={Logo}
+          alt="logo"
+          className="h-[40vmin] pointer-events-none animate-spin animation-duration-20000"
+          title="logo"
+        />
         <div className="flex flex-row items-center justify-center">
-          <button className="px-8 text-6xl text-black bg-background" onClick={dec}>
+          <Button size="xl" onClick={dec}>
             -
-          </button>
-          <div className="px-8 text-6xl text-white">{count}</div>
-          <button className="px-8 text-6xl text-black bg-background" onClick={inc}>
+          </Button>
+          <div className="px-8 text-6xl text-foreground">{count}</div>
+          <Button size="xl" onClick={inc}>
             +
-          </button>
+          </Button>
         </div>
       </header>
     </div>

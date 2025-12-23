@@ -1,11 +1,12 @@
 import { fireEvent, render, screen } from '@testing-library/react'
-import App from './App'
+import { describe, expect, it } from 'vitest'
+import App from '@/App'
 
 describe('Renderer', () => {
   it('should render counter', () => {
     render(<App />)
-    const incElement = screen.getByText(/\+/i)
-    const decElement = screen.getByText(/-/i)
+    const incElement = screen.getByText(/\+/)
+    const decElement = screen.getByText(/-/)
     const countElement = screen.getByText(0)
 
     expect(incElement).toBeInTheDocument()
@@ -16,7 +17,7 @@ describe('Renderer', () => {
 
   it('should increment counter', () => {
     render(<App />)
-    const incElement = screen.getByText(/\+/i)
+    const incElement = screen.getByText(/\+/)
     const countElement = screen.getByText(0)
 
     fireEvent.click(incElement)
@@ -29,7 +30,7 @@ describe('Renderer', () => {
 
   it('should decrement counter', () => {
     render(<App />)
-    const decElement = screen.getByText(/-/i)
+    const decElement = screen.getByText(/-/)
     const countElement = screen.getByText(0)
 
     fireEvent.click(decElement)

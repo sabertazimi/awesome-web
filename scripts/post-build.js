@@ -38,7 +38,7 @@ const isVercel = () => Boolean(process.env.VERCEL)
  *
  * @typedef {object} PackageConfig
  * @property {string} name - Package name
- * @property {'react-router' | 'vite' | 'react-scripts'} type - Build type
+ * @property {'react-router' | 'vite'} type - Build type
  * @property {string} buildDir - Build output directory relative to package
  * @property {string} [destDir] - Destination directory name (defaults to package name)
  * @property {boolean} [isRoot] - Whether this is the root index.html package
@@ -73,8 +73,8 @@ function getPackageConfigs() {
     },
     {
       name: 'react-renderer',
-      type: 'react-scripts',
-      buildDir: 'build',
+      type: 'vite',
+      buildDir: 'dist',
     },
     {
       name: 'vue-design',

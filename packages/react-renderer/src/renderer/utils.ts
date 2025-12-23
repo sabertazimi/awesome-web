@@ -1,4 +1,4 @@
-import type { HostContext, Type } from './types'
+import type { HostContext, Type } from '@/renderer/types'
 
 /**
  * Checks if the given property name is 'className'.
