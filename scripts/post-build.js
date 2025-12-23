@@ -101,11 +101,12 @@ function getPackageConfigs() {
 }
 
 /**
- * Recursively copy directory
+ * Recursively copy directory with optional exclusion
  * @param {string} src - Source directory
  * @param {string} dest - Destination directory
+ * @param {Set<string>} [excludePaths] - Set of absolute paths to exclude
  */
-function copyDirSync(src, dest) {
+function copyDirSync(src, dest, excludePaths = new Set()) {
   if (!fs.existsSync(src)) {
     console.warn(`  ⚠️  Source does not exist: ${src}`)
     return
@@ -119,8 +120,13 @@ function copyDirSync(src, dest) {
     const srcPath = path.join(src, entry.name)
     const destPath = path.join(dest, entry.name)
 
+    // Skip excluded paths
+    if (excludePaths.has(srcPath)) {
+      continue
+    }
+
     if (entry.isDirectory()) {
-      copyDirSync(srcPath, destPath)
+      copyDirSync(srcPath, destPath, excludePaths)
     } else {
       fs.copyFileSync(srcPath, destPath)
     }
@@ -128,13 +134,12 @@ function copyDirSync(src, dest) {
 }
 
 /**
- * Remove directory recursively
- * @param {string} dir - Directory to remove
+ * Get the first segment of a path (top-level directory name)
+ * @param {string} relativePath - Relative path like 'awesome-web' or 'awesome-web/m-league-reviewer'
+ * @returns {string} First segment of the path
  */
-function rmDirSync(dir) {
-  if (fs.existsSync(dir)) {
-    fs.rmSync(dir, { recursive: true, force: true })
-  }
+function getFirstPathSegment(relativePath) {
+  return relativePath.split('/')[0]
 }
 
 /**
@@ -204,7 +209,7 @@ function processPackage(config) {
       : findIndexHtmlDir(buildDir)
 
     if (config.isRoot) {
-      // For root package (awesome-web), move index.html to dist root
+      // For root package (awesome-web), copy index.html to dist root
       if (
         normalizedDir
         && fs.existsSync(path.join(normalizedDir, 'index.html'))
@@ -215,11 +220,11 @@ function processPackage(config) {
         )
         console.log(`  ✅ Copied index.html to dist/`)
 
-        // Remove the normalized subdirectory from build
-        rmDirSync(normalizedDir)
-
-        // Copy remaining client files to dist root
-        copyDirSync(buildDir, DistDir)
+        // Copy remaining client files to dist root, excluding the normalizeSubDir
+        const excludePaths = new Set([
+          path.join(buildDir, getFirstPathSegment(config.normalizeSubDir)),
+        ])
+        copyDirSync(buildDir, DistDir, excludePaths)
         console.log(`  ✅ Copied remaining client files to dist/`)
       } else {
         // Fallback: just copy everything
@@ -229,27 +234,15 @@ function processPackage(config) {
     } else {
       // For sub-packages like m-league-reviewer
       if (normalizedDir && fs.existsSync(normalizedDir)) {
-        // Move the normalized directory to destination
+        // Copy the normalized directory to destination
         copyDirSync(normalizedDir, destDir)
-        console.log(`  ✅ Moved ${config.normalizeSubDir} to ${config.name}/`)
+        console.log(`  ✅ Copied ${config.normalizeSubDir} to ${config.name}/`)
 
-        // Copy remaining client files (assets, etc.)
-        const entries = fs.readdirSync(buildDir, { withFileTypes: true })
-        for (const entry of entries) {
-          const srcPath = path.join(buildDir, entry.name)
-          const destPath = path.join(destDir, entry.name)
-
-          // Skip the normalized subdirectory parent
-          const normalizeParent = config.normalizeSubDir?.split('/')[0]
-          if (entry.name === normalizeParent)
-            continue
-
-          if (entry.isDirectory()) {
-            copyDirSync(srcPath, destPath)
-          } else {
-            fs.copyFileSync(srcPath, destPath)
-          }
-        }
+        // Copy remaining client files (assets, etc.), excluding the normalizeSubDir parent
+        const excludePaths = new Set([
+          path.join(buildDir, getFirstPathSegment(config.normalizeSubDir)),
+        ])
+        copyDirSync(buildDir, destDir, excludePaths)
         console.log(`  ✅ Copied remaining client files`)
       } else {
         // Fallback: copy everything
