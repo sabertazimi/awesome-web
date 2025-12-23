@@ -8,7 +8,6 @@
     "node": ">=14.0.0"
   },
   "scripts": {
-    "start": "pnpm dev",
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint . && stylelint ./src/**/*.css",
