@@ -32,10 +32,10 @@ pnpm lint:fix
 pnpm test
 
 # Start individual packages (check package.json for ports)
-pnpm start:react-renderer  # localhost:3000
-pnpm start:vue-design      # localhost:5173
-pnpm start:vue-trello      # localhost:5173
-pnpm start:mortal-ui       # localhost:5173
+pnpm start:react-renderer
+pnpm start:vue-design
+pnpm start:vue-trello
+pnpm start:mortal-ui
 
 # Release management (uses Lerna)
 pnpm release
