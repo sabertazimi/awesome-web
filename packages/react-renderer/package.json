@@ -3,7 +3,7 @@
   "type": "module",
   "version": "2.4.0",
   "private": true,
-  "homepage": "https://tazimi.dev/awesome-web/react-renderer",
+  "homepage": "https://web.tazimi.dev/react-renderer",
   "engines": {
     "node": ">=14.0.0"
   },

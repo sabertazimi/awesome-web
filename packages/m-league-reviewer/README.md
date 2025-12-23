@@ -4,7 +4,7 @@
 以表格形式记录每个半庄选手的何切内容，
 帮助麻将爱好者分析和学习职业选手的打法。
 
-[🔗 Online Reviewer](https://tazimi.dev/awesome-web/m-league-reviewer/)
+[🔗 Online Reviewer](https://web.tazimi.dev/m-league-reviewer/)
 
 ## 功能特性
 

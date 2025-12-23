@@ -1,4 +1,4 @@
-# [awesome-web](https://tazimi.dev/awesome-web)
+# [awesome-web](https://web.tazimi.dev)
 
 [![Author](https://img.shields.io/badge/author-sabertaz-lightgrey?style=for-the-badge)](https://github.com/sabertazimi)
 [![LICENSE](https://img.shields.io/github/license/sabertazimi/awesome-web?style=for-the-badge)](https://raw.githubusercontent.com/sabertazimi/awesome-web/main/LICENSE)
@@ -11,15 +11,15 @@ A brand new repository for web development prototypes.
 
 ## React Collection
 
-- [M.League Reviewer](https://tazimi.dev/awesome-web/m-league-reviewer): Reviewer for M.League daily games.
-- [React Renderer](https://tazimi.dev/awesome-web/react-renderer).
+- [M.League Reviewer](https://web.tazimi.dev/m-league-reviewer): Reviewer for M.League daily games.
+- [React Renderer](https://web.tazimi.dev/react-renderer).
 
 ## Vue Collection
 
-- [Mortal UI](https://tazimi.dev/awesome-web/mortal-ui): GUI for Mortal Mahjong AI reviewer.
-- [Echarts Dashboard](https://tazimi.dev/awesome-web/echarts-dashboard): Echarts dashboard.
-- [Vue Trello](https://tazimi.dev/awesome-web/vue-trello).
-- [Vue Design](https://tazimi.dev/awesome-web/vue-design).
+- [Mortal UI](https://web.tazimi.dev/mortal-ui): GUI for Mortal Mahjong AI reviewer.
+- [Echarts Dashboard](https://web.tazimi.dev/echarts-dashboard): Echarts dashboard.
+- [Vue Trello](https://web.tazimi.dev/vue-trello).
+- [Vue Design](https://web.tazimi.dev/vue-design).
 
 ## License
 
