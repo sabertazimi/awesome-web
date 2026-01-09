@@ -1,6 +1,6 @@
 # AGENTS.md
 
-This file provides guidance to code agents when working with code in this repository.
+This file provides guidance to coding agents when working with code in this repository.
 
 ## Project Overview
 
@@ -147,9 +147,9 @@ The repository uses GitHub Actions with the following workflow:
 - **Missing modules**: `pnpm install` or `pnpm install --frozen-lockfile`
 - **Workspace issues**: Run commands from monorepo root, not package directory
 
-## Commit and Pull Request Guidelines
+## Commit Guidelines
 
-**All commits and PR titles must follow [Conventional Commits](https://www.conventionalcommits.org/) style:**
+**All commits and PRs titles must follow [Conventional Commits](https://www.conventionalcommits.org/) style:**
 
 ```md
 <type>(<scope>): <description>
