@@ -48,8 +48,8 @@
     "test": "pnpm -r run test"
   },
   "devDependencies": {
-    "@dg-scripts/eslint-config": "^6.0.0",
-    "@dg-scripts/stylelint-config": "^6.0.0",
+    "@dg-scripts/eslint-config": "^6.1.0",
+    "@dg-scripts/stylelint-config": "^6.1.0",
     "@types/node": "^24.10.4",
     "eslint": "^9.39.2",
     "lerna": "^9.0.3",
