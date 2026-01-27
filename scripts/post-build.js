@@ -55,17 +55,12 @@ function getPackageConfigs() {
       normalizeSubDir: 'm-league-reviewer',
     },
     {
+      name: 'dblp',
+      type: 'vite',
+      buildDir: 'dist',
+    },
+    {
       name: 'react-renderer',
-      type: 'vite',
-      buildDir: 'dist',
-    },
-    {
-      name: 'vue-design',
-      type: 'vite',
-      buildDir: 'dist',
-    },
-    {
-      name: 'echarts-dashboard',
       type: 'vite',
       buildDir: 'dist',
     },
@@ -76,7 +71,17 @@ function getPackageConfigs() {
       extraCopy: ['e2e'],
     },
     {
+      name: 'echarts-dashboard',
+      type: 'vite',
+      buildDir: 'dist',
+    },
+    {
       name: 'vue-trello',
+      type: 'vite',
+      buildDir: 'dist',
+    },
+    {
+      name: 'vue-design',
       type: 'vite',
       buildDir: 'dist',
     },

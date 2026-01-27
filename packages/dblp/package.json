@@ -1,0 +1,53 @@
+{
+  "name": "@lab/dblp",
+  "type": "module",
+  "version": "1.4.1",
+  "private": true,
+  "packageManager": "pnpm@10.28.1",
+  "description": "DBLP search application",
+  "author": "sabertazimi",
+  "license": "MIT",
+  "homepage": "https://github.com/sabertazimi/lab",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sabertazimi/lab.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sabertazimi/lab/issues"
+  },
+  "keywords": [
+    "dblp",
+    "computer science",
+    "react"
+  ],
+  "main": "./src/index.js",
+  "scripts": {
+    "build": "vite build",
+    "dev": "vite",
+    "lint": "stylelint ./src/**/*.css && eslint ./src",
+    "lint:fix": "stylelint ./src/**/*.css --fix && eslint ./src --fix",
+    "format": "prettier --write src/**/*.{js,jsx,css}",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@ant-design/icons": "^6.1.0",
+    "antd": "^6.2.1",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
+    "react-redux": "^9.2.0",
+    "redux": "^5.0.1",
+    "redux-thunk": "^3.1.0"
+  },
+  "devDependencies": {
+    "@dg-scripts/eslint-config": "^6.1.0",
+    "@dg-scripts/stylelint-config": "^6.1.0",
+    "@types/react": "^19.2.5",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^5.1.2",
+    "eslint": "^9.39.2",
+    "prettier": "^3.8.0",
+    "stylelint": "^17.0.0",
+    "typescript": "^5.9.3",
+    "vite": "^7.3.1"
+  }
+}

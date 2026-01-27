@@ -1,5 +1,6 @@
-import { SiApacheecharts, SiReact, SiTrello, SiVuedotjs } from '@icons-pack/react-simple-icons'
+import { SiApacheecharts, SiDblp, SiReact, SiTrello, SiVuedotjs } from '@icons-pack/react-simple-icons'
 import { BrainCircuitIcon, CalendarClockIcon } from 'lucide-react'
+import DBLPBackground from '@/assets/projects/dblp.png'
 import EchartsDashboardBackground from '@/assets/projects/echarts-dashboard.png'
 import MLeagueReviewerBackground from '@/assets/projects/m-league-reviewer.png'
 import MortalUIBackground from '@/assets/projects/mortal-ui.png'
@@ -48,6 +49,19 @@ export function ProjectsPortfolio() {
         />
       ),
       href: `${import.meta.env.BASE_URL}m-league-reviewer/`,
+    },
+    {
+      name: 'DBLP Search',
+      description: 'Search for DBLP papers.',
+      icon: SiDblp,
+      background: (
+        <img
+          src={DBLPBackground}
+          alt="DBLP Search"
+          className={cn(projectBackgroundClassName, 'object-top')}
+        />
+      ),
+      href: `${import.meta.env.BASE_URL}dblp/`,
     },
     {
       name: 'React Renderer',
