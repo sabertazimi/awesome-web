@@ -10,9 +10,12 @@ on:
     branches:
       - main
 
+env:
+  CARGO_TERM_COLOR: always
+
 jobs:
-  lint:
-    name: Lint
+  web-lint:
+    name: Web Lint
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -35,10 +38,10 @@ jobs:
           pnpm install
       - name: Run linter tests
         run: |
-          pnpm lint
+          pnpm web:lint
 
-  test:
-    name: Test
+  web-test:
+    name: Web Test
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -66,7 +69,7 @@ jobs:
           pnpm install
       - name: Run unit tests
         run: |
-          pnpm test
+          pnpm web:test
       - name: Perform code coverage report action
         uses: codecov/codecov-action@v5
         if: ${{ matrix.node-version == 'lts/*' && matrix.os == 'ubuntu-latest' && matrix.architecture == 'x64' }}
@@ -74,8 +77,8 @@ jobs:
           fail_ci_if_error: true
           token: ${{ secrets.CODECOV_TOKEN }}
 
-  build:
-    name: Build
+  web-build:
+    name: Web Build
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -108,7 +111,7 @@ jobs:
           pnpm install
       - name: Build applications
         run: |
-          pnpm build
+          pnpm web:build
       - name: Archive production artifacts
         uses: actions/upload-artifact@v6
         if: ${{ matrix.node-version == 'lts/*' && matrix.os == 'ubuntu-latest' && matrix.architecture == 'x64' }}
@@ -116,21 +119,197 @@ jobs:
           name: dist
           path: dist
 
+  rust-lint:
+    name: Rust Lint
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: true
+      matrix:
+        os: [ubuntu-latest]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          submodules: true
+          fetch-depth: 1
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+      - name: Cache cargo binaries and registry
+        uses: actions/cache@v5
+        with:
+          path: |
+            ~/.cargo/bin/
+            ~/.cargo/registry/index/
+            ~/.cargo/registry/cache/
+            ~/.cargo/git/db/
+            target/
+          key: ${{ runner.os }}-cargo-lint-${{ hashFiles('**/Cargo.lock') }}
+      - name: Check toolchain version
+        run: |
+          rustc -V
+          cargo -V
+      - name: Run linter tests
+        run: |
+          pnpm rust:lint
+
+  rust-unit:
+    name: Rust Unit Test
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: true
+      matrix:
+        os: [ubuntu-latest]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          submodules: true
+          fetch-depth: 1
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+      - name: Cache cargo binaries and registry
+        uses: actions/cache@v5
+        with:
+          path: |
+            ~/.cargo/bin/
+            ~/.cargo/registry/index/
+            ~/.cargo/registry/cache/
+            ~/.cargo/git/db/
+            target/
+          key: ${{ runner.os }}-cargo-unit-${{ hashFiles('**/Cargo.lock') }}
+      - name: Check toolchain version
+        run: |
+          rustc -V
+          cargo -V
+      - name: Run unit tests
+        run: |
+          pnpm rust:test
+
+  rust-e2e:
+    name: Rust E2E Test
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: true
+      matrix:
+        os: [ubuntu-latest]
+        git-depth: [0]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          submodules: true
+          fetch-depth: ${{ matrix.git-depth }}
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+      - name: Cache cargo binaries and registry
+        uses: actions/cache@v5
+        with:
+          path: |
+            ~/.cargo/bin/
+            ~/.cargo/registry/index/
+            ~/.cargo/registry/cache/
+            ~/.cargo/git/db/
+            target/
+          key: ${{ runner.os }}-cargo-e2e-${{ hashFiles('**/Cargo.lock') }}
+      - name: Check toolchain version
+        run: |
+          rustc -V
+          cargo -V
+      - name: Run e2e tests
+        run: |
+          pnpm rust:e2e
+    
+  rust-build:
+    name: Rust Build
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: true
+      matrix:
+        os: [ubuntu-latest]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          submodules: true
+          fetch-depth: 1
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+      - name: Cache cargo binaries and registry
+        uses: actions/cache@v5
+        with:
+          path: |
+            ~/.cargo/bin/
+            ~/.cargo/registry/index/
+            ~/.cargo/registry/cache/
+            ~/.cargo/git/db/
+            target/
+          key: ${{ runner.os }}-cargo-build-${{ hashFiles('**/Cargo.lock') }}
+      - name: Check toolchain version
+        run: |
+          rustc -V
+          cargo -V
+      - name: Build binaries
+        run: |
+          pnpm rust:build
+
+  docs:
+    name: Documentation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          submodules: true
+          fetch-depth: 0 # Keep `0` for last updated time
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+      - name: Cache cargo binaries and registry
+        uses: actions/cache@v5
+        with:
+          path: |
+            ~/.cargo/bin/
+            ~/.cargo/registry/index/
+            ~/.cargo/registry/cache/
+            ~/.cargo/git/db/
+            target/
+          key: ${{ runner.os }}-cargo-docs-${{ hashFiles('**/Cargo.lock') }}
+      - name: Setup mdBook
+        uses: peaceiris/actions-mdbook@v2
+        with:
+          mdbook-version: 'latest'
+      - name: Check toolchain version
+        run: |
+          rustc -V
+          cargo -V
+          mdbook -V
+      - name: Build documentation
+        run: |
+          pnpm rust:docs
+      - name: Archive documentation artifacts
+        uses: actions/upload-artifact@v6
+        with:
+          name: book
+          path: book
+
   deploy:
     name: Deploy
     if: ${{ github.ref == 'refs/heads/main' }}
     runs-on: ubuntu-latest
-    needs: [lint, test, build]
+    needs: [web-lint, web-test, web-build, rust-lint, rust-unit, rust-e2e, rust-build, docs]
     steps:
       - name: Download production artifacts
         uses: actions/download-artifact@v7
         with:
           name: dist
           path: dist
-      - name: List production artifacts
+      - name: Download documentation artifacts
+        uses: actions/download-artifact@v7
+        with:
+          name: book
+          path: book
+      - name: Aggregate artifacts
         run: |
-          ls -R
-        working-directory: .
+          cp -fr book/* dist/
       - name: Deploy to Github Pages
         uses: peaceiris/actions-gh-pages@v4
         if: ${{ github.ref == 'refs/heads/main' }}
@@ -146,7 +325,7 @@ jobs:
     name: Publish
     if: startsWith(github.ref, 'refs/tags/v')
     runs-on: ubuntu-latest
-    needs: [lint, test, build]
+    needs: [web-lint, web-test, web-build, rust-lint, rust-unit, rust-e2e, rust-build, docs]
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
