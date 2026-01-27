@@ -33,7 +33,7 @@
     "web development"
   ],
   "scripts": {
-    "build": "pnpm -r run build && node scripts/post-build.js",
+    "build": "pnpm -r run build && node scripts/post-build.js && cp -fr vercel.json dist/",
     "lint": "pnpm -r run lint",
     "lint:fix": "pnpm -r run lint:fix",
     "release": "lerna version --force-publish --sign-git-commit --sign-git-tag",
