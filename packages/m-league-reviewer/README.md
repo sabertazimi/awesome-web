@@ -1,10 +1,10 @@
-# M.League 复盘
+# M.League Reviewer
 
 本项目用于复盘立直麻将联赛（M.League）每日比赛，
 以表格形式记录每个半庄选手的何切内容，
 帮助麻将爱好者分析和学习职业选手的打法。
 
-[🔗 Online Reviewer](https://web.tazimi.dev/m-league-reviewer/)
+[🔗 Online Reviewer](https://lab.tazimi.dev/m-league-reviewer/)
 
 ## 功能特性
 

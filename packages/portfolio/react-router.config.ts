@@ -5,7 +5,7 @@ const isVercel = Boolean(process.env.VERCEL)
 
 export default {
   appDirectory: 'src',
-  basename: import.meta.env.PROD && !isVercel ? '/awesome-web/' : '/',
+  basename: import.meta.env.PROD && !isVercel ? '/lab/' : '/',
   ssr: false,
   async prerender() {
     return ['/']

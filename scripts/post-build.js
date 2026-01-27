@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * Post-build script for awesome-web monorepo
+ * Post-build script for lab monorepo
  *
  * This script handles moving build outputs from individual packages
  * to the root dist/ directory with proper path normalization.
@@ -12,7 +12,7 @@
  * If no package name is provided, it will process all packages.
  *
  * Environment:
- *   - GitHub Actions: base path is '/awesome-web/'
+ *   - GitHub Actions: base path is '/lab/'
  *   - Vercel: base path is '/' (detected via process.env.VERCEL)
  */
 
@@ -55,21 +55,21 @@ function getPackageConfigs() {
 
   return [
     {
-      name: 'awesome-web',
+      name: 'portfolio',
       type: 'react-router',
       buildDir: 'build/client',
       isRoot: true,
       // Vercel: index.html is directly in build/client
-      // GitHub Actions: index.html is in build/client/awesome-web
-      normalizeSubDir: vercel ? undefined : 'awesome-web',
+      // GitHub Actions: index.html is in build/client/lab
+      normalizeSubDir: vercel ? undefined : 'lab',
     },
     {
       name: 'm-league-reviewer',
       type: 'react-router',
       buildDir: 'build/client',
       // Vercel: index.html is in build/client/m-league-reviewer
-      // GitHub Actions: index.html is in build/client/awesome-web/m-league-reviewer
-      normalizeSubDir: vercel ? 'm-league-reviewer' : 'awesome-web/m-league-reviewer',
+      // GitHub Actions: index.html is in build/client/lab/m-league-reviewer
+      normalizeSubDir: vercel ? 'm-league-reviewer' : 'lab/m-league-reviewer',
     },
     {
       name: 'react-renderer',
@@ -135,7 +135,7 @@ function copyDirSync(src, dest, excludePaths = new Set()) {
 
 /**
  * Get the first segment of a path (top-level directory name)
- * @param {string} relativePath - Relative path like 'awesome-web' or 'awesome-web/m-league-reviewer'
+ * @param {string} relativePath - Relative path like 'lab' or 'lab/m-league-reviewer'
  * @returns {string} First segment of the path
  */
 function getFirstPathSegment(relativePath) {
@@ -209,7 +209,7 @@ function processPackage(config) {
       : findIndexHtmlDir(buildDir)
 
     if (config.isRoot) {
-      // For root package (awesome-web), copy index.html to dist root
+      // For root package (portfolio), copy index.html to dist root
       if (
         normalizedDir
         && fs.existsSync(path.join(normalizedDir, 'index.html'))
@@ -287,11 +287,11 @@ function main() {
   const vercel = isVercel()
   const packageConfigs = getPackageConfigs()
 
-  console.log('🚀 Post-build script for awesome-web monorepo')
+  console.log('🚀 Post-build script for lab monorepo')
   console.log(`   Root: ${RootDir}`)
   console.log(`   Dist: ${DistDir}`)
   console.log(`   Environment: ${vercel ? 'Vercel' : 'GitHub Actions'}`)
-  console.log(`   Base path: ${vercel ? '/' : '/awesome-web/'}`)
+  console.log(`   Base path: ${vercel ? '/' : '/lab/'}`)
 
   // Ensure clean dist directory
   fs.rmSync(DistDir, { recursive: true, force: true })

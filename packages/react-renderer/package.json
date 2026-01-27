@@ -1,9 +1,9 @@
 {
-  "name": "@awesome-web/react-renderer",
+  "name": "@lab/react-renderer",
   "type": "module",
   "version": "2.5.0",
   "private": true,
-  "homepage": "https://web.tazimi.dev/react-renderer",
+  "homepage": "https://lab.tazimi.dev/react-renderer",
   "engines": {
     "node": ">=14.0.0"
   },

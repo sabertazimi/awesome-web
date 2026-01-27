@@ -9,7 +9,7 @@ function getBase(mode: string) {
     return '/'
   }
 
-  return isVercel ? '/vue-design/' : '/awesome-web/vue-design/'
+  return isVercel ? '/vue-design/' : '/lab/vue-design/'
 }
 
 export default defineConfig(({ mode }) => ({

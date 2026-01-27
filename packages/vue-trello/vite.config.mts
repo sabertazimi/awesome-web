@@ -10,7 +10,7 @@ function getBase(mode: string) {
     return '/'
   }
 
-  return isVercel ? '/vue-trello/' : '/awesome-web/vue-trello/'
+  return isVercel ? '/vue-trello/' : '/lab/vue-trello/'
 }
 
 export default defineConfig(({ mode }) => ({

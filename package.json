@@ -1,17 +1,17 @@
 {
-  "name": "awesome-web",
+  "name": "lab",
   "private": true,
   "packageManager": "pnpm@10.28.1",
   "description": "A brand new repository for web development prototypes",
   "author": "sabertazimi",
   "license": "MIT",
-  "homepage": "https://github.com/sabertazimi/awesome-web",
+  "homepage": "https://github.com/sabertazimi/lab",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sabertazimi/awesome-web.git"
+    "url": "git+https://github.com/sabertazimi/lab.git"
   },
   "bugs": {
-    "url": "https://github.com/sabertazimi/awesome-web/issues"
+    "url": "https://github.com/sabertazimi/lab/issues"
   },
   "keywords": [
     "html",
@@ -37,14 +37,14 @@
     "lint": "pnpm -r run lint",
     "lint:fix": "pnpm -r run lint:fix",
     "release": "lerna version --force-publish --sign-git-commit --sign-git-tag",
-    "dev": "pnpm dev:awesome-web",
-    "dev:awesome-web": "pnpm --filter @awesome-web/awesome-web dev",
-    "dev:m-league-reviewer": "pnpm --filter m-league-reviewer dev",
-    "dev:mortal-ui": "pnpm --filter mortal-ui dev",
-    "dev:echarts-dashboard": "pnpm --filter echarts-dashboard dev",
-    "dev:react-renderer": "pnpm --filter @awesome-web/react-renderer dev",
-    "dev:vue-design": "pnpm --filter @awesome-web/vue-design dev",
-    "dev:vue-trello": "pnpm --filter @awesome-web/vue-trello dev",
+    "dev": "pnpm dev:portfolio",
+    "dev:portfolio": "pnpm --filter @lab/portfolio dev",
+    "dev:m-league-reviewer": "pnpm --filter @lab/m-league-reviewer dev",
+    "dev:mortal-ui": "pnpm --filter @lab/mortal-ui dev",
+    "dev:echarts-dashboard": "pnpm --filter @lab/echarts-dashboard dev",
+    "dev:react-renderer": "pnpm --filter @lab/react-renderer dev",
+    "dev:vue-design": "pnpm --filter @lab/vue-design dev",
+    "dev:vue-trello": "pnpm --filter @lab/vue-trello dev",
     "test": "pnpm -r run test"
   },
   "devDependencies": {

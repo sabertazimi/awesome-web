@@ -13,7 +13,7 @@ function getBase(mode: string) {
     return '/'
   }
 
-  return isVercel ? '/mortal-ui/' : '/awesome-web/mortal-ui/'
+  return isVercel ? '/mortal-ui/' : '/lab/mortal-ui/'
 }
 
 export default defineConfig(({ mode }) => ({

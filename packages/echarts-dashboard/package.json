@@ -1,5 +1,5 @@
 {
-  "name": "echarts-dashboard",
+  "name": "@lab/echarts-dashboard",
   "type": "module",
   "version": "2.5.0",
   "private": true,

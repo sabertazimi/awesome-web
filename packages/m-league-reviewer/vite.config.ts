@@ -11,7 +11,7 @@ function getBase(mode: string) {
     return '/'
   }
 
-  return isVercel ? '/m-league-reviewer/' : '/awesome-web/m-league-reviewer/'
+  return isVercel ? '/m-league-reviewer/' : '/lab/m-league-reviewer/'
 }
 
 // https://vite.dev/config/
