@@ -60,4 +60,5 @@ function Button({
   )
 }
 
+// eslint-disable-next-line react-refresh/only-export-components -- this is a valid export
 export { Button, buttonVariants }

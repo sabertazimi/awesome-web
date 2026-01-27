@@ -12,6 +12,7 @@ Experimental prototypes.
 ## React
 
 - [M.League Reviewer](https://lab.tazimi.dev/m-league-reviewer/): Reviewer for M.League daily games.
+- [DBLP Search](https://lab.tazimi.dev/dblp/): Search for DBLP papers.
 - [React Renderer](https://lab.tazimi.dev/react-renderer/): Custom renderer for React components.
 
 ## Vue
