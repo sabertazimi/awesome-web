@@ -10,10 +10,6 @@
  *   node scripts/post-build.js [package-name]
  *
  * If no package name is provided, it will process all packages.
- *
- * Environment:
- *   - GitHub Actions: base path is '/lab/'
- *   - Vercel: base path is '/' (detected via process.env.VERCEL)
  */
 
 import fs from 'node:fs'
@@ -26,12 +22,6 @@ const __dirname = path.dirname(__filename)
 const RootDir = path.resolve(__dirname, '..')
 const PackagesDir = path.join(RootDir, 'packages')
 const DistDir = path.join(RootDir, 'dist')
-
-/**
- * Check if running in Vercel environment
- * @returns {boolean} True if running in Vercel, false otherwise
- */
-const isVercel = () => Boolean(process.env.VERCEL)
 
 /**
  * Package configuration for post-build processing
@@ -47,29 +37,22 @@ const isVercel = () => Boolean(process.env.VERCEL)
  */
 
 /**
- * Get package configurations based on environment
+ * Get package configurations
  * @returns {PackageConfig[]} Array of package configurations
  */
 function getPackageConfigs() {
-  const vercel = isVercel()
-
   return [
     {
       name: 'portfolio',
       type: 'react-router',
       buildDir: 'build/client',
       isRoot: true,
-      // Vercel: index.html is directly in build/client
-      // GitHub Actions: index.html is in build/client/lab
-      normalizeSubDir: vercel ? undefined : 'lab',
     },
     {
       name: 'm-league-reviewer',
       type: 'react-router',
       buildDir: 'build/client',
-      // Vercel: index.html is in build/client/m-league-reviewer
-      // GitHub Actions: index.html is in build/client/lab/m-league-reviewer
-      normalizeSubDir: vercel ? 'm-league-reviewer' : 'lab/m-league-reviewer',
+      normalizeSubDir: 'm-league-reviewer',
     },
     {
       name: 'react-renderer',
@@ -284,14 +267,11 @@ function processPackage(config) {
 function main() {
   const args = process.argv.slice(2)
   const targetPackage = args[0]
-  const vercel = isVercel()
   const packageConfigs = getPackageConfigs()
 
   console.log('🚀 Post-build script for lab monorepo')
   console.log(`   Root: ${RootDir}`)
   console.log(`   Dist: ${DistDir}`)
-  console.log(`   Environment: ${vercel ? 'Vercel' : 'GitHub Actions'}`)
-  console.log(`   Base path: ${vercel ? '/' : '/lab/'}`)
 
   // Ensure clean dist directory
   fs.rmSync(DistDir, { recursive: true, force: true })
