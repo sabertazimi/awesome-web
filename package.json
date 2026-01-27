@@ -32,6 +32,7 @@
     "claude"
   ],
   "scripts": {
+    "build": "pnpm web:build && pnpm rust:docs && mv book/* dist/",
     "web:build": "pnpm -r run build && node scripts/post-build.js && cp -fr vercel.json dist/",
     "web:lint": "pnpm -r run lint",
     "web:lint:fix": "pnpm -r run lint:fix",
