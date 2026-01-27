@@ -306,10 +306,10 @@ jobs:
         uses: actions/download-artifact@v7
         with:
           name: book
-          path: book
+          path: rust
       - name: Aggregate artifacts
         run: |
-          cp -fr book/* dist/
+          cp -fr rust dist/
       - name: Deploy to Github Pages
         uses: peaceiris/actions-gh-pages@v4
         if: ${{ github.ref == 'refs/heads/main' }}
