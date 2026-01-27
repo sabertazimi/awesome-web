@@ -1,0 +1,21 @@
+# https://doc.rust-lang.org/cargo/reference/workspaces.html
+[workspace]
+members = [
+  "crates/basis",
+  "crates/rustlings",
+  "crates/exercism/*",
+]
+resolver = "2"
+
+[workspace.metadata.release]
+# cargo install cargo-release
+# cargo release -x
+sign-commit = true
+sign-tag = true
+release = false
+push = false
+publish = false
+shared-version = true
+pre-release-commit-message = "chore(release): {{version}}"
+post-release-commit-message = "chore(release): {{version}}"
+tag-message = "{{tag_name}}"
