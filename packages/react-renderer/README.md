@@ -1,4 +1,4 @@
-# @awesome-web/react-renderer
+# React Renderer
 
 ## Reference
 

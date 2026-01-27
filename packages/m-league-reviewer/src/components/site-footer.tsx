@@ -27,7 +27,7 @@ export function SiteFooter({ number, fileName, className }: SiteFooterProps) {
         </div>
         <div className="flex items-center gap-2">
           <a
-            href="https://github.com/sabertazimi/awesome-web/tree/main/packages/m-league-reviewer"
+            href="https://github.com/sabertazimi/lab/tree/main/packages/m-league-reviewer"
             target="_blank"
             rel="noopener noreferrer"
             className="text-muted-foreground hover:text-primary transition-colors"

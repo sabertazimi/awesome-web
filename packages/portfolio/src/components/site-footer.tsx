@@ -27,7 +27,7 @@ export function SiteFooter({ number, fileName, className }: SiteFooterProps) {
         </div>
         <div className="flex items-center gap-2">
           <a
-            href="https://github.com/sabertazimi/awesome-web/"
+            href="https://github.com/sabertazimi/lab/"
             target="_blank"
             rel="noopener noreferrer"
             className="text-muted-foreground hover:text-primary transition-colors"

@@ -11,7 +11,7 @@ function getBase(mode: string) {
     return '/'
   }
 
-  return isVercel ? '/react-renderer/' : '/awesome-web/react-renderer/'
+  return isVercel ? '/react-renderer/' : '/lab/react-renderer/'
 }
 
 // https://vite.dev/config/

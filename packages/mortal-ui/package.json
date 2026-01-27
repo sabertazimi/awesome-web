@@ -1,5 +1,5 @@
 {
-  "name": "mortal-ui",
+  "name": "@lab/mortal-ui",
   "type": "module",
   "version": "2.5.0",
   "private": true,

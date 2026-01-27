@@ -1,1 +1,1 @@
-# @awesome-web/vue-design
+# Vue Design

@@ -8,6 +8,6 @@ const isVercel = Boolean(process.env.VERCEL)
 
 // https://vite.dev/config/
 export default defineConfig(({ mode }) => ({
-  base: mode === 'production' && !isVercel ? '/awesome-web/' : '/',
+  base: mode === 'production' && !isVercel ? '/lab/' : '/',
   plugins: [tailwindcss(), reactRouter(), tsconfigPaths()],
 }))

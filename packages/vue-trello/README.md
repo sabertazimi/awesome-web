@@ -1,1 +1,1 @@
-# @awesome-web/vue-trello
+# Vue Trello

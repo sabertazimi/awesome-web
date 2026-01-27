@@ -7,7 +7,7 @@
       "npmClientArgs": ["--no-package-lock"]
     },
     "create": {
-      "homepage": "https://tazimi.dev/awesome-web",
+      "homepage": "https://lab.tazimi.dev",
       "license": "MIT"
     },
     "run": {

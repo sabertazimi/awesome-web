@@ -11,7 +11,7 @@ function getBase(mode: string) {
     return '/'
   }
 
-  return isVercel ? '/echarts-dashboard/' : '/awesome-web/echarts-dashboard/'
+  return isVercel ? '/echarts-dashboard/' : '/lab/echarts-dashboard/'
 }
 
 // https://vite.dev/config/

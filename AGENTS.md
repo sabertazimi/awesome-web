@@ -4,7 +4,7 @@ This file provides guidance to coding agents when working with code in this repo
 
 ## Project Overview
 
-Awesome Web is a monorepo for web development prototypes containing multiple React and Vue applications.
+Lab is a monorepo for experimental prototypes containing multiple React and Vue applications.
 It uses pnpm workspaces with Lerna for managing multiple packages and unified build system.
 
 **Type**: Monorepo | **Size**: ~8 packages, ~150+ components, ~50+ libs
@@ -62,7 +62,7 @@ This is a **pnpm workspace** monorepo with the following packages:
 **Other**:
 
 - `vue-challenges` - Vue.js coding challenges and solutions
-- `awesome-web` - Main package
+- `portfolio` - portfolio website
 
 ### Technology Stack
 
