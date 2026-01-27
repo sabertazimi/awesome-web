@@ -67,7 +67,7 @@ export default class App extends Component {
               </Col>
               <Col>
                 <a
-                  href="https://github.com/sabertazimi/dblp"
+                  href="https://github.com/sabertazimi/lab"
                   target="_blank"
                   rel="noreferrer"
                   style={{
