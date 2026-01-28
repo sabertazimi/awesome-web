@@ -128,6 +128,8 @@ jobs:
         with:
           submodules: true
           fetch-depth: 1
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
       - name: Setup Python
         uses: actions/setup-python@v6
         with:
@@ -141,7 +143,7 @@ jobs:
           uv sync --locked --all-extras --dev
       - name: Run linter tests
         run: |
-          uvx ruff check
+          pnpm python:lint
 
   rust-lint:
     name: Rust Lint
