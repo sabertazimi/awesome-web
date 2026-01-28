@@ -1,5 +1,5 @@
 [project]
-name = "bash-agent"
+name = "agent-cli"
 version = "0.1.0"
 description = "Minimal Claude Code."
 readme = "README.md"
@@ -11,7 +11,7 @@ dependencies = [
 ]
 
 [project.scripts]
-bash-agent = "bash_agent:main"
+agent-cli = "agent_cli:main"
 
 [[tool.uv.index]]
 url = "http://mirrors.aliyun.com/pypi/simple/"

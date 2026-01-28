@@ -1,4 +1,6 @@
-# Bash Agent
+# Agent CLI
+
+Minimal Claude Code.
 
 ## References
 

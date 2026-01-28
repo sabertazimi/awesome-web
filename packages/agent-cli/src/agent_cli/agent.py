@@ -16,7 +16,7 @@ TOOLS: list[ToolParam] = [
         "description": """Execute shell command. Patterns:
 - Read: cat/grep/find/ls
 - Write: echo '...' > file
-- Subagent: uv run bash-agent 'task description'""",
+- Subagent: uv run agent-cli 'task description'""",
         "input_schema": {
             "type": "object",
             "properties": {"command": {"type": "string"}},
@@ -27,7 +27,7 @@ TOOLS: list[ToolParam] = [
 SYSTEM = f"CLI agent at {os.getcwd()}. Use Bash. Spawn subagent for complex tasks."
 
 
-def chat(prompt: str, history: list[MessageParam] | None = None) -> str:
+def agent_loop(prompt: str, history: list[MessageParam] | None = None) -> str:
     if history is None:
         history = []
     history.append({"role": "user", "content": prompt})
