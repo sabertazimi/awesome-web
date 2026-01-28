@@ -12,3 +12,19 @@ members = [ "packages/bash-agent" ]
 
 [tool.uv.sources]
 bash-agent = { workspace = true }
+
+[tool.ruff.lint]
+select = [
+  # pycodestyle
+  "E",
+  # Pyflakes
+  "F",
+  # pyupgrade
+  "UP",
+  # flake8-bugbear
+  "B",
+  # flake8-simplify
+  "SIM",
+  # isort
+  "I",
+]
