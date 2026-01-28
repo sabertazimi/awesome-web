@@ -14,7 +14,7 @@ dependencies = [
 agent-cli = "agent_cli:main"
 
 [[tool.uv.index]]
-url = "http://mirrors.aliyun.com/pypi/simple/"
+url = "https://mirrors.aliyun.com/pypi/simple/"
 default = true
 
 [build-system]

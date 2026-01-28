@@ -17,7 +17,7 @@ dev = [
 members = [ "packages/agent-cli" ]
 
 [[tool.uv.index]]
-url = "http://mirrors.aliyun.com/pypi/simple/"
+url = "https://mirrors.aliyun.com/pypi/simple/"
 default = true
 
 [tool.uv.sources]
