@@ -11,6 +11,10 @@
 - [Rust Snippets](https://github.com/sabertazimi/lab/tree/main/crates/basis)
 - [Rustlings Solutions](https://github.com/sabertazimi/lab/tree/main/crates/rustlings/exercises)
 
+## Documentation
+
+Check out [rustdoc documentation](https://lab.tazimi.dev/rust/doc/basis) for more details.
+
 ## Contributing
 
 Contributions are greatly appreciated.
