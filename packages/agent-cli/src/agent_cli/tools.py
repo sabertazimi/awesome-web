@@ -167,10 +167,11 @@ def run_read(path: str, limit: int | None = None) -> str:
     try:
         text = safe_path(path).read_text(encoding="utf-8")
         lines = text.splitlines()
+        total_lines = len(lines)
 
-        if limit and limit < len(lines):
+        if limit is not None and limit > 0 and limit < total_lines:
             lines = lines[:limit]
-            lines.append(f"... ({len(text.splitlines()) - limit} more lines)")
+            lines.append(f"... ({total_lines - limit} more lines)")
 
         return "\n".join(lines)[:50000]
     except Exception as e:
