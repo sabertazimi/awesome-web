@@ -1,16 +1,12 @@
 import os
-import subprocess
 from pathlib import Path
-from typing import TypedDict, cast
 
 from anthropic import Anthropic
-from anthropic.types import MessageParam, TextBlock, ToolParam, ToolResultBlockParam
+from anthropic.types import MessageParam, TextBlock, ToolResultBlockParam, ToolUseBlock
 from dotenv import load_dotenv
 
-
-class BashToolInput(TypedDict):
-    command: str
-
+from .output import print_text, print_tool_call, print_tool_result
+from .tools import TOOLS, execute_tool
 
 load_dotenv(override=True)
 
@@ -30,59 +26,53 @@ Rules:
 - Make minimal changes. Don't over-engineer.
 - After finishing, summarize what changed."""
 
-TOOLS: list[ToolParam] = [
-    {
-        "name": "Bash",
-        "description": """Execute shell command. Patterns:
-- Read: cat/grep/find/ls
-- Write: echo '...' > file
-- Subagent: uv run agent-cli 'task description'""",
-        "input_schema": {
-            "type": "object",
-            "properties": {"command": {"type": "string"}},
-            "required": ["command"],
-        },
-    }
-]
 
+def agent_loop(messages: list[MessageParam]) -> list[MessageParam]:
+    """
+    This is the pattern that ALL coding agents share:
 
-def agent_loop(prompt: str, history: list[MessageParam] | None = None) -> str:
-    if history is None:
-        history = []
-    history.append({"role": "user", "content": prompt})
-
+        while True:
+            response = model(messages, tools)
+            if no tool calls: return
+            execute tools, append results, continue
+    """
     while True:
+        # Step 1: Call the model
         response = client.messages.create(
-            model="glm-4.7",
+            model=MODEL,
             system=SYSTEM,
-            messages=history,
+            messages=messages,
             tools=TOOLS,
             max_tokens=8000,
         )
-        history.append({"role": "assistant", "content": response.content})
 
+        # Step 2: Collect any tool calls and print text output
+        tool_calls: list[ToolUseBlock] = []
+        for block in response.content:
+            if isinstance(block, TextBlock):
+                print_text(block.text)
+            if isinstance(block, ToolUseBlock):
+                tool_calls.append(block)
+
+        # Step 3: If not tool calls, task is complete
         if response.stop_reason != "tool_use":
-            return "".join(
-                block.text for block in response.content if isinstance(block, TextBlock)
+            messages.append({"role": "assistant", "content": response.content})
+            return messages
+
+        # Step 4: Execute each tool and collect results
+        results: list[ToolResultBlockParam] = []
+        for tool_call in tool_calls:
+            print_tool_call(tool_call.name, tool_call.input)
+            output = execute_tool(tool_call.name, tool_call.input)
+            print_tool_result(output)
+            results.append(
+                {
+                    "type": "tool_result",
+                    "tool_use_id": tool_call.id,
+                    "content": output,
+                }
             )
 
-        results: list[ToolResultBlockParam] = []
-        for block in response.content:
-            if block.type == "tool_use":
-                command = cast(BashToolInput, block.input)["command"]
-                out = subprocess.run(
-                    command,
-                    shell=True,
-                    capture_output=True,
-                    text=True,
-                    timeout=300,
-                )
-                results.append(
-                    {
-                        "type": "tool_result",
-                        "tool_use_id": block.id,
-                        "content": out.stdout + out.stderr,
-                    }
-                )
-
-        history.append({"role": "user", "content": results})
+        # Step 5: Append to conversation and continue
+        messages.append({"role": "assistant", "content": response.content})
+        messages.append({"role": "user", "content": results})
