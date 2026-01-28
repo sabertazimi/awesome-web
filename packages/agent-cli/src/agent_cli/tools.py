@@ -165,7 +165,7 @@ def run_read(path: str, limit: int | None = None) -> str:
     Output truncated to 50KB to prevent context overflow.
     """
     try:
-        text = safe_path(path).read_text(encoding="utf-8")
+        text = safe_path(path).read_text(encoding="utf-8", newline="\n")
         lines = text.splitlines()
         total_lines = len(lines)
 
@@ -188,7 +188,7 @@ def run_write(path: str, content: str) -> str:
     try:
         file_path = safe_path(path)
         file_path.parent.mkdir(parents=True, exist_ok=True)
-        file_path.write_text(content, encoding="utf-8")
+        file_path.write_text(content, encoding="utf-8", newline="\n")
         return f"Wrote {len(content)} bytes to {path}"
     except Exception as e:
         return f"Error: {e}"
@@ -203,13 +203,13 @@ def run_edit(path: str, old_text: str, new_text: str) -> str:
     """
     try:
         file_path = safe_path(path)
-        content = file_path.read_text(encoding="utf-8")
+        content = file_path.read_text(encoding="utf-8", newline="\n")
 
         if old_text not in content:
             return f"Error: Text not found in {path}"
 
         new_content = content.replace(old_text, new_text, 1)
-        file_path.write_text(new_content, encoding="utf-8")
+        file_path.write_text(new_content, encoding="utf-8", newline="\n")
         return f"Edited {path}"
     except Exception as e:
         return f"Error: {e}"

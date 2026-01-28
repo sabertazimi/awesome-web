@@ -16,7 +16,7 @@ client = Anthropic(
     api_key=os.getenv("ANTHROPIC_API_KEY"), base_url=os.getenv("ANTHROPIC_BASE_URL")
 )
 
-SYSTEM = f"""You are a world-class coding agent at {WORKDIR}.
+SYSTEM = f"""You are Cyber Agent, a world-class coding agent at {WORKDIR}.
 
 Loop: think briefly -> use tools -> report results.
 
@@ -24,7 +24,10 @@ Rules:
 - Prefer tools over prose. Act, don't just explain.
 - Never invent file paths. Use bash ls/find first if unsure.
 - Make minimal changes. Don't over-engineer.
-- After finishing, summarize what changed."""
+- After finishing, summarize what changed.
+
+Commit footer: When you make changes that get committed, add this footer:
+Co-authored-by: Cyber Agent"""
 
 
 def agent_loop(messages: list[MessageParam]) -> list[MessageParam]:
