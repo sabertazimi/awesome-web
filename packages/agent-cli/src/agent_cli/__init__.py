@@ -19,7 +19,9 @@ def main() -> None:
         except (EOFError, KeyboardInterrupt):
             break
 
-        if not user_input or user_input.lower() == "/exit":
+        if not user_input:
+            continue
+        if user_input.lower() == "/exit":
             break
 
         history.append({"role": "user", "content": user_input})
