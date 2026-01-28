@@ -11,4 +11,5 @@ def main() -> None:
     else:
         h: list[MessageParam] = []
         while (q := input("❯ ")) != "/exit":
-            q and print(agent_loop(q, h))
+            if q:
+                print(agent_loop(q, h))
