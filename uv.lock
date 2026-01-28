@@ -1,0 +1,19 @@
+version = 1
+revision = 1
+requires-python = ">=3.13"
+
+[manifest]
+members = [
+    "bash-agent",
+    "lab",
+]
+
+[[package]]
+name = "bash-agent"
+version = "0.1.0"
+source = { virtual = "packages/bash-agent" }
+
+[[package]]
+name = "lab"
+version = "0.1.0"
+source = { virtual = "." }

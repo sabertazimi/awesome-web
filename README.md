@@ -22,6 +22,10 @@ Experimental prototypes.
 - [Vue Trello](https://lab.tazimi.dev/vue-trello/): Trello clone with Vue.
 - [Vue Design](https://lab.tazimi.dev/vue-design/): Vue built-in reactive system.
 
+## Python
+
+- [Bash Agent](https://github.com/sabertazimi/lab/tree/main/packages/bash-agent): Minimal Claude Code.
+
 ## Rust
 
 - [Rust Notes](https://lab.tazimi.dev/rust)

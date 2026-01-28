@@ -64,4 +64,4 @@ Types: feat, fix, chore, docs, refactor, perf, test, build, ci, style
 
 ## Footer
 
-DO NOT add Claude co-authorship footer to commits
+DO NOT add Claude/Cursor (ANY agents) co-authorship footer to commits

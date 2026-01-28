@@ -1,0 +1,9 @@
+[project]
+name = "lab"
+version = "0.1.0"
+description = "Experimental prototypes written in Python."
+readme = "README.md"
+requires-python = ">=3.13"
+
+[tool.uv.workspace]
+members = [ "packages/bash-agent" ]

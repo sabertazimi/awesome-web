@@ -1,0 +1,6 @@
+[project]
+name = "bash-agent"
+version = "0.1.0"
+description = "Minimal Claude Code."
+readme = "README.md"
+requires-python = ">=3.13"
