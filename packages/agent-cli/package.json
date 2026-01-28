@@ -1,0 +1,9 @@
+{
+  "name": "@lab/agent-cli",
+  "type": "module",
+  "version": "3.0.0",
+  "private": true,
+  "packageManager": "pnpm@10.28.1",
+  "description": "Minimal Claude Code.",
+  "license": "MIT"
+}

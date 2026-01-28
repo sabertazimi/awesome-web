@@ -1,0 +1,9 @@
+{
+  "name": "@lab/basis",
+  "type": "module",
+  "version": "3.0.0",
+  "private": true,
+  "packageManager": "pnpm@10.28.1",
+  "description": "Rust basis.",
+  "license": "MIT"
+}

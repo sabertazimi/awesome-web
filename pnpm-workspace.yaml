@@ -2,12 +2,9 @@ shellEmulator: true
 trustPolicy: no-downgrade
 
 packages:
-  - packages/portfolio
-  - packages/m-league-reviewer
-  - packages/dblp
-  - packages/react-renderer
-  - packages/mortal-ui
-  - packages/echarts-dashboard
-  - packages/vue-trello
-  - packages/vue-design
-  - packages/vue-challenges
+  # Web and Python packages
+  - packages/*
+  # Rust crates
+  - crates/basis
+  - crates/rustlings
+  - crates/exercism/*
