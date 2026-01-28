@@ -5,18 +5,10 @@ description = "Experimental prototypes written in Python."
 readme = "README.md"
 authors = [ { name = "sabertazimi", email = "sabertazimi@gmail.com" } ]
 requires-python = ">=3.13"
-dependencies = [
-  "anthropic>=0.25.0",
-  "bash-agent",
-  "python-dotenv>=1.0.0",
-]
+dependencies = [ "bash-agent" ]
 
 [tool.uv.workspace]
 members = [ "packages/bash-agent" ]
-
-[[tool.uv.index]]
-url = "http://mirrors.aliyun.com/pypi/simple/"
-default = true
 
 [tool.uv.sources]
 bash-agent = { workspace = true }

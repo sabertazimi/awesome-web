@@ -52,6 +52,16 @@ wheels = [
 name = "bash-agent"
 version = "0.1.0"
 source = { editable = "packages/bash-agent" }
+dependencies = [
+    { name = "anthropic" },
+    { name = "python-dotenv" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "anthropic", specifier = ">=0.76.0" },
+    { name = "python-dotenv", specifier = ">=1.2.1" },
+]
 
 [[package]]
 name = "certifi"
@@ -182,17 +192,11 @@ name = "lab"
 version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
-    { name = "anthropic" },
     { name = "bash-agent" },
-    { name = "python-dotenv" },
 ]
 
 [package.metadata]
-requires-dist = [
-    { name = "anthropic", specifier = ">=0.25.0" },
-    { name = "bash-agent", editable = "packages/bash-agent" },
-    { name = "python-dotenv", specifier = ">=1.0.0" },
-]
+requires-dist = [{ name = "bash-agent", editable = "packages/bash-agent" }]
 
 [[package]]
 name = "pydantic"
