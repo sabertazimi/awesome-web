@@ -24,6 +24,7 @@ Experimental prototypes.
 
 ## Rust
 
+- [Rust Notes](https://lab.tazimi.dev/rust)
 - [Rust Snippets](https://github.com/sabertazimi/lab/tree/main/crates/basis)
 - [Rustlings Solutions](https://github.com/sabertazimi/lab/tree/main/crates/rustlings/exercises)
 

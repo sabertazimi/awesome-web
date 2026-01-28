@@ -1,10 +1,11 @@
-import { SiApacheecharts, SiDblp, SiReact, SiTrello, SiVuedotjs } from '@icons-pack/react-simple-icons'
+import { SiApacheecharts, SiDblp, SiReact, SiRust, SiTrello, SiVuedotjs } from '@icons-pack/react-simple-icons'
 import { BrainCircuitIcon, CalendarClockIcon } from 'lucide-react'
 import DBLPBackground from '@/assets/projects/dblp.png'
 import EchartsDashboardBackground from '@/assets/projects/echarts-dashboard.png'
 import MLeagueReviewerBackground from '@/assets/projects/m-league-reviewer.png'
 import MortalUIBackground from '@/assets/projects/mortal-ui.png'
 import ReactRendererBackground from '@/assets/projects/react-renderer.png'
+import RustNotesBackground from '@/assets/projects/rust-notes.png'
 import VueDesignBackground from '@/assets/projects/vue-design.png'
 import VueTrelloBackground from '@/assets/projects/vue-trello.png'
 import { BentoCard, BentoGrid } from '@/components/ui/bento-grid'
@@ -127,6 +128,19 @@ export function ProjectsPortfolio() {
         />
       ),
       href: `${import.meta.env.BASE_URL}vue-design/`,
+    },
+    {
+      name: 'Rust Notes',
+      description: 'Notes for Rust.',
+      icon: SiRust,
+      background: (
+        <img
+          src={RustNotesBackground}
+          alt="Rust Notes"
+          className={cn(projectBackgroundClassName, 'object-top')}
+        />
+      ),
+      href: `${import.meta.env.BASE_URL}rust/`,
     },
   ]
 
