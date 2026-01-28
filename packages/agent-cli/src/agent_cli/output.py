@@ -11,20 +11,19 @@ def print_text(text: str) -> None:
     print(f"\n● {aligned}")
 
 
-def print_tool_call(name: str, input: object) -> None:
+def print_tool_call(name: str, tool_input: dict[str, object]) -> None:
     """Print tool call: ToolName(key_arg)."""
-    args: dict[str, object] = input if isinstance(input, dict) else {}
     match name:
         case "Bash":
-            detail = str(args.get("command", ""))
+            detail = str(tool_input.get("command", ""))
         case "Read":
-            detail = str(args.get("path", ""))
+            detail = str(tool_input.get("path", ""))
         case "Write":
-            detail = str(args.get("path", ""))
+            detail = str(tool_input.get("path", ""))
         case "Edit":
-            detail = str(args.get("path", ""))
+            detail = str(tool_input.get("path", ""))
         case _:
-            detail = str(args)
+            detail = str(tool_input)
     print(f"\n{GREEN}●{RESET} {name}({detail})")
 
 

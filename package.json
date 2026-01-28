@@ -32,8 +32,9 @@
     "claude"
   ],
   "scripts": {
-    "release": "lerna version --force-publish --sign-git-commit --sign-git-tag",
     "dev": "pnpm python:dev",
+    "lint": "pnpm python:lint",
+    "release": "lerna version --force-publish --sign-git-commit --sign-git-tag",
     "web:build": "pnpm -r run build && node scripts/post-build.js && cp -fr CNAME dist/ && cp -fr vercel.json dist/",
     "web:dev": "pnpm web:dev:portfolio",
     "web:dev:portfolio": "pnpm --filter @lab/portfolio dev",
