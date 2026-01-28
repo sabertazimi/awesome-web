@@ -5,13 +5,13 @@ description = "Experimental prototypes written in Python."
 readme = "README.md"
 authors = [ { name = "sabertazimi", email = "sabertazimi@gmail.com" } ]
 requires-python = ">=3.13"
-dependencies = [ "bash-agent" ]
+dependencies = [ "agent-cli" ]
 
 [tool.uv.workspace]
-members = [ "packages/bash-agent" ]
+members = [ "packages/agent-cli" ]
 
 [tool.uv.sources]
-bash-agent = { workspace = true }
+agent-cli = { workspace = true }
 
 [tool.ruff.lint]
 select = [

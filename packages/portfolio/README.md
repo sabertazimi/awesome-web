@@ -24,7 +24,7 @@ Experimental prototypes.
 
 ## Python
 
-- [Bash Agent](https://github.com/sabertazimi/lab/tree/main/packages/bash-agent): Minimal Claude Code.
+- [Agent CLI](https://github.com/sabertazimi/lab/tree/main/packages/agent-cli): Minimal Claude Code.
 
 ## Rust
 
