@@ -34,7 +34,7 @@
   "scripts": {
     "release": "lerna version --force-publish --sign-git-commit --sign-git-tag",
     "dev": "pnpm python:dev",
-    "web:build": "pnpm -r run build && node scripts/post-build.js && cp -fr CNAME dist/",
+    "web:build": "pnpm -r run build && node scripts/post-build.js && cp -fr CNAME dist/ && cp -fr vercel.json dist/",
     "web:lint": "pnpm -r run lint",
     "web:lint:fix": "pnpm -r run lint:fix",
     "web:dev": "pnpm web:dev:portfolio",
