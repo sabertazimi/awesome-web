@@ -32,22 +32,18 @@
     "claude"
   ],
   "scripts": {
+    "release": "lerna version --force-publish --sign-git-commit --sign-git-tag",
+    "dev": "pnpm web:dev",
     "web:build": "pnpm -r run build && node scripts/post-build.js && cp -fr CNAME dist/",
     "web:lint": "pnpm -r run lint",
     "web:lint:fix": "pnpm -r run lint:fix",
-    "web:release": "lerna version --force-publish --sign-git-commit --sign-git-tag",
     "web:dev": "pnpm web:dev:portfolio",
     "web:dev:portfolio": "pnpm --filter @lab/portfolio dev",
     "web:dev:m-league-reviewer": "pnpm --filter @lab/m-league-reviewer dev",
-    "web:dev:dblp": "pnpm --filter @lab/dblp dev",
-    "web:dev:react-renderer": "pnpm --filter @lab/react-renderer dev",
-    "web:dev:mortal-ui": "pnpm --filter @lab/mortal-ui dev",
-    "web:dev:echarts-dashboard": "pnpm --filter @lab/echarts-dashboard dev",
-    "web:dev:vue-trello": "pnpm --filter @lab/vue-trello dev",
-    "web:dev:vue-design": "pnpm --filter @lab/vue-design dev",
     "web:test": "pnpm -r run test",
     "rust:build": "cargo build --release",
     "rust:deps": "cargo install mdbook cargo-edit cargo-release cargo-workspace",
+    "rust:dev": "pnpm rust:dev:rustlings",
     "rust:dev:basis": "cargo run -p basis",
     "rust:dev:rustlings": "cd crates/rustlings && cargo run -- watch",
     "rust:docs": "pnpm rust:docs:book && pnpm rust:docs:api",
@@ -60,7 +56,6 @@
     "rust:lint": "cargo fmt --check && cargo clippy --all-targets --release --locked -- -D clippy::all",
     "rust:prelease": "cargo release",
     "rust:release": "cargo release -x",
-    "rust:start": "pnpm rust:dev:rustlings",
     "rust:test": "cargo test"
   },
   "devDependencies": {
