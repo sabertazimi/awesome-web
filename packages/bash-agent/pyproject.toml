@@ -3,4 +3,12 @@ name = "bash-agent"
 version = "0.1.0"
 description = "Minimal Claude Code."
 readme = "README.md"
+authors = [ { name = "sabertazimi", email = "sabertazimi@gmail.com" } ]
 requires-python = ">=3.13"
+
+[project.scripts]
+bash-agent = "bash_agent:main"
+
+[build-system]
+requires = [ "uv_build>=0.9.27,<0.10.0" ]
+build-backend = "uv_build"
