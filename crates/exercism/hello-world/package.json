@@ -1,0 +1,9 @@
+{
+  "name": "@lab/exercism-hello-world",
+  "type": "module",
+  "version": "3.0.0",
+  "private": true,
+  "packageManager": "pnpm@10.28.1",
+  "description": "Exercism hello-world exercise in Rust.",
+  "license": "MIT"
+}
