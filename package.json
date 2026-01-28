@@ -33,7 +33,7 @@
   ],
   "scripts": {
     "release": "lerna version --force-publish --sign-git-commit --sign-git-tag",
-    "dev": "pnpm web:dev",
+    "dev": "pnpm python:dev",
     "web:build": "pnpm -r run build && node scripts/post-build.js && cp -fr CNAME dist/",
     "web:lint": "pnpm -r run lint",
     "web:lint:fix": "pnpm -r run lint:fix",
@@ -41,6 +41,8 @@
     "web:dev:portfolio": "pnpm --filter @lab/portfolio dev",
     "web:dev:m-league-reviewer": "pnpm --filter @lab/m-league-reviewer dev",
     "web:test": "pnpm -r run test",
+    "python:dev": "pnpm python:dev:bash-agent",
+    "python:dev:bash-agent": "uv run bash-agent",
     "rust:build": "cargo build --release",
     "rust:deps": "cargo install mdbook cargo-edit cargo-release cargo-workspace",
     "rust:dev": "pnpm rust:dev:rustlings",
