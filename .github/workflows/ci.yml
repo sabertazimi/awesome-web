@@ -119,13 +119,33 @@ jobs:
           name: dist
           path: dist
 
+  python-lint:
+    name: Python Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          submodules: true
+          fetch-depth: 1
+      - name: Setup Python
+        uses: actions/setup-python@v6
+        with:
+          python-version-file: pyproject.toml
+      - name: Setup uv
+        uses: astral-sh/setup-uv@v7
+        with:
+          enable-cache: true
+      - name: Install dependencies
+        run: |
+          uv sync --locked --all-extras --dev
+      - name: Run linter tests
+        run: |
+          uvx ruff check
+
   rust-lint:
     name: Rust Lint
-    runs-on: ${{ matrix.os }}
-    strategy:
-      fail-fast: true
-      matrix:
-        os: [ubuntu-latest]
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
