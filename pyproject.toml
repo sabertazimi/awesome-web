@@ -12,7 +12,3 @@ members = [ "packages/bash-agent" ]
 
 [tool.uv.sources]
 bash-agent = { workspace = true }
-
-[[tool.uv.index]]
-url = "http://mirrors.aliyun.com/pypi/simple/"
-default = true

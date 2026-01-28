@@ -5,9 +5,17 @@ description = "Minimal Claude Code."
 readme = "README.md"
 authors = [ { name = "sabertazimi", email = "sabertazimi@gmail.com" } ]
 requires-python = ">=3.13"
+dependencies = [
+  "anthropic>=0.76.0",
+  "python-dotenv>=1.2.1",
+]
 
 [project.scripts]
 bash-agent = "bash_agent:main"
+
+[[tool.uv.index]]
+url = "http://mirrors.aliyun.com/pypi/simple/"
+default = true
 
 [build-system]
 requires = [ "uv_build>=0.9.27,<0.10.0" ]
