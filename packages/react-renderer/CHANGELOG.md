@@ -3,6 +3,44 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0](https://github.com/sabertazimi/lab/compare/v2.5.0...v3.0.0) (2026-01-28)
+
+### Bug Fixes
+
+- **deps:** update dependencies (non-major) ([#929](https://github.com/sabertazimi/lab/issues/929)) ([645c3dc](https://github.com/sabertazimi/lab/commit/645c3dcbfd7315294fdde7778c47f4b6aae545ba))
+- **deps:** update dependencies (non-major) ([#933](https://github.com/sabertazimi/lab/issues/933)) ([465b4e4](https://github.com/sabertazimi/lab/commit/465b4e407553663fc9d8359950fef8f56459e18e))
+
+- feat(rust)!: add rust learning workspace with rustlings, exercism, and docs (#935) ([cfa6854](https://github.com/sabertazimi/lab/commit/cfa6854932c3bf4476e99c39403c621320f89916)), closes [#935](https://github.com/sabertazimi/lab/issues/935)
+
+### Features
+
+- **dblp:** add DBLP search application ([#936](https://github.com/sabertazimi/lab/issues/936)) ([1faf657](https://github.com/sabertazimi/lab/commit/1faf657f95c5ed766ee0d82caa7baa1b1ef0845f))
+
+### BREAKING CHANGES
+
+- add Rust workspace to monorepo root, modifies CI workflow and project structure
+
+* Add root Cargo workspace configuration with rustfmt and mdbook setup
+* Add basis crate with git, list/stack, and time utility modules
+* Add exercism hello-world exercise
+* Add rustlings exercises covering variables, functions, enums, structs, collections, strings, modules, macros, move_semantics, generics, option, error_handling, traits, tests, threads, standard_library_types, conversions, advanced_errors
+* Add comprehensive rust documentation notes
+* Update CI workflow with rust checks
+* Update gitignore for rust build artifacts
+
+- ci(vercel): add build script
+
+- ci(vercel): setup mdbook
+
+- refactor: remove vercel deployment and simplify base path config
+
+* Remove vercel.json and all VERCEL environment detection
+* Simplify base path to '/' for portfolio (root) and '/{package}/' for sub-packages
+* Add CNAME for GitHub Pages custom domain
+* Clean up post-build.js by removing vercel-specific normalizeSubDir logic
+
+Co-authored-by: Cursor <cursoragent@cursor.com>
+
 # [2.5.0](https://github.com/sabertazimi/lab/compare/v2.4.0...v2.5.0) (2025-12-23)
 
 ### Bug Fixes

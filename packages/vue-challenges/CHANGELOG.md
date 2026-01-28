@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0](https://github.com/webfansplz/vuejs-challenges/compare/v2.5.0...v3.0.0) (2026-01-28)
+
+### Bug Fixes
+
+- **deps:** update dependencies (non-major) ([#929](https://github.com/webfansplz/vuejs-challenges/issues/929)) ([645c3dc](https://github.com/webfansplz/vuejs-challenges/commit/645c3dcbfd7315294fdde7778c47f4b6aae545ba))
+
 # [2.5.0](https://github.com/webfansplz/vuejs-challenges/compare/v2.4.0...v2.5.0) (2025-12-23)
 
 **Note:** Version bump only for package vue-challenges
